@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -55,8 +57,26 @@ public class Test {
 
     }
 
+    //smelly version since it's static
     public static Predicate<String> checkIfStartsWith(final String letter) {
         return name -> name.startsWith(letter);
     }
+
+    // we can use this inside a function when we need it
+    final Function<String, Predicate<String>> startsWithLetter = (String letter) -> {
+        Predicate<String> checkStarts = (String name) -> name.startsWith(letter);
+        return checkStarts;
+    };
+
+    //a concise version
+    final Function<String, Predicate<String>> startsWithLetterV2 =  letter ->  name -> name.startsWith(letter);
+
+    public void pickName(final List<String> names, final String startingLetter) {
+        final Optional<String> foundName = names.stream().filter(startsWithLetterV2.apply(startingLetter)).findFirst();
+
+        System.out.println(foundName.orElse("No name found"));
+    }
+
+
 
 }
