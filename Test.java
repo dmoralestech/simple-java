@@ -60,6 +60,15 @@ public class Test {
 
         aLongName.ifPresent(printName);
 
+        //iterating a string
+        "hello".chars().forEach(ch -> System.out.println("ch = " + ch));
+        "hello".chars().forEach(Test::printCharToUpper);
+        "hello".chars().forEach(Test::printChar);
+        "hello".chars().mapToObj(ch -> String.valueOf((char) ch).toUpperCase())
+                .forEach(printName);
+        "hell0".chars().filter( ch -> !Character.isDigit(ch)).forEach( ch -> printChar(ch));
+        "hell0".chars().filter( Character::isDigit).forEach( ch -> printChar(ch));
+
 //        final BiFunction<StringBuilder, String, StringBuilder> accumulator =
 //                (builder, name) -> {
 //                    //if (builder.length() > 0) builder.append(",");
@@ -98,6 +107,14 @@ public class Test {
         final Optional<String> foundName = names.stream().filter(startsWithLetterV2.apply(startingLetter)).findFirst();
         //foundName.filter().orElseGet(() -> "My Name");
         System.out.println(foundName.orElse("No name found"));
+    }
+
+    private static void printChar(int aChar) {
+        System.out.println((char)(aChar));
+    }
+
+    private static void printCharToUpper(int aChar) {
+        System.out.println( String.valueOf((char)(aChar)).toUpperCase() );
     }
 
 
