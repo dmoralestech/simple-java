@@ -69,6 +69,7 @@ public class Test {
         "hell0".chars().filter( ch -> !Character.isDigit(ch)).forEach( ch -> printChar(ch));
         "hell0".chars().filter( Character::isDigit).forEach( ch -> printChar(ch));
         "hell0".chars().filter( Character::isAlphabetic).forEach( ch -> printChar(ch));
+        "hell0".chars().filter( Character::isDigit).forEach( ch -> printChar(ch));
 
 //        final BiFunction<StringBuilder, String, StringBuilder> accumulator =
 //                (builder, name) -> {
