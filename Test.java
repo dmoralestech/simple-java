@@ -29,7 +29,6 @@ public class Test {
 
         friends.forEach((final String name) -> System.out.println(name));
 
-
         friends.forEach(name -> System.out.println(name));
 
         friends.forEach(name -> System.out.println(name.toUpperCase()));
@@ -39,7 +38,6 @@ public class Test {
         friends.stream().filter(name -> name.startsWith("D")).forEach(name -> System.out.println("name = " + name));
 
         final List<String> uppercaseNames = friends.stream().map(String::toUpperCase).collect(Collectors.toList());
-
 
         System.out.println("uppercaseNames = " + uppercaseNames);
 
