@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,11 @@ public class Person {
         printPeople("", people.stream().sorted(java.util.Comparator.comparing(byName)).collect(Collectors.toList()));
         printPeople("", people.stream().sorted(java.util.Comparator.comparing(byName).thenComparing(byAge) ).collect(Collectors.toList()));
 
+        Map<Integer, List<Person>> peopleByAge = people.stream().collect(Collectors.groupingBy( Person::getAge));
+
+        Map<Integer, List<String>> nameOfPeopleByAge = people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.mapping(Person::getName, Collectors.toList())));
+
+        List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
 
 
