@@ -81,6 +81,8 @@ public class Person {
                         .collect(groupingBy(person ->  person.getName().charAt(0),
                                 reducing(BinaryOperator.maxBy(byAge2))));
 
+        // need to play more with the Collectors utility class because I don't fully understand it yet.
+
     }
 
     private static void printPeople(final String message, final List<Person> people) {
