@@ -1,8 +1,8 @@
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.*;
 
@@ -36,6 +36,26 @@ public class FilesExamples {
         }
 
 
+
+
+    }
+
+    public void watchFileChange()  {
+        final Path path = Paths.get(".");
+        try {
+            final WatchService watchService = path.getFileSystem().newWatchService();
+            path.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
+
+            final WatchKey watchKey = watchService.poll(1, TimeUnit.MINUTES);
+
+            if (watchKey != null) {
+                watchKey.pollEvents()
+                        .stream()
+                        .forEach( event -> System.out.println(event.context()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
