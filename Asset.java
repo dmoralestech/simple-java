@@ -34,6 +34,7 @@ public class Asset {
           new Asset(AssetType.BOND, 1000),
           new Asset(AssetType.BOND, 2000),
           new Asset(AssetType.STOCK, 3000),
+          new Asset(AssetType.STOCK, 5000),
           new Asset(AssetType.STOCK, 4000)
         );
 
