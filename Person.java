@@ -71,15 +71,15 @@ public class Person {
                 .collect(Collectors.groupingBy(Person::getAge));
 
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
-                .collect(groupingBy(Person::getAge, mapping(Person::getName, toList())));
+                .collect( groupingBy(Person::getAge, mapping(Person::getName, toList())));
 
         List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
         Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
         Map<Character, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
-                        .collect(groupingBy(person ->  person.getName().charAt(0),
-                                reducing(BinaryOperator.maxBy(byAge2))));
+                        .collect(groupingBy( person ->  person.getName().charAt(0),
+                                reducing( BinaryOperator.maxBy( byAge2))));
 
         // need to play more with the Collectors utility class because I don't fully understand it yet.
 
