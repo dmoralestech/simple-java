@@ -29,6 +29,10 @@ public class Asset {
         return assets.stream().mapToInt(Asset::getValue).sum();
     }
 
+    public static int totalBondValues ( final List<Asset> assets) {
+        return assets.stream().mapToInt( asset -> asset.getType()==AssetType.BOND ? asset.getValue() : 0).sum();
+    }
+
     public static void main(String[] args) {
         final List<Asset> assets = Arrays.asList(
           new Asset(AssetType.BOND, 1000),
