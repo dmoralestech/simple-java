@@ -32,6 +32,8 @@ public class Asset {
     public static int totalBondValues ( final List<Asset> assets) {
         //this didn't commit properly
         return assets.stream().mapToInt( asset -> asset.getType()==AssetType.BOND ? asset.getValue() : 0).sum();
+        //alternate solution ??
+        //assets.stream().filter(asset -> asset.getType() == AssetType.BOND).mapToInt( asset -> asset.getValue()).sum();
     }
 
     public static void main(String[] args) {
