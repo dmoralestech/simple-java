@@ -30,6 +30,7 @@ public class Asset {
     }
 
     public static int totalBondValues ( final List<Asset> assets) {
+        //this didn't commit properly
         return assets.stream().mapToInt( asset -> asset.getType()==AssetType.BOND ? asset.getValue() : 0).sum();
     }
 
