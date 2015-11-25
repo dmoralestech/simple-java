@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by dmorales on 23/11/2015.
@@ -36,6 +37,10 @@ public class Asset {
         //assets.stream().filter(asset -> asset.getType() == AssetType.BOND).mapToInt( asset -> asset.getValue()).sum();
     }
 
+    public static int totalAssetValues(final List<Asset> assets, final Predicate<Asset> assetAllocator) {
+        return assets.stream().filter(assetAllocator).mapToInt(Asset::getValue).sum();
+    }
+
     public static void main(String[] args) {
         final List<Asset> assets = Arrays.asList(
           new Asset(AssetType.BOND, 1000),
@@ -46,5 +51,11 @@ public class Asset {
         );
 
         System.out.println("Total: " + totalAssetValues(assets));
+        System.out.println("Total Stock: " + totalAssetValues(assets, asset -> asset.getType() == AssetType.STOCK ));
+        System.out.println("Total Stock: " + totalAssetValues(assets, asset -> asset.getType() == AssetType.BOND ));
+
+        Predicate<Asset> testAssetPredicate = asset -> asset.getType() == AssetType.BOND;
+        System.out.println(testAssetPredicate.test(new Asset(AssetType.STOCK, 233)));
+
     }
 }
