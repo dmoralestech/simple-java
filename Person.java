@@ -76,7 +76,8 @@ public class Person {
 
         List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
-        Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
+        Comparator<Person> byAge2 = (person1, person2) -> person1.getAge() - person2.getAge();
+        //Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
         BinaryOperator<Person> binaryOperator = (new BinaryOperator<Person>() {
             @Override
             public Person apply(Person person, Person person2) {
@@ -89,7 +90,7 @@ public class Person {
         Map<String, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
                         .collect( groupingBy( person -> person.getName().substring(0, 1),
-                                            reducing( binaryOperator1)
+                                            reducing( BinaryOperator.maxBy( byAge2))
                                  )
                         );
                                 //reducing( BinaryOperator.maxBy( byAge2))));
