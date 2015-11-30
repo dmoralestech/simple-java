@@ -121,6 +121,13 @@ public class Person {
             }
         });
 
+        TriConsumer<String, Integer, Double> triConsumer = (new TriConsumer<String, Integer, Double>() {
+            @Override
+            public void accept(String s, Integer integer, Double aDouble) {
+
+            }
+        });
+
         BinaryOperator<String> binaryOperatorSample = (new BinaryOperator<String>() {
             @Override
             public String apply(String s, String s2) {
