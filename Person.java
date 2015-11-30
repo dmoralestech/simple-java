@@ -3,6 +3,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
+import static java.util.Comparator.*;
 
 
 /**
@@ -64,8 +65,8 @@ public class Person {
         final Function<Person, String> byName = person -> person.getName();
         final Function<Person, Integer> byAge = person -> person.getAge();
 
-        printPeople("", people.stream().sorted(java.util.Comparator.comparing(byName)).collect(Collectors.toList()));
-        printPeople("", people.stream().sorted(java.util.Comparator.comparing(byName).thenComparing(byAge) ).collect(Collectors.toList()));
+        printPeople("", people.stream().sorted(comparing(byName)).collect(Collectors.toList()));
+        printPeople("", people.stream().sorted(comparing(byName).thenComparing(byAge) ).collect(Collectors.toList()));
 
         Map<Integer, List<Person>> peopleByAge = people.stream()
                 .collect(Collectors.groupingBy(Person::getAge));
@@ -76,10 +77,20 @@ public class Person {
         List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
         Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
+        BinaryOperator<Person> binaryOperator = (new BinaryOperator<Person>() {
+            @Override
+            public Person apply(Person person, Person person2) {
+                return person;
+            }
+        });
+
+        BinaryOperator<Person> binaryOperator1 = (person1, person2) -> person1;
+
         Map<Character, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
                         .collect(groupingBy(person -> person.getName().charAt(0),
-                                reducing(BinaryOperator.maxBy(byAge2))));
+                                reducing( binaryOperator1 )));
+                                //reducing( BinaryOperator.maxBy( byAge2))));
 
 
         Predicate<String> predicateSample = pred -> false;
