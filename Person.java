@@ -86,10 +86,12 @@ public class Person {
 
         BinaryOperator<Person> binaryOperator1 = (person1, person2) -> person1;
 
-        Map<Character, Optional<Person>> oldestPersonOfEachLetter =
+        Map<String, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
-                        .collect(groupingBy(person -> person.getName().charAt(0),
-                                reducing( binaryOperator1 )));
+                        .collect(groupingBy( person -> person.getName().substring(0, 1),
+                                            reducing(binaryOperator1)
+                                 )
+                        );
                                 //reducing( BinaryOperator.maxBy( byAge2))));
 
 
