@@ -144,7 +144,12 @@ public class Person {
 
         Supplier<String> supplierSample2 = () -> "returns some string...";
 
-
+        UnaryOperator<Integer> unaryOperator = (new UnaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer) {
+                return 23;
+            }
+        });
 
         UseInstance<String, IOException> useInstance = (new UseInstance<String, IOException>() {
             @Override

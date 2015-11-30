@@ -29,14 +29,9 @@ public class FilesExamples {
                     .flatMap(file -> file.listFiles() == null ? Stream.of(file) : Stream.of(file.listFiles()))
                     .collect(toList());
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
 
     }
 
