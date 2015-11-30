@@ -66,13 +66,13 @@ public class Person {
         final Function<Person, Integer> byAge = person -> person.getAge();
 
         printPeople("", people.stream().sorted(comparing(byName)).collect(Collectors.toList()));
-        printPeople("", people.stream().sorted(comparing(byName).thenComparing(byAge) ).collect(Collectors.toList()));
+        printPeople("", people.stream().sorted(comparing(byName).thenComparing(byAge)).collect(Collectors.toList()));
 
         Map<Integer, List<Person>> peopleByAge = people.stream()
                 .collect(Collectors.groupingBy(Person::getAge));
 
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
-                .collect(groupingBy(Person::getAge, mapping(Person::getName, toList())));
+                .collect(groupingBy( Person::getAge, mapping(Person::getName, toList())));
 
         List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
@@ -88,8 +88,8 @@ public class Person {
 
         Map<String, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
-                        .collect(groupingBy( person -> person.getName().substring(0, 1),
-                                            reducing(binaryOperator1)
+                        .collect( groupingBy( person -> person.getName().substring(0, 1),
+                                            reducing( binaryOperator1)
                                  )
                         );
                                 //reducing( BinaryOperator.maxBy( byAge2))));

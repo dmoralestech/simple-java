@@ -7,3 +7,7 @@ public interface Fly {
     default void turn() { System.out.println("Fly::turn");}
     default void cruise() { System.out.println("Fly::cruise");}
 }
+
+//interface FastFly extends Fly {
+//    default void takeOff { System.out.println("Fastfly::takeOff");}
+//}
