@@ -1,6 +1,6 @@
+import java.io.IOException;
 import java.util.*;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
+import java.util.function.*;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
@@ -71,15 +71,81 @@ public class Person {
                 .collect(Collectors.groupingBy(Person::getAge));
 
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
-                .collect( groupingBy(Person::getAge, mapping(Person::getName, toList())));
+                .collect(groupingBy(Person::getAge, mapping(Person::getName, toList())));
 
         List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
 
         Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
         Map<Character, Optional<Person>> oldestPersonOfEachLetter =
                 people.stream()
-                        .collect(groupingBy( person ->  person.getName().charAt(0),
-                                reducing( BinaryOperator.maxBy( byAge2))));
+                        .collect(groupingBy(person -> person.getName().charAt(0),
+                                reducing(BinaryOperator.maxBy(byAge2))));
+
+
+        Predicate<String> predicateSample = pred -> false;
+
+        Predicate<String> predicateSample2 = ( new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return false;
+            }
+        });
+
+        Function<Integer, String> functionAnonymous = ( new Function<Integer, String>() {
+            @Override
+            public String apply(Integer integer) {
+                return "some string";
+            }
+        });
+
+        Function<Integer, String> functionAnonymous2 = intElem -> "some string";
+
+        Consumer<String> consumerSample = (new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+
+            }
+        });
+
+        Supplier<String> supplierSample = (new Supplier<String>() {
+            @Override
+            public String get() {
+                return "returns some string..";
+            }
+        });
+
+        BiConsumer<String, Integer> biConsumerSample = (new BiConsumer<String, Integer>() {
+            @Override
+            public void accept(String s, Integer integer) {
+
+            }
+        });
+
+        BinaryOperator<String> binaryOperatorSample = (new BinaryOperator<String>() {
+            @Override
+            public String apply(String s, String s2) {
+                return null;
+            }
+        });
+
+        BiPredicate<String, Integer> biPredicateSample = (new BiPredicate<String, Integer>() {
+            @Override
+            public boolean test(String s, Integer integer) {
+                return false;
+            }
+        });
+
+        Supplier<String> supplierSample2 = () -> "returns some string...";
+
+
+
+        UseInstance<String, IOException> useInstance = (new UseInstance<String, IOException>() {
+            @Override
+            public void accept(String instance) throws IOException {
+
+            }
+        });
+
 
         // need to play more with the Collectors utility class because I don't fully understand it yet.
 
