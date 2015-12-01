@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by darwinmorales on 1/12/2015.
  */
@@ -11,6 +14,15 @@ public class Part {
     private String section;
     private String catalog;
     private double price;
+    private boolean isApplicable;
+
+    public boolean isApplicable() {
+        return isApplicable;
+    }
+
+    public void setApplicable(boolean isApplicable) {
+        this.isApplicable = isApplicable;
+    }
 
     public double getPrice() {
         return price;
@@ -74,6 +86,13 @@ public class Part {
 
     public void setCatalog(String catalog) {
         this.catalog = catalog;
+    }
+
+    public static void main(String[] args) {
+        List<Part> parts = new ArrayList<>();
+
+        parts.stream().filter(part -> part.getApplicableMarkets().indexOf("AU") > 0).forEach(part -> part.setApplicable(true));
+
     }
 
 }
