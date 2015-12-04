@@ -30,7 +30,7 @@ public class NestedClassesTest {
         }
     }
 
-    private class Holder {
+    private static class Holder {
         private Supplier<Heavy> heavy  = () -> createAndCacheHeavy();
 
         public Holder() {
@@ -61,6 +61,12 @@ public class NestedClassesTest {
     }
 
     public static void main(String[] args) {
+
+        final Holder holder2 = new Holder();
+        System.out.println("sdfdsf");
+        System.out.println(holder2.getHeavy());
+        System.out.println(holder2.getHeavy());
+
         final HolderNaive holder = new HolderNaive();
         System.out.println("deffering heavy creation..");
         System.out.println(holder.getHeavy());
