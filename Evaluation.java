@@ -14,6 +14,7 @@ public class Evaluation {
         try {
             Thread.sleep((milliseconds));
         } catch (InterruptedException e) {
+            System.out.println("!!!exception...");
             e.printStackTrace();
         }
     }
@@ -25,7 +26,7 @@ public class Evaluation {
 
     public static void lazyEvaluator(final Supplier<Boolean> input1, final Supplier<Boolean> input2) {
         System.out.println("lazy evaluator called...");
-        System.out.println("accept: " + (input1.get() && input2.get()));
+        System.out.println("accept: " + (input1.get() && input2.get())); //Here: if the first paramater returns false. It won't run the 2nd parameter.
     }
 
     public static void main(String[] args) {
