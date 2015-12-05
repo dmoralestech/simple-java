@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by darwinmorales on 5/12/2015.
  */
@@ -13,6 +16,15 @@ public class LazyStreams {
     }
 
     public static void main(String[] args) {
+        List<String> names = Arrays.asList("Brad", "Kate", "Kim", "Jack", "Joe");
+
+        final String firstNamesWith3Letters = names.stream()
+                .filter(name -> length(name)==3)
+                .map(name -> toUpper(name))
+                .findFirst()
+                .get();
+
+        System.out.println("firstNamesWith3Letters = " + firstNamesWith3Letters);
 
     }
 
