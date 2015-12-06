@@ -16,8 +16,10 @@ public class LazyStreams {
     }
 
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("Brad", "Kate", "Kim", "Jack", "Joe");
+        List<String> names = Arrays.asList("Brad", "Mel", "Kate", "Kim", "Jack", "Joe");
 
+            // instead of doing all the filters all at once, it goes through the element one by one and pass it to the next function in the chain...
+            // It will only process the things that it needs to satisfy the requirements. In this case it would only process until "Mel"
         final String firstNamesWith3Letters = names.stream()
                 .filter(name -> length(name)==3)
                 .map(name -> toUpper(name))
