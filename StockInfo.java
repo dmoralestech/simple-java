@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -24,10 +25,15 @@ public class StockInfo {
     }
 
     public static void main(String[] args) {
-         List<String> Tickers = new ArrayList<>();
+        List<String> Tickers = new ArrayList<>();
+        Collector<StockInfo, ?, List<StockInfo>> c = Collectors.toList();
         final  List<StockInfo> stocks =  Tickers.stream()
                 .map(ticker -> getPrice(ticker))
-                .collect(Collectors.toList());
+                .collect(c);
+
+        final List<StockInfo> stocksPricedUnder500 = stocks.stream()
+                .filter(stockInfo -> stockInfo.price.compareTo(BigDecimal.valueOf(500)) < 0)
+                .collect(c);
 
     }
 
