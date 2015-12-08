@@ -11,8 +11,7 @@ public class Primes {
 
     public static boolean isPrime(final int number) {
         System.out.println("******** isPrime: " + number  );
-        return number > 1 && IntStream.rangeClosed(2, (int) Math.sqrt(number)).noneMatch(  divisor -> {
-            System.out.printf("%d  %d == 0  %d \n", number, divisor, number % divisor  );  return number % divisor == 0;} );
+        return number > 1 && IntStream.rangeClosed(2, (int) Math.sqrt(number)).noneMatch(  divisor -> number % divisor == 0 );
     }
 
     private static int primeAfter(final int number) {
@@ -33,7 +32,13 @@ public class Primes {
 
     public static void main(String[] args) {
 
-        Stream.iterate(1, p -> p * 2 ).limit(10).forEach(p -> System.out.println("p= " + p));
+        Stream<Long> tenNaturalNumbers = Stream.iterate( 1L , n  ->  n  + 1)
+                .limit(10) ;
+
+        tenNaturalNumbers.forEach(System.out::println);
+
+
+        List<Integer> l =  Stream.iterate(1, p -> p * 2 ).limit(10).collect(Collectors.toList()); // forEach(p -> System.out.println("p= " + p)) ;
 
         System.out.println("10 primes  from 1: " + primes(1, 10));
 
