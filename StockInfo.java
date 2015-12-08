@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by dmorales on 9/12/2015.
@@ -23,7 +24,10 @@ public class StockInfo {
     }
 
     public static void main(String[] args) {
-        final List<StockInfo> stocks = new ArrayList<>();
+         List<String> Tickers = new ArrayList<>();
+        final  List<StockInfo> stocks =  Tickers.stream()
+                .map(ticker -> getPrice(ticker))
+                .collect(Collectors.toList());
 
     }
 
