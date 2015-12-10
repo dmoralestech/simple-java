@@ -65,8 +65,24 @@ public class Person {
         people.stream().max(Person::ageDifference)
                 .ifPresent(eldest -> System.out.println("eldest = " + eldest));
 
-        Function<Person, String> methodRec =  Person::getName;
-        Function<Person, String> methodRec2 =   (Person p) -> p.getName();
+        Function<Person, String> methodRec = Person::getName;
+        Function<Person, String> methodRec2 = (Person p) -> p.getName();
+
+        Function<Double, Double>  as = Math::abs;
+        Double d =  as.apply(3.4);
+        // Math.abs(3.4);
+
+        List<String> str = Arrays.asList("a", "b", "A", "B");
+        Comparator<String>  comparator = new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        };
+
+        str.sort(comparator);
+        str.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
+        str.sort(String::compareToIgnoreCase);
 
         final Function<Person, String> byName = person -> person.getName();
         final Function<Person, Integer> byAge = person -> person.getAge();
