@@ -1,3 +1,4 @@
+import java.awt.event.ContainerAdapter;
 import java.io.IOException;
 import java.util.*;
 import java.util.function.*;
@@ -40,10 +41,12 @@ public class Person {
                 new Person("E", 24)
         );
 
+
+
         List<Person> ascendingAge = people.stream()
                 //.sorted((person1, person2) -> person1.ageDifference(person2))
                 .sorted(Person::ageDifference)
-                .collect(Collectors.toList());
+                .collect( Collectors.toList());
 
         printPeople("asceding by age", ascendingAge);
 
@@ -62,6 +65,9 @@ public class Person {
         people.stream().max(Person::ageDifference)
                 .ifPresent(eldest -> System.out.println("eldest = " + eldest));
 
+        Function<Person, String> methodRec =  Person::getName;
+        Function<Person, String> methodRec2 =   (Person p) -> p.getName();
+
         final Function<Person, String> byName = person -> person.getName();
         final Function<Person, Integer> byAge = person -> person.getAge();
 
@@ -69,7 +75,7 @@ public class Person {
         printPeople("", people.stream().sorted(comparing(byName).thenComparing(byAge)).collect(Collectors.toList()));
 
         Map<Integer, List<Person>> peopleByAge = people.stream()
-                .collect(Collectors.groupingBy(Person::getAge));
+                .collect(Collectors.groupingBy( Person::getAge));
 
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
                 .collect(groupingBy( Person::getAge, mapping(Person::getName, toList())));
@@ -172,8 +178,22 @@ public class Person {
             }
         });
 
-
+        people.stream().map(person -> person.getName()).distinct().forEach(System.out::println);
+        
         // need to play more with the Collectors utility class because I don't fully understand it yet.
+
+        Function<String, Integer> strToInt = Integer::parseInt;
+
+        Function<String, Integer> strToInt2 = new Function<String, Integer>() {
+            @Override
+            public Integer apply(String s) {
+                return Integer.parseInt(s);
+            }
+        };
+
+        strToInt.apply("3");
+        strToInt2.apply("3");
+
 
     }
 

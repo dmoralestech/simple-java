@@ -1,14 +1,25 @@
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by dmorales on 10/12/2015.
  */
 public interface CatalogService {
 
-    List<Catalog> getCatalogs();
+    default Optional<List<Catalog>> getCatalogs() {
+        return Optional.empty();
+    }
 
-    List<Section> getSections(Catalog catalog);
+    default Optional<List<Section>> getSections(Catalog catalog) {
+        return Optional.empty();
+    }
 
-    List<Part> getSectionParts(Section section);
+    default Optional<List<Part>> getSectionParts(Section section){
+        return Optional.empty();
+    }
+
+    default Optional<List<Part>> searchPart(String partNumberToSearch){
+        return Optional.empty();
+    }
 
 }
