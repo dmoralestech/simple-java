@@ -40,6 +40,8 @@ public class Primes {
 
         List<Integer> l =  Stream.iterate(1, p -> p * 2 ).limit(10).collect(Collectors.toList()); // forEach(p -> System.out.println("p= " + p)) ;
 
+        l.stream().filter(i -> i.equals("2")).forEach(i -> i.notify());
+
         System.out.println("10 primes  from 1: " + primes(1, 10));
 
         System.out.println("5 primes  from 100: " + primes(100, 5));
