@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Created by darwinmorales on 1/12/2015.
@@ -89,9 +91,27 @@ public class Part {
     }
 
     public static void main(String[] args) {
+
         List<Part> parts = new ArrayList<>();
 
         parts.stream().filter(part -> part.getApplicableMarkets().indexOf("AU") > 0).forEach(part -> part.setApplicable(true));
+
+        CatalogService catalogService = new PorscheCatalogService();
+
+        Function<String, Optional<List<Part>>> searchForParts = catalogService::searchPart;
+
+        Optional<List<Part>> resultFromSearch =  searchForParts.apply("123");
+
+        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithPricing = catalogService::addPricingToParts ;
+        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithSupersessionFlags = catalogService::addSupersessionFlags;
+        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithSupersessionFlags2 =  partList ->  catalogService.addSupersessionFlags(partList);
+
+        Optional<List<Part>> partWithPricing2 =  partsWithPricing.apply(resultFromSearch);
+
+        //resultFromSearch = partsWithPricing.andThen(partsWithSupersessionFlags);
+        //resultFromSearch = partsWithPricing.apply(resultFromSearch) ;
+
+
 
     }
 

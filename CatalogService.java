@@ -18,6 +18,15 @@ public interface CatalogService {
         return Optional.empty();
     }
 
+    default Optional<List<Part>> addPricingToParts(Optional<List<Part>> parts){
+        return parts;
+    }
+
+    default Optional<List<Part>> addSupersessionFlags(Optional<List<Part>> parts){
+        return parts;
+    }
+
+
     default Optional<List<Part>> searchPart(String partNumberToSearch){
         return Optional.empty();
     }
