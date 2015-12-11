@@ -100,18 +100,13 @@ public class Part {
 
         Function<String, Optional<List<Part>>> searchForParts = catalogService::searchPart;
 
-        Optional<List<Part>> resultFromSearch =  searchForParts.apply("123");
+        Optional<List<Part>> resultFromSearch = searchForParts.apply("123");
 
-        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithPricing = catalogService::addPricingToParts ;
+        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithPricing = catalogService::addPricingToParts;
         Function<Optional<List<Part>>, Optional<List<Part>>> partsWithSupersessionFlags = catalogService::addSupersessionFlags;
-        Function<Optional<List<Part>>, Optional<List<Part>>> partsWithSupersessionFlags2 =  partList ->  catalogService.addSupersessionFlags(partList);
+        Function<Optional<List<Part>>, Optional<List<Part>>>  partsPipeLine = partsWithPricing.andThen(partsWithSupersessionFlags);
 
-        Optional<List<Part>> partWithPricing2 =  partsWithPricing.apply(resultFromSearch);
-
-        //resultFromSearch = partsWithPricing.andThen(partsWithSupersessionFlags);
-        //resultFromSearch = partsWithPricing.apply(resultFromSearch) ;
-
-
+        Optional<List<Part>> finalResult = partsPipeLine.apply(resultFromSearch);
 
     }
 
