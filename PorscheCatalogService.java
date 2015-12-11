@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Created by dmorales on 10/12/2015.
@@ -7,12 +8,17 @@ import java.util.Optional;
 public class PorscheCatalogService implements CatalogService  {
 
 
+    public PorscheCatalogService() {
+    }
+
     public Optional<List<Part>> getPartsWithPrices(Section section) {
         return Optional.empty();
     }
 
     public static void main(String[] args) {
-        PorscheCatalogService porscheCatalogService = new PorscheCatalogService();
+        Supplier<PorscheCatalogService> p = PorscheCatalogService::new;
+        Supplier<PorscheCatalogService> p2 = () -> new PorscheCatalogService();
+
 
     }
 

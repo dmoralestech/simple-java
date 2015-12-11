@@ -58,19 +58,29 @@ public class Person {
         List<Person> descendingAge = people.stream()
                 .sorted(compareDescending)
                 .collect(Collectors.toList());
-        
+
         people.stream().min(Person::ageDifference)
                 .ifPresent(youngest -> System.out.println("youngest = " + youngest));
 
         people.stream().max(Person::ageDifference)
                 .ifPresent(eldest -> System.out.println("eldest = " + eldest));
 
+        people.sort(java.util.Comparator.comparing(Person::getAge));
+
         Function<Person, String> methodRec = Person::getName;
         Function<Person, String> methodRec2 = (Person p) -> p.getName();
+
+        Function<String, Integer> stringToInteger = Integer::parseInt;
+        BiPredicate<List<String>, String> contains = List::contains;
 
         Function<Double, Double>  as = Math::abs;
         Double d =  as.apply(3.4);
         // Math.abs(3.4);
+
+        Function<Integer, Integer> f = x -> x + 1;
+        Function<Integer, Integer> g = x -> x * 2;
+        Function<Integer, Integer> h = f.andThen(g);
+        int result = h.apply(2);    // returns 6
 
         List<String> str = Arrays.asList("a", "b", "A", "B");
         Comparator<String>  comparator = new Comparator<String>() {
