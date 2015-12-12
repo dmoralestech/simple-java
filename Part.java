@@ -94,7 +94,9 @@ public class Part {
 
         List<Part> parts = new ArrayList<>();
 
-        parts.stream().filter(part -> part.getApplicableMarkets().indexOf("AU") > 0).forEach(part -> part.setApplicable(true));
+        parts.stream()
+                .filter(part -> part.getApplicableMarkets().indexOf("AU") > 0)
+                .forEach(part -> part.setApplicable(true));
 
         CatalogService catalogService = new PorscheCatalogService();
 
@@ -108,9 +110,11 @@ public class Part {
                                                 .andThen(catalogService::addSupersessionFlags)
                                                 .apply("123");
 
-        Function<String, Optional<List<Part>>>  x = searchForParts
+        Function<String, Optional<List<Part>>>  pipeLinePartSearch = searchForParts
                 .andThen(catalogService::addPricingToParts)
                 .andThen(catalogService::addSupersessionFlags);
+
+        pipeLinePartSearch.apply("P1213");
 
         //finalResult = x.apply("123");
 
