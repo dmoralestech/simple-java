@@ -17,6 +17,12 @@ class Main {
               //.forEach(System.out::println);
               .collect(Collectors.toList());
 
+      List<Integer> num1 = Arrays.asList(1, 2, 3);
+      List<Integer> num2 = Arrays.asList(3,4);
+
+      List<Integer[]> pairs = num1.stream()
+                                    .flatMap( i -> num2.stream().map(j -> new Integer[] {i, j}))
+                                    .collect(Collectors.toList());
 
   }
 }
