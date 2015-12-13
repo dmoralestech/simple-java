@@ -1,8 +1,10 @@
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
 import java.util.stream.Collectors.*;
+import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
@@ -23,6 +25,12 @@ class Main {
       List<Integer[]> pairs = num1.stream()
                                     .flatMap( i -> num2.stream().map(j -> new Integer[] {i, j}))
                                     .collect(Collectors.toList());
+
+      Stream<List<Integer>> integerListStream = Stream.of(Arrays.asList(1, 2), Arrays.asList(3, 4), Arrays.asList(5, 6, 7, 8));
+
+      Stream<Integer> integerStream = integerListStream.flatMap(Collection::stream);
+
+      integerStream.forEach(System.out::println);
 
   }
 }
