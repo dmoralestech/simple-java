@@ -59,11 +59,13 @@ class Main {
 
         integerStream.forEach(System.out::println);
 
-        Stream<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100)
+        List<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100)
                 .boxed()
                 .flatMap(a -> IntStream.rangeClosed(a, 100)
-                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
-                .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}));
+                        .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                        .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}))
+                .collect(Collectors.toList());
+
 
         List<Developer> team = new ArrayList<>();
         Developer poly = new Developer("a1");
