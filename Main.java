@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 class Main {
 
     static class Developer {
+
         private String name;
         private Set<String> languages;
 
@@ -77,6 +78,8 @@ class Main {
                 .collect(Collectors.toList());
 
         teamLanguages.stream().forEach(System.out::println);
+
+        boolean isThereAVBProgrammerInTheTeam =  teamLanguages.stream().noneMatch(language -> language.equalsIgnoreCase("VB"));
 
         Stream<Developer> streamOfDevelopers = Stream.of(new Developer("a"), new Developer("b"));
 
