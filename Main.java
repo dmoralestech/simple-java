@@ -2,6 +2,7 @@ import java.util.*;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
 import java.util.stream.Collectors.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class Main {
@@ -45,6 +46,8 @@ class Main {
 
         List<Integer> num1 = Arrays.asList(1, 2, 3);
         List<Integer> num2 = Arrays.asList(3, 4);
+
+        System.out.println(num1.stream().mapToInt(i -> i).sum());
 
         List<Integer[]> pairs = num1.stream()
                 .flatMap(i -> num2.stream().map(j -> new Integer[]{i, j}))
