@@ -71,6 +71,13 @@ class Main {
                 .collect(Collectors.toList());
 
 
+        IntStream.rangeClosed(1, 100)
+                .boxed()
+                .filter(x -> (x % 3 == 0 || x % 5 ==0  ) )
+                .map(x -> x + ": " + (x % 3 == 0 ? "Fizz" : "") + (x % 5 == 0 ? "Buzz" : ""))
+                .forEach(System.out::println);
+
+
         List<Developer> team = new ArrayList<>();
         Developer poly = new Developer("a1");
         poly.add("clojure");
@@ -103,18 +110,14 @@ class Main {
                 .peek(developer -> developer.add("Java"))
                 .forEach(developer -> System.out.print(developer.getName() + " " + developer.getLanguages() + "\n"));
 
-
         long uniqueWords = 0;
-
         try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCharset())) {
             uniqueWords = lines.flatMap(line -> Arrays.stream(line.split(" ")))
-                                    .distinct()
-                                    .count();
-
+                    .distinct()
+                    .count();
         } catch (IOException e) {
 
         }
-
 
     }
 }
