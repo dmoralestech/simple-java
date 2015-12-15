@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
@@ -62,7 +66,7 @@ class Main {
         List<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100)
                 .boxed()
                 .flatMap(a -> IntStream.rangeClosed(a, 100)
-                        .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                        .filter (b -> Math.sqrt(a * a + b * b) % 1 == 0)
                         .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}))
                 .collect(Collectors.toList());
 
@@ -98,6 +102,19 @@ class Main {
                 .peek(developer -> developer.add("C++"))
                 .peek(developer -> developer.add("Java"))
                 .forEach(developer -> System.out.print(developer.getName() + " " + developer.getLanguages() + "\n"));
+
+
+        long uniqueWords = 0;
+
+        try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCharset())) {
+            uniqueWords = lines.flatMap(line -> Arrays.stream(line.split(" ")))
+                                    .distinct()
+                                    .count();
+
+        } catch (IOException e) {
+
+        }
+
 
     }
 }
