@@ -3,6 +3,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.IntSupplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
@@ -137,11 +138,23 @@ class Main {
         List<Integer> qq3 = Stream.iterate( new int[]{0,1},
                 t -> new int[]{ t[1], t[0] + t[1] } )
                 .limit(20)
-                .map( t -> {System.out.println("-- " + t[0] + " " + t[1]); return t[0];
-                }).collect(Collectors.toList() );
+                .map( t -> t[0])
+                .collect(Collectors.toList());
 
                 //.forEach(t -> System.out.println("(" + t[0] + "," + t[1] + ")"));
 
+        IntSupplier fib = new IntSupplier(){
+            private int previous = 0;
+            private int current = 1;
+            public int getAsInt(){
+                int oldPrevious = this.previous;
+                int nextValue = this.previous + this.current;
+                this.previous = this.current;
+                this.current = nextValue;
+                return oldPrevious;
+            }
+        };
+        IntStream.generate(fib).limit(10).forEach(System.out::println);
 
     }
 }
