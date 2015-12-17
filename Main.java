@@ -3,6 +3,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
 import java.util.stream.Collectors.*;
@@ -124,11 +125,21 @@ class Main {
                 .limit(20)
                 .forEach(System.out::println);
 
-        Stream.iterate(new int[]{0,1},
-                t -> new int[]{t[1], t[0] + t[1]})
-                .limit(10)
-                .map( t -> t[0])
-                .forEach(System.out::println);
+        UnaryOperator<int[]> s = new UnaryOperator<int[]>() {
+            @Override
+            public int[] apply(int[] t) {
+                return new int[]{ t[1], t[0] + t[1]};
+            }
+        };
+        int[] qq = new int[]{11, 21, 2, 3};
+        int[] qq2 =  s.apply(qq);
+
+        List<Integer> qq3 = Stream.iterate( new int[]{0,1},
+                t -> new int[]{ t[1], t[0] + t[1] } )
+                .limit(20)
+                .map( t -> {System.out.println("-- " + t[0] + " " + t[1]); return t[0];
+                }).collect(Collectors.toList() );
+
                 //.forEach(t -> System.out.println("(" + t[0] + "," + t[1] + ")"));
 
 
