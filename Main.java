@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collector.*;
 import java.util.stream.Collectors;
@@ -155,6 +156,20 @@ class Main {
             }
         };
         IntStream.generate(fib).limit(10).forEach(System.out::println);
+
+        Supplier<Integer>  intSupplier = new Supplier<Integer>() {
+
+            private int previous = 0;
+            private int current = 1;
+
+            public Integer get() {
+                int oldPrevious = this.previous;
+                int nextValue = this.previous + this.current;
+                this.previous = this.current;
+                this.current = nextValue;
+                return oldPrevious;
+            }
+        };
 
     }
 }
