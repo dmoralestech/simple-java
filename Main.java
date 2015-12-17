@@ -73,8 +73,8 @@ class Main {
 
         IntStream.rangeClosed(1, 100)
                 .boxed()
-                .filter(x -> (x % 3 == 0 || x % 5 ==0  ) )
-                .map(x -> x + ": " + (x % 3 == 0 ? "Fizz" : "") + (x % 5 == 0 ? "Buzz" : ""))
+                .filter(x -> (x % 3 == 0 || x % 5 == 0))
+                .map( x -> x  + ": " + (x % 3 == 0 ? "Fizz" : "") + (x % 5 == 0 ? "Buzz" : ""))
                 .forEach(System.out::println);
 
 
@@ -118,6 +118,19 @@ class Main {
         } catch (IOException e) {
 
         }
+
+        Stream.iterate(0, n -> n + 2)
+                .skip(100)
+                .limit(20)
+                .forEach(System.out::println);
+
+        Stream.iterate(new int[]{0,1},
+                t -> new int[]{t[1], t[0] + t[1]})
+                .limit(10)
+                .map( t -> t[0])
+                .forEach(System.out::println);
+                //.forEach(t -> System.out.println("(" + t[0] + "," + t[1] + ")"));
+
 
     }
 }
