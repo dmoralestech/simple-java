@@ -66,4 +66,19 @@ Ninja2.prototype.swingSword = function() {
 };
 
 var ninja = new Ninja2();
-assert(ninja.swingSword(), "Called the instance method, not the prototype method.")
+assert(ninja.swingSword(), "Called the instance method, not the prototype method.");
+
+function Person() {};
+
+Person.prototype.dance = function(){};
+
+function Ninja3(){};
+
+Ninja3.prototype = {dance: Person.prototype.dance};
+
+var ninja3 = new Ninja3();
+assert(ninja3 instanceof Ninja3, "ninja3 receives functionality from Ninja3");
+assert(ninja3 instanceof Person, "also Person");
+assert(ninja3 instanceof Object, "and Object");
+
+
