@@ -23,3 +23,47 @@ george.name = "George";
 var message = george.hello();
 var message2 = george.sayBye();
 
+var myObj = {
+    key: "value"
+};
+
+myObj = new Object();
+myObj.key = "value";
+
+
+function assert(value, desc){
+    console.log(value ? "pass: " + desc : "fai: " + desc);
+    //var li = document.createElement("li");
+    //li.className = value ? "pass" : "fail";
+    //li.appendChild(document.createTextNode(desc));
+    //document.getElementById("results").appendChild(li);
+}
+
+
+function Ninja() {}
+
+Ninja.prototype.swingSword = function() { return true;};
+
+var ninja1 =  Ninja();
+assert(ninja1 === undefined, "No instance of Ninja created.");
+
+var ninja2 = new Ninja();
+assert(ninja2 && ninja2.swingSword && ninja2.swingSword());
+
+//assert (typeof ninja == "object", "The type of the instance is object");
+//assert (ninja instanceof Ninja, "instanceof identifies the constructor");
+//assert (ninja.constructor == Ninja, "The ninja object was created by the Ninja function");
+
+function Ninja2() {
+    this.swung = false;
+    this.swingSword = function() {
+        return !this.swung;
+    };
+}
+
+Ninja2.prototype.swingSword = function() {
+    return this.swung;
+};
+
+var ninja = new Ninja2();
+assert(ninja.swingSword(), "Called the instance method, not the prototype method.")
