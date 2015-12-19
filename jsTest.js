@@ -93,4 +93,28 @@ Object.prototype.keys = function()  {
 var obj = {a: 1, b: 2, c: 3};
 assert(obj.keys().length == 3, "there are 3 properties in the object.");
 
+function User(first, last) {
+    this.name = first + " " + last;
+    console.log("Name: " + this.name);
+}
+
+var name = "Nova Morales";
+var user = new User("Darwin", "Morales");
+console.log("Name: " + this.name);
+
+function foo() {
+    console.log(this.bar);
+}
+
+var bar = "bar1";
+var o2 = {bar: "bar2", foo: foo};
+
+foo();
+o2.foo();
+
+
+
+
+
+
 
