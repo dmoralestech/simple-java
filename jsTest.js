@@ -112,6 +112,16 @@ var o2 = {bar: "bar2", foo: foo};
 foo();
 o2.foo();
 
+function newUser(){};
+
+newUser.prototype = { first: "darwin",  last: "morales",
+        fullName: function() { return this.first + " " + this.last; } };
+
+var newUser1 = new newUser();
+
+console.log (newUser1.fullName());
+
+
 
 
 
