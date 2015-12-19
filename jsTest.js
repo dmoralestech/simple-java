@@ -32,7 +32,7 @@ myObj.key = "value";
 
 
 function assert(value, desc){
-    console.log(value ? "pass: " + desc : "fai: " + desc);
+    console.log(value ? "pass: " + desc : "fail: " + desc);
     //var li = document.createElement("li");
     //li.className = value ? "pass" : "fail";
     //li.appendChild(document.createTextNode(desc));
@@ -80,5 +80,17 @@ var ninja3 = new Ninja3();
 assert(ninja3 instanceof Ninja3, "ninja3 receives functionality from Ninja3");
 assert(ninja3 instanceof Person, "also Person");
 assert(ninja3 instanceof Object, "and Object");
+
+Object.prototype.keys = function()  {
+    var keys = [];
+    for (var p in this) {
+        if (this.hasOwnProperty(p))
+            keys.push(p);
+    }
+    return keys;
+};
+
+var obj = {a: 1, b: 2, c: 3};
+assert(obj.keys().length == 3, "there are 3 properties in the object.");
 
 
