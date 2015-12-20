@@ -121,6 +121,14 @@ var newUser1 = new newUser();
 
 console.log (newUser1.fullName());
 
+var dog = {
+    bark: function(count) {}
+};
+
+dog.bark.call(cat, 1);
+dog.bark.apply(cat, [1]);
+
+
 
 
 
