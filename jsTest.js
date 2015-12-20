@@ -122,13 +122,25 @@ var newUser1 = new newUser();
 console.log (newUser1.fullName());
 
 assert({} == {}, "Yes, they are not the same.");
+assert({}.toString() === {}.toString(), "Yes, they are the same.");
 
 var dog = {
     bark: function(count) {}
 };
 
-dog.bark.call(cat, 1);
-dog.bark.apply(cat, [1]);
+//dog.bark.call(cat, 1);
+//dog.bark.apply(cat, [1]);
+
+var foo1 = "bar1"; //global scope
+
+function bar() {
+    var foo1 = "baz"; //local scope under bar()
+}
+
+function baz(foo1) {
+    foo1 = "bam"; // local scope under baz (paramter)
+    bam = "yay"; // if not in strict mode it would create it
+}
 
 
 
