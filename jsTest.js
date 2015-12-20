@@ -121,6 +121,8 @@ var newUser1 = new newUser();
 
 console.log (newUser1.fullName());
 
+assert({} == {}, "Yes, they are not the same.");
+
 var dog = {
     bark: function(count) {}
 };
