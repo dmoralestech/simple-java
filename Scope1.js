@@ -58,3 +58,35 @@ console.log(bob.lastName);
 var bob2 = Person.extend( {firstName: "bob", lastName: "Sacamanto"} );
 
 console.log( bob2.__proto__ == Person) ;
+console.log( Person.isPrototypeOf(bob)) ;
+console.log( Object.getPrototypeOf(bob)) ;
+console.log( Object.getPrototypeOf(bob2)) ;
+
+var FOO = {};
+
+FOO.x = 10;
+
+FOO.addEmUp = function(x, y) {
+    return x + y;
+};
+
+
+console.log(FOO.addEmUp(5, 10));
+
+
+function getModule() {
+
+    var FOO = {};
+
+    FOO.x = 10;
+
+    FOO.addEmUp = function(x, y) {
+        return x + y;
+    };
+
+    return FOO;
+}
+
+var myNamespace = getModule();
+
+console.log(myNamespace.addEmUp( 3, 4));
