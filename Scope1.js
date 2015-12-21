@@ -117,3 +117,16 @@ var myModule = (function () {
 })();
 
 console.log(myModule.addEmUp(56, 4));
+
+var i = function() {return 10;}();
+
+function Student() {}
+
+Student.prototype.name = "Darwin";
+Student.prototype.age = "20";
+Student.prototype.school = "DB";
+
+var myStudent = new Student();
+console.log(myStudent.name);
+console.log(myStudent.age);
+console.log(myStudent.school);
