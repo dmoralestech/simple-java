@@ -130,3 +130,6 @@ var myStudent = new Student();
 console.log(myStudent.name);
 console.log(myStudent.age);
 console.log(myStudent.school);
+console.log( myStudent.constructor );
+
+var keys = Object.keys(Student.prototype);
