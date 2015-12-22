@@ -44,8 +44,8 @@
             <td><input type="checkbox" id="check-similar1"  data-toggle="toggle" data-on="Yes" data-off="No"
                        data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('option-select1').disabled = !this.checked;" ></td>
 
-            <td><input type="checkbox" enabled id="option-select1"  data-toggle="toggle" data-on="Option1"
-                       data-off="Option2" data-onstyle="primary" data-offstyle="info"></td>
+            <td><input type="checkbox" enabled id="option-select1"  data-toggle="toggle" data-on={{option.option1}}
+                       data-off={{option.option2}} data-onstyle="primary" data-offstyle="info"></td>
         </tr>
         <tr>
             <td>
