@@ -21,7 +21,6 @@
         <li ng-repeat="(country,goals) in items">{{country}}: {{goals}}</li>
     </ul>
 
-
     <h2>Option Matcher</h2>
 
     <p>Please validate if these options are the same:</p>
@@ -35,12 +34,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr ng-repeat="option in optionList">
             <td>
-                <button type="button" class="btn btn-primary" >Option1</button>
+                <button type="button" class="btn btn-primary" >{{option.option1}}</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary"  >Option2</button>
+                <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
             </td>
             <td><input type="checkbox" id="check-similar1"  data-toggle="toggle" data-on="Yes" data-off="No"
                        data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('option-select1').disabled = !this.checked;" ></td>
