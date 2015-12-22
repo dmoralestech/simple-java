@@ -15,9 +15,9 @@ demo.controller(
             "Syria": "2"
         };
 
-        var option1 = {option1: "A", option2: "B", isTheSame:false, defaultOption: "", validationDate: "", id: "11", id2: "21"};
-        var option2 = {option1: "C", option2: "D", isTheSame:false, defaultOption: "", validationDate: "", id: "12", id2: "22"};
-        var option3 = {option1: "E", option2: "F", isTheSame:false, defaultOption: "", validationDate: "", id: "13", id2: "23"};
+        var option1 = {option1: "A", option2: "B", isTheSame:false, defaultOption: "", validationDate: "", id: "o11", id2: "c21"};
+        var option2 = {option1: "C", option2: "D", isTheSame:false, defaultOption: "", validationDate: "", id: "o12", id2: "c22"};
+        var option3 = {option1: "E", option2: "F", isTheSame:false, defaultOption: "", validationDate: "", id: "o13", id2: "c23"};
         $scope.items = m;
         $scope.optionList = [option1, option2, option3];
 
