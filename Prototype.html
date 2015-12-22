@@ -10,21 +10,17 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script>
-        function myFunction() {
-            alert('hi');
-            //document.getElementById("option-select").disabled = true;
-            //document.getElementById("check-similar").disabled = true;
-        }
-
-    </script>
-
-
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="optionMatcher.js"></script>
 
 </head>
 <body>
 
-<div class="container">
+<div ng-app="app" ng-controller="MyCtrl" class="container">
+    <ul>
+        <li ng-repeat="(country,goals) in items">{{country}}: {{goals}}</li>
+    </ul>
+
 
     <h2>Option Matcher</h2>
 
