@@ -12,8 +12,9 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
         function myFunction() {
-            document.getElementById("option-select").disabled = true;
-            document.getElementById("check-similar").disabled = true;
+            alert('hi');
+            //document.getElementById("option-select").disabled = true;
+            //document.getElementById("check-similar").disabled = true;
         }
 
     </script>
@@ -40,13 +41,13 @@
         <tbody>
         <tr>
             <td>
-                <button type="button" class="btn btn-primary" onclick="myFunction()">Option1</button>
+                <button type="button" class="btn btn-primary" >Option1</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="myFunction()" >Option2</button>
+                <button type="button" class="btn btn-primary"  >Option2</button>
             </td>
             <td><input type="checkbox" id="check-similar"  data-toggle="toggle" data-on="Yes" data-off="No"
-                       data-onstyle="success" data-offstyle="warning"></td>
+                       data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('option-select').disabled = !this.checked;" ></td>
 
             <td><input type="checkbox" enabled id="option-select"  data-toggle="toggle" data-on="Option1"
                        data-off="Option2" data-onstyle="primary" data-offstyle="info"></td>
