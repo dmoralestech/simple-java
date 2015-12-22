@@ -10,20 +10,19 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+        function myFunction() {
+            document.getElementById("option-select").disabled = true;
+            document.getElementById("check-similar").disabled = true;
+        }
+
+    </script>
+
 
 
 </head>
 <body>
 
-<input id="toggle-event" type="checkbox" data-toggle="toggle">
-<div id="console-event"></div>
-<script>
-    $(function() {
-        $('#toggle-event').change(function() {
-            $('#console-event').html('Toggle: ' + $(this).prop('checked'))
-        })
-    })
-</script>
 <div class="container">
 
     <h2>Option Matcher</h2>
@@ -35,20 +34,21 @@
             <th>Option1</th>
             <th>Option2</th>
             <th>Are they the same?</th>
-            <th>Please select which option to use</th>
+            <th>Please select which option to use as a default</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>
-                <button type="button" class="btn btn-primary">Option1</button>
+                <button type="button" class="btn btn-primary" onclick="myFunction()">Option1</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary">Option2</button>
+                <button type="button" class="btn btn-primary" onclick="myFunction()" >Option2</button>
             </td>
-            <td><input type="checkbox" id="check-similar" checked data-toggle="toggle" data-on="Yes" data-off="No"
+            <td><input type="checkbox" id="check-similar"  data-toggle="toggle" data-on="Yes" data-off="No"
                        data-onstyle="success" data-offstyle="warning"></td>
-            <td><input type="checkbox" enabled id="option-select" checked data-toggle="toggle" data-on="Option1"
+
+            <td><input type="checkbox" enabled id="option-select"  data-toggle="toggle" data-on="Option1"
                        data-off="Option2" data-onstyle="primary" data-offstyle="info"></td>
         </tr>
         </tbody>
