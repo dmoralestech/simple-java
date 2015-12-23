@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="optionMatcher.js"></script>
 
@@ -17,9 +17,7 @@
 <body>
 
 <div ng-app="app" ng-controller="MyCtrl" class="container">
-    <ul>
-        <li ng-repeat="(country,goals) in items">{{country}}: {{goals}}</li>
-    </ul>
+
 
     <h2>Option Matcher</h2>
 
@@ -27,7 +25,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Option1</th>
+            <th>{{col1}}</th>
             <th>Option2</th>
             <th>Are they the same?</th>
             <th>Please select which option to use as a default</th>
@@ -41,10 +39,10 @@
             <td>
                 <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
             </td>
-            <td><input type="checkbox" ng-attr-id="{{option.option1}}"   data-toggle="toggle" data-on="Yes" data-off="No"
-                       data-onstyle="success" data-offstyle="warning" onchange="document.getElementById("11").disabled = !this.checked;" ></td>
+            <td><input type="checkbox"  ng-model = "isVisible" ng-checked="isVisible" data-toggle="toggle"  checked data-on="Yes" data-off="No"
+                       data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('{{option.id2}}').disabled = !this.checked;" ></td>
 
-            <td><input type="checkbox" enabled ng-attr-id={{option.id2}}  data-toggle="toggle" data-on={{option.option1}}
+            <td><input id={{option.id2}} type="checkbox" enabled   data-toggle="toggle" data-on={{option.option1}}
                        data-off={{option.option2}} data-onstyle="primary" data-offstyle="info"></td>
         </tr>
         <tr>
