@@ -47,16 +47,24 @@
                 <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
             </td>
             <td>
-                <div class="btn-group arrActiviteit arrUpdate" data-toggle="buttons">
-                    <button type="button" class="btn btn-primary">Yes</button>
-                    <button type="button" class="btn btn-warning">No</button>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> No
+                    </label>
                 </div>
             </td>
 
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary" >{{option.option1}}</button>
-                    <button type="button" class="btn btn-info active active">{{option.option2}}</button>
+                    <label class="btn btn-warning">
+                        <input type="radio" name="soptions" id="soption1" autocomplete="off" checked>{{option.option1}}
+                    </label>
+                    <label class="btn warning">
+                        <input type="radio" name="soptions" id="soption2" autocomplete="off">{{option.option2}}
+                    </label>
                 </div>
             </td>
         </tr>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $('.btn').on('click',function(e){
+            setTimeout(count);
+        })
+        var count =  function(){
+            var val = '';
+            $('.btn').each(function(i, btn){
+                if($(btn).hasClass('active') ){
+                    val += '' + $(btn).data('wat');
+                }
+            });
+            $('#hierHier').html(val);
+        }
+    </script>
+</head>
+<body>
+
+<div id="myButtons" class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1
+    </label>
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+    </label>
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+    </label>
+</div>
+
+<div class="btn-group arrActiviteit arrUpdate" data-toggle="buttons">
+    <label class="btn btn-primary" data-wat='A'>
+        Item 1
+    </label>
+    <label class="btn btn-primary" data-wat='B'>
+        Item 2
+    </label>
+    <label class="btn btn-primary active" data-wat='C'>
+        Item 3
+    </label>
+    <label class="btn btn-primary" data-wat='D'>
+        Item 4
+    </label>
+</div>
+<div class="btn-group arrActiviteit arrUpdate" data-toggle="buttons">
+    <label class="btn btn-primary active" data-wat='E'>
+        Item 1
+    </label>
+    <label class="btn btn-primary" data-wat='F'>
+        Item 2
+    </label>
+    <label class="btn btn-primary" data-wat='G'>
+        Item 3
+    </label>
+    <label class="btn btn-primary" data-wat='H'>
+        Item 4
+    </label>
+</div>
+<div id='hierHier'>
+    ---
+</div>
+</body>
+</html>
