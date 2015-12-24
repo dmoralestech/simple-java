@@ -5,17 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!--<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">-->
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+    <!--<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="optionMatcher.js"></script>
 
+    <script>
+        $("[name='switch-state']").bootstrapSwitch();
+    </script>
+
+
+
 </head>
 <body>
-
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
 
@@ -39,11 +46,19 @@
             <td>
                 <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
             </td>
-            <td><input type="checkbox"  ng-model = "isVisible" ng-checked="isVisible" data-toggle="toggle"  checked data-on="Yes" data-off="No"
-                       data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('{{option.id2}}').disabled = !this.checked;" ></td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-warning">No</button>
+                </div>
+            </td>
 
-            <td><input id={{option.id2}} type="checkbox" enabled   data-toggle="toggle" data-on={{option.option1}}
-                       data-off={{option.option2}} data-onstyle="primary" data-offstyle="info"></td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">{{option.option1}}</button>
+                    <button type="button" class="btn btn-info">{{option.option2}}</button>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>
