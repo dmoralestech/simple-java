@@ -23,7 +23,21 @@
 </head>
 <body>
 
-<div id="myButtons" class="btn-group" data-toggle="buttons">
+<div id="rates">
+
+    <input type="radio" id="r1" name="rate" value="Fixed Rate"> Fixed Rate
+
+    <input type="radio" id="r2" name="rate" value="Variable Rate" checked="checked"> Variable Rate
+
+    <input type="radio" id="r3" name="rate" value="Multi Rate" > Multi Rate
+</div>
+
+<button type="button" class="btn btn-primary"  onclick="alert(document.getElementById('r1').value)" >show value </button>
+
+
+<input class="btn btn-primary" />
+
+    <div id="myButtons" class="btn-group" data-toggle="buttons">
     <label class="btn btn-primary active">
         <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1
     </label>
