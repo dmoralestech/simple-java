@@ -47,7 +47,7 @@
                 <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
             </td>
             <td>
-                <div class="btn-group">
+                <div class="btn-group arrActiviteit arrUpdate" data-toggle="buttons">
                     <button type="button" class="btn btn-primary">Yes</button>
                     <button type="button" class="btn btn-warning">No</button>
                 </div>
@@ -55,25 +55,11 @@
 
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">{{option.option1}}</button>
-                    <button type="button" class="btn btn-info">{{option.option2}}</button>
+                    <button type="button" class="btn btn-primary" >{{option.option1}}</button>
+                    <button type="button" class="btn btn-info active active">{{option.option2}}</button>
                 </div>
             </td>
         </tr>
-        <tr>
-            <td>
-                <button type="button" class="btn btn-primary" >OptionA</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary"  >OptionB</button>
-            </td>
-            <td><input type="checkbox" id="check-similar2"  data-toggle="toggle" data-on="Yes" data-off="No"
-                       data-onstyle="success" data-offstyle="warning" onchange="document.getElementById('option-select2').disabled = !this.checked;" ></td>
-
-            <td><input type="checkbox" enabled id="option-select2"  data-toggle="toggle" data-on="OptionA"
-                       data-off="OptionB" data-onstyle="primary" data-offstyle="info"></td>
-        </tr>
-
         </tbody>
     </table>
 
