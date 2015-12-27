@@ -27,13 +27,13 @@
 
     <div id="options">
 
-        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model={{optionA}}> Option A
+        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model=$parent.radioButtonValue> Option A
 
-        <input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model={{optionB}} checked="checked"> Option B
+        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model=$parent.radioButtonValue checked="checked"> Option B
 
     </div>
 
-    <button type="button" class="btn btn-primary"  onclick="alert(optionA);">show value </button>
+    <button type="button" class="btn btn-primary"  onclick="alert('A');">show value </button>
 
     <h2>Option Matcher</h2>
 
