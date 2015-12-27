@@ -40,7 +40,7 @@ demo.controller(
         $scope.optionList = [option1, option2, option3];
         $scope.isVisible = false;
         $scope.col1 = "Option 1 col";
-
+        $scope.radioButtonValue = $scope.optionList[1];
 
     }
 
