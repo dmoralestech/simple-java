@@ -27,7 +27,8 @@
 
     <div id="options">
         <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A
-        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model="radioButtonValue" checked="checked"> Option B
+        <input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model="radioButtonValue" checked="checked">
+        Option B
     </div>
 
     <h3>
@@ -50,29 +51,35 @@
         <tbody>
         <tr ng-repeat="(i, option) in optionList track by $index">
             <td>
-                <button type="button" class="btn btn-primary" >{{option.option1}}</button>
+                <button type="button" class="btn btn-primary">{{option.option1}}</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary"  >{{option.option2}}</button>
+                <button type="button" class="btn btn-primary">{{option.option2}}</button>
             </td>
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary">
-                        <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame  autocomplete="off" checked> Yes
+                        <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame
+                               autocomplete="off" checked> Yes
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame autocomplete="off"> No
+                        <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame
+                               autocomplete="off"> No
                     </label>
                 </div>
             </td>
             <td>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-warning">
-                        <input type="radio" name=optionList[i].id2  ng-value=optionList[i].option1 ng-model=optionList[i].defaultOption  autocomplete="off" checked>{{option.option1}}
-                    </label>
-                    <label class="btn btn-warning">
-                        <input type="radio" name=optionList[i].id2  ng-value=optionList[i].option2 ng-model=optionList[i].defaultOption  autocomplete="off">{{option.option2}}
-                    </label>
+                <div ng-show="optionList[i].isTheSame">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-warning">
+                            <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option1
+                                   ng-model=optionList[i].defaultOption autocomplete="off" checked>{{option.option1}}
+                        </label>
+                        <label class="btn btn-warning">
+                            <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option2
+                                   ng-model=optionList[i].defaultOption autocomplete="off">{{option.option2}}
+                        </label>
+                    </div>
                 </div>
             </td>
             <td>
