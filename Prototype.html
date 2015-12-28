@@ -34,15 +34,6 @@
         {{myRating}}
     </h3>
 
-    <div data-ng-controller="MyCtrl">
-        {{engineer.name}} is currently: {{ engineer.currentActivity.name}}
-        <div>
-            Choose a new activity:
-            <select ng-model="engineer.currentActivity"
-                    data-ng-options="a.name group by a.type for a in activities">
-            </select>
-        </div>
-    </div>
     <div id="options">
 
         <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model=radioButtonValue> Option A
@@ -66,6 +57,7 @@
             <th>Option2</th>
             <th>Are they the same?</th>
             <th>Please select which option to use as a default</th>
+            <th>Debug values</th>
         </tr>
         </thead>
         <tbody>
@@ -79,23 +71,28 @@
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option1" value="yes"  autocomplete="off" checked> Yes
+                        <input type="radio" name="options" id="option1" ng-value="true"  autocomplete="off" checked> Yes
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" value="no" autocomplete="off"> No
+                        <input type="radio" name="options" id="option2" ng-value="false" autocomplete="off"> No
                     </label>
                 </div>
             </td>
-
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption1" ng-model="$parent.radioradioButtonValue" value={{option.option1}} ng-value={{option.option1}} autocomplete="off" checked>{{option.option1}}
+                        <input type="radio" name="soptions" id="soption1" ng-model="option.defaultOption" value={{option.option1}} ng-value={{option.option1}} autocomplete="off" checked>{{option.option1}}
                     </label>
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption2" value={{option.option2}} ng-value={{option.option2}} autocomplete="off">{{option.option2}}
+                        <input type="radio" name="soptions" id="soption2" ng-model="option.defaultOption" value={{option.option2}} ng-value={{option.option2}} autocomplete="off">{{option.option2}}
                     </label>
                 </div>
+            </td>
+            <td>
+                <h5>
+                    {{option.isTheSame}}
+                    {{option.defaultOption}}
+                </h5>
             </td>
         </tr>
         </tbody>

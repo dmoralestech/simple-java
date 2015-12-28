@@ -7,25 +7,6 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
-        $scope.myRating
-
-        $scope.engineer = {
-            name: "Dani",
-            currentActivity: {
-                id: 3,
-                type: "Work",
-                name: "Fixing bugs"
-            }
-        };
-
-        $scope.activities =
-            [
-                { id: 1, type: "Work", name: "Writing code" },
-                { id: 2, type: "Work", name: "Testing code" },
-                { id: 3, type: "Work", name: "Fixing bugs" },
-                { id: 4, type: "Play", name: "Dancing" }
-            ];
-
         $scope.optionA = "1234";
         $scope.optionB = "5678";
 
@@ -42,7 +23,7 @@ demo.controller(
             option1: "C456",
             option2: "D456",
             isTheSame: true,
-            defaultOption: "D",
+            defaultOption: "",
             validationDate: "",
             id: "o12",
             id2: "c22"
