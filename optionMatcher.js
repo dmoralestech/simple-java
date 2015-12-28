@@ -7,6 +7,8 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
+        $scope.a = {a: "a", b: "b", c:"c", d: "d", myRating: "" }
+
         $scope.optionA = "1234";
         $scope.optionB = "5678";
 

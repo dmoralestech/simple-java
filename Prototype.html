@@ -25,18 +25,18 @@
 <body>
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
-    <input type="radio" value="1" ng-model="myRating" name="rating" class="radio"> 1
-    <input type="radio" value="2" ng-model="myRating" name="rating" class="radio"> 2
-    <input type="radio" value="3" ng-model="myRating" name="rating" class="radio"> 3
-    <input type="radio" value="4" ng-model="myRating" name="rating" class="radio"> 4
+    <input type="radio" ng-value=a.a ng-model="a.myRating" name="rating" class="radio"> {{a.a}}
+    <input type="radio" ng-value=a.b ng-model="a.myRating" name="rating" class="radio"> {{a.b}}
+    <input type="radio" ng-value=a.c ng-model="a.myRating" name="rating" class="radio"> {{a.c}}
+    <input type="radio" ng-value=a.d ng-model="a.myRating" name="rating" class="radio"> {{a.d}}
 
     <h3>
-        {{myRating}}
+        {{a.myRating}}
     </h3>
 
     <div id="options">
-        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model=radioButtonValue> Option A
-        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model=radioButtonValue checked="checked"> Option B
+        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A
+        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model="radioButtonValue" checked="checked"> Option B
     </div>
     <h3>
         {{radioButtonValue}}
