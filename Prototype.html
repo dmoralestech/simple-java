@@ -38,6 +38,7 @@
         <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A
         <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model="radioButtonValue" checked="checked"> Option B
     </div>
+
     <h3>
         {{radioButtonValue}}
     </h3>
@@ -56,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="option in optionList">
+        <tr ng-repeat="(i, option) in optionList track by $index">
             <td>
                 <button type="button" class="btn btn-primary" >{{option.option1}}</button>
             </td>
@@ -76,17 +77,18 @@
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption1" ng-model="option.defaultOption" ng-value={{option.option1}} autocomplete="off" checked>{{option.option1}}
+                        <input type="radio" name="soptions" id="soption1" ng-model=option[i].defaultOption ng-value=option[i].option1 autocomplete="off" checked>{{option.option1}}
                     </label>
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption2" ng-model="option.defaultOption" ng-value={{option.option2}} autocomplete="off">{{option.option2}}
+                        <input type="radio" name="soptions" id="soption2" ng-model=option[i].defaultOption ng-value=option[i].option2 autocomplete="off">{{option.option2}}
                     </label>
                 </div>
             </td>
             <td>
                 <h5>
-                    {{option.isTheSame}}
-                    {{option.defaultOption}}
+                    {{i}}
+                    {{option[i].isTheSame}}
+                    {{option[i].defaultOption}}
                 </h5>
             </td>
         </tr>
