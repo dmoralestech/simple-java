@@ -25,6 +25,15 @@
 <body>
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
+    <input type="radio" value="1" ng-model="myRating" name="rating" class="radio"> 1
+    <input type="radio" value="2" ng-model="myRating" name="rating" class="radio"> 2
+    <input type="radio" value="3" ng-model="myRating" name="rating" class="radio"> 3
+    <input type="radio" value="4" ng-model="myRating" name="rating" class="radio"> 4
+
+    <h3>
+        {{myRating}}
+    </h3>
+
     <div data-ng-controller="MyCtrl">
         {{engineer.name}} is currently: {{ engineer.currentActivity.name}}
         <div>
@@ -41,6 +50,9 @@
         <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model=radioButtonValue checked="checked"> Option B
 
     </div>
+    <h3>
+        {{radioButtonValue}}
+    </h3>
 
     <button type="button" class="btn btn-primary"  onclick="alert('{{engineer.currentActivity.name}}');">show value </button>
 

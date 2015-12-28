@@ -7,6 +7,8 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
+        $scope.myRating
+
         $scope.engineer = {
             name: "Dani",
             currentActivity: {
