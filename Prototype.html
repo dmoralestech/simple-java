@@ -67,28 +67,29 @@
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option1" ng-value="true"  autocomplete="off" checked> Yes
+                        <input type="radio" name="options" id="option1" ng-model=optionList[i].isTheSame  autocomplete="off" checked> Yes
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" ng-value="false" autocomplete="off"> No
+                        <input type="radio" name="options" id="option2" ng-model=optionList[i].isTheSame autocomplete="off"> No
                     </label>
                 </div>
             </td>
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption1" ng-model=option[i].defaultOption ng-value=option[i].option1 autocomplete="off" checked>{{option.option1}}
+                        <input type="radio" name="soptions" id="soption1" ng-model=optionList[i].defaultOption ng-value=optionList[i].option1 autocomplete="off" checked>{{option.option1}}
                     </label>
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption2" ng-model=option[i].defaultOption ng-value=option[i].option2 autocomplete="off">{{option.option2}}
+                        <input type="radio" name="soptions" id="soption2" ng-model=optionList[i].defaultOption ng-value=optionList[i].option2 autocomplete="off">{{option.option2}}
                     </label>
                 </div>
             </td>
             <td>
                 <h5>
                     {{i}}
-                    {{option[i].isTheSame}}
-                    {{option[i].defaultOption}}
+                    {{optionList[i].isTheSame}}
+                    {{optionList[i].option1}}
+                    {{optionList[i].defaultOption}}
                 </h5>
             </td>
         </tr>
