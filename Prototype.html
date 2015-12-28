@@ -79,7 +79,6 @@
                 <h5>
                     {{i}}
                     {{optionList[i].isTheSame}}
-                    {{optionList[i].option1}}
                     {{optionList[i].defaultOption}}
                 </h5>
             </td>
@@ -87,6 +86,10 @@
         </tbody>
     </table>
 
+
+    <div ng-repeat="option in optionList">
+        <button type="button" class="btn btn-default">{{option.defaultOption}}</button>
+    </div>
 
     <h2>Button Styles</h2>
 
