@@ -5,20 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!--<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">-->
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!--<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="optionMatcher.js"></script>
-
-    <script>
-        $("[name='switch-state']").bootstrapSwitch();
-    </script>
-
 
 
 </head>
@@ -67,20 +58,20 @@
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option1" ng-model=optionList[i].isTheSame  autocomplete="off" checked> Yes
+                        <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame  autocomplete="off" checked> Yes
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" ng-model=optionList[i].isTheSame autocomplete="off"> No
+                        <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame autocomplete="off"> No
                     </label>
                 </div>
             </td>
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption1" ng-model=optionList[i].defaultOption ng-value=optionList[i].option1 autocomplete="off" checked>{{option.option1}}
+                        <input type="radio" name=optionList[i].id2  ng-model=optionList[i].defaultOption  autocomplete="off" checked>{{option.option1}}
                     </label>
                     <label class="btn btn-warning">
-                        <input type="radio" name="soptions" id="soption2" ng-model=optionList[i].defaultOption ng-value=optionList[i].option2 autocomplete="off">{{option.option2}}
+                        <input type="radio" name=optionList[i].id2  ng-model=optionList[i].defaultOption  autocomplete="off">{{option.option2}}
                     </label>
                 </div>
             </td>
