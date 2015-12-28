@@ -25,15 +25,24 @@
 <body>
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
+    <div data-ng-controller="MyCtrl">
+        {{engineer.name}} is currently: {{ engineer.currentActivity.name}}
+        <div>
+            Choose a new activity:
+            <select ng-model="engineer.currentActivity"
+                    data-ng-options="a.name group by a.type for a in activities">
+            </select>
+        </div>
+    </div>
     <div id="options">
 
-        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model=$parent.radioButtonValue> Option A
+        <input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model=radioButtonValue> Option A
 
-        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model=$parent.radioButtonValue checked="checked"> Option B
+        <input type="radio" id="q2" name="option" ng-value={{optionB}}  ng-model=radioButtonValue checked="checked"> Option B
 
     </div>
 
-    <button type="button" class="btn btn-primary"  onclick="alert('A');">show value </button>
+    <button type="button" class="btn btn-primary"  onclick="alert('{{engineer.currentActivity.name}}');">show value </button>
 
     <h2>Option Matcher</h2>
 

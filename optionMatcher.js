@@ -7,6 +7,23 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
+        $scope.engineer = {
+            name: "Dani",
+            currentActivity: {
+                id: 3,
+                type: "Work",
+                name: "Fixing bugs"
+            }
+        };
+
+        $scope.activities =
+            [
+                { id: 1, type: "Work", name: "Writing code" },
+                { id: 2, type: "Work", name: "Testing code" },
+                { id: 3, type: "Work", name: "Fixing bugs" },
+                { id: 4, type: "Play", name: "Dancing" }
+            ];
+
         $scope.optionA = "1234";
         $scope.optionB = "5678";
 
@@ -40,7 +57,7 @@ demo.controller(
         $scope.optionList = [option1, option2, option3];
         $scope.isVisible = false;
         $scope.col1 = "Option 1 col";
-        $scope.radioButtonValue = $scope.optionList[1];
+        $scope.radioButtonValue = "A";
 
     }
 
