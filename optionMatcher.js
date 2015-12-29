@@ -7,7 +7,10 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
-        $scope.a = {a: "a", b: "b", c:"c", d: "d", myRating: "" }
+        $scope.a = {a: "a", b: "b", c: "c", d: "d", myRating: ""};
+
+        $scope.mutlipleButtons =["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
+
 
         $scope.optionA = "1234";
         $scope.optionB = "5678";

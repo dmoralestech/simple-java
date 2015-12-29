@@ -16,22 +16,26 @@
 <body>
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
+    <div ng-repeat="buttonTemp in mutlipleButtons" >
+        <button type="button" class="btn btn-primary">{{buttonTemp}}</button>
+    </div>
+
     <!--<input type="radio" ng-value=a.a ng-model="a.myRating" name="rating" class="radio"> {{a.a}}-->
     <!--<input type="radio" ng-value=a.b ng-model="a.myRating" name="rating" class="radio"> {{a.b}}-->
     <!--<input type="radio" ng-value=a.c ng-model="a.myRating" name="rating" class="radio"> {{a.c}}-->
     <!--<input type="radio" ng-value=a.d ng-model="a.myRating" name="rating" class="radio"> {{a.d}}-->
 
     <!--<h3>-->
-        <!--{{a.myRating}}-->
+    <!--{{a.myRating}}-->
     <!--</h3>-->
 
     <!--<div id="options">-->
-        <!--<input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A-->
-        <!--<input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model="radioButtonValue" checked="checked"> Option B-->
+    <!--<input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A-->
+    <!--<input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model="radioButtonValue" checked="checked"> Option B-->
     <!--</div>-->
 
     <!--<h3>-->
-        <!--{{radioButtonValue}}-->
+    <!--{{radioButtonValue}}-->
     <!--</h3>-->
 
     <h2>Option Matcher</h2>
@@ -89,6 +93,51 @@
                 </h5>
             </td>
         </tr>
+        <td>
+
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+
+        </td>
+        <td>
+            <p>
+                <button type="button" class="btn btn-primary btn-block">Primary</button>
+            </p>
+        </td>
+        <td>
+            <p>
+                <button type="button" class="btn btn-success btn-block">Success</button>
+            </p>
+        </td>
+
         </tbody>
     </table>
 
