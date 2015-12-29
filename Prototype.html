@@ -11,17 +11,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="optionMatcher.js"></script>
 
-
 </head>
 <body>
+
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
-    <div ng-repeat="buttonTemp in mutlipleButtons" >
+    <div ng-repeat="buttonTemp in mutlipleButtons">
         <div ng-if="$odd">
-            <button type="button"  class="btn btn-primary">{{buttonTemp}}</button>
+            <span class="label label-primary">{{buttonTemp}}</span>
         </div>
         <div ng-if="$even">
-            <button type="button"  class="btn btn-success">{{buttonTemp}}</button>
+            <span class="label  label-success">{{buttonTemp}}</span>
         </div>
     </div>
 
@@ -42,6 +42,66 @@
     <!--<h3>-->
     <!--{{radioButtonValue}}-->
     <!--</h3>-->
+
+    <h2>Varcodes Resolver</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Varcodes list</th>
+            <th>Option1</th>
+            <th>Option2</th>
+            <th>Are these valid?</th>
+            <th>Debug values</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(i, option) in optionResolverList track by $index">
+            <td>
+                <div ng-repeat="varCode in option.varCodes">
+                    <div ng-if="$even">
+                        <button type="button" class="btn btn-primary btn-block ">{{varCode}} {{option.varCodesDesc}}
+                        </button>
+                    </div>
+                    <div ng-if="!$even">
+                        <button type="button" class="btn btn-success btn-block">{{varCode}} {{option.varCodesDesc}}
+                        </button>
+                    </div>
+                </div>
+
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-block">{{option.option1}}</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-block">{{option.option2}}</button>
+            </td>
+
+            <td>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-warning">
+                        <input type="radio"
+                               ng-value=true
+                               ng-model=optionResolverList[i].isValid
+                               autocomplete="off" checked> Yes
+                    </label>
+                    <label class="btn btn-warning">
+                        <input type="radio"
+                               ng-value=false
+                               ng-model=optionResolverList[i].isValid
+                               autocomplete="off"> No
+                    </label>
+                </div>
+            </td>
+            <td>
+                <h5>
+                    {{optionResolverList[i].isValid}}
+                    {{optionResolverList[i].defaultOption}}
+                </h5>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 
     <h2>Option Matcher</h2>
 
@@ -171,3 +231,7 @@
 
 </body>
 </html>
+
+
+
+

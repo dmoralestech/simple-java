@@ -9,8 +9,33 @@ demo.controller(
 
         $scope.a = {a: "a", b: "b", c: "c", d: "d", myRating: ""};
 
-        $scope.mutlipleButtons =["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
+        $scope.mutlipleButtons = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
 
+        var optionResolver1 = {
+            varCodes: ["123", "456", "789"],
+            varCodesDesc:"Loren Ipsum blah",
+            option1: "123",
+            option2: "789",
+            isValid: null
+        };
+
+        var optionResolver2 = {
+            varCodes: ["ABC", "DEF", "GHI", "JKL", "MNL", "OPQ"],
+            varCodesDesc:"Loren Ipsum blah",
+            option1: "ABC",
+            option2: "GHI",
+            isValid: null
+        };
+
+        var optionResolver3 = {
+            varCodes: ["RST", "UVW"],
+            varCodesDesc:"Loren Ipsum blah",
+            option1: "RST",
+            option2: "UVW",
+            isValid: null
+        };
+
+        $scope.optionResolverList = [optionResolver1, optionResolver2, optionResolver3];
 
         $scope.optionA = "1234";
         $scope.optionB = "5678";
@@ -48,7 +73,5 @@ demo.controller(
         $scope.radioButtonValue = "A";
 
     }
-
-
 )
 ;
