@@ -133,3 +133,13 @@ console.log(myStudent.school);
 console.log( myStudent.constructor );
 
 var keys = Object.keys(Student.prototype);
+
+
+function foo4() {
+    console.log("bar4: " + bar4); //won't find
+}
+function baz4() {
+    var bar4 = "bar4";
+    foo4();
+}
+baz4();
