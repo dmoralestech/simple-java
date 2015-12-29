@@ -17,7 +17,12 @@
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
     <div ng-repeat="buttonTemp in mutlipleButtons" >
-        <button type="button" class="btn btn-primary">{{buttonTemp}}</button>
+        <div ng-if="$odd">
+            <button type="button"  class="btn btn-primary">{{buttonTemp}}</button>
+        </div>
+        <div ng-if="$even">
+            <button type="button"  class="btn btn-success">{{buttonTemp}}</button>
+        </div>
     </div>
 
     <!--<input type="radio" ng-value=a.a ng-model="a.myRating" name="rating" class="radio"> {{a.a}}-->
