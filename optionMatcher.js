@@ -11,12 +11,15 @@ demo.controller(
 
         $scope.mutlipleButtons = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
 
+        $scope.objectYes = {value: "yes"};
+        $scope.objectNo = {value: "no"};
+
         var optionResolver1 = {
             varCodes: ["123", "456", "789"],
             varCodesDesc:"Loren Ipsum blah",
             option1: "123",
             option2: "789",
-            isValid: null
+            isValid: undefined
         };
 
         var optionResolver2 = {
@@ -24,7 +27,7 @@ demo.controller(
             varCodesDesc:"Loren Ipsum blah",
             option1: "ABC",
             option2: "GHI",
-            isValid: null
+            isValid: undefined
         };
 
         var optionResolver3 = {
@@ -32,7 +35,7 @@ demo.controller(
             varCodesDesc:"Loren Ipsum blah",
             option1: "RST",
             option2: "UVW",
-            isValid: null
+            isValid: undefined
         };
 
         $scope.optionResolverList = [optionResolver1, optionResolver2, optionResolver3];

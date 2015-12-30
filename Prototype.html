@@ -11,7 +11,147 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="optionMatcher.js"></script>
 
+    <style>
+
+        .btn-custom-orange {
+            background-color: hsl(36, 99%, 44%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fedaa3", endColorstr="#df8601");
+            background-image: -khtml-gradient(linear, left top, left bottom, from(#fedaa3), to(#df8601));
+            background-image: -moz-linear-gradient(top, #fedaa3, #df8601);
+            background-image: -ms-linear-gradient(top, #fedaa3, #df8601);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fedaa3), color-stop(100%, #df8601));
+            background-image: -webkit-linear-gradient(top, #fedaa3, #df8601);
+            background-image: -o-linear-gradient(top, #fedaa3, #df8601);
+            background-image: linear-gradient(#fedaa3, #df8601);
+            border-color: #df8601 #df8601 hsl(36, 99%, 34.5%);
+            color: #333 !important;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.62);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-dark-gray {
+            background-color: hsl(0, 0%, 15%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959", endColorstr="#262626");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#595959), to(#262626));*/
+            background-image: -moz-linear-gradient(top, #595959, #262626);
+            background-image: -ms-linear-gradient(top, #595959, #262626);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #595959), color-stop(100%, #262626));
+            background-image: -webkit-linear-gradient(top, #595959, #262626);
+            background-image: -o-linear-gradient(top, #595959, #262626);
+            background-image: linear-gradient(#595959, #262626);
+            border-color: #262626 #262626 hsl(0, 0%, 10%);
+            color: #fff !important;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-mid-gray{
+            background-color: hsl(0, 0%, 32%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#848484", endColorstr="#515151");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#848484), to(#515151));*/
+            background-image: -moz-linear-gradient(top, #848484, #515151);
+            background-image: -ms-linear-gradient(top, #848484, #515151);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #848484), color-stop(100%, #515151));
+            background-image: -webkit-linear-gradient(top, #848484, #515151);
+            background-image: -o-linear-gradient(top, #848484, #515151);
+            background-image: linear-gradient(#848484, #515151);
+            border-color: #515151 #515151 hsl(0, 0%, 27%);
+            color: #fff !important;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-light-gray {
+            background-color: hsl(0, 0%, 49%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#afafaf", endColorstr="#7c7c7c");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#afafaf), to(#7c7c7c));*/
+            background-image: -moz-linear-gradient(top, #afafaf, #7c7c7c);
+            background-image: -ms-linear-gradient(top, #afafaf, #7c7c7c);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #afafaf), color-stop(100%, #7c7c7c));
+            background-image: -webkit-linear-gradient(top, #afafaf, #7c7c7c);
+            background-image: -o-linear-gradient(top, #afafaf, #7c7c7c);
+            background-image: linear-gradient(#afafaf, #7c7c7c);
+            border-color: #7c7c7c #7c7c7c hsl(0, 0%, 44%);
+            color: #333 !important;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-blue {
+            background-color: hsl(214, 37%, 28%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7a99c1", endColorstr="#2c4361");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#7a99c1), to(#2c4361));*/
+            background-image: -moz-linear-gradient(top, #7a99c1, #2c4361);
+            background-image: -ms-linear-gradient(top, #7a99c1, #2c4361);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7a99c1), color-stop(100%, #2c4361));
+            background-image: -webkit-linear-gradient(top, #7a99c1, #2c4361);
+            background-image: -o-linear-gradient(top, #7a99c1, #2c4361);
+            background-image: linear-gradient(#7a99c1, #2c4361);
+            border-color: #2c4361 #2c4361 hsl(214, 37%, 19.5%);
+            color: #fff !important;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.56);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-light-blue {
+            background-color: hsl(214, 40%, 64%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b0c3dd", endColorstr="#7e9ec7");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#b0c3dd), to(#7e9ec7));*/
+            background-image: -moz-linear-gradient(top, #b0c3dd, #7e9ec7);
+            background-image: -ms-linear-gradient(top, #b0c3dd, #7e9ec7);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b0c3dd), color-stop(100%, #7e9ec7));
+            background-image: -webkit-linear-gradient(top, #b0c3dd, #7e9ec7);
+            background-image: -o-linear-gradient(top, #b0c3dd, #7e9ec7);
+            background-image: linear-gradient(#b0c3dd, #7e9ec7);
+            border-color: #7e9ec7 #7e9ec7 hsl(214, 40%, 60.5%);
+            color: #333 !important;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.23);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-dark-blue {
+            background-color: hsl(214, 40%, 21%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#35547c", endColorstr="#20324a");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#35547c), to(#20324a));*/
+            background-image: -moz-linear-gradient(top, #35547c, #20324a);
+            background-image: -ms-linear-gradient(top, #35547c, #20324a);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #35547c), color-stop(100%, #20324a));
+            background-image: -webkit-linear-gradient(top, #35547c, #20324a);
+            background-image: -o-linear-gradient(top, #35547c, #20324a);
+            background-image: linear-gradient(#35547c, #20324a);
+            border-color: #20324a #20324a hsl(214, 40%, 17.5%);
+            color: #fff !important;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.23);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom-red {
+            background-color: hsl(0, 45%, 28%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aa4040", endColorstr="#672727");
+            /*background-image: -khtml-gradient(linear, left top, left bottom, from(#aa4040), to(#672727));*/
+            background-image: -moz-linear-gradient(top, #aa4040, #672727);
+            background-image: -ms-linear-gradient(top, #aa4040, #672727);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aa4040), color-stop(100%, #672727));
+            background-image: -webkit-linear-gradient(top, #aa4040, #672727);
+            background-image: -o-linear-gradient(top, #aa4040, #672727);
+            background-image: linear-gradient(#aa4040, #672727);
+            border-color: #672727 #672727 hsl(0, 45%, 23.5%);
+            color: #fff !important;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.29);
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+
 </head>
+
 <body>
 
 <div ng-app="app" ng-controller="MyCtrl" class="container">
@@ -59,32 +199,31 @@
             <td>
                 <div ng-repeat="varCode in option.varCodes">
                     <div ng-if="$even">
-                        <button type="button" class="btn btn-primary btn-block ">{{varCode}} {{option.varCodesDesc}}
+                        <button type="button" class="btn btn-custom-dark-blue btn-block ">{{varCode}}
                         </button>
                     </div>
                     <div ng-if="!$even">
-                        <button type="button" class="btn btn-success btn-block">{{varCode}} {{option.varCodesDesc}}
+                        <button type="button" class="btn btn-custom-light-blue btn-block">{{varCode}}
                         </button>
                     </div>
                 </div>
-
             </td>
             <td>
-                <button type="button" class="btn btn-primary btn-block">{{option.option1}}</button>
+                <button type="button" class="btn btn-custom-mid-gray btn-block">{{option.option1}}</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary btn-block">{{option.option2}}</button>
+                <button type="button" class="btn btn-custom-mid-gray btn-block">{{option.option2}}</button>
             </td>
 
             <td>
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-warning">
+                    <label class="btn btn-custom-mid-gray">
                         <input type="radio"
                                ng-value=true
                                ng-model=optionResolverList[i].isValid
-                               autocomplete="off" checked> Yes
+                               autocomplete="off"> Yes
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-custom-mid-gray">
                         <input type="radio"
                                ng-value=false
                                ng-model=optionResolverList[i].isValid
@@ -95,13 +234,15 @@
             <td>
                 <h5>
                     {{optionResolverList[i].isValid}}
-                    {{optionResolverList[i].defaultOption}}
                 </h5>
             </td>
         </tr>
         </tbody>
     </table>
 
+    <div ng-repeat="option in optionResolverList">
+        <button type="button" class="btn btn-default">{{option.isValid}}</button>
+    </div>
 
     <h2>Option Matcher</h2>
 
@@ -119,18 +260,18 @@
         <tbody>
         <tr ng-repeat="(i, option) in optionList track by $index">
             <td>
-                <button type="button" class="btn btn-primary">{{option.option1}}</button>
+                <button type="button" class="btn btn-custom-blue">{{option.option1}}</button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary">{{option.option2}}</button>
+                <button type="button" class="btn btn-custom-blue">{{option.option2}}</button>
             </td>
             <td>
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-custom-blue">
                         <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame
                                autocomplete="off" checked> Yes
                     </label>
-                    <label class="btn btn-primary">
+                    <label class="btn btn-custom-blue">
                         <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame
                                autocomplete="off"> No
                     </label>
@@ -139,11 +280,11 @@
             <td>
                 <div ng-show="optionList[i].isTheSame">
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-warning">
+                        <label class="btn btn-custom-orange">
                             <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option1
                                    ng-model=optionList[i].defaultOption autocomplete="off" checked>{{option.option1}}
                         </label>
-                        <label class="btn btn-warning">
+                        <label class="btn btn-custom-orange">
                             <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option2
                                    ng-model=optionList[i].defaultOption autocomplete="off">{{option.option2}}
                         </label>
@@ -152,56 +293,56 @@
             </td>
             <td>
                 <h5>
-                    {{i}}
                     {{optionList[i].isTheSame}}
                     {{optionList[i].defaultOption}}
                 </h5>
             </td>
         </tr>
-        <td>
 
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
+        <!--<td>-->
 
-        </td>
-        <td>
-            <p>
-                <button type="button" class="btn btn-primary btn-block">Primary</button>
-            </p>
-        </td>
-        <td>
-            <p>
-                <button type="button" class="btn btn-success btn-block">Success</button>
-            </p>
-        </td>
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+
+        <!--</td>-->
+        <!--<td>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+        <!--</p>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<p>-->
+        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+        <!--</p>-->
+        <!--</td>-->
 
         </tbody>
     </table>
