@@ -5,6 +5,13 @@
 var sayHi = new Function("console.log('Hi')");
 sayHi();
 
+var reflect = function() { //you can create a function with empty paramaters but you can still capture it inside the function
+    return arguments[1];
+}
+
+console.log(reflect("Hi"));
+console.log(reflect("Hi", "Hello", "good"));
+console.log(reflect.length);
 
 var i;
 
