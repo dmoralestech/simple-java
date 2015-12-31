@@ -2,6 +2,10 @@
  * Created by dmorales on 9/12/2015.
  */
 
+var sayHi = new Function("console.log('Hi')");
+sayHi();
+
+
 var i;
 
 i = 2 + 3;
