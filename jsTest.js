@@ -46,7 +46,16 @@ var properties = Object.keys(person2);
 for (prop in properties) {
     console.log(prop);
     console.log(properties[prop]);
+    console.log(person2[properties[prop]]);
 }
+
+console.log(person.propertyIsEnumerable('name'));
+console.log(Object.keys(person).length);
+
+Object.defineProperty(person, 'name', {enumerable:false});
+
+console.log(person.propertyIsEnumerable('name'));
+console.log(Object.keys(person).length);
 
 var i;
 
