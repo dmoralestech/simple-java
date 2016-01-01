@@ -57,6 +57,26 @@ Object.defineProperty(person, 'name', {enumerable:false});
 console.log(person.propertyIsEnumerable('name'));
 console.log(Object.keys(person).length);
 
+var person2 = {
+    _name: "",
+
+    get name() {
+        console.log('reading name');
+        return this._name;
+    },
+
+    set name(value) {
+        console.log('setting value %s', value);
+        this._name = value;
+    }
+
+
+};
+
+person2.name = "Darwin";
+
+console.log(person2.name);
+
 var i;
 
 i = 2 + 3;
