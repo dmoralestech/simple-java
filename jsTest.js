@@ -59,23 +59,42 @@ console.log(Object.keys(person).length);
 
 var person2 = {
     _name: "",
+    _age: 0,
+    _address: "",
 
     get name() {
-        console.log('reading name');
         return this._name;
     },
 
     set name(value) {
-        console.log('setting value %s', value);
         this._name = value;
-    }
+    },
 
+    get age() {
+        return this._age;
+    },
+
+    set age(value) {
+        this._age = value;
+    },
+
+    get address() {
+        return this._address;
+    },
+
+    set address(value) {
+        this._address = value;
+    }
 
 };
 
 person2.name = "Darwin";
+person2.age = 20;
+person2.address = "Manila";
 
 console.log(person2.name);
+console.log(person2.age);
+console.log(person2.address);
 
 var i;
 
