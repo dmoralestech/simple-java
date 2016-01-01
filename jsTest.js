@@ -13,6 +13,9 @@ console.log(reflect("Hi"));
 console.log(reflect("Hi", "Hello", "good"));
 console.log(reflect.length);
 
+var sayMessage = new Function("message", "console.log('message');");
+sayMessage('Hello world');
+
 var i;
 
 i = 2 + 3;
