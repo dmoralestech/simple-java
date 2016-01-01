@@ -16,6 +16,38 @@ console.log(reflect.length);
 var sayMessage = new Function("message", "console.log('message');");
 sayMessage('Hello world');
 
+var person = {
+    name: "Daniel",
+    sayName: function() {
+        console.log(person.name); // This is bad because it makes a tight coupling between the method and the object.. "this.name" is better.
+    }
+};
+
+var person2 = {
+    name: "Darwin",
+    sayName: function() {
+        console.log(this.name); // This is bad because it makes a tight coupling between the method and the object.. "this.name" is better.
+    }
+};
+
+person2.sayName()
+
+function sayNameForAll() {
+    console.log(this.name);
+}
+
+for (prop in person2) {
+    console.log(prop);
+    console.log(person2[prop]);
+}
+
+var properties = Object.keys(person2);
+
+for (prop in properties) {
+    console.log(prop);
+    console.log(properties[prop]);
+}
+
 var i;
 
 i = 2 + 3;
