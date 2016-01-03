@@ -113,6 +113,22 @@ Object.defineProperty(person4, "name", {
     configurable: true
 })
 
+var descriptor = Object.getOwnPropertyDescriptor(person4, "name");
+console.log(descriptor.propertyIsEnumerable);
+console.log(descriptor.configurable);
+console.log(descriptor.writable);
+console.log(descriptor.value);
+
+Object.preventExtensions(person4);
+console.log(Object.isExtensible(person4));
+
+//
+//person4.sayName() = function () {
+//    console.log(this._name);
+//};
+
+console.log("sayName" in person4);
+
 var i;
 
 i = 2 + 3;
