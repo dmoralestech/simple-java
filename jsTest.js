@@ -96,6 +96,23 @@ console.log(person2.name);
 console.log(person2.age);
 console.log(person2.address);
 
+
+var person4 = {
+    _name: "Darwin"
+};
+
+Object.defineProperty(person4, "name", {
+    get: function() {
+        console.log("Reading name");
+        return this._name;
+    },
+    set: function(value) {
+        this._name = value;
+    },
+    enumerable: true,
+    configurable: true
+})
+
 var i;
 
 i = 2 + 3;
