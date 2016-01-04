@@ -19,10 +19,20 @@ function PersonObj2(name) {
     }
 }
 
+PersonObj2.prototype.favorites = [];
+
 var personObj2 = new PersonObj2("Nova");
+var personObj3 = new PersonObj2("Daniel");
+
+personObj2.favorites.push("pizza");
+personObj3.favorites.push("pasta");
+personObj2.favorites.push("steak");
 
 console.log(personObj2.name);
 personObj2.sayName();
+
+console.log(personObj2.favorites);
+console.log(personObj3.favorites);
 
 personObj2.name = 'Sitti';
 console.log(personObj2.name);
@@ -39,6 +49,7 @@ var PersonObj = {
         return Math.floor(diff / year);
     }
 };
+
 
 console.log(PersonObj['firstName']);
 console.log(PersonObj['getAge']());
