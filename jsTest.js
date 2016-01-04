@@ -41,12 +41,13 @@ personObj3.addOneToCounter();
 personObj2.addOneToCounter();
 
 console.log(personObj2.counter);
+console.log(personObj3.counter);
 
 console.log(personObj2.name);
 personObj2.sayName();
 
-console.log(personObj2.favorites);
-console.log(personObj3.favorites);
+console.log(personObj2.favorites); //outputs 5
+console.log(personObj3.favorites); //outputs 5
 
 personObj2.name = 'Sitti';
 console.log(personObj2.name);
