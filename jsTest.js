@@ -2,6 +2,30 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function PersonObj2(name) {
+    Object.defineProperty(this, "name", {
+        get: function() {
+            return name;
+        },
+        set: function(value) {
+            name = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    this.sayName = function() {
+        console.log('Hello ' + this.name)
+    }
+}
+
+var personObj2 = new PersonObj2("Nova");
+
+console.log(personObj2.name);
+personObj2.sayName();
+
+personObj2.name = 'Sitti';
+console.log(personObj2.name);
 
 var PersonObj = {
     firstName: 'Darwin',
