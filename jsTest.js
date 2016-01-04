@@ -2,6 +2,23 @@
  * Created by dmorales on 9/12/2015.
  */
 
+
+var PersonObj = {
+    firstName: 'Darwin',
+    lastName: 'Morales',
+    birthDate: new Date('1900-01-01'),
+    gender: 'male',
+    getAge: function() {
+        var today = new Date();
+        var diff = today.getTime() - this.birthDate.getTime();
+        var year = 1000 * 60 * 60 * 24 * 365.25;
+        return Math.floor(diff / year);
+    }
+};
+
+console.log(PersonObj['firstName']);
+console.log(PersonObj['getAge']());
+
 var sayHi = new Function("console.log('Hi')");
 sayHi();
 
