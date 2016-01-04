@@ -19,6 +19,16 @@ var PersonObj = {
 console.log(PersonObj['firstName']);
 console.log(PersonObj['getAge']());
 
+var bob = Object.create(PersonObj);
+bob.firstName = 'Bob';
+bob.lastName = 'Sacamato';
+bob.birthDate = new Date('1990-8-9');
+
+console.log(bob.firstName);
+console.log(bob.lastName);
+console.log(bob.getAge());
+
+
 var sayHi = new Function("console.log('Hi')");
 sayHi();
 
