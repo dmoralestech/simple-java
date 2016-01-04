@@ -17,7 +17,11 @@ function PersonObj2(name) {
     this.sayName = function() {
         console.log('Hello ' + this.name)
     }
+
 }
+//PersonObj2.prototype = {
+//    constructor: PersonObj2
+//}
 
 PersonObj2.prototype.favorites = [];
 
