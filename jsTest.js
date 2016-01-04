@@ -19,11 +19,13 @@ function PersonObj2(name) {
     }
 
 }
-//PersonObj2.prototype = {
-//    constructor: PersonObj2
-//}
 
 PersonObj2.prototype.favorites = [];
+PersonObj2.prototype.counter = 0;
+
+PersonObj2.prototype.addOneToCounter = function() {
+    PersonObj2.prototype.counter += 1;
+}
 
 var personObj2 = new PersonObj2("Nova");
 var personObj3 = new PersonObj2("Daniel");
@@ -31,6 +33,14 @@ var personObj3 = new PersonObj2("Daniel");
 personObj2.favorites.push("pizza");
 personObj3.favorites.push("pasta");
 personObj2.favorites.push("steak");
+
+personObj2.addOneToCounter();
+personObj3.addOneToCounter();
+personObj3.addOneToCounter();
+personObj3.addOneToCounter();
+personObj2.addOneToCounter();
+
+console.log(personObj2.counter);
 
 console.log(personObj2.name);
 personObj2.sayName();
