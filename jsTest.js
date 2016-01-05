@@ -15,7 +15,7 @@ function PersonObj2(name) {
     });
 
     this.sayName = function() {
-        console.log('Hello ' + this.name)
+        console.log('Hello ' + this.name);
     }
 
 }
