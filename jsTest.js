@@ -14,6 +14,7 @@ function PersonObj2(name) {
         configurable: true
     });
 //test comment
+//test comment
     this.sayName = function() {
         console.log('Hello ' + this.name);
     }
