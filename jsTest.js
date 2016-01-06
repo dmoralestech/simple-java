@@ -13,7 +13,7 @@ function PersonObj2(name) {
         enumerable: true,
         configurable: true
     });
-
+//test comment
     this.sayName = function() {
         console.log('Hello ' + this.name);
     }
