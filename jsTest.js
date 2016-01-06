@@ -20,7 +20,7 @@ function PersonObj2(name) {
 }
 
 
-// /asdsadd
+// /asdsadd 3453454353
 PersonObj2.prototype.favorites = [];
 PersonObj2.prototype.counter = 0;
 
