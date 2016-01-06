@@ -50,7 +50,8 @@ PersonObj2.prototype.addOneToCounter = function() {
     PersonObj2.prototype.counter += 1;
 }
 
-console.log( PersonObj2.prototype.__proto__ === Object.prototype);
+console.log( PersonObj2.prototype.__proto__ === Object.prototype); // if my understanding is correct then this should be true!
+                                                                    // the prototype property of PersonObj2.prototype should point to Object.prototype
 
 var personObj2 = new PersonObj2("Nova");
 var personObj3 = new PersonObj2("Daniel");
