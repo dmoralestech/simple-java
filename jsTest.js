@@ -18,7 +18,7 @@ function PersonObj2(name) {
     }
 
 }
-
+//test comment
 PersonObj2.prototype.favorites = [];
 PersonObj2.prototype.counter = 0;
 
