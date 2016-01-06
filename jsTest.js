@@ -2,13 +2,29 @@
  * Created by dmorales on 9/12/2015.
  */
 
-var book = {title: "The Bible"};
+var book = {title: "The Bible", sayHi: function(){}};
 
 console.log("title" in book); //true
 console.log(book.hasOwnProperty("title")); //true
 console.log("hasOwnProperty" in book); //true
 console.log( book.hasOwnProperty("hasOwnProperty")); //false
 console.log(Object.prototype.hasOwnProperty("hasOwnProperty")); //true
+
+function hasPrototypeProperty(object, name){
+    return name in object && !object.hasOwnProperty(name);
+}
+
+var object = {}; //creates an empty object but there's a hidden property [[Prototype]] that points to the Object.prototype object
+var prototype = Object.getPrototypeOf(object);
+console.log(prototype === Object.prototype); // true
+console.log(object.__proto__=== Object.prototype); //true
+
+for (var prop in Object) { //no output
+    console.log(prop);
+}
+
+console.log(Object.keys(Object));
+
 
 function PersonObj2(name) {
     Object.defineProperty(this, "name", {
@@ -33,6 +49,8 @@ PersonObj2.prototype.counter = 0;
 PersonObj2.prototype.addOneToCounter = function() {
     PersonObj2.prototype.counter += 1;
 }
+
+console.log( PersonObj2.prototype.__proto__ === Object.prototype);
 
 var personObj2 = new PersonObj2("Nova");
 var personObj3 = new PersonObj2("Daniel");
