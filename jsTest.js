@@ -2,6 +2,14 @@
  * Created by dmorales on 9/12/2015.
  */
 
+var book = {title: "The Bible"};
+
+console.log("title" in book); //true
+console.log(book.hasOwnProperty("title")); //true
+console.log("hasOwnProperty" in book); //true
+console.log( book.hasOwnProperty("hasOwnProperty")); //false
+console.log(Object.prototype.hasOwnProperty("hasOwnProperty")); //true
+
 function PersonObj2(name) {
     Object.defineProperty(this, "name", {
         get: function() {
