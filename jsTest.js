@@ -2,6 +2,32 @@
  * Created by dmorales on 9/12/2015.
  */
 
+var personA = {
+    name: "darwin",
+    sayName: function() {
+        console.log(this.name);
+    }
+};
+
+var personB = Object.create(personA, {
+   name: {
+       value: "nova"
+   }
+});
+
+personA.sayName();
+personB.sayName();
+console.log(personB.__proto__ === personA); //true
+console.log(personA.__proto__ == Object.prototype); //true
+console.log(personA.__proto__ == personB.__proto__); //false
+console.log(personB.prototype); //undefined
+
+console.log(personA.hasOwnProperty("sayName")); //true
+console.log(personB.hasOwnProperty("sayName")); //false
+console.log(personA.isPrototypeOf(personB)); //true
+console.log(Object.isPrototypeOf(personA)); //false
+console.log(Object.isPrototypeOf(personB)); //false
+
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.substring(1);
 };
