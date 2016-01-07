@@ -1,6 +1,8 @@
+import java.awt.*;
 import java.awt.event.ContainerAdapter;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.function.*;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
@@ -45,7 +47,7 @@ public class Person {
 
         List<Person> ascendingAge = people.stream()
                 //.sorted((person1, person2) -> person1.ageDifference(person2))
-                .sorted(Person::ageDifference)
+                .sorted( Person::ageDifference)
                 .collect( Collectors.toList());
 
         printPeople("asceding by age", ascendingAge);
@@ -106,7 +108,9 @@ public class Person {
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
                 .collect(groupingBy( Person::getAge, mapping(Person::getName, toList())));
 
-        List<Person> olderThan20 = people.stream().filter(person -> person.getAge() > 20).collect(Collectors.toList());
+        List<Person> olderThan20 = people.stream()
+                                            .filter(person -> person.getAge() > 20)
+                                            .collect(Collectors.toList());
 
         Comparator<Person> byAge2 = (person1, person2) -> person1.getAge() - person2.getAge();
         //Comparator<Person> byAge2 = Comparator.comparing(Person::getAge);
@@ -190,6 +194,9 @@ public class Person {
 
         Supplier<String> supplierSample2 = () -> "returns some string...";
 
+
+
+
         UnaryOperator<Integer> unaryOperator = (new UnaryOperator<Integer>() {
             @Override
             public Integer apply(Integer integer) {
@@ -203,6 +210,13 @@ public class Person {
 
             }
         });
+
+        Consumer<String> consumerSample2 = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+
+            }
+        };
 
         people.stream().map(person -> person.getName()).distinct().forEach(System.out::println);
         
@@ -226,6 +240,18 @@ public class Person {
     private static void printPeople(final String message, final List<Person> people) {
         System.out.println(message);
         people.forEach(System.out::println);
+    }
+
+    public void greetName() {
+        NameGreeter<String> consumerExample = new NameGreeter<>();
+        consumerExample.accept("Darwin");
+    }
+
+    class NameGreeter<String> implements Consumer<String>{
+        @Override
+        public void accept(String s) {
+            System.out.println("Hello " + s);
+        }
     }
 
 }
