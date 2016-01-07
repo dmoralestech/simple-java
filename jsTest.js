@@ -7,6 +7,9 @@ String.prototype.capitalize = function () {
 };
 
 console.log("darwin morales".capitalize());
+console.log("darwin morales".toString() === "darwin morales".valueOf()); //true
+console.log("darwin morales".valueOf());
+console.log("darwin morales".hasOwnProperty("capitalize")); //false
 
 var book = {title: "The Bible", sayHi: function(){}};
 
@@ -15,6 +18,8 @@ console.log(book.hasOwnProperty("title")); //true
 console.log("hasOwnProperty" in book); //true
 console.log( book.hasOwnProperty("hasOwnProperty")); //false
 console.log(Object.prototype.hasOwnProperty("hasOwnProperty")); //true
+console.log(book.isPrototypeOf(book.prototype)); //true
+console.log(book.isPrototypeOf(Object.prototype)); //false
 
 function hasPrototypeProperty(object, name){
     return name in object && !object.hasOwnProperty(name);
