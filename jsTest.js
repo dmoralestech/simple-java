@@ -2,6 +2,12 @@
  * Created by dmorales on 9/12/2015.
  */
 
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.substring(1);
+};
+
+console.log("darwin morales".capitalize());
+
 var book = {title: "The Bible", sayHi: function(){}};
 
 console.log("title" in book); //true
