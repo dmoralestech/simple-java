@@ -20,13 +20,21 @@ personB.sayName();
 console.log(personB.__proto__ === personA); //true
 console.log(personA.__proto__ == Object.prototype); //true
 console.log(personA.__proto__ == personB.__proto__); //false
-console.log(personB.prototype); //undefined
+
 
 console.log(personA.hasOwnProperty("sayName")); //true
 console.log(personB.hasOwnProperty("sayName")); //false
 console.log(personA.isPrototypeOf(personB)); //true
 console.log(Object.isPrototypeOf(personA)); //false
 console.log(Object.isPrototypeOf(personB)); //false
+
+console.log(personB.prototype.sayName());
+
+console.log(personB.prototype); // undefined  because personB is not a function.
+
+//personB.prototype.sayHello = function() { //Error! you can't set a function to an undefined object
+//    console.log('Hello ' + this.name);
+//}
 
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.substring(1);
