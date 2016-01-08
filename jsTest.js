@@ -6,6 +6,11 @@ var personA = {
     name: "darwin",
     sayName: function() {
         console.log(this.name);
+    },
+    sayWhat: function() {
+        var what = "what " + this.name;
+        console.log(what);
+        // var what = "what " + this.name; //won't work if it's declared here..
     }
 };
 
@@ -14,6 +19,9 @@ var personB = Object.create(personA, {
        value: "nova"
    }
 });
+
+personA.sayWhat();
+personB.sayWhat();
 
 personA.sayName();
 personB.sayName();
