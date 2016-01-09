@@ -39,6 +39,10 @@ Square.prototype.toString  = function() {
     return "[Square: " this.length + " x " + this.width + "]";
 }
 
+function Square2(size) {
+    Rectangle.call(this, size, size);
+}
+
 var rect = new Rectangle(5, 10);
 var square = new Square(7);
 
@@ -54,8 +58,6 @@ console.log(rect instanceof Object);
 console.log(square instanceof Square);
 console.log(square instanceof Rectangle);
 console.log(square instanceof Object);
-
-
 
 
 var personA = {
@@ -95,6 +97,7 @@ console.log(Object.isPrototypeOf(personB)); //false
 console.log(personB.prototype.sayName());
 
 console.log(personB.prototype); // undefined  because personB is not a function.
+                                //Functions in JavaScript are first-class objects, which means you can add members to them and treat them just like ordinary objects:
 
 //personB.prototype.sayHello = function() { //Error! you can't set a function to an undefined object
 //    console.log('Hello ' + this.name);
