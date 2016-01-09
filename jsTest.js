@@ -2,7 +2,8 @@
  * Created by dmorales on 9/12/2015.
  */
 
-function myConstructor() {}
+function myConstructor() {
+}
 
 myConstructor.prototype = Object.create(Object.prototype, {
     constructor: {
@@ -11,15 +12,58 @@ myConstructor.prototype = Object.create(Object.prototype, {
         value: myConstructor,
         writable: true
     }
-} );
+});
+
+function Rectangle(width, length) {
+    this.length = length;
+    this.width = width;
+}
+
+Rectangle.prototype.getArea = function() {
+    return this.length * this.width;
+}
+
+Rectangle.prototype.toString = function() {
+    return "[Rectangle: " this.length + " x " + this.width + "]";
+}
+
+function Square(size) {
+    this.length = size;
+    this.width = size;
+}
+
+Square.prototype = new Rectangle();
+Square.prototype.constructor = Square;
+
+Square.prototype.toString  = function() {
+    return "[Square: " this.length + " x " + this.width + "]";
+}
+
+var rect = new Rectangle(5, 10);
+var square = new Square(7);
+
+console.log(rect.getArea());
+console.log(square.getArea());
+
+console.log(rect.toString());
+console.log(square.toString());
+
+console.log(rect instanceof Rectangle);
+console.log(rect instanceof Object);
+
+console.log(square instanceof Square);
+console.log(square instanceof Rectangle);
+console.log(square instanceof Object);
+
+
 
 
 var personA = {
     name: "darwin",
-    sayName: function() {
+    sayName: function () {
         console.log(this.name);
     },
-    sayWhat: function() {
+    sayWhat: function () {
         var what = "what " + this.name;
         console.log(what);
         // var what = "what " + this.name; //won't work if it's declared here..
@@ -27,9 +71,9 @@ var personA = {
 };
 
 var personB = Object.create(personA, {
-   name: {
-       value: "nova"
-   }
+    name: {
+        value: "nova"
+    }
 });
 
 personA.sayWhat();
@@ -65,24 +109,25 @@ console.log("darwin morales".toString() === "darwin morales".valueOf()); //true
 console.log("darwin morales".valueOf());
 console.log("darwin morales".hasOwnProperty("capitalize")); //false
 
-var book = {title: "The Bible", sayHi: function(){}};
+var book = {title: "The Bible", sayHi: function () {
+}};
 
 console.log("title" in book); //true
 console.log(book.hasOwnProperty("title")); //true
 console.log("hasOwnProperty" in book); //true
-console.log( book.hasOwnProperty("hasOwnProperty")); //false
+console.log(book.hasOwnProperty("hasOwnProperty")); //false
 console.log(Object.prototype.hasOwnProperty("hasOwnProperty")); //true
 console.log(book.isPrototypeOf(book.prototype)); //true
 console.log(book.isPrototypeOf(Object.prototype)); //false
 
-function hasPrototypeProperty(object, name){
+function hasPrototypeProperty(object, name) {
     return name in object && !object.hasOwnProperty(name);
 }
 
 var object = {}; //creates an empty object but there's a hidden property [[Prototype]] that points to the Object.prototype object
 var prototype = Object.getPrototypeOf(object);
 console.log(prototype === Object.prototype); // true
-console.log(object.__proto__=== Object.prototype); //true
+console.log(object.__proto__ === Object.prototype); //true
 
 for (var prop in Object) { //no output
     console.log(prop);
@@ -93,16 +138,16 @@ console.log(Object.keys(Object));
 
 function PersonObj2(name) {
     Object.defineProperty(this, "name", {
-        get: function() {
+        get: function () {
             return name;
         },
-        set: function(value) {
+        set: function (value) {
             name = value;
         },
         enumerable: true,
         configurable: true
     });
-    this.sayName = function() {
+    this.sayName = function () {
         console.log('Hello ' + this.name);
     }
 
@@ -111,12 +156,12 @@ function PersonObj2(name) {
 PersonObj2.prototype.favorites = [];
 PersonObj2.prototype.counter = 0;
 
-PersonObj2.prototype.addOneToCounter = function() {
+PersonObj2.prototype.addOneToCounter = function () {
     PersonObj2.prototype.counter += 1;
 }
 
-console.log( PersonObj2.prototype.__proto__ === Object.prototype); // if my understanding is correct then this should be true!
-                                                                    // the prototype property of PersonObj2.prototype should point to Object.prototype
+console.log(PersonObj2.prototype.__proto__ === Object.prototype); // if my understanding is correct then this should be true!
+// the prototype property of PersonObj2.prototype should point to Object.prototype
 
 var personObj2 = new PersonObj2("Nova");
 var personObj3 = new PersonObj2("Daniel");
@@ -148,7 +193,7 @@ var PersonObj = {
     lastName: 'Morales',
     birthDate: new Date('1900-01-01'),
     gender: 'male',
-    getAge: function() {
+    getAge: function () {
         var today = new Date();
         var diff = today.getTime() - this.birthDate.getTime();
         var year = 1000 * 60 * 60 * 24 * 365.25;
@@ -173,7 +218,7 @@ console.log(bob.getAge());
 var sayHi = new Function("console.log('Hi')");
 sayHi();
 
-var reflect = function() { //you can create a function with empty paramaters but you can still capture it inside the function
+var reflect = function () { //you can create a function with empty paramaters but you can still capture it inside the function
     return arguments[1];
 }
 
@@ -186,14 +231,14 @@ sayMessage('Hello world');
 
 var person = {
     name: "Daniel",
-    sayName: function() {
+    sayName: function () {
         console.log(person.name); // This is bad because it makes a tight coupling between the method and the object.. "this.name" is better.
     }
 };
 
 var person2 = {
     name: "Darwin",
-    sayName: function() {
+    sayName: function () {
         console.log(this.name); // This is bad because it makes a tight coupling between the method and the object.. "this.name" is better.
     }
 };
@@ -220,7 +265,7 @@ for (prop in properties) {
 console.log(person.propertyIsEnumerable('name'));
 console.log(Object.keys(person).length);
 
-Object.defineProperty(person, 'name', {enumerable:false});
+Object.defineProperty(person, 'name', {enumerable: false});
 
 console.log(person.propertyIsEnumerable('name'));
 console.log(Object.keys(person).length);
@@ -270,11 +315,11 @@ var person4 = {
 };
 
 Object.defineProperty(person4, "name", {
-    get: function() {
+    get: function () {
         console.log("Reading name");
         return this._name;
     },
-    set: function(value) {
+    set: function (value) {
         this._name = value;
     },
     enumerable: true,
@@ -307,7 +352,7 @@ var proto = {
     hello: function hello() {
         return "Hello, my name is " + this.name;
     },
-    sayBye: function() {
+    sayBye: function () {
         return "Bye " + this.name;
     }
 };
@@ -326,7 +371,7 @@ myObj = new Object();
 myObj.key = "value";
 
 
-function assert(value, desc){
+function assert(value, desc) {
     console.log(value ? "pass: " + desc : "fail: " + desc);
     //var li = document.createElement("li");
     //li.className = value ? "pass" : "fail";
@@ -335,11 +380,14 @@ function assert(value, desc){
 }
 
 
-function Ninja() {}
+function Ninja() {
+}
 
-Ninja.prototype.swingSword = function() { return true;};
+Ninja.prototype.swingSword = function () {
+    return true;
+};
 
-var ninja1 =  Ninja();
+var ninja1 = Ninja();
 assert(ninja1 === undefined, "No instance of Ninja created.");
 
 var ninja2 = new Ninja();
@@ -351,23 +399,26 @@ assert(ninja2 && ninja2.swingSword && ninja2.swingSword());
 
 function Ninja2() {
     this.swung = false;
-    this.swingSword = function() {
+    this.swingSword = function () {
         return !this.swung;
     };
 }
 
-Ninja2.prototype.swingSword = function() {
+Ninja2.prototype.swingSword = function () {
     return this.swung;
 };
 
 var ninja = new Ninja2();
 assert(ninja.swingSword(), "Called the instance method, not the prototype method.");
 
-function Person() {};
+function Person() {
+};
 
-Person.prototype.dance = function(){};
+Person.prototype.dance = function () {
+};
 
-function Ninja3(){};
+function Ninja3() {
+};
 
 Ninja3.prototype = {dance: Person.prototype.dance};
 
@@ -376,7 +427,7 @@ assert(ninja3 instanceof Ninja3, "ninja3 receives functionality from Ninja3");
 assert(ninja3 instanceof Person, "also Person");
 assert(ninja3 instanceof Object, "and Object");
 
-Object.prototype.keys = function()  {
+Object.prototype.keys = function () {
     var keys = [];
     for (var p in this) {
         if (this.hasOwnProperty(p))
@@ -407,20 +458,24 @@ var o2 = {bar: "bar2", foo: foo};
 foo();
 o2.foo();
 
-function newUser(){};
+function newUser() {
+};
 
-newUser.prototype = { first: "darwin",  last: "morales",
-        fullName: function() { return this.first + " " + this.last; } };
+newUser.prototype = { first: "darwin", last: "morales",
+    fullName: function () {
+        return this.first + " " + this.last;
+    } };
 
 var newUser1 = new newUser();
 
-console.log (newUser1.fullName());
+console.log(newUser1.fullName());
 
 assert({} == {}, "Yes, they are not the same.");
 assert({}.toString() === {}.toString(), "Yes, they are the same.");
 
 var dog = {
-    bark: function(count) {}
+    bark: function (count) {
+    }
 };
 
 //dog.bark.call(cat, 1);
