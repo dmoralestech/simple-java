@@ -2,6 +2,18 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function myConstructor() {}
+
+myConstructor.prototype = Object.create(Object.prototype, {
+    constructor: {
+        configurable: true,
+        enumerable: true,
+        value: myConstructor,
+        writable: true
+    }
+} );
+
+
 var personA = {
     name: "darwin",
     sayName: function() {
