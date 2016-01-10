@@ -23,9 +23,9 @@ Rectangle.prototype.getArea = function() {
     return this.length * this.width;
 }
 
-Rectangle.prototype.toString = function() {
-    return "[Rectangle: " this.length + " x " + this.width + "]";
-}
+//Rectangle.prototype.toString = function() {
+//    return "[Rectangle: " this.length + " x " + this.width + "]";
+//}
 
 function Square(size) {
     this.length = size;
@@ -35,13 +35,29 @@ function Square(size) {
 Square.prototype = new Rectangle();
 Square.prototype.constructor = Square;
 
-Square.prototype.toString  = function() {
-    return "[Square: " this.length + " x " + this.width + "]";
-}
+//Square.prototype.toString  = function() {
+//    return "[Square: " this.length + " x " + this.width + "]";
+//}
 
 function Square2(size) {
     Rectangle.call(this, size, size);
 }
+
+Square2.prototype = Object.create( Rectangle.prototype, {
+        constructor: {
+            configurable: true,
+            enumerable: true,
+            value: Square2,
+            writable: true
+        }
+    }
+);
+
+square2 = new Square2(7);
+
+console.log(square2.length);
+console.log(square2.width);
+console.log(square2.getArea());
 
 var rect = new Rectangle(5, 10);
 var square = new Square(7);
