@@ -19,13 +19,14 @@ function Rectangle(width, length) {
     this.width = width;
 }
 
-Rectangle.prototype.getArea = function() {
+Rectangle.prototype.getArea = function () {
     return this.length * this.width;
 }
 
-Rectangle.prototype.toString = function() {
+Rectangle.prototype.toString = function () {
     return "[Rectangle: " + this.length + " x " + this.width + "]";
 }
+
 
 function Square(size) {
     this.length = size;
@@ -34,26 +35,33 @@ function Square(size) {
 
 console.log(Square.prototype); // empty object
 Square.prototype = new Rectangle();
-console.log(Square.prototype.constructor);
-Square.prototype.constructor = Square;
+console.log(Square.prototype);
 
-Square.prototype.toString  = function() {
+Square.prototype = Rectangle.prototype;
+console.log(Square.prototype);
+
+
+Square.prototype.constructor = Square; //not sure why Rectangle.prototype = Square after this??
+
+Square.prototype.toString = function () {
     return "[Square: " + this.length + " x " + this.width + "]";
 }
 
-function Square2(size) {
+function CustomShape(size) {
     Rectangle.call(this, size, size);
 }
 
-Square2.prototype = Object.create( Rectangle.prototype, {
+CustomShape.prototype = Object.create(Rectangle.prototype, {
         constructor: {
             configurable: true,
             enumerable: true,
-            value: Square2,
+            value: CustomShape,
             writable: true
         }
     }
 );
+
+console.log(CustomShape.prototype.toString());
 
 square2 = new Square2(7);
 
@@ -76,7 +84,6 @@ console.log(rect instanceof Object);
 console.log(square instanceof Square);
 console.log(square instanceof Rectangle);
 console.log(square instanceof Object);
-
 
 var personA = {
     name: "darwin",
@@ -130,8 +137,10 @@ console.log("darwin morales".toString() === "darwin morales".valueOf()); //true
 console.log("darwin morales".valueOf());
 console.log("darwin morales".hasOwnProperty("capitalize")); //false
 
-var book = {title: "The Bible", sayHi: function () {
-}};
+var book = {
+    title: "The Bible", sayHi: function () {
+    }
+};
 
 console.log("title" in book); //true
 console.log(book.hasOwnProperty("title")); //true
@@ -482,10 +491,12 @@ o2.foo();
 function newUser() {
 };
 
-newUser.prototype = { first: "darwin", last: "morales",
+newUser.prototype = {
+    first: "darwin", last: "morales",
     fullName: function () {
         return this.first + " " + this.last;
-    } };
+    }
+};
 
 var newUser1 = new newUser();
 
