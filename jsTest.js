@@ -32,7 +32,9 @@ function Square(size) {
     this.width = size;
 }
 
+console.log(Square.prototype); // empty object
 Square.prototype = new Rectangle();
+console.log(Square.prototype.constructor);
 Square.prototype.constructor = Square;
 
 //Square.prototype.toString  = function() {
