@@ -2,6 +2,27 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function People() {
+    var i = 1;
+    console.log('i = ' +  ++i);
+}
+var people1 = new People();
+var people2 = new People();
+
+console.log(people1.constructor === People);
+console.log(people1.constructor === people2.constructor);
+console.log(people1 instanceof People);
+
+var peopleConsturctor = people1.constructor;
+peopleConsturctor();
+
+var objectTemp = {
+    value1: 2,
+    value2: 5
+};
+
+console.log(objectTemp.constructor === Object); // for all Object literal this is tru
+
 function myConstructor() {
 }
 
