@@ -2,6 +2,10 @@
  * Created by dmorales on 9/12/2015.
  */
 
+console.log(new Object() === new Object()); // false. this creates 2 unique objects.
+console.log((new Object()).constructor === (new Object()).constructor ); // true
+console.log((new Object()).__proto__ === (new Object()).__proto__ ); // true
+
 function EventTarget() {}
 
 EventTarget.prototype = {
