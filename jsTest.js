@@ -2,6 +2,65 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function EventTarget() {}
+
+EventTarget.prototype = {
+    constuctor: EventTarget,
+    addListener: function (type, listener) {
+        if (!this.hasOwnProperty("_listeners")) {
+            this._listeners = [];
+        }
+
+        if (typeof this._listeners[type] == 'undefined') {
+            this._listeners[type] = [];
+        }
+
+        this._listeners[type].push(listener);
+
+    },
+    fire: function(event) {
+        if (!event.target){
+            event.target = this;
+        }
+
+        if (!event.type) {
+            throw new Error("Event object missing 'type' property");
+        }
+
+        if (this._listeners && this._listeners[event.type] instanceof Array) {
+            var listeners = tis._listeners[event.type];
+            for (var i=0, len=listeners.length; i < len; i++) {
+                listeners[i].call(this, event);
+            }
+        }
+    },
+    removeListener: function(type, listener) {
+
+    }
+};
+
+function PersonE(name){
+    this.name = name;
+}
+
+PersonE.prototype = Object.create(EventTarget.prototype);
+PersonE.prototype.constructor = PersonE;
+
+PersonE.prototype.sayName = function() {
+    console.log(this.sayName);
+    this.fire({type: "namesaid", name: name});
+};
+
+var personE = new PersonE("Darwin");
+
+console.log(personE instanceof PersonE);
+console.log(personE instanceof EventTarget);
+
+for (prp in personE) {
+    console.log(prp);
+}
+
+
 function People() {
     var i = 1;
     console.log('i = ' +  ++i);
