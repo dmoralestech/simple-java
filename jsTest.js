@@ -2,6 +2,21 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function sandwichMaker(ingredient) {
+    return function(filling) {
+        return ingredient + " and " + filling;
+    };
+}
+
+var hamAnd = sandwichMaker("ham");
+console.log(hamAnd("cheese"));
+console.log(hamAnd("bacon"));
+
+var burgerAnd = sandwichMaker("burger");
+console.log(burgerAnd("lettuce"));
+console.log(burgerAnd("egg"));
+
+
 console.log(new Object() === new Object()); // false. this creates 2 unique objects.
 console.log((new Object()).constructor === (new Object()).constructor ); // true
 console.log((new Object()).__proto__ === (new Object()).__proto__ ); // true
