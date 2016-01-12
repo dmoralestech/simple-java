@@ -39,7 +39,7 @@ Stack = function() {
     };
 
     stack.forEach = function(callback) {
-        list.forEach(callBack);
+        list.forEach(callback);
     };
 
     stack.toArray = function() {
