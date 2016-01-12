@@ -9,9 +9,9 @@ function People() {
 var people1 = new People();
 var people2 = new People();
 
-console.log(people1.constructor === People);
-console.log(people1.constructor === people2.constructor);
-console.log(people1 instanceof People);
+console.log(people1.constructor === People); //true
+console.log(people1.constructor === people2.constructor); //true
+console.log(people1 instanceof People); //true
 
 var peopleConsturctor = people1.constructor;
 peopleConsturctor();
@@ -58,9 +58,13 @@ console.log(Square.prototype); // empty object
 Square.prototype = new Rectangle();
 console.log(Square.prototype);
 
-Square.prototype = Rectangle.prototype;
-console.log(Square.prototype);
+console.log(Square.prototype.constructor === Rectangle.prototype.constructor); //true
+console.log(Square.prototype === Rectangle.prototype); //false
+console.log(Square.prototype == new Rectangle()); //false.. because this creates another new Rectangle object?
 
+Square.prototype = Rectangle.prototype;
+console.log(Square.prototype === Rectangle.prototype); //true
+console.log(Square.prototype);
 
 Square.prototype.constructor = Square; //not sure why Rectangle.prototype = Square after this??
 
