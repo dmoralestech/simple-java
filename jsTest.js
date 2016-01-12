@@ -53,8 +53,34 @@ PersonE.prototype.sayName = function() {
 
 var personE = new PersonE("Darwin");
 
-console.log(personE instanceof PersonE);
-console.log(personE instanceof EventTarget);
+console.log(personE instanceof PersonE); //true
+console.log(personE instanceof EventTarget); //true
+
+function mixin(receiver, supplier) {
+    for (var property in supplier) {
+        if (supplier.hasOwnProperty(property)) {
+            receiver[property] = supplier[property];
+        }
+    }
+
+    return receiver;
+}
+
+function PersonF(name){
+    this.name = name;
+}
+mixin(PersonF.prototype, new EventTarget());
+mixin(PersonF.prototype, {
+    constructor: PersonF,
+    sayName: function() {
+        console.log(this.name);
+        this.fire({type: "namesaid", name: name});
+    }
+});
+
+var personF = new PersonF("nova");
+console.log( personF instanceof PersonF); //true
+console.log( personF instanceof EventTarget); //false
 
 for (prp in personE) {
     console.log(prp);
