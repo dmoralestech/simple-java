@@ -7,11 +7,18 @@ function doSomething(callback) {
     callback(data);
 }
 
+function domSomethingAgain(callback) {
+    doSomething( function (data) {
+        callback(data);
+    });
+}
+
 function callBackTest() {
-    doSomething(function functionName(data) {
+    domSomethingAgain(function functionName(data) {
         console.log(data);
     });
 }
+
 
 callBackTest();
 
