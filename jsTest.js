@@ -2,6 +2,19 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function doSomething(callback) {
+    var data = 0;
+    callback(data);
+}
+
+function callBackTest() {
+    doSomething(function functionName(data) {
+        console.log(data);
+    });
+}
+
+callBackTest();
+
 var obj1 = {status: 'sad'};
 
 if (!obj1.name) {
@@ -22,7 +35,7 @@ console.log(obj1.address); //oz
 console.log(obj1.status); //sad
 
 function sandwichMaker(ingredient) {
-    return function(filling) {
+    return function (filling) {
         return ingredient + " and " + filling;
     };
 }
@@ -37,10 +50,11 @@ console.log(burgerAnd("egg"));
 
 
 console.log(new Object() === new Object()); // false. this creates 2 unique objects.
-console.log((new Object()).constructor === (new Object()).constructor ); // true
-console.log((new Object()).__proto__ === (new Object()).__proto__ ); // true
+console.log((new Object()).constructor === (new Object()).constructor); // true
+console.log((new Object()).__proto__ === (new Object()).__proto__); // true
 
-function EventTarget() {}
+function EventTarget() {
+}
 
 EventTarget.prototype = {
     constuctor: EventTarget,
@@ -56,8 +70,8 @@ EventTarget.prototype = {
         this._listeners[type].push(listener);
 
     },
-    fire: function(event) {
-        if (!event.target){
+    fire: function (event) {
+        if (!event.target) {
             event.target = this;
         }
 
@@ -67,24 +81,24 @@ EventTarget.prototype = {
 
         if (this._listeners && this._listeners[event.type] instanceof Array) {
             var listeners = tis._listeners[event.type];
-            for (var i=0, len=listeners.length; i < len; i++) {
+            for (var i = 0, len = listeners.length; i < len; i++) {
                 listeners[i].call(this, event);
             }
         }
     },
-    removeListener: function(type, listener) {
+    removeListener: function (type, listener) {
 
     }
 };
 
-function PersonE(name){
+function PersonE(name) {
     this.name = name;
 }
 
 PersonE.prototype = Object.create(EventTarget.prototype);
 PersonE.prototype.constructor = PersonE;
 
-PersonE.prototype.sayName = function() {
+PersonE.prototype.sayName = function () {
     console.log(this.sayName);
     this.fire({type: "namesaid", name: name});
 };
@@ -104,21 +118,21 @@ function mixin(receiver, supplier) {
     return receiver;
 }
 
-function PersonF(name){
+function PersonF(name) {
     this.name = name;
 }
 mixin(PersonF.prototype, new EventTarget());
 mixin(PersonF.prototype, {
     constructor: PersonF,
-    sayName: function() {
+    sayName: function () {
         console.log(this.name);
         this.fire({type: "namesaid", name: name});
     }
 });
 
 var personF = new PersonF("nova");
-console.log( personF instanceof PersonF); //true
-console.log( personF instanceof EventTarget); //false
+console.log(personF instanceof PersonF); //true
+console.log(personF instanceof EventTarget); //false
 
 for (prp in personE) {
     console.log(prp);
@@ -127,7 +141,7 @@ for (prp in personE) {
 
 function People() {
     var i = 1;
-    console.log('i = ' +  ++i);
+    console.log('i = ' + ++i);
 }
 var people1 = new People();
 var people2 = new People();
@@ -270,7 +284,7 @@ console.log(Object.isPrototypeOf(personB)); //false
 console.log(personB.prototype.sayName());
 
 console.log(personB.prototype); // undefined  because personB is not a function.
-                                //Functions in JavaScript are first-class objects, which means you can add members to them and treat them just like ordinary objects:
+//Functions in JavaScript are first-class objects, which means you can add members to them and treat them just like ordinary objects:
 
 //personB.prototype.sayHello = function() { //Error! you can't set a function to an undefined object
 //    console.log('Hello ' + this.name);
