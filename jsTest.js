@@ -2,6 +2,25 @@
  * Created by dmorales on 9/12/2015.
  */
 
+var obj1 = {status: 'sad'};
+
+if (!obj1.name) {
+    obj1.name = 'darwin';
+}
+
+if (!obj1.address) {
+    obj1.address = 'oz';
+}
+
+if (!obj1.status) {
+    obj1.status = 'happy';
+}
+
+
+console.log(obj1.name); //darwin
+console.log(obj1.address); //oz
+console.log(obj1.status); //sad
+
 function sandwichMaker(ingredient) {
     return function(filling) {
         return ingredient + " and " + filling;
