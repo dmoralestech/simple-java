@@ -2,6 +2,11 @@
  * Created by dmorales on 9/12/2015.
  */
 
+//var _ = require('C:\\java\\simple-java\\underscore-min.js');
+var _ = require("./underscore-min.js");
+
+var w = _.map([1, 2, 3], function(num){ return num * 3; });
+
 function doSomething(callback) {
     var data = 0;
     callback(data);
