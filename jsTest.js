@@ -7,6 +7,15 @@ var _ = require("./underscore-min.js");
 
 var w = _.map([1, 2, 3], function(num){ return num * 3; });
 
+function finder(valueFun, bestFun, coll) {
+    return _.reduce(coll, function(best, current) {
+        var bestValue =  valueFun(best);
+        var currentValue = valueFun(current);
+
+        return (bestValue === bestFun(bestValue, currentValue)) ?  best : current;
+    });
+}
+
 function doSomething(callback) {
     var data = 0;
     callback(data);
