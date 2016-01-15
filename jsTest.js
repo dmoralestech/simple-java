@@ -7,6 +7,26 @@ var _ = require("./underscore-min.js");
 
 var w = _.map([1, 2, 3], function(num){ return num * 3; });
 
+var globals = {};
+
+function makeBindFun(resolver) {
+    return function(k,v) {
+        var stack = globals[k] || [];
+        globals[k] = resolver(stack, v);
+        return globals;
+    };
+}
+
+var stackBinder = makeBindFun( function(stack, v) {
+    stack.push(v);
+    return stack;
+});
+
+var stackUnBinder = makeBindFun( function(stack, v) {
+    stack.pop(v);
+    return stack;
+});
+
 function finder(valueFun, bestFun, coll) {
     return _.reduce(coll, function(best, current) {
         var bestValue =  valueFun(best);
