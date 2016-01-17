@@ -5,27 +5,54 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore-min.js");
 
+var fortytwo = function (){
+    return 42
+};
+
+var fortytwos = [42, function () {
+    return 42
+}];
+
+var fortytwos2 = {number: 42, fun: function () {
+    return 42
+}};
+
+
 var w = _.map([1, 2, 3], function(num){ return num * 3; });
 
 var globals = {};
 
 function makeBindFun(resolver) {
-    return function(k,v) {
-        var stack = globals[k] || [];
-        globals[k] = resolver(stack, v);
+    var x = function(key,val) {
+        var stack = globals[key] || [];
+        globals[key] = resolver(stack, val);
         return globals;
     };
+    return x;
 }
 
-var stackBinder = makeBindFun( function(stack, v) {
-    stack.push(v);
+var stackBinder = makeBindFun( function(stack, val) {
+    stack.push(val);
     return stack;
 });
 
-var stackUnBinder = makeBindFun( function(stack, v) {
-    stack.pop(v);
+var stackUnBinder = makeBindFun( function(stack, val) {
+    stack.pop(val);
     return stack;
 });
+
+var dynamicLookup = function(k) {
+    var slot = globals[k] || [];
+    return _.last(slot);
+};
+
+var aa = stackBinder('a', 1);
+var aa = stackBinder('a', 2);
+var aa = stackBinder('b', 5);
+var aa = stackBinder('b', 6);
+var bb = stackBinder('b', 100);
+
+var dl = dynamicLookup('a');
 
 function finder(valueFun, bestFun, coll) {
     return _.reduce(coll, function(best, current) {
