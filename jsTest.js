@@ -5,6 +5,47 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function Point2D(x, y) {
+    this._x = x;
+    this._y = y;
+}
+
+function Point3D(x, y, z) {
+    Point2D.call(this, x, y);
+    this._z = z;
+}
+
+var pt3D = new Point3D(3, 4, 5);
+
+
+function PersonSample(name, age) {
+    this._name = name;
+    this._age = age;
+}
+
+function EmployeeSample(name, age, company) {
+    this._person = PersonSample.call(name, age);
+    this._company = company;
+}
+
+EmployeeSample.prototype.sayName = function() {
+    console.log(this._name);
+}
+
+EmployeeSample.prototype.printAge = function() {
+    console.log(this._age);
+}
+
+
+EmployeeSample.prototype.printCompany = function() {
+    console.log(this._company);
+}
+
+var employee = new EmployeeSample('sitti', 3, 'ballet co');
+employee.sayName(); // not sure how to print this??
+employee.printAge();
+employee.printCompany();
+
 var rangeTest = _.range(4, 10, 2);
 
 var fortytwo = function () {
