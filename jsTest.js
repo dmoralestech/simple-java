@@ -5,7 +5,7 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore-min.js");
 
-var fortytwo = function (){
+var fortytwo = function () {
     return 42
 };
 
@@ -18,12 +18,22 @@ var fortytwos2 = {number: 42, fun: function () {
 }};
 
 
-var w = _.map([1, 2, 3], function(num){ return num * 3; });
+console.log(42 + (function () {
+    return 42
+})());
+
+function weirdAdd(n, f) {return n + f()}
+
+console.log(weirdAdd(42, function () { return 42}))
+
+var w = _.map([1, 2, 3], function (num) {
+    return num * 3;
+});
 
 var globals = {};
 
 function makeBindFun(resolver) {
-    var x = function(key,val) {
+    var x = function (key, val) {
         var stack = globals[key] || [];
         globals[key] = resolver(stack, val);
         return globals;
@@ -31,17 +41,17 @@ function makeBindFun(resolver) {
     return x;
 }
 
-var stackBinder = makeBindFun( function(stack, val) {
+var stackBinder = makeBindFun(function (stack, val) {
     stack.push(val);
     return stack;
 });
 
-var stackUnBinder = makeBindFun( function(stack, val) {
+var stackUnBinder = makeBindFun(function (stack, val) {
     stack.pop(val);
     return stack;
 });
 
-var dynamicLookup = function(k) {
+var dynamicLookup = function (k) {
     var slot = globals[k] || [];
     return _.last(slot);
 };
@@ -55,11 +65,11 @@ var bb = stackBinder('b', 100);
 var dl = dynamicLookup('a');
 
 function finder(valueFun, bestFun, coll) {
-    return _.reduce(coll, function(best, current) {
-        var bestValue =  valueFun(best);
+    return _.reduce(coll, function (best, current) {
+        var bestValue = valueFun(best);
         var currentValue = valueFun(current);
 
-        return (bestValue === bestFun(bestValue, currentValue)) ?  best : current;
+        return (bestValue === bestFun(bestValue, currentValue)) ? best : current;
     });
 }
 
@@ -69,7 +79,7 @@ function doSomething(callback) {
 }
 
 function domSomethingAgain(callback) {
-    doSomething( function (data) {
+    doSomething(function (data) {
         callback(data);
     });
 }
