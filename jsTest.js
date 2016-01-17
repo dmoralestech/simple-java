@@ -17,7 +17,6 @@ var fortytwos2 = {number: 42, fun: function () {
     return 42
 }};
 
-
 console.log(42 + (function () {
     return 42
 })());
@@ -25,6 +24,28 @@ console.log(42 + (function () {
 function weirdAdd(n, f) {return n + f()}
 
 console.log(weirdAdd(42, function () { return 42}))
+
+function lyricSegment(n) {
+    return _.chain([])
+        .push(n + ' bottles')
+        .tap( function (lyrics) {
+                if (n > 1) {
+                    lyrics.push((n-1) + ' bottles of beer on the wall.');
+                } else {
+                    lyrics.push('No more bottles of beer on the wall.');
+                }
+        })
+        .value();
+}
+
+function song(start, end, lyricGenerator) {
+    return _.reduce( _.range(start, end, -1),
+        function (,, n) {
+            return  acc.concat(lyricGenerator(n));
+        }, ['a']);
+}
+var songBeer = song(9, 0, lyricSegment);
+
 
 var w = _.map([1, 2, 3], function (num) {
     return num * 3;
