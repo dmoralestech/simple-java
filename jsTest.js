@@ -3,7 +3,9 @@
  */
 
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
-var _ = require("./underscore-min.js");
+var _ = require("./underscore.js");
+
+var rangeTest = _.range(4, 10, 2);
 
 var fortytwo = function () {
     return 42
@@ -38,13 +40,27 @@ function lyricSegment(n) {
         .value();
 }
 
+function lyricSegment2(n) {
+    return _.chain([])
+        .push(n + ' wheels on the bus')
+        .push(n + ' wiggles')
+        .tap( function (lyrics) {
+            if (n > 1) {
+                lyrics.push((n-1) + ' Not yet finished.');
+            } else {
+                lyrics.push('Good bye.');
+            }
+        })
+        .value();
+}
+
 function song(start, end, lyricGenerator) {
     return _.reduce( _.range(start, end, -1),
         function (acc, n) {
             return  acc.concat(lyricGenerator(n));
-        }, ['a']);
+        }, []);
 }
-var songBeer = song(9, 0, lyricSegment);
+var songBeer = song(2, 0, lyricSegment2);
 
 
 var w = _.map([1, 2, 3], function (num) {
