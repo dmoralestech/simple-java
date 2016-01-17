@@ -40,7 +40,7 @@ function lyricSegment(n) {
 
 function song(start, end, lyricGenerator) {
     return _.reduce( _.range(start, end, -1),
-        function (,, n) {
+        function (acc, n) {
             return  acc.concat(lyricGenerator(n));
         }, ['a']);
 }
