@@ -5,6 +5,24 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+const maybe = function(fn) {
+    return function (input) {
+      if(!input) return;
+        return fn.call(this, input);
+    };
+}
+
+//const impl1 =  function(input) {
+//    return input.toLowerCase();
+//};
+//impl1(void 0);
+
+const impl2 = maybe(function(input) {
+    return input.toLowerCase();
+});
+impl2(void 0);
+
+
 arr2 = [{x: 1}, {x: 2}, {x: 3}];
 console.log(_.reduce(  arr2, function (a, b) {
     return {x: a.x + b.x}
