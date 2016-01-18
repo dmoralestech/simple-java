@@ -29,7 +29,9 @@ function PersonSample(name, age) {
 }
 
 function EmployeeSample(name, age, company) {
-    this._person = PersonSample.call(name, age);
+    var person = new PersonSample(name, age);
+    this._name = person._name;
+    this._age = person._age;
     this._company = company;
 }
 
