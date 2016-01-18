@@ -5,6 +5,11 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+arr2 = [{x: 1}, {x: 2}, {x: 3}];
+console.log(_.reduce(  arr2, function (a, b) {
+    return {x: a.x + b.x}
+},{x: 10} ));
+
 function Point2D(x, y) {
     this._x = x;
     this._y = y;
@@ -97,8 +102,8 @@ function lyricSegment2(n) {
 
 function song(start, end, lyricGenerator) {
     return _.reduce( _.range(start, end, -1),
-        function (acc, n) {
-            return  acc.concat(lyricGenerator(n));
+        function (arrayAccumulator, n) {
+            return  arrayAccumulator.concat(lyricGenerator(n)); //lyricGenerator(n)- returns a String array
         }, []);
 }
 var songBeer = song(2, 0, lyricSegment2);
