@@ -7,7 +7,7 @@ var _ = require("./underscore.js");
 
 //object constructors are just functions!
 function makePersonObject(name, age) {
-    return new (function () {
+    return new (function () {  //notice the "new" keyword here!!
         this._name = name;
         this._age = age;
     })();
@@ -21,6 +21,20 @@ console.log(myPersonObject._age);
 
 console.log(myPersonObject2._name);
 console.log(myPersonObject2._age);
+
+
+function makePersonObject2() {
+    return new (function (name, age) {
+        this.name = name;
+        this.age = age;
+    });
+}
+
+var myPersonObject3 = makePersonObject2();
+myPersonObject3.name = "SSD";
+myPersonObject3.age = 3434;
+console.log(myPersonObject3.name);
+console.log(myPersonObject3.age);
 
 
 function NewPersonObject(name, age) {
