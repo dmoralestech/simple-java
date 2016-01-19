@@ -2,6 +2,78 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function digitSumReport(x) {
+    if (typeof x !== "number") {
+        return "non-number, sum undefined";
+    } else if (Math.floor(x) < x) {
+        return "non-integer, sum undefined";
+    } else if (x < 0) {
+        return "negative number, sum undefined";
+    }
+
+    var s = String(x);
+    var sum = 0;
+    for (var i = 0; i < s.length; i++) {
+        sum += parseInt(s.charAt(i));
+    }
+
+    return "sum " + sum;
+};
+
+var result1 = digitSumReport(23432);
+
+digitSumReport1 = function (x) {
+    var typeError = function (x) {
+        if (typeof x !== "number") {
+            return "non-number";
+        } else if (Math.floor(x) < x) {
+            return "non-integer";
+        } else if (x < 0) {
+            return "negative number";
+        }
+        return null;
+    };
+    var sum = function (x) {
+        var s = String(x);
+        var i, sum = 0;
+        for (i = 0; i < s.length; i++) {
+            sum += parseInt(s.charAt(i));
+        }
+        return sum;
+    };
+
+    var error = typeError(x);
+    if (error !== null) {
+        return error + ", sum undefined";
+    }
+    return "sum " + sum(x);
+};
+
+console.log(digitSumReport1(345345435));
+
+
+digitSumReport2 = function (x) {
+    var
+        typeError = (typeof x !== "number" ? "non-number" :
+            (Math.floor(x) < x) ? "non-integer" :
+                (x < 0) ? "negative number" :
+                    null),
+        sum = function (x) {
+            var
+                s = String(x),
+                sum = 0,
+                i = 0;
+            for (; i < s.length; i++) {
+                sum += parseInt(s.charAt(i));
+            }
+            return sum;
+        };
+    return typeError !== null ? typeError + ", sum undefined" :
+    "sum " + sum(x);
+};
+
+console.log(digitSumReport2(434343));
+
 function qq() {
     console.log('A');
     var sum;
@@ -10,12 +82,13 @@ function qq() {
 }
 
 var q1 = qq(); //prints 'A'
-                // prints 9
+// prints 9
 
 function d() {
     function e() {
         console.log('E');
     }
+
     return e;
 }
 d()(); //prints 'E'
@@ -27,7 +100,7 @@ function a() {
 
     console.log('A!');
 
-    function b(){
+    function b() {
         console.log('B!');
     }
 
