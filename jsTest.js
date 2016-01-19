@@ -2,6 +2,43 @@
  * Created by dmorales on 9/12/2015.
  */
 
+function qq() {
+    console.log('A');
+    var sum;
+    sum = 3 + 6;
+    console.log(sum);
+}
+
+var q1 = qq(); //prints 'A'
+                // prints 9
+
+function d() {
+    function e() {
+        console.log('E');
+    }
+    return e;
+}
+d()(); //prints 'E'
+
+var e = d;
+e()();
+
+function a() {
+
+    console.log('A!');
+
+    function b(){
+        console.log('B!');
+    }
+
+    return b;
+}
+
+var s = a(); //prints 'A'
+console.log('break'); //prints 'break'
+s(); // prints 'B'
+
+
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
