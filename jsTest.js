@@ -5,9 +5,36 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
-const maybe = function(fn) {
+//object constructors are just functions!
+function makePersonObject(name, age) {
+    return new (function () {
+        this._name = name;
+        this._age = age;
+    })();
+}
+
+var myPersonObject = makePersonObject('DJ', 66);
+var myPersonObject2 = makePersonObject('NN', 88);
+
+console.log(myPersonObject._name);
+console.log(myPersonObject._age);
+
+console.log(myPersonObject2._name);
+console.log(myPersonObject2._age);
+
+
+function NewPersonObject(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+var personObject = new NewPersonObject('darwin', 34);
+console.log(personObject.name);
+console.log(personObject.age);
+
+const maybe = function (fn) {
     return function (input) {
-      if(!input) return;
+        if (!input) return;
         return fn.call(this, input);
     };
 }
@@ -15,18 +42,19 @@ const maybe = function(fn) {
 //const impl1 =  function(input) {
 //    return input.toLowerCase();
 //};
-//impl1(void 0);
+//impl1(void 0); //it won't compile
 
-const impl2 = maybe(function(input) {
+const impl2 = maybe(function (input) {
     return input.toLowerCase();
 });
 impl2(void 0);
+console.log(impl2('DARWIN'));
 
 
 arr2 = [{x: 1}, {x: 2}, {x: 3}];
-console.log(_.reduce(  arr2, function (a, b) {
+console.log(_.reduce(arr2, function (a, b) {
     return {x: a.x + b.x}
-},{x: 10} ));
+}, {x: 10}));
 
 function Point2D(x, y) {
     this._x = x;
@@ -53,16 +81,16 @@ function EmployeeSample(name, age, company) {
     this._company = company;
 }
 
-EmployeeSample.prototype.sayName = function() {
+EmployeeSample.prototype.sayName = function () {
     console.log(this._name);
 }
 
-EmployeeSample.prototype.printAge = function() {
+EmployeeSample.prototype.printAge = function () {
     console.log(this._age);
 }
 
 
-EmployeeSample.prototype.printCompany = function() {
+EmployeeSample.prototype.printCompany = function () {
     console.log(this._company);
 }
 
@@ -81,27 +109,33 @@ var fortytwos = [42, function () {
     return 42
 }];
 
-var fortytwos2 = {number: 42, fun: function () {
-    return 42
-}};
+var fortytwos2 = {
+    number: 42, fun: function () {
+        return 42
+    }
+};
 
 console.log(42 + (function () {
+        return 42
+    })());
+
+function weirdAdd(n, f) {
+    return n + f()
+}
+
+console.log(weirdAdd(42, function () {
     return 42
-})());
-
-function weirdAdd(n, f) {return n + f()}
-
-console.log(weirdAdd(42, function () { return 42}))
+}))
 
 function lyricSegment(n) {
     return _.chain([])
         .push(n + ' bottles')
-        .tap( function (lyrics) {
-                if (n > 1) {
-                    lyrics.push((n-1) + ' bottles of beer on the wall.');
-                } else {
-                    lyrics.push('No more bottles of beer on the wall.');
-                }
+        .tap(function (lyrics) {
+            if (n > 1) {
+                lyrics.push((n - 1) + ' bottles of beer on the wall.');
+            } else {
+                lyrics.push('No more bottles of beer on the wall.');
+            }
         })
         .value();
 }
@@ -110,9 +144,9 @@ function lyricSegment2(n) {
     return _.chain([])
         .push(n + ' wheels on the bus')
         .push(n + ' wiggles')
-        .tap( function (lyrics) {
+        .tap(function (lyrics) {
             if (n > 1) {
-                lyrics.push((n-1) + ' Not yet finished.');
+                lyrics.push((n - 1) + ' Not yet finished.');
             } else {
                 lyrics.push('Good bye.');
             }
@@ -121,9 +155,9 @@ function lyricSegment2(n) {
 }
 
 function song(start, end, lyricGenerator) {
-    return _.reduce( _.range(start, end, -1),
+    return _.reduce(_.range(start, end, -1),
         function (arrayAccumulator, n) {
-            return  arrayAccumulator.concat(lyricGenerator(n)); //lyricGenerator(n)- returns a String array
+            return arrayAccumulator.concat(lyricGenerator(n)); //lyricGenerator(n)- returns a String array
         }, []);
 }
 var songBeer = song(2, 0, lyricSegment2);
