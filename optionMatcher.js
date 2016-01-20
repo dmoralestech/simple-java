@@ -8,24 +8,28 @@ demo.controller(
     function ($scope) {
 
         $scope.wines = [
-            { name: "Wine A", isNew: "true" },
-            { name: "Wine B", isNew: "true" },
-            { name: "wine C", isNew: "false" },
-            { name: "Wine D", isNew: "true" },
-            { name: "Wine E", isNew: "true" },
-            { name: "wine F", isNew: "false" },
-            { name: "wine G", isNew: "false"},
-            { name: "wine H", isNew: "true" }
+            { name: "Wine A", isNew: true },
+            { name: "Wine B", isNew: true },
+            { name: "wine C", isNew: false },
+            { name: "Wine D", isNew: true },
+            { name: "Wine E", isNew: true },
+            { name: "wine F", isNew: false },
+            { name: "wine G", isNew: false},
+            { name: "wine H", isNew: true }
         ];
         $scope.filter = {};
 
         $scope.filterByCategory = function (wine) {
+            console.log("filterByCategory: " + wine.name + " - " + $scope.filter[wine.isNew]);
             return $scope.filter[wine.isNew] || noFilter($scope.filter);
         };
 
         function noFilter(filterObj) {
+            console.log(filterObj);
             for (var key in filterObj) {
+                console.log("key: " + key);
                 if (filterObj[key]) {
+                    console.log("filterObj[key]: " + filterObj[key]);
                     return false;
                 }
             }
