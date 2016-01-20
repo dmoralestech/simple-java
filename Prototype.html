@@ -157,240 +157,239 @@
 
 <div ng-app="app" ng-controller="MyCtrl" class="container">
 
+<b><input type="checkbox" ng-model="filter.true"/> Is New</b>
+
+<hr/>
+<div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
+    {{w.name}} ({{w.isNew}})
+</div>
+<hr/>
+Number of results: {{filtered.length}}
+
+<br>
+<br>
+
+<div align="center"><br>
+    <input type="radio" name="group1" value="Milk"> Milk<br>
+    <input type="radio" name="group1" value="Butter" checked> Butter<br>
+    <input type="radio" name="group1" value="Cheese"> Cheese
+    <hr>
+    <input type="radio" name="group1" value="Water"> Water<br>
+    <input type="radio" name="group2" value="Beer"> Beer<br>
+    <input type="radio" name="group2" value="Wine" checked> Wine<br>
+</div>
 
 
-    <b><input type="checkbox" ng-model="filter[true]"/> Is New</b>
-
-    <hr/>
-    <div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
-        {{w.name}} ({{w.isNew}})
+<div ng-repeat="buttonTemp in mutlipleButtons">
+    <div ng-if="$odd">
+        <span class="label label-primary">{{buttonTemp}}</span>
     </div>
-    <hr/>
-    Number of results: {{filtered.length}}
-
-    <br>
-    <br>
-    <div align="center"><br>
-        <input type="radio" name="group1" value="Milk"> Milk<br>
-        <input type="radio" name="group1" value="Butter" checked> Butter<br>
-        <input type="radio" name="group1" value="Cheese"> Cheese
-        <hr>
-        <input type="radio" name="group1" value="Water"> Water<br>
-        <input type="radio" name="group2" value="Beer"> Beer<br>
-        <input type="radio" name="group2" value="Wine" checked> Wine<br>
+    <div ng-if="$even">
+        <span class="label  label-success">{{buttonTemp}}</span>
     </div>
+</div>
 
+<!--<input type="radio" ng-value=a.a ng-model="a.myRating" name="rating" class="radio"> {{a.a}}-->
+<!--<input type="radio" ng-value=a.b ng-model="a.myRating" name="rating" class="radio"> {{a.b}}-->
+<!--<input type="radio" ng-value=a.c ng-model="a.myRating" name="rating" class="radio"> {{a.c}}-->
+<!--<input type="radio" ng-value=a.d ng-model="a.myRating" name="rating" class="radio"> {{a.d}}-->
 
-    <div ng-repeat="buttonTemp in mutlipleButtons">
-        <div ng-if="$odd">
-            <span class="label label-primary">{{buttonTemp}}</span>
-        </div>
-        <div ng-if="$even">
-            <span class="label  label-success">{{buttonTemp}}</span>
-        </div>
-    </div>
+<!--<h3>-->
+<!--{{a.myRating}}-->
+<!--</h3>-->
 
-    <!--<input type="radio" ng-value=a.a ng-model="a.myRating" name="rating" class="radio"> {{a.a}}-->
-    <!--<input type="radio" ng-value=a.b ng-model="a.myRating" name="rating" class="radio"> {{a.b}}-->
-    <!--<input type="radio" ng-value=a.c ng-model="a.myRating" name="rating" class="radio"> {{a.c}}-->
-    <!--<input type="radio" ng-value=a.d ng-model="a.myRating" name="rating" class="radio"> {{a.d}}-->
+<!--<div id="options">-->
+<!--<input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A-->
+<!--<input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model="radioButtonValue" checked="checked"> Option B-->
+<!--</div>-->
 
-    <!--<h3>-->
-    <!--{{a.myRating}}-->
-    <!--</h3>-->
+<!--<h3>-->
+<!--{{radioButtonValue}}-->
+<!--</h3>-->
 
-    <!--<div id="options">-->
-    <!--<input type="radio" id="q1" name="option" ng-value={{optionA}} ng-model="radioButtonValue"> Option A-->
-    <!--<input type="radio" id="q2" name="option" ng-value={{optionB}} ng-model="radioButtonValue" checked="checked"> Option B-->
-    <!--</div>-->
-
-    <!--<h3>-->
-    <!--{{radioButtonValue}}-->
-    <!--</h3>-->
-
-    <h2>Varcodes Resolver</h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Varcodes list</th>
-            <th>Option1</th>
-            <th>Option2</th>
-            <th>Are these valid?</th>
-            <th>Debug values</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(i, option) in optionResolverList track by $index">
-            <td>
-                <div ng-repeat="varCode in option.varCodes">
-                    <div ng-if="$even">
-                        <button type="button" class="btn btn-custom-dark-blue btn-block ">{{varCode}}
-                        </button>
-                    </div>
-                    <div ng-if="!$even">
-                        <button type="button" class="btn btn-custom-light-blue btn-block">{{varCode}}
-                        </button>
-                    </div>
+<h2>Varcodes Resolver</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Varcodes list</th>
+        <th>Option1</th>
+        <th>Option2</th>
+        <th>Are these valid?</th>
+        <th>Debug values</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(i, option) in optionResolverList track by $index">
+        <td>
+            <div ng-repeat="varCode in option.varCodes">
+                <div ng-if="$even">
+                    <button type="button" class="btn btn-custom-dark-blue btn-block ">{{varCode}}
+                    </button>
                 </div>
-            </td>
-            <td>
-                <button type="button" class="btn btn-custom-blue btn-block">{{option.option1}}</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-custom-blue btn-block">{{option.option2}}</button>
-            </td>
+                <div ng-if="!$even">
+                    <button type="button" class="btn btn-custom-light-blue btn-block">{{varCode}}
+                    </button>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button type="button" class="btn btn-custom-blue btn-block">{{option.option1}}</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-custom-blue btn-block">{{option.option2}}</button>
+        </td>
 
-            <td>
+        <td>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-custom-blue">
+                    <input type="radio"
+                           ng-value=true
+                           ng-model=optionResolverList[i].isValid
+                           autocomplete="off"> Yes
+                </label>
+                <label class="btn btn-custom-blue">
+                    <input type="radio"
+                           ng-value=false
+                           ng-model=optionResolverList[i].isValid
+                           autocomplete="off"> No
+                </label>
+            </div>
+        </td>
+        <td>
+            <h5>
+                {{optionResolverList[i].isValid}}
+            </h5>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div ng-repeat="option in optionResolverList">
+    <button type="button" class="btn btn-default">{{option.isValid}}</button>
+</div>
+
+<h2>Option Matcher</h2>
+
+<p>Please validate if these options are the same:</p>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>{{col1}}</th>
+        <th>Option2</th>
+        <th>Are they the same?</th>
+        <th>Please select which option to use as a default</th>
+        <th>Debug values</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(i, option) in optionList track by $index">
+        <td>
+            <button type="button" class="btn btn-custom-blue">{{option.option1}}</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-custom-blue">{{option.option2}}</button>
+        </td>
+        <td>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-custom-blue">
+                    <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame
+                           autocomplete="off" checked> Yes
+                </label>
+                <label class="btn btn-custom-blue">
+                    <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame
+                           autocomplete="off"> No
+                </label>
+            </div>
+        </td>
+        <td>
+            <div ng-show="optionList[i].isTheSame">
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-custom-blue">
-                        <input type="radio"
-                               ng-value=true
-                               ng-model=optionResolverList[i].isValid
-                               autocomplete="off"> Yes
+                    <label class="btn btn-custom-orange">
+                        <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option1
+                               ng-model=optionList[i].defaultOption autocomplete="off" checked>{{option.option1}}
                     </label>
-                    <label class="btn btn-custom-blue">
-                        <input type="radio"
-                               ng-value=false
-                               ng-model=optionResolverList[i].isValid
-                               autocomplete="off"> No
+                    <label class="btn btn-custom-orange">
+                        <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option2
+                               ng-model=optionList[i].defaultOption autocomplete="off">{{option.option2}}
                     </label>
                 </div>
-            </td>
-            <td>
-                <h5>
-                    {{optionResolverList[i].isValid}}
-                </h5>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
+        </td>
+        <td>
+            <h5>
+                {{optionList[i].isTheSame}}
+                {{optionList[i].defaultOption}}
+            </h5>
+        </td>
+    </tr>
 
-    <div ng-repeat="option in optionResolverList">
-        <button type="button" class="btn btn-default">{{option.isValid}}</button>
-    </div>
+    <!--<td>-->
 
-    <h2>Option Matcher</h2>
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
 
-    <p>Please validate if these options are the same:</p>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>{{col1}}</th>
-            <th>Option2</th>
-            <th>Are they the same?</th>
-            <th>Please select which option to use as a default</th>
-            <th>Debug values</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(i, option) in optionList track by $index">
-            <td>
-                <button type="button" class="btn btn-custom-blue">{{option.option1}}</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-custom-blue">{{option.option2}}</button>
-            </td>
-            <td>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-custom-blue">
-                        <input type="radio" name=optionList[i].id ng-value=true ng-model=optionList[i].isTheSame
-                               autocomplete="off" checked> Yes
-                    </label>
-                    <label class="btn btn-custom-blue">
-                        <input type="radio" name=optionList[i].id ng-value=false ng-model=optionList[i].isTheSame
-                               autocomplete="off"> No
-                    </label>
-                </div>
-            </td>
-            <td>
-                <div ng-show="optionList[i].isTheSame">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-custom-orange">
-                            <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option1
-                                   ng-model=optionList[i].defaultOption autocomplete="off" checked>{{option.option1}}
-                        </label>
-                        <label class="btn btn-custom-orange">
-                            <input type="radio" name=optionList[i].id2 ng-value=optionList[i].option2
-                                   ng-model=optionList[i].defaultOption autocomplete="off">{{option.option2}}
-                        </label>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <h5>
-                    {{optionList[i].isTheSame}}
-                    {{optionList[i].defaultOption}}
-                </h5>
-            </td>
-        </tr>
+    <!--</td>-->
+    <!--<td>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
+    <!--</p>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<p>-->
+    <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
+    <!--</p>-->
+    <!--</td>-->
 
-        <!--<td>-->
-
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-
-        <!--</td>-->
-        <!--<td>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-primary btn-block">Primary</button>-->
-        <!--</p>-->
-        <!--</td>-->
-        <!--<td>-->
-        <!--<p>-->
-        <!--<button type="button" class="btn btn-success btn-block">Success</button>-->
-        <!--</p>-->
-        <!--</td>-->
-
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
 
-    <div ng-repeat="option in optionList">
-        <button type="button" class="btn btn-default">{{option.defaultOption}}</button>
-    </div>
+<div ng-repeat="option in optionList">
+    <button type="button" class="btn btn-default">{{option.defaultOption}}</button>
+</div>
 
-    <h2>Button Styles</h2>
+<h2>Button Styles</h2>
 
-    <div class="btn-group">
-        <button type="button" class="btn btn-default">Default</button>
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-success">Success</button>
-    </div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default">Default</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-success">Success</button>
+</div>
 
-    <div class="btn-group">
-        <button type="button" class="btn btn-info">Info</button>
-        <button type="button" class="btn btn-warning">Warning</button>
-    </div>
+<div class="btn-group">
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+</div>
 
-    <button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-danger">Danger</button>
 
 </div>
 

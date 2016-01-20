@@ -17,10 +17,11 @@ demo.controller(
             { name: "wine G", isNew: false},
             { name: "wine H", isNew: true }
         ];
-        $scope.filter = {};
+        $scope.filter = {true: false, something: ''};
 
-        $scope.filterByCategory = function (wine) {
+        $scope.filterByCategory = function (wine) { //this acts like a predicate function
             console.log("filterByCategory: " + wine.name + " - " + $scope.filter[wine.isNew]);
+            console.log("$scope.filter: " + $scope.filter );
             return $scope.filter[wine.isNew] || noFilter($scope.filter);
         };
 
