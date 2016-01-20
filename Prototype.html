@@ -170,7 +170,7 @@
 
     <hr/>
     <div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
-        {{w.name}} ({{w.category}})
+        {{w.name}} ({{w.isNew}})
     </div>
     <hr/>
     Number of results: {{filtered.length}}
