@@ -19,17 +19,6 @@ demo.controller(
         ];
         $scope.filter = {};
 
-        $scope.getCategories = function () {
-            return ["true"];
-            /*
-             return  ($scope.wines || []).map(function (w) {
-             return w.category;
-             }).filter(function (w, idx, arr) {
-             return arr.indexOf(w) === idx;
-             });
-             */
-        };
-
         $scope.filterByCategory = function (wine) {
             return $scope.filter[wine.category] || noFilter($scope.filter);
         };
