@@ -47,7 +47,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .btn-custom-mid-gray{
+        .btn-custom-mid-gray {
             background-color: hsl(0, 0%, 32%) !important;
             background-repeat: repeat-x;
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#848484", endColorstr="#515151");
@@ -154,7 +154,26 @@
 
 <body>
 
+<div align="center"><br>
+    <input type="radio" name="group1" value="Milk"> Milk<br>
+    <input type="radio" name="group1" value="Butter" checked> Butter<br>
+    <input type="radio" name="group1" value="Cheese"> Cheese
+    <hr>
+    <input type="radio" name="group1" value="Water"> Water<br>
+    <input type="radio" name="group2" value="Beer"> Beer<br>
+    <input type="radio" name="group2" value="Wine" checked> Wine<br>
+</div>
+
 <div ng-app="app" ng-controller="MyCtrl" class="container">
+
+    <b><input type="checkbox" ng-model="filter['true']"/> Is New</b>
+
+    <hr/>
+    <div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
+        {{w.name}} ({{w.category}})
+    </div>
+    <hr/>
+    Number of results: {{filtered.length}}
 
     <div ng-repeat="buttonTemp in mutlipleButtons">
         <div ng-if="$odd">

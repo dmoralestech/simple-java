@@ -7,6 +7,42 @@ demo.controller(
     "MyCtrl",
     function ($scope) {
 
+        $scope.wines = [
+            { name: "Wine A", category: "true" },
+            { name: "Wine B", category: "true" },
+            { name: "wine C", category: "false" },
+            { name: "Wine D", category: "true" },
+            { name: "Wine E", category: "true" },
+            { name: "wine F", category: "false" },
+            { name: "wine G", category: "false"},
+            { name: "wine H", category: "true" }
+        ];
+        $scope.filter = {};
+
+        $scope.getCategories = function () {
+            return ["true"];
+            /*
+             return  ($scope.wines || []).map(function (w) {
+             return w.category;
+             }).filter(function (w, idx, arr) {
+             return arr.indexOf(w) === idx;
+             });
+             */
+        };
+
+        $scope.filterByCategory = function (wine) {
+            return $scope.filter[wine.category] || noFilter($scope.filter);
+        };
+
+        function noFilter(filterObj) {
+            for (var key in filterObj) {
+                if (filterObj[key]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         $scope.a = {a: "a", b: "b", c: "c", d: "d", myRating: ""};
 
         $scope.mutlipleButtons = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
