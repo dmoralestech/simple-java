@@ -154,17 +154,10 @@
 
 <body>
 
-<div align="center"><br>
-    <input type="radio" name="group1" value="Milk"> Milk<br>
-    <input type="radio" name="group1" value="Butter" checked> Butter<br>
-    <input type="radio" name="group1" value="Cheese"> Cheese
-    <hr>
-    <input type="radio" name="group1" value="Water"> Water<br>
-    <input type="radio" name="group2" value="Beer"> Beer<br>
-    <input type="radio" name="group2" value="Wine" checked> Wine<br>
-</div>
 
 <div ng-app="app" ng-controller="MyCtrl" class="container">
+
+
 
     <b><input type="checkbox" ng-model="filter['true']"/> Is New</b>
 
@@ -174,6 +167,19 @@
     </div>
     <hr/>
     Number of results: {{filtered.length}}
+
+    <br>
+    <br>
+    <div align="center"><br>
+        <input type="radio" name="group1" value="Milk"> Milk<br>
+        <input type="radio" name="group1" value="Butter" checked> Butter<br>
+        <input type="radio" name="group1" value="Cheese"> Cheese
+        <hr>
+        <input type="radio" name="group1" value="Water"> Water<br>
+        <input type="radio" name="group2" value="Beer"> Beer<br>
+        <input type="radio" name="group2" value="Wine" checked> Wine<br>
+    </div>
+
 
     <div ng-repeat="buttonTemp in mutlipleButtons">
         <div ng-if="$odd">
