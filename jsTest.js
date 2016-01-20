@@ -2,6 +2,18 @@
  * Created by dmorales on 9/12/2015.
  */
 
+const uniqueId = (function() {
+    var count = 0;
+    return function() {
+        ++count;
+        return 'id_' + count;
+    };
+})();
+
+console.log(uniqueId()); // "id_1"
+console.log(uniqueId()); // "id_2"
+console.log(uniqueId()); // "id_3"
+
 function digitSumReport(x) {
     if (typeof x !== "number") {
         return "non-number, sum undefined";
