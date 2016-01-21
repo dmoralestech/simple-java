@@ -1,6 +1,18 @@
 /**
  * Created by dmorales on 9/12/2015.
  */
+//var _ = require('C:\\java\\simple-java\\underscore-min.js');
+var _ = require("./underscore.js");
+
+
+var testObj = {a: 1, b: 2, c: 3};
+
+console.log( _.map(testObj, function(v , k) {return k}));
+console.log( _.map(testObj, function(v , k) {return [ v, k] }));
+console.log(  _.keys(testObj));
+console.log( _.values (testObj));
+console.log( _.map(testObj, _.identity));
+
 
 const uniqueId = (function() {
     var count = 0;
@@ -124,8 +136,7 @@ console.log('break'); //prints 'break'
 s(); // prints 'B'
 
 
-//var _ = require('C:\\java\\simple-java\\underscore-min.js');
-var _ = require("./underscore.js");
+
 
 //object constructors are just functions!
 function makePersonObject(name, age) {
@@ -289,6 +300,10 @@ function lyricSegment2(n) {
         })
         .value();
 }
+
+var acc = function (acc, n) {
+    return  acc.concat(lyricSegment(n));
+};
 
 function song(start, end, lyricGenerator) {
     return _.reduce(_.range(start, end, -1),
