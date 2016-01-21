@@ -13,6 +13,11 @@ console.log(  _.keys(testObj));
 console.log( _.values (testObj));
 console.log( _.map(testObj, _.identity));
 
+var numReduceExample = [100, 25, 2];
+
+console.log(_.reduce(numReduceExample, function(x,y) { return x / y} ));
+console.log(_.reduceRight(numReduceExample, function(x,y) { return x / y} ));
+
 
 const uniqueId = (function() {
     var count = 0;
