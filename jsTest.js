@@ -4,6 +4,45 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function existy(x) { return x != null };
+
+function cat() {
+    var head = _.first(arguments);
+    if (existy(head))
+        return head.concat.apply(head, _.rest(arguments));
+    else
+        return [];
+}
+
+function construct(head, tail) {
+    return cat([head], _.toArray(tail));
+}
+
+function project(table, keys) {
+    return _.map(table, function(obj) {
+        return _.pick.apply(null, construct(obj, keys));
+    });
+}
+
+var library = [
+    {title: "SICP", isbn: "0262010771", ed: 1},
+    {title: "SICP", isbn: "0262510871", ed: 2},
+    {title: "Joy of Clojure", isbn: "1935182641", ed: 1}
+];
+
+var editionResults = project(library, ['title', 'isbn']);
+var editionTitle = project(library, ['title']);
+var editionTitlePluck = _.pluck(library, 'title');
+
+
+var zombie = {name: "Bub", film: "Evil Dead"};
+
+console.log(_.keys(zombie));
+console.log(_.pairs(zombie));
+var objj = _.object(_.map(_.pairs(zombie), function (pair) {
+    return [pair[0].toUpperCase(), pair[1]]
+}));
+
 var list = [{user_id: 301, alert_id: 199, deal_id: 32243},
     {user_id: 301, alert_id: 200, deal_id: 32243},
     {user_id: 301, alert_id: 200, deal_id: 107293},
