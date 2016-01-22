@@ -9,9 +9,22 @@ var list = [ { user_id: 301, alert_id: 199, deal_id: 32243 },
     { user_id: 301, alert_id: 200, deal_id: 107293 },
     { user_id: 301, alert_id: 200, deal_id: 277470 } ];
 
+var list2 = [ { family: 'a', child: '1a', },
+    { family: 'b', child: 'asd', },
+    { family: 'c', child: 'cs', },
+    { family: 'a', child: 'vcv', },
+    { family: 'b', child: 'yu', },
+    { family: 'a', child: 'ikl', }];
+
+
 var groups = _.groupBy(list, function(value){
     return value.user_id + '#' + value.alert_id;
 });
+
+var groups2 = _.groupBy(list2, function(value){
+    return value.family;
+});
+
 
 var groupData = _.map(groups, function(group){
     return {
@@ -20,6 +33,14 @@ var groupData = _.map(groups, function(group){
         deals: _.pluck(group, 'deal_id')
     }
 });
+
+var groupData2 = _.map(groups2, function(group){
+    return {
+        user_id: group[0].family,
+        children: _.pluck(group, 'child')
+    }
+});
+
 
 var testObj = {a: 1, b: 2, c: 3};
 
