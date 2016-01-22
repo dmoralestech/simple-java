@@ -4,29 +4,29 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
-var list = [ { user_id: 301, alert_id: 199, deal_id: 32243 },
-    { user_id: 301, alert_id: 200, deal_id: 32243 },
-    { user_id: 301, alert_id: 200, deal_id: 107293 },
-    { user_id: 301, alert_id: 200, deal_id: 277470 } ];
+var list = [{user_id: 301, alert_id: 199, deal_id: 32243},
+    {user_id: 301, alert_id: 200, deal_id: 32243},
+    {user_id: 301, alert_id: 200, deal_id: 107293},
+    {user_id: 301, alert_id: 200, deal_id: 277470}];
 
-var list2 = [ { family: 'a', child: '1a', },
-    { family: 'b', child: 'asd', },
-    { family: 'c', child: 'cs', },
-    { family: 'a', child: 'vcv', },
-    { family: 'b', child: 'yu', },
-    { family: 'a', child: 'ikl', }];
+var list2 = [{family: 'a', child: '1a',},
+    {family: 'b', child: 'asd',},
+    {family: 'c', child: 'cs',},
+    {family: 'a', child: 'vcv',},
+    {family: 'b', child: 'yu',},
+    {family: 'a', child: 'ikl',}];
 
 
-var groups = _.groupBy(list, function(value){
+var groups = _.groupBy(list, function (value) {
     return value.user_id + '#' + value.alert_id;
 });
 
-var groups2 = _.groupBy(list2, function(value){
+var groups2 = _.groupBy(list2, function (value) {
     return value.family;
 });
 
 
-var groupData = _.map(groups, function(group){
+var groupData = _.map(groups, function (group) {
     return {
         user_id: group[0].user_id,
         alert_id: group[0].alert_id,
@@ -34,31 +34,40 @@ var groupData = _.map(groups, function(group){
     }
 });
 
-var groupData2 = _.map(groups2, function(group){
+var groupData2 = _.map(groups2, function (group) {
     return {
         user_id: group[0].family,
-        children: _.pluck(group, 'child')
+        children: _.map(_.pluck(group, 'child'), function (val) {
+            return {child: val}
+        })
     }
 });
 
-
 var testObj = {a: 1, b: 2, c: 3};
 
-console.log( _.map(testObj, function(v , k) {return k}));
-console.log( _.map(testObj, function(v , k) {return [ v, k] }));
-console.log(  _.keys(testObj));
-console.log( _.values (testObj));
-console.log( _.map(testObj, _.identity));
+console.log(_.map(testObj, function (v, k) {
+    return k
+}));
+console.log(_.map(testObj, function (v, k) {
+    return [v, k]
+}));
+console.log(_.keys(testObj));
+console.log(_.values(testObj));
+console.log(_.map(testObj, _.identity));
 
 var numReduceExample = [100, 25, 2];
 
-console.log(_.reduce(numReduceExample, function(x,y) { return x / y} ));
-console.log(_.reduceRight(numReduceExample, function(x,y) { return x / y} ));
+console.log(_.reduce(numReduceExample, function (x, y) {
+    return x / y
+}));
+console.log(_.reduceRight(numReduceExample, function (x, y) {
+    return x / y
+}));
 
 
-var uniqueId = (function() {
+var uniqueId = (function () {
     var count = 0;
-    return function() {
+    return function () {
         ++count;
         return 'id_' + count;
     };
@@ -176,8 +185,6 @@ function a() {
 var s = a(); //prints 'A'
 console.log('break'); //prints 'break'
 s(); // prints 'B'
-
-
 
 
 //object constructors are just functions!
@@ -344,7 +351,7 @@ function lyricSegment2(n) {
 }
 
 var acc = function (acc, n) {
-    return  acc.concat(lyricSegment(n));
+    return acc.concat(lyricSegment(n));
 };
 
 function song(start, end, lyricGenerator) {
