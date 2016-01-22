@@ -4,6 +4,22 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+var list = [ { user_id: 301, alert_id: 199, deal_id: 32243 },
+    { user_id: 301, alert_id: 200, deal_id: 32243 },
+    { user_id: 301, alert_id: 200, deal_id: 107293 },
+    { user_id: 301, alert_id: 200, deal_id: 277470 } ];
+
+var groups = _.groupBy(list, function(value){
+    return value.user_id + '#' + value.alert_id;
+});
+
+var groupData = _.map(groups, function(group){
+    return {
+        user_id: group[0].user_id,
+        alert_id: group[0].alert_id,
+        deals: _.pluck(group, 'deal_id')
+    }
+});
 
 var testObj = {a: 1, b: 2, c: 3};
 
@@ -19,7 +35,7 @@ console.log(_.reduce(numReduceExample, function(x,y) { return x / y} ));
 console.log(_.reduceRight(numReduceExample, function(x,y) { return x / y} ));
 
 
-const uniqueId = (function() {
+var uniqueId = (function() {
     var count = 0;
     return function() {
         ++count;
