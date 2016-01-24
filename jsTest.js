@@ -14,9 +14,19 @@ function cat() {
         return [];
 }
 
+function cat2() {
+    var head = _.first(arguments);
+    if (existy(head))
+        return head.concat( _.rest(arguments));
+    else
+        return [];
+}
+
 console.log(_.first(['a', 'b', 'c']));
 console.log(_.rest(['a', 'b', 'c']));
-console.log(cat('a', ['3', '4']));
+console.log(cat(['3', '4', '5'], ['a', 'b'], ['q', 'r']));
+console.log(cat2(['a'], ['3', '4'], ['x', 'y', 'z']));
+console.log(cat(['a'], ['3', '4'], ['x', 'y', 'z']));
 
 function construct(head, tail) {
     return cat([head], _.toArray(tail));
