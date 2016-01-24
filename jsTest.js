@@ -61,12 +61,12 @@ var list = [{user_id: 301, alert_id: 199, deal_id: 32243},
     {user_id: 301, alert_id: 200, deal_id: 107293},
     {user_id: 301, alert_id: 200, deal_id: 277470}];
 
-var list2 = [{family: 'a', child: '1a',},
-    {family: 'b', child: 'asd',},
-    {family: 'c', child: 'cs',},
-    {family: 'a', child: 'vcv',},
-    {family: 'b', child: 'yu',},
-    {family: 'a', child: 'ikl',}];
+var list2 = [{family: 'a', child: '1a', name: 'a'},
+    {family: 'b', child: 'asd', name: 'a'},
+    {family: 'c', child: 'cs',name: 'a'},
+    {family: 'a', child: 'vcv',name: 'a'},
+    {family: 'b', child: 'yu',name: 'a'},
+    {family: 'a', child: 'ikl',name: 'a'}];
 
 
 var groups = _.groupBy(list, function (value) {
@@ -87,13 +87,16 @@ var groupData = _.map(groups, function (group) {
 });
 
 var groupData2 = _.map(groups2, function (group) {
+    console.log("group family: " + group[0].family);
+    console.log("group child: " + group[0].child);
+    console.log("group name: " + group[0].name);
     return {
         user_id: group[0].family,
-        children: _.map(_.pluck(group, 'child'), function (val) {
-            return {child: val}
-        })
+        children: group
     }
 });
+
+console.log(groupData2);
 
 var testObj = {a: 1, b: 2, c: 3};
 
