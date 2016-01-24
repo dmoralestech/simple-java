@@ -14,6 +14,10 @@ function cat() {
         return [];
 }
 
+console.log(_.first(['a', 'b', 'c']));
+console.log(_.rest(['a', 'b', 'c']));
+console.log(cat('a', ['3', '4']));
+
 function construct(head, tail) {
     return cat([head], _.toArray(tail));
 }
@@ -33,7 +37,6 @@ var library = [
 var editionResults = project(library, ['title', 'isbn']);
 var editionTitle = project(library, ['title']);
 var editionTitlePluck = _.pluck(library, 'title');
-
 
 var zombie = {name: "Bub", film: "Evil Dead"};
 
