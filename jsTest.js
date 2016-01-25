@@ -22,11 +22,14 @@ function cat2() {
         return [];
 }
 
+console.log(['a'].concat( ['3', '4'], ['x', 'y', 'z']));
+console.log(['a'].concat.apply(['a'], [['3', '4'], ['x', 'y', 'z']]));
+
 console.log(_.first(['a', 'b', 'c']));
 console.log(_.rest(['a', 'b', 'c']));
 console.log(cat(['3', '4', '5'], ['a', 'b'], ['q', 'r']));
 console.log(cat2(['a'], ['3', '4'], ['x', 'y', 'z']));
-console.log(cat(['a'], ['3', '4'], ['x', 'y', 'z']));
+
 
 function construct(head, tail) {
     return cat([head], _.toArray(tail));
