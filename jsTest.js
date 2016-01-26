@@ -23,7 +23,8 @@ function cat2() {
 }
 
 console.log(['a'].concat( ['3', '4'], ['x', 'y', 'z']));
-console.log(['a'].concat.apply(['a'], [['3', '4'], ['x', 'y', 'z']]));
+console.log([].concat.apply(['a'], [['3', '4'], ['x', 'y', 'z']]));
+console.log([].concat.apply(['z'], [['a', 'b', ['c', ['d']]],['3', '4'], ['x', 'y', 'z']]));
 
 console.log(_.first(['a', 'b', 'c']));
 console.log(_.rest(['a', 'b', 'c']));
