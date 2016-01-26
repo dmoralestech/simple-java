@@ -4,7 +4,7 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
-function existy(x) { return x != null };
+function existy(x) { return x != null }
 
 function cat() {
     var head = _.first(arguments);
@@ -24,7 +24,7 @@ function cat2() {
 
 console.log(['a'].concat( ['3', '4'], ['x', 'y', 'z']));
 console.log([].concat.apply(['a'], [['3', '4'], ['x', 'y', 'z']]));
-console.log([].concat.apply(['z'], [['a', 'b', ['c', ['d']]],['3', '4'], ['x', 'y', 'z']]));
+console.log([].concat.apply(['z'], ['y', ['t'], ['q'], ['a', 'b'],['3', '4'], ['w'], ['x', 'y', 'z']]));
 
 console.log(_.first(['a', 'b', 'c']));
 console.log(_.rest(['a', 'b', 'c']));
@@ -35,6 +35,11 @@ console.log(cat2(['a'], ['3', '4'], ['x', 'y', 'z']));
 function construct(head, tail) {
     return cat([head], _.toArray(tail));
 }
+
+console.log(_.toArray({a: '1', b: '2', c: ['a']}))
+console.log(construct(['z'], {a: '1', b: '2', c: ['a']}))
+console.log(construct({a: '1', b: '2', c: ['a']}))
+console.log([].concat.apply(['z'], construct([], {a: '1', b: '2', c: ['a']})));
 
 function project(table, keys) {
     return _.map(table, function(obj) {
