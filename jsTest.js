@@ -4,6 +4,11 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+console.log(_.range(2));
+console.log(_.map(_.range(2), function (number) {
+    return 'number: ' + number
+}));
+
 function existy(x) { return x != null }
 
 function cat() {
@@ -46,6 +51,7 @@ function project(table, keys) {
         return _.pick.apply(null, construct(obj, keys));
     });
 }
+
 
 var library = [
     {title: "SICP", isbn: "0262010771", ed: 1},
