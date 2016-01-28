@@ -11,11 +11,13 @@ function createfunc(i) {
 };
 
 for (var i = 0; i < 3; i++) {
-    funcs[i] = createfunc(i);
+    funcs[i] = function (i) {
+        console.log("My value: " + i);
+    };
 }
 
 for (var j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+    funcs[j](j);                        // and now let's run each one to see
 }
 
 
