@@ -4,6 +4,16 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+for (var i = 0; i < 3; i++) {
+
+    (function(index) {
+        console.log('iterator: ' + index);
+        //now you can also loop an ajax call here
+        //without losing track of the iterator value: $.ajax({});
+    })(i);
+
+}
+
 console.log(_.range(2));
 console.log(_.map(_.range(2), function (number) {
     return 'number: ' + number
