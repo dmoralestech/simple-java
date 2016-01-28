@@ -4,14 +4,27 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
-for (var i = 0; i < 3; i++) {
+var funcs = [];
 
-    (function(index) {
+function createfunc(i) {
+    return function() { console.log("My value: " + i); };
+};
+
+for (var i = 0; i < 3; i++) {
+    funcs[i] = createfunc(i);
+}
+
+for (var j = 0; j < 3; j++) {
+    funcs[j]();                        // and now let's run each one to see
+}
+
+
+for (var i = 0; i < 3; i++) {
+    (function (index) {
         console.log('iterator: ' + index);
         //now you can also loop an ajax call here
         //without losing track of the iterator value: $.ajax({});
     })(i);
-
 }
 
 console.log(_.range(2));
@@ -19,7 +32,9 @@ console.log(_.map(_.range(2), function (number) {
     return 'number: ' + number
 }));
 
-function existy(x) { return x != null }
+function existy(x) {
+    return x != null
+}
 
 function cat() {
     var head = _.first(arguments);
@@ -32,14 +47,17 @@ function cat() {
 function cat2() {
     var head = _.first(arguments);
     if (existy(head))
-        return head.concat( _.rest(arguments));
+        return head.concat(_.rest(arguments));
     else
         return [];
 }
 
-console.log(['a'].concat( ['3', '4'], ['x', 'y', 'z']));
-console.log([].concat.apply(['a'], [['3', '4'], ['x', 'y', 'z']]));
-console.log([].concat.apply(['z'], ['y', ['t'], ['q'], ['a', 'b'],['3', '4'], ['w'], ['x', 'y', 'z']]));
+console.log(['a'].concat(['3', '4'], ['x', 'y', 'z']));
+console.log([].concat.apply(['a'], [
+    ['3', '4'],
+    ['x', 'y', 'z']
+]));
+console.log([].concat.apply(['z'], ['y', ['t'], ['q'], ['a', 'b'], ['3', '4'], ['w'], ['x', 'y', 'z']]));
 
 console.log(_.first(['a', 'b', 'c']));
 console.log(_.rest(['a', 'b', 'c']));
@@ -57,7 +75,7 @@ console.log(construct({a: '1', b: '2', c: ['a']}))
 console.log([].concat.apply(['z'], construct([], {a: '1', b: '2', c: ['a']})));
 
 function project(table, keys) {
-    return _.map(table, function(obj) {
+    return _.map(table, function (obj) {
         return _.pick.apply(null, construct(obj, keys));
     });
 }
@@ -81,17 +99,21 @@ var objj = _.object(_.map(_.pairs(zombie), function (pair) {
     return [pair[0].toUpperCase(), pair[1]]
 }));
 
-var list = [{user_id: 301, alert_id: 199, deal_id: 32243},
+var list = [
+    {user_id: 301, alert_id: 199, deal_id: 32243},
     {user_id: 301, alert_id: 200, deal_id: 32243},
     {user_id: 301, alert_id: 200, deal_id: 107293},
-    {user_id: 301, alert_id: 200, deal_id: 277470}];
+    {user_id: 301, alert_id: 200, deal_id: 277470}
+];
 
-var list2 = [{family: 'a', child: '1a', name: 'a'},
+var list2 = [
+    {family: 'a', child: '1a', name: 'a'},
     {family: 'b', child: 'asd', name: 'a'},
-    {family: 'c', child: 'cs',name: 'a'},
-    {family: 'a', child: 'vcv',name: 'a'},
-    {family: 'b', child: 'yu',name: 'a'},
-    {family: 'a', child: 'ikl',name: 'a'}];
+    {family: 'c', child: 'cs', name: 'a'},
+    {family: 'a', child: 'vcv', name: 'a'},
+    {family: 'b', child: 'yu', name: 'a'},
+    {family: 'a', child: 'ikl', name: 'a'}
+];
 
 
 var groups = _.groupBy(list, function (value) {
@@ -224,7 +246,7 @@ digitSumReport2 = function (x) {
             return sum;
         };
     return typeError !== null ? typeError + ", sum undefined" :
-    "sum " + sum(x);
+        "sum " + sum(x);
 };
 
 console.log(digitSumReport2(434343));
@@ -327,7 +349,11 @@ impl2(void 0);
 console.log(impl2('DARWIN'));
 
 
-arr2 = [{x: 1}, {x: 2}, {x: 3}];
+arr2 = [
+    {x: 1},
+    {x: 2},
+    {x: 3}
+];
 console.log(_.reduce(arr2, function (a, b) {
     return {x: a.x + b.x}
 }, {x: 10}));
@@ -392,8 +418,8 @@ var fortytwos2 = {
 };
 
 console.log(42 + (function () {
-        return 42
-    })());
+    return 42
+})());
 
 function weirdAdd(n, f) {
     return n + f()
