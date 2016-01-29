@@ -4,6 +4,11 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function globalThis() {return this;}
+
+var whatResult = globalThis.call('hello');
+var whatResult2 = globalThis.apply('hello too', []);
+
 var funcs = [];
 
 function createfunc(i) {
