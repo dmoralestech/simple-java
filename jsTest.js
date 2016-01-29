@@ -4,6 +4,15 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function strangerIdentity(n) {
+    for (this.i = 0; this.i < n; i++);
+    return this.i;
+}
+
+var identityVal = strangerIdentity(108);
+
+console.log(identityVal);
+
 var funcky = function(greeting) {
     console.log( greeting + ": " + this.name);
 };
