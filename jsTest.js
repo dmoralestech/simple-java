@@ -4,6 +4,16 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function f() {
+    this.a = 200;
+    return this.a + this.b;
+}
+
+var globals = {b: 2};
+
+var qq = f.call(_.clone(globals));
+
+
 function strangerIdentity(n) {
     for (this.i = 0; this.i < n; this.i++);
     return this.i;
