@@ -5,11 +5,12 @@
 var _ = require("./underscore.js");
 
 function strangerIdentity(n) {
-    for (this.i = 0; this.i < n; i++);
+    for (this.i = 0; this.i < n; this.i++);
     return this.i;
 }
 
 var identityVal = strangerIdentity(108);
+identityVal = strangerIdentity.call({}, 108);
 
 console.log(identityVal);
 
