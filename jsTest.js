@@ -4,6 +4,21 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function doSomething1() {
+    console.log("a");
+    console.log("b");
+}
+
+function seeIfReturnWithAFunctionWillWork(){
+    console.log("0");
+    if (true) {
+        return doSomething1();
+    }
+    console.log("1");
+}
+
+seeIfReturnWithAFunctionWillWork();
+
 function createScaleFunction(FACTOR) {
     return function(v) {
         return _.map(v, function(n) {
