@@ -4,6 +4,18 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function createScaleFunction(FACTOR) {
+    return function(v) {
+        return _.map(v, function(n) {
+            return (n * FACTOR);
+        });
+    };
+}
+
+var scale7 = createScaleFunction(7);
+
+console.log(scale7([9, 3, 6]));
+
 function f() {
     this.a = 200;
     return this.a + this.b;
