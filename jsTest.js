@@ -14,7 +14,7 @@ function seeIfReturnWithAFunctionWillWork(){
     if (true) {
         return doSomething1();
     }
-    console.log("1");
+    console.log("1"); // it shouldn't print this..
 }
 
 seeIfReturnWithAFunctionWillWork();
