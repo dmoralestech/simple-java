@@ -68,7 +68,7 @@ function pageCtrl($scope, filterFilter) {
     }];
 
     $scope.currentPage = 1; //current page
-    $scope.maxSize = 2; //pagination max size
+    $scope.maxSize = 5; //pagination max size
     $scope.entryLimit = 8; //max rows for data table
 
     /* init pagination with $scope.list */
