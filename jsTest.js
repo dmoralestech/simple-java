@@ -10,9 +10,26 @@ function makeAdder(CAPTURED) {
     };
 }
 
-var add10 = makeAdder(11);
-
+var add10 = makeAdder(10);
 console.log(add10(33));
+console.log(makeAdder(10)(33));
+
+function average(array) {
+    var sum = _.reduce(array, function(a, b) { return a+b });
+    return sum / _.size(array);
+}
+
+function averageDamp(FUN) {
+    return function(n) {
+        return average([n, FUN(n)]);
+    }
+}
+
+var averageSquare = averageDamp(function(n) { return n * n;})
+console.log(averageSquare(5));
+console.log(averageSquare(function (n) {
+    return n * n;
+}(5)));
 
 function doSomething1() {
     console.log("a");
