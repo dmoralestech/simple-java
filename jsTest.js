@@ -27,9 +27,9 @@ function averageDamp(FUN) {
 
 var averageSquare = averageDamp(function(n) { return n * n;})
 console.log(averageSquare(5));
-console.log(averageSquare(function (n) {
+console.log(averageDamp(function (n) {
     return n * n;
-}(5)));
+})(5));
 
 function doSomething1() {
     console.log("a");
