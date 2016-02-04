@@ -10,7 +10,7 @@ function makeAdder(CAPTURED) {
     };
 }
 
-var add10 = makeAdder(10);
+var add10 = makeAdder(11);
 
 console.log(add10(33));
 
