@@ -1,16 +1,32 @@
 var app = angular.module('myApp', ['ui.bootstrap']);
 
-app.filter('startFrom', function() {
-    return function(input, start) {
+//app.filter('startFrom', function () {
+//    return function (input, start) {
+//        if (input) {
+//            start = +start; //parse to int
+//            return input.slice(start);
+//        }
+//        return [];
+//    }
+//});
+
+app.filter('startFrom', function () {
+    return function (input, start) {
+        console.log("input: " + input);
+        console.log("start: " + start);
         if (input) {
             start = +start; //parse to int
+            console.log("start b : " + start);
             return input.slice(start);
         }
+        console.log("input is empty...")
         return [];
     }
 });
 
 function pageCtrl($scope, filterFilter) {
+
+
     $scope.list = [{
         "name": "name 1"
     }, {
@@ -74,7 +90,8 @@ function pageCtrl($scope, filterFilter) {
     /* init pagination with $scope.list */
     $scope.noOfPages = Math.ceil($scope.list.length / $scope.entryLimit);
 
-    $scope.$watch('search', function(term) {
+    $scope.$watch('search', function (term) {
+        console.log(term);
         // Create $scope.filtered and then calculat $scope.noOfPages, no racing!
         $scope.filtered = filterFilter($scope.list, term);
         $scope.noOfPages = Math.ceil($scope.filtered.length / $scope.entryLimit);
