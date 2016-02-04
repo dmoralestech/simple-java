@@ -4,6 +4,16 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function makeAdder(CAPTURED) {
+    return function(free) {
+        return free + CAPTURED;
+    };
+}
+
+var add10 = makeAdder(10);
+
+console.log(add10(33));
+
 function doSomething1() {
     console.log("a");
     console.log("b");
