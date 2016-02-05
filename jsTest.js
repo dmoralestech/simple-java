@@ -25,7 +25,19 @@ function averageDamp(FUN) {
     }
 }
 
+function averageDamp2(FUN) {
+    return function(a, b) {
+        return average([a, b, FUN(a, b)]);
+    }
+}
+
 var averageSquare = averageDamp(function(n) { return n * n;})
+var randomFunction = averageDamp2(function(a, b) { return a * b;})
+console.log(averageDamp2(function (a, b) {
+    return a * b;
+})(10, 20));
+
+console.log(randomFunction(10, 20));
 console.log(averageSquare(5));
 console.log(averageDamp(function (n) {
     return n * n;
