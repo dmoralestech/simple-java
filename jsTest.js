@@ -4,6 +4,27 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function makeKitchen () {
+    var trashBags = ['A', 'B', 'C']; // only 3 at first
+
+    return {
+        getTrashBag: function() {
+            return trashBags.pop();
+        },
+        putTrashInBin: function() {
+            trashBags.push('D');
+        }
+    };
+}
+
+var kitchen = makeKitchen();
+
+console.log(kitchen.getTrashBag());
+console.log(kitchen.getTrashBag());
+console.log(kitchen.getTrashBag());
+kitchen.putTrashInBin();
+console.log(kitchen.getTrashBag());
+
 function makeAdder(CAPTURED) {
     return function(free) {
         return free + CAPTURED;
