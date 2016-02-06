@@ -4,6 +4,20 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function foofoo(x) {
+    var tmp = 3;
+
+    return function (y) {
+        console.log(x + y + tmp);
+        x.memb = x.memb ? x.memb + 1 : 1;
+        console.log(x.memb);
+    }
+}
+
+var ageage = new Number(2);
+var barbar = foofoo(ageage); // bar is now a closure referencing age.
+barbar(10);
+
 function makeKitchen () {
     var trashBags = ['A', 'B', 'C']; // only 3 at first
 
