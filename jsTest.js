@@ -19,7 +19,12 @@ function finder2(valueFun, bestFun, coll) {
     });
 }
 
+console.log( _.max([12, 34, 45, 43, 2]));
 console.log(finder2(_.identity, Math.max, [12, 34, 45, 43, 2]));
+console.log(finder3( function(x, y) { return x > y }, [12, 34, 45, 43, 2]));
+
+
+
 
 
 function plucker(FIELD) {
