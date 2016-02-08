@@ -4,6 +4,18 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function finder2(valueFun, bestFun, coll) {
+    return _.reduce( coll, function(best, current) {
+        var bestValue = valueFun(best);
+        var currentValue = valueFun(current);
+
+        return (bestValue === bestFun(bestValue, currentValue)) ? best : current;
+    });
+}
+
+console.log(finder2(_.identity, Math.max,[12, 34, 45, 43, 2]));
+
+
 function plucker(FIELD) {
     return function (obj) {
         return (obj && obj[FIELD]);
