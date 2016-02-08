@@ -4,8 +4,14 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function finder3(fun, coll) {
+    return _.reduce(coll, function (x, y) {
+        return fun(x, y) ? x : y;
+    });
+}
+
 function finder2(valueFun, bestFun, coll) {
-    return _.reduce( coll, function(best, current) {
+    return _.reduce(coll, function (best, current) {
         var bestValue = valueFun(best);
         var currentValue = valueFun(current);
 
@@ -13,7 +19,7 @@ function finder2(valueFun, bestFun, coll) {
     });
 }
 
-console.log(finder2(_.identity, Math.max,[12, 34, 45, 43, 2]));
+console.log(finder2(_.identity, Math.max, [12, 34, 45, 43, 2]));
 
 
 function plucker(FIELD) {
@@ -27,12 +33,14 @@ var getTitle = plucker("title");
 console.log(getTitle({title: 'aaa', author: 'JFK'}));
 
 function complement(PRED) {
-    return function() {
+    return function () {
         return !PRED.apply(null, _.toArray(arguments));
     };
 }
 
-function isEven(n) { return (n%2) === 0; }
+function isEven(n) {
+    return (n % 2) === 0;
+}
 
 var isOdd = complement(isEven);
 
@@ -52,14 +60,14 @@ var ageage = new Number(2);
 var barbar = foofoo(ageage); // bar is now a closure referencing age.
 barbar(10);
 
-function makeKitchen () {
+function makeKitchen() {
     var trashBags = ['A', 'B', 'C']; // only 3 at first
 
     return {
-        getTrashBag: function() {
+        getTrashBag: function () {
             return trashBags.pop();
         },
-        putTrashInBin: function() {
+        putTrashInBin: function () {
             trashBags.push('D');
         }
     };
@@ -74,7 +82,7 @@ kitchen.putTrashInBin();
 console.log(kitchen.getTrashBag());
 
 function makeAdder(CAPTURED) {
-    return function(free) {
+    return function (free) {
         return free + CAPTURED;
     };
 }
@@ -84,24 +92,30 @@ console.log(add10(33));
 console.log(makeAdder(10)(33));
 
 function average(array) {
-    var sum = _.reduce(array, function(a, b) { return a+b });
+    var sum = _.reduce(array, function (a, b) {
+        return a + b
+    });
     return sum / _.size(array);
 }
 
 function averageDamp(FUN) {
-    return function(n) {
+    return function (n) {
         return average([n, FUN(n)]);
     }
 }
 
 function averageDamp2(FUN) {
-    return function(a, b) {
+    return function (a, b) {
         return average([a, b, FUN(a, b)]);
     }
 }
 
-var averageSquare = averageDamp(function(n) { return n * n;})
-var randomFunction = averageDamp2(function(a, b) { return a * b;})
+var averageSquare = averageDamp(function (n) {
+    return n * n;
+})
+var randomFunction = averageDamp2(function (a, b) {
+    return a * b;
+})
 console.log(averageDamp2(function (a, b) {
     return a * b;
 })(10, 20));
@@ -117,7 +131,7 @@ function doSomething1() {
     console.log("b");
 }
 
-function seeIfReturnWithAFunctionWillWork(){
+function seeIfReturnWithAFunctionWillWork() {
     console.log("0");
     if (true) {
         return doSomething1();
@@ -128,8 +142,8 @@ function seeIfReturnWithAFunctionWillWork(){
 seeIfReturnWithAFunctionWillWork();
 
 function createScaleFunction(FACTOR) {
-    return function(v) {
-        return _.map(v, function(n) {
+    return function (v) {
+        return _.map(v, function (n) {
             return (n * FACTOR);
         });
     };
@@ -159,14 +173,16 @@ identityVal = strangerIdentity.call({}, 108);
 
 console.log(identityVal);
 
-var funcky = function(greeting) {
-    console.log( greeting + ": " + this.name);
+var funcky = function (greeting) {
+    console.log(greeting + ": " + this.name);
 };
 
 func = _.bind(funcky, {name: 'darwin'}, 'hello');
 func('hi');
 
-function globalThis() {return this;}
+function globalThis() {
+    return this;
+}
 
 var whatResult = globalThis.call('hello');
 var whatResult3 = globalThis.call({name: 'darwin'});
@@ -175,7 +191,9 @@ var whatResult2 = globalThis.apply('hello too', []);
 var funcs = [];
 
 function createfunc(i) {
-    return function() { console.log("My value: " + i); };
+    return function () {
+        console.log("My value: " + i);
+    };
 };
 
 for (var i = 0; i < 3; i++) {
@@ -416,7 +434,7 @@ digitSumReport2 = function (x) {
             return sum;
         };
     return typeError !== null ? typeError + ", sum undefined" :
-        "sum " + sum(x);
+    "sum " + sum(x);
 };
 
 console.log(digitSumReport2(434343));
@@ -588,8 +606,8 @@ var fortytwos2 = {
 };
 
 console.log(42 + (function () {
-    return 42
-})());
+        return 42
+    })());
 
 function weirdAdd(n, f) {
     return n + f()
