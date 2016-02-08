@@ -4,6 +4,18 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function complement(PRED) {
+    return function() {
+        return !PRED.apply(null, _.toArray(arguments));
+    };
+}
+
+function isEven(n) { return (n%2) === 0; }
+
+var isOdd = complement(isEven);
+
+console.log(isOdd(2));
+
 function foofoo(x) {
     var tmp = 3;
 
