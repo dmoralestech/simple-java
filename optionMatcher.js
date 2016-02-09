@@ -5,7 +5,7 @@ var demo = angular.module("app", []);
 
 demo.controller(
     "MyCtrl",
-    function ($scope) {
+    function ($scope, $q, $timeout) {
 
         $scope.wines = [
             { name: "Wine A", isNew: true },
@@ -21,8 +21,37 @@ demo.controller(
 
         $scope.filterByCategory = function (wine) { //this acts like a predicate function
             console.log("filterByCategory: " + wine.name + " - " + $scope.filter[wine.isNew]);
-            console.log("$scope.filter: " + $scope.filter );
+            console.log("$scope.filter: " + $scope.filter);
             return $scope.filter[wine.isNew] || noFilter($scope.filter);
+        };
+
+        $scope.promiseSample = function () {
+            var defer = $q.defer();
+
+            defer.promise
+                .then(function (weapon) {
+                    console.log(weapon);
+                    return "bow";
+                })
+                .then(function (weapon) {
+                    console.log(weapon);
+                    return "axe";
+                })
+                .then(function (weapon) {
+                    console.log(weapon);
+                })
+
+            console.log("1");
+
+            $timeout(function () {
+                console.log("3");
+                defer.resolve("sword");
+                console.log("4");
+            }, 2000);
+
+            console.log("2");
+
+
         };
 
         function noFilter(filterObj) {
@@ -46,7 +75,7 @@ demo.controller(
 
         var optionResolver1 = {
             varCodes: ["123", "456", "789"],
-            varCodesDesc:"Loren Ipsum blah",
+            varCodesDesc: "Loren Ipsum blah",
             option1: "123",
             option2: "789",
             isValid: undefined
@@ -54,7 +83,7 @@ demo.controller(
 
         var optionResolver2 = {
             varCodes: ["ABC", "DEF", "GHI", "JKL", "MNL", "OPQ"],
-            varCodesDesc:"Loren Ipsum blah",
+            varCodesDesc: "Loren Ipsum blah",
             option1: "ABC",
             option2: "GHI",
             isValid: undefined
@@ -62,7 +91,7 @@ demo.controller(
 
         var optionResolver3 = {
             varCodes: ["RST", "UVW"],
-            varCodesDesc:"Loren Ipsum blah",
+            varCodesDesc: "Loren Ipsum blah",
             option1: "RST",
             option2: "UVW",
             isValid: undefined
