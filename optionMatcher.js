@@ -31,50 +31,30 @@ demo.controller(
 
         $scope.promiseSample2 = function () {
             var defer = $q.defer();
-            var defer2 = $q.defer();
 
             defer.promise
                 .then(function (weapon) {
-                    console.log(weapon);
+                    console.log("step 1");
+                    $timeout(function () {
+                        console.log("a1 " + weapon);
+                    }, 3000);
                     return "bow";
                 })
                 .then(function (weapon) {
-                    console.log(weapon);
+                    console.log("step 2");
+                    $timeout(function () {
+                        console.log("a2 " + weapon);
+                    }, 2000);
                     return "axe";
                 })
                 .then(function (weapon) {
-                    console.log(weapon);
+                    console.log("step 3");
+                    $timeout(function () {
+                        console.log("a3 " + weapon);
+                    }, 1000);
                 })
 
-            defer2.promise
-                .then(function (weapon) {
-                    console.log(weapon);
-                    return "bow2";
-                })
-                .then(function (weapon) {
-                    console.log(weapon);
-                    return "axe2";
-                })
-                .then(function (weapon) {
-                    console.log(weapon);
-                })
-
-            console.log("1");
-
-
-            $timeout(function () {
-                console.log("b3");
-                defer2.resolve("stone");
-                console.log("b4");
-            }, 1000);
-            console.log("2");
-
-            $timeout(function () {
-                console.log("c3");
-                defer.resolve("rock44");
-                console.log("c4");
-            }, 300);
-
+            defer.resolve("stone");
 
         };
 
