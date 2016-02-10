@@ -25,11 +25,46 @@ demo.controller(
             return $scope.filter[wine.isNew] || noFilter($scope.filter);
         };
 
-        $scope.promiseSample = function() {
-            $scope.promiseSample2();
+        $scope.promiseSample = function () {
+            $q.all([loadUser(), loadUser2()])
+                .then(function (x) {
+                    console.log(' x: ' + x);
+                    return {obj: '2'};
+                })
+                .then(function (y) {
+                    console.log(' y: ' + y);
+                });
         }
 
+        function loadUser() {
+            console.log('loadUser start');
+            var deferred = $q.defer();
+            setTimeout(function () {
+                console.log('loadUser a');
+                deferred.resolve({name: 'darwin', age: 55})
+                console.log('loadUser b');
+            }, 1000);
+            console.log('loadUser exit');
+            return deferred.promise;
+        };
+
+        function loadUser2() {
+            console.log('loadUser2 start');
+            var deferred = $q.defer();
+            setTimeout(function () {
+                console.log('loadUser2 a');
+                deferred.resolve({name: 'nova', age: 55});
+                console.log('loadUser2 b');
+            }, 200);
+            console.log('loadUser2 exit');
+            return deferred.promise;
+        };
+
+
         $scope.promiseSample2 = function () {
+
+            var promise1 = $q.defer().promise;
+
             var defer = $q.defer();
 
             defer.promise
