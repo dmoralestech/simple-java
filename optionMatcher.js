@@ -26,7 +26,25 @@ demo.controller(
         };
 
         $scope.promiseSample = function () {
-            $q.all([loadUser(), loadUser2()])
+            var deferred = $q.defer();
+            setTimeout(function () {
+                console.log('loadUser x');
+                deferred.resolve({name: 'darwin', age: 55})
+                console.log('loadUser x');
+            }, 1000);
+            console.log('loadUser exit');
+            var promise1 =  deferred.promise;
+
+            var deferred2 = $q.defer();
+            setTimeout(function () {
+                console.log('loadUser2 a');
+                deferred2.resolve({name: 'nova', age: 55});
+                console.log('loadUser2 b');
+            }, 200);
+            console.log('loadUser2 exit');
+            var promise2 =  deferred2.promise;
+
+            $q.all([promise1, promise2])
                 .then(function (x) {
                     console.log(' x: ' + x);
                     return {obj: '2'};
@@ -40,10 +58,10 @@ demo.controller(
             console.log('loadUser start');
             var deferred = $q.defer();
             setTimeout(function () {
-                console.log('loadUser a');
+                console.log('loadUser x');
                 deferred.resolve({name: 'darwin', age: 55})
-                console.log('loadUser b');
-            }, 1000);
+                console.log('loadUser x');
+            }, 10000);
             console.log('loadUser exit');
             return deferred.promise;
         };
@@ -63,11 +81,9 @@ demo.controller(
 
         $scope.promiseSample2 = function () {
 
-            var promise1 = $q.defer().promise;
+            var deferred = $q.defer();
 
-            var defer = $q.defer();
-
-            defer.promise
+            deferred.promise
                 .then(function (weapon) {
                     console.log("step 1");
                     $timeout(function () {
@@ -89,7 +105,7 @@ demo.controller(
                     }, 1000);
                 })
 
-            defer.resolve("stone");
+            deferred.resolve("stone");
 
         };
 
