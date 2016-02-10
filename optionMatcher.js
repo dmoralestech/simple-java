@@ -20,13 +20,18 @@ demo.controller(
         $scope.filter = {true: false, something: ''};
 
         $scope.filterByCategory = function (wine) { //this acts like a predicate function
-            console.log("filterByCategory: " + wine.name + " - " + $scope.filter[wine.isNew]);
-            console.log("$scope.filter: " + $scope.filter);
+            //console.log("filterByCategory: " + wine.name + " - " + $scope.filter[wine.isNew]);
+            //console.log("$scope.filter: " + $scope.filter);
             return $scope.filter[wine.isNew] || noFilter($scope.filter);
         };
 
-        $scope.promiseSample = function () {
+        $scope.promiseSample = function() {
+            $scope.promiseSample2();
+        }
+
+        $scope.promiseSample2 = function () {
             var defer = $q.defer();
+            var defer2 = $q.defer();
 
             defer.promise
                 .then(function (weapon) {
@@ -41,25 +46,44 @@ demo.controller(
                     console.log(weapon);
                 })
 
+            defer2.promise
+                .then(function (weapon) {
+                    console.log(weapon);
+                    return "bow2";
+                })
+                .then(function (weapon) {
+                    console.log(weapon);
+                    return "axe2";
+                })
+                .then(function (weapon) {
+                    console.log(weapon);
+                })
+
             console.log("1");
 
-            $timeout(function () {
-                console.log("3");
-                defer.resolve("sword");
-                console.log("4");
-            }, 2000);
 
+            $timeout(function () {
+                console.log("b3");
+                defer2.resolve("stone");
+                console.log("b4");
+            }, 1000);
             console.log("2");
+
+            $timeout(function () {
+                console.log("c3");
+                defer.resolve("rock44");
+                console.log("c4");
+            }, 300);
 
 
         };
 
         function noFilter(filterObj) {
-            console.log(filterObj);
+            //console.log(filterObj);
             for (var key in filterObj) {
-                console.log("key: " + key);
+                //console.log("key: " + key);
                 if (filterObj[key]) {
-                    console.log("filterObj[key]: " + filterObj[key]);
+                    //console.log("filterObj[key]: " + filterObj[key]);
                     return false;
                 }
             }
