@@ -4,6 +4,19 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function makeUniqueStringFunction(start) {
+    var counter = start;
+
+    return function(prefix) {
+        return [prefix, counter++].join('');
+    }
+}
+
+var uniqueString = makeUniqueStringFunction(0);
+
+console.log(uniqueString('dar'));
+console.log(uniqueString('nov'));
+
 function repeat( times, VALUE) {
     return _.map(_.range(times ), function () {
         return VALUE;
