@@ -4,6 +4,23 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function repeat( times, VALUE) {
+    return _.map(_.range(times ), function () {
+        return VALUE;
+    });
+}
+
+function repeatedly( times, fun) {
+    return _.map(_.range(times, 7 ), fun);
+}
+
+console.log(repeatedly(3,  function(x) {
+    console.log(x);
+    return  x + 1; }));
+console.log(repeat(3, "Hello World"));
+console.log(repeatedly(3,  function() { return "Hello World"; }));
+
+
 function finder3(fun, coll) {
     return _.reduce(coll, function (x, y) {
         return fun(x, y) ? x : y;

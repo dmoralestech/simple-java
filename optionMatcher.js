@@ -26,25 +26,21 @@ demo.controller(
         };
 
         $scope.promiseSample = function () {
-            var deferred = $q.defer();
-            setTimeout(function () {
-                console.log('loadUser x');
-                deferred.resolve({name: 'darwin', age: 55})
-                console.log('loadUser x');
-            }, 1000);
-            console.log('loadUser exit');
-            var promise1 =  deferred.promise;
+            var promises = [];
+            for (var i = 0; i < 5; i++ ) {
+                (function (j) {
+                    var deferred = $q.defer();
+                    setTimeout(function () {
+                        console.log('loadUser ' + j);
+                        deferred.resolve({name: 'darwin', age: 55})
+                        console.log('loadUser a' + j);
+                    }, j * 1000);
+                    console.log('loadUser exit ' + j);
+                    promises.push(deferred.promise);
+                })(i);
+            }
 
-            var deferred2 = $q.defer();
-            setTimeout(function () {
-                console.log('loadUser2 a');
-                deferred2.resolve({name: 'nova', age: 55});
-                console.log('loadUser2 b');
-            }, 200);
-            console.log('loadUser2 exit');
-            var promise2 =  deferred2.promise;
-
-            $q.all([promise1, promise2])
+            $q.all(promises)
                 .then(function (x) {
                     console.log(' x: ' + x);
                     return {obj: '2'};
@@ -52,6 +48,7 @@ demo.controller(
                 .then(function (y) {
                     console.log(' y: ' + y);
                 });
+            console.log('promiseSample exit');
         }
 
         function loadUser() {
