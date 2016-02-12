@@ -4,6 +4,24 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function fnull(fun) {
+    var defaults = _.rest(arguments);
+
+    return function subFunction() {
+        var args = _.map(arguments, function(e, i) {
+            return existy(e) ? e : defaults[i];
+        });
+        return fun.apply(null, args);
+    };
+};
+
+var numArr = [1, null, 2, undefined, 3 ];
+var safeMult = fnull(function(total, n) {
+    return total * n;
+    }, 1, 1);
+
+console.log(_.reduce(numArr, safeMult));
+
 function makeUniqueStringFunction(start) {
     var counter = start;
 
