@@ -3,29 +3,39 @@
  */
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
+var funcSamp = function (a, b) {
+    console.log(arguments.length);
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+    console.log(arguments[2]);
+    console.log(arguments[3]);
+    return a + b;
+};
+
+console.log(_.reduce([1, 2, 3, 4, 5],funcSamp));
 
 function fnull(fun) {
     var defaults = _.rest(arguments);
 
     return function subFunction() {
-        var args = _.map(arguments, function(e, i) {
+        var args = _.map(arguments, function (e, i) {
             return existy(e) ? e : defaults[i];
         });
         return fun.apply(null, args);
     };
 };
 
-var numArr = [1, null, 2, undefined, 3 ];
-var safeMult = fnull(function(total, n) {
+var numArr = [55, 23, 44, undefined, 3 ];
+var safeMult = fnull(function (total, n) {
     return total * n;
-    }, 1, 1);
+}, 2, 3);
 
 console.log(_.reduce(numArr, safeMult));
 
 function makeUniqueStringFunction(start) {
     var counter = start;
 
-    return function(prefix) {
+    return function (prefix) {
         return [prefix, counter++].join('');
     }
 }
@@ -35,21 +45,24 @@ var uniqueString = makeUniqueStringFunction(0);
 console.log(uniqueString('dar'));
 console.log(uniqueString('nov'));
 
-function repeat( times, VALUE) {
-    return _.map(_.range(times ), function () {
+function repeat(times, VALUE) {
+    return _.map(_.range(times), function () {
         return VALUE;
     });
 }
 
-function repeatedly( times, fun) {
-    return _.map(_.range(times, 7 ), fun);
+function repeatedly(times, fun) {
+    return _.map(_.range(times, 7), fun);
 }
 
-console.log(repeatedly(3,  function(x) {
+console.log(repeatedly(3, function (x) {
     console.log(x);
-    return  x + 1; }));
+    return  x + 1;
+}));
 console.log(repeat(3, "Hello World"));
-console.log(repeatedly(3,  function() { return "Hello World"; }));
+console.log(repeatedly(3, function () {
+    return "Hello World";
+}));
 
 
 function finder3(fun, coll) {
@@ -67,12 +80,11 @@ function finder2(valueFun, bestFun, coll) {
     });
 }
 
-console.log( _.max([12, 34, 45, 43, 2]));
+console.log(_.max([12, 34, 45, 43, 2]));
 console.log(finder2(_.identity, Math.max, [12, 34, 45, 43, 2]));
-console.log(finder3( function(x, y) { return x > y }, [12, 34, 45, 43, 2]));
-
-
-
+console.log(finder3(function (x, y) {
+    return x > y
+}, [12, 34, 45, 43, 2]));
 
 
 function plucker(FIELD) {
@@ -487,7 +499,7 @@ digitSumReport2 = function (x) {
             return sum;
         };
     return typeError !== null ? typeError + ", sum undefined" :
-    "sum " + sum(x);
+        "sum " + sum(x);
 };
 
 console.log(digitSumReport2(434343));
@@ -659,8 +671,8 @@ var fortytwos2 = {
 };
 
 console.log(42 + (function () {
-        return 42
-    })());
+    return 42
+})());
 
 function weirdAdd(n, f) {
     return n + f()
