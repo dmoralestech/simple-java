@@ -4,31 +4,36 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 var funcSamp = function (a, b) {
-    console.log(arguments.length);
-    console.log(arguments[0]);
-    console.log(arguments[1]);
-    console.log(arguments[2]);
-    console.log(arguments[3]);
+    //console.log(arguments.length);
+//    console.log(arguments[0]);
+//    console.log(arguments[1]);
+//    console.log(arguments[2]);
+//    console.log(arguments[3]);
     return a + b;
 };
 
-console.log(_.reduce([1, 2, 3, 4, 5],funcSamp));
+console.log(_.reduce([1, 2, 3, 4, 5], funcSamp));
 
 function fnull(fun) {
     var defaults = _.rest(arguments);
+    console.log("defaults: " + defaults);
 
     return function subFunction() {
         var args = _.map(arguments, function (e, i) {
+            console.log("e: " + e);
+            console.log("i: " + i);
             return existy(e) ? e : defaults[i];
         });
         return fun.apply(null, args);
     };
 };
 
-var numArr = [55, 23, 44, undefined, 3 ];
+var numArr = [2, 3, null ];
 var safeMult = fnull(function (total, n) {
+    console.log("total: " + total);
+    console.log("n: " + n);
     return total * n;
-}, 2, 3);
+}, 2, 2);
 
 console.log(_.reduce(numArr, safeMult));
 
@@ -44,12 +49,6 @@ var uniqueString = makeUniqueStringFunction(0);
 
 console.log(uniqueString('dar'));
 console.log(uniqueString('nov'));
-
-function repeat(times, VALUE) {
-    return _.map(_.range(times), function () {
-        return VALUE;
-    });
-}
 
 function repeatedly(times, fun) {
     return _.map(_.range(times, 7), fun);
