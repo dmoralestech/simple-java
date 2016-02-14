@@ -3,6 +3,39 @@
  */
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
+
+
+function getAttribute(attr) {
+    return typeof this.getAttribute(attr) != 'undefined';
+}
+
+var accessors = {
+    sortable: {
+        get: function() {
+            return getAttribute('sortable');
+        }
+    },
+    droppable: {
+        get: function() {
+            return getAttribute('droppable');
+        }
+    }
+};
+
+function generateGetMethod(attr) {
+    return function() {
+        return typeof this.getAttribute(attr) != 'undefined';
+    };
+}
+var accessors2 = {
+    sortable: {
+        get: generateGetMethod('sortable')
+    },
+    droppable: {
+        get: generateGetMethod('droppable')
+    }
+};
+
 var funcSamp = function (a, b) {
     //console.log(arguments.length);
 //    console.log(arguments[0]);
