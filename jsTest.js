@@ -4,6 +4,78 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+function createArray(length) {
+    var arr = new Array(length || 0),
+        i = length;
+
+    if (arguments.length > 1) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        while(i--) arr[length-1 - i] = createArray.apply(this, args);
+    }
+
+    return arr;
+}
+
+var array5x5 = createArray(5, 5);
+array5x5[0][0] = 1;
+array5x5[0][1] = 0;
+array5x5[0][2] = 0;
+array5x5[0][3] = 0;
+array5x5[0][4] = 1;
+
+array5x5[1][0] = 1;
+array5x5[1][1] = 1;
+array5x5[1][2] = 0;
+array5x5[1][3] = 0;
+array5x5[1][4] = 0;
+
+array5x5[2][0] = 1;
+array5x5[2][1] = 1;
+array5x5[2][2] = 1;
+array5x5[2][3] = 0;
+array5x5[2][4] = 0;
+
+array5x5[3][0] = 1;
+array5x5[3][1] = 1;
+array5x5[3][2] = 1;
+array5x5[3][3] = 1;
+array5x5[3][4] = 0;
+
+array5x5[4][0] = 1;
+array5x5[4][1] = 1;
+array5x5[4][2] = 1;
+array5x5[4][3] = 1;
+array5x5[4][4] = 1;
+
+console.log(array5x5);
+console.log(array5x5[0]);
+console.log(array5x5[4]);
+
+//this function setups up which tabs will be disabled depending on the current step.
+function setUpTabUI(stepNum) { //stepNum is based-1.
+    //get the appropriate array for that particular step
+    console.log('setting page :' + stepNum);
+    var row = array5x5[stepNum - 1];
+
+    _.map(row, function(value, index) {
+        console.log('setting page: ' + index + ' to ' + value );
+    });
+}
+
+setUpTabUI(1);
+
+function hasKeys() {
+    var KEYS = _.toArray(arguments);
+
+    var fun = function(obj) {
+        return _.every(KEYS, function(k){
+                return _.has(obj, k);
+        });
+    };
+
+    fun.message = cat(["Must have values for keys:"], KEYS).join(" ");
+    return fun;
+}
 
 function getAttribute(attr) {
     return typeof this.getAttribute(attr) != 'undefined';
@@ -47,26 +119,26 @@ var funcSamp = function (a, b) {
 
 console.log(_.reduce([1, 2, 3, 4, 5], funcSamp));
 
-function fnull(fun) {
-    var defaults = _.rest(arguments);
-    console.log("defaults: " + defaults);
+function fnull(FUN) {
+    var DEFAULTS = _.rest(arguments);
+    console.log("defaults: " + DEFAULTS);
 
-    return function subFunction() {
-        var args = _.map(arguments, function (e, i) {
+    return function subFunction(aa, bb, cc, dd, ee) {
+        var args = _.map(arguments, function (e, i, p, y) {
             console.log("e: " + e);
             console.log("i: " + i);
-            return existy(e) ? e : defaults[i];
+            console.log("");
+            return existy(e) ? e : DEFAULTS[i];
         });
-        return fun.apply(null, args);
+        return FUN.apply(null, args);
     };
 };
 
-var numArr = [2, 3, null, null, null ];
-var safeMult = fnull(function (total, n) {
-    console.log("total: " + total);
-    console.log("n: " + n);
+var numArr = [2, null, 3, null, 4, undefined, 5];
+var funcParam = function (total, n) {
     return total * n;
-}, 2, 3);
+};
+var safeMult = fnull(funcParam, 100, 1000);
 
 console.log(_.reduce(numArr, safeMult));
 
