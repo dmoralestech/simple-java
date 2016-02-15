@@ -61,12 +61,12 @@ function fnull(fun) {
     };
 };
 
-var numArr = [2, 3, null ];
+var numArr = [2, 3, null, null, null ];
 var safeMult = fnull(function (total, n) {
     console.log("total: " + total);
     console.log("n: " + n);
     return total * n;
-}, 2, 2);
+}, 2, 3);
 
 console.log(_.reduce(numArr, safeMult));
 
