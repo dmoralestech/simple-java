@@ -4,6 +4,20 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+var myClosureExample = function (A, B, C, D) {
+    return function(x, y) {
+        console.log(A + "," +  B + "," + C + "," + D);
+        return (A + B + C + D) * x * y;
+    };
+};
+
+var func = myClosureExample(10, 20, 30, 40);
+var func2 = myClosureExample(1, 20, 30, 50);
+
+console.log(func(2, 3));
+console.log(func2(5, 10));
+
+
 var addClass = function(className, element) {
     element.className += ' ' + className;
     return element;
@@ -18,8 +32,8 @@ var addBoyClass = function(el) {
 };
 
 var ids = ['DEE', 'DUM'];
-var elements = _.map(document.getElementById, ids);
-elements = _.map(addTweedleClass, elements);
+var elements = _.map(ids, document.getElementById );
+elements = _.map(elements, addTweedleClass );
 
 var partialFirstOfTwo = function (fn, param1) {
     return function(param2) {
@@ -27,7 +41,8 @@ var partialFirstOfTwo = function (fn, param1) {
     }
 }
 
-
+addTweedleClass = partialFirstOfTwo(addClass, 'tweedle');
+addBoyClass = partialFirstOfTwo(addClass, 'boy');
 
 function createArray(length) {
     var arr = new Array(length || 0),
