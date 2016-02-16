@@ -21,7 +21,7 @@ var ids = ['DEE', 'DUM'];
 var elements = _.map(document.getElementById, ids);
 elements = _.map(addTweedleClass, elements);
 
-var partialFirstOfTwo(fn, param1) {
+var partialFirstOfTwo = function (fn, param1) {
     return function(param2) {
         return fn(param1, param2);
     }
