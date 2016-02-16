@@ -4,6 +4,31 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+var addClass = function(className, element) {
+    element.className += ' ' + className;
+    return element;
+};
+
+var addTweedleClass = function(el) {
+    return addClass('tweedle', el);
+};
+
+var addBoyClass = function(el) {
+    return addClass('boy', el);
+};
+
+var ids = ['DEE', 'DUM'];
+var elements = _.map(document.getElementById, ids);
+elements = _.map(addTweedleClass, elements);
+
+var partialFirstOfTwo(fn, param1) {
+    return function(param2) {
+        return fn(param1, param2);
+    }
+}
+
+
+
 function createArray(length) {
     var arr = new Array(length || 0),
         i = length;
