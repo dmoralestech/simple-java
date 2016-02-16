@@ -17,11 +17,7 @@ function createArray(length) {
 }
 
 var array5x5 = createArray(5, 5);
-array5x5[0][0] = 1;
-array5x5[0][1] = 0;
-array5x5[0][2] = 0;
-array5x5[0][3] = 0;
-array5x5[0][4] = 1;
+array5x5[0] = [1, 0, 0, 0, 1];
 
 array5x5[1][0] = 1;
 array5x5[1][1] = 1;
