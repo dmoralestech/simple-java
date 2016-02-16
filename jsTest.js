@@ -4,6 +4,22 @@
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 
+var memoize = function(f) {
+    var cache = {};
+
+    return function() {
+        var arg_str = JSON.stringify(arguments);
+        cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
+        return cache[arg_str];
+    };
+};
+
+var squareNumber = memoize(function(x) {return x * x;});
+
+console.log(squareNumber(4));
+console.log(squareNumber(5));
+console.log(squareNumber(4));
+
 var myClosureExample = function (A, B, C, D) {
     return function(x, y) {
         console.log(A + "," +  B + "," + C + "," + D);
