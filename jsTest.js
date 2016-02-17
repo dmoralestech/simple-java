@@ -11,6 +11,12 @@ var match = curry(function(what, str) {
     return str.match(what);
 });
 
+function match2(what, str) {
+    console.log('WHAT: ' + what);
+    console.log('STR: ' + str);
+    return str.match(what);
+}
+
 var replace = curry(function(what, replacement, str) {
     return str.replace(what, replacement);
 });
@@ -23,8 +29,11 @@ var map = curry(function(f, ary) {
     return ary.map(f);
 });
 
+var resMatch = match2('ell', "hello world");
+console.log(resMatch);
 console.log(match(/\s+/g, "hello world"));
 console.log(match(/\s+/g)("hello world"));
+console.log(replace("hello")("wazzup")("hello world"));
 
 
 var abc = function(a, b, c) {
