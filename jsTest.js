@@ -5,6 +5,18 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var compose = function(f,g) {
+    return function(x) {
+        return f(g(x));
+    };
+};
+
+var toUpperCase = function(x) { return x.toUpperCase(); };
+var exclaim = function(x) { return x + '!'; };
+var shout = compose(exclaim, toUpperCase);
+
+console.log(shout("send in the clowns"));
+
 var match = curry(function(what, str) {
     console.log('WHAT: ' + what);
     console.log('STR: ' + str);
