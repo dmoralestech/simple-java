@@ -3,6 +3,40 @@
  */
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
+var curry = require('lodash.curry');
+
+var match = curry(function(what, str) {
+    console.log('WHAT: ' + what);
+    console.log('STR: ' + str);
+    return str.match(what);
+});
+
+var replace = curry(function(what, replacement, str) {
+    return str.replace(what, replacement);
+});
+
+var filter = curry(function(f, ary) {
+    return ary.filter(f);
+});
+
+var map = curry(function(f, ary) {
+    return ary.map(f);
+});
+
+console.log(match(/\s+/g, "hello world"));
+console.log(match(/\s+/g)("hello world"));
+
+
+var abc = function(a, b, c) {
+    return [a, b, c];
+};
+
+var curried = curry(abc);
+
+console.log(curried(1)(2)(3));
+console.log(curried(1,2)(3));
+console.log(curried(1,2,3));
+
 
 var memoize = function(f) {
     var cache = {};
