@@ -42,6 +42,13 @@ var map = curry(function(f, ary) {
 });
 
 var resMatch = match2('ell', "hello world");
+
+var hasSpaces = match(/\s+/g);
+
+console.log(hasSpaces("hello world"));
+
+
+
 console.log(resMatch);
 console.log(match(/\s+/g, "hello world"));
 console.log(match(/\s+/g)("hello world"));
