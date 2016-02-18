@@ -23,6 +23,20 @@ var match = curry(function(what, str) {
     return str.match(what);
 });
 
+var newVals = _.map(['a', 'b', 'c'], function(e, i) {
+    return e + e + i;
+})
+
+var filterMap = curry(function (coll, fun) {
+    return _.map(coll, fun)
+})
+
+var filterMapHolder = filterMap(['a', 'b']);
+
+var filterMapHolderFun = filterMapHolder(function(e) {
+    return e + e;
+})
+
 function match2(what, str) {
     console.log('WHAT: ' + what);
     console.log('STR: ' + str);
