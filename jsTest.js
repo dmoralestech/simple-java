@@ -47,7 +47,11 @@ var hasSpaces = match(/\s+/g);
 
 console.log(hasSpaces("hello world"));
 
+console.log(filter(hasSpaces, ['darwin_morales', 'darwin morales']));
 
+var findWithSpaces = filter(hasSpaces);
+
+console.log(findWithSpaces(['darwin_morales', 'darwin morales']) );
 
 console.log(resMatch);
 console.log(match(/\s+/g, "hello world"));
