@@ -17,6 +17,17 @@ var shout = compose(exclaim, toUpperCase);
 
 console.log(shout("send in the clowns"));
 
+var findCurry = curry (function(coll, pred) {
+    return _.find(coll, pred);
+})
+
+var findSomething = findCurry(['a', 'b', 'c']);
+
+var findSomethingA = findSomething(function (e) {
+    return e === 'a';
+});
+
+
 var match = curry(function(what, str) {
     console.log('WHAT: ' + what);
     console.log('STR: ' + str);
@@ -30,6 +41,8 @@ var newVals = _.map(['a', 'b', 'c'], function(e, i) {
 var filterMap = curry(function (coll, fun) {
     return _.map(coll, fun)
 })
+
+
 
 var filterMapHolder = filterMap(['a', 'b']);
 
@@ -71,7 +84,6 @@ console.log(resMatch);
 console.log(match(/\s+/g, "hello world"));
 console.log(match(/\s+/g)("hello world"));
 console.log(replace("hello")("wazzup")("hello world"));
-
 
 var abc = function(a, b, c) {
     return [a, b, c];
