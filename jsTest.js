@@ -29,8 +29,6 @@ var findSomethingA = findSomething(function (e) {
 
 
 var match = curry(function(what, str) {
-    console.log('WHAT: ' + what);
-    console.log('STR: ' + str);
     return str.match(what);
 });
 
