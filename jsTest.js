@@ -5,11 +5,26 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
-var compose = function(f,g) {
-    return function(x) {
-        return f(g(x));
+function dispatch() {
+    var funs = _.toArray(arguments);
+    var size = funs.lenght;
+
+    return function(target) {
+        var ret = undefined;
+        var args = _.rest(arguments);
+
+        for (var i = 0; i < size; i++ ) {
+            var fun = funs[i];
+            ret = fun.apply(fun, construct(target, args));
+
+            if (existy(ret)) return ret;
+        }
+
+        return ret;
     };
-};
+}
+
+
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
 var exclaim = function(x) { return x + '!'; };
