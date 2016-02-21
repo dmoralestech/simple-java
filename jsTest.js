@@ -22,10 +22,14 @@ var findCurry = curry (function(coll, pred) {
 })
 
 var findSomething = findCurry(['a', 'b', 'c']);
-
 var findSomethingA = findSomething(function (e) {
     return e === 'a';
 });
+
+
+console.log( _.find(['a', 'b', 'c'], function (e) {
+    return e === 'a'}
+));
 
 
 var match = curry(function(what, str) {
