@@ -16,6 +16,30 @@ Container.of = function(x) {
 console.log(Container.of("darwin"));
 console.log(Container.of({name: "darwin", address: "Sydney"}));
 
+
+Container.prototype.map = function(f) {
+    return Container.of(f(this.__value))
+};
+
+console.log(
+    Container.of(2).map(function (two) {
+        return two + 2;
+}));
+
+console.log(
+    Container.of("flame").map(function (s) {
+        return s.toUpperCase()
+    })
+);
+
+console.log(
+    Container.of({name: "darwin", address: "Sydney"}).map(function (obj) {
+        obj.address = obj.address.toUpperCase();
+        return obj;
+    })
+);
+
+
 /*
 function autoCurry(fn, numArgs) {
     numArgs = numArgs || fn.length;
