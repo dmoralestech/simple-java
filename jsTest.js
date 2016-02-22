@@ -5,6 +5,10 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var match = curry(function(what, str) {
+    return str.match(what);
+});
+
 var Maybe = function(x) {
     this.__value = x;
 }
@@ -19,8 +23,10 @@ Maybe.prototype.isNothing = function() {
 }
 
 Maybe.prototype.map = function(f) {
-    return this.isNothing() ? Maybe.of(null) : Maybe.of(f.this.__value));
+    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
 }
+
+var maybe1 = Maybe.of('DaM DaM').map(match(/a/ig));
 
 
 
@@ -194,9 +200,7 @@ console.log( _.find(['a', 'b', 'c'], function (e) {
 ));
 
 
-var match = curry(function(what, str) {
-    return str.match(what);
-});
+
 
 var newVals = _.map(['a', 'b', 'c'], function(e, i) {
     return e + e + i;
