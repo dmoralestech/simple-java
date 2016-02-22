@@ -39,6 +39,12 @@ var add = function(x) {
     };
 };
 
+function compose(a, b) {
+    return function(c) {
+        return a(b(c)); //split('a b c d')
+    }
+}
+
 var borisMaybe = Maybe.of({
     name: 'Boris',
 }).map(_.prop('age')).map(add(10));
@@ -52,6 +58,32 @@ var maybeDinah = Maybe.of({
     name: 'Dinah',
     age: 14,
 }).map(_.prop('age')).map(add(10));
+
+var map = curry(function(f, any_functor_at_all) {
+    return any_functor_at_all.map(f);
+});
+
+var safeHead = function(xs) {
+    return Maybe.of(xs[0]);
+};
+
+var addresses = _.prop('addresses', {
+    addresses: [{
+        street: 'Shady Ln.',
+        number: 4201,
+    }]
+});
+
+var streetName = compose(map(_.prop('street')), safeHead, addresses);
+
+console.log(
+    streetName({
+        addresses: [{
+            street: 'Shady Ln.',
+            number: 4201,
+        }]
+    })
+);
 
 
 var Container = function(x) {
