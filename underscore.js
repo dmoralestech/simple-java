@@ -184,6 +184,18 @@
         return results;
     };
 
+    _.myMap = _.collect = function(iteratee, obj, context) {
+        iteratee = cb(iteratee, context);
+        var keys = !isArrayLike(obj) && _.keys(obj),
+            length = (keys || obj).length,
+            results = Array(length);
+        for (var index = 0; index < length; index++) {
+            var currentKey = keys ? keys[index] : index;
+            results[index] = iteratee(obj[currentKey], currentKey, obj);
+        }
+        return results;
+    };
+
     // Create a reducing function iterating left or right.
     var createReduce = function(dir) {
         // Wrap code that reassigns argument variables in a separate function than

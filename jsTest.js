@@ -5,9 +5,59 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+/*
+function autoCurry(fn, numArgs) {
+    numArgs = numArgs || fn.length;
+    function f() {
+        if (arguments.length < numArgs)
+        {
+            return numArgs - arguments.length > 0 ?
+                autoCurry(curry.apply(this, [fn].concat(toArray(arguments))),
+                    numArgs - arguments.length) :
+                curry.apply(this, [fn].concat(toArray(arguments)));
+        }
+        else
+        {
+            return fn.apply(this, arguments);
+        }
+    }
+    f.toString = function() { return fn.toString(); };
+    f.curried = true;
+    return f;
+}
+
+Function.prototype.autoCurry = function(n) { return autoCurry(this, n); }
+
+
+
+var dot = function(prop, obj) {
+    return obj[prop];
+}.autoCurry();
+
+var userPhone = dot('phone');
+
+console.log(userPhone({name: 'darwin', phone:'9929299'}));
+
+*/
+
+console.log(_.myMap(function(x) {return x + 1}, [3]));
+
+
 function truthy(x) {
     return (x !== false) && existy(x)
 };
+
+var length = function (x) {
+    return x.length;
+}
+
+var split = function (x) {
+    return x.split(' ');
+}
+_.split
+var wordCount = compose(length, split);
+console.log(wordCount('a b c  d e'));
+
 
 function doWhen(cond, action) {
     if(truthy(cond))
@@ -27,7 +77,7 @@ function invoker(NAME, METHOD) {
     };
 };
 
-var dmRev = invoker('reverse', Array.prototype.reverse);
+var dmRev = invoker('keys', Array.prototype.reverse);
 console.log(_.map([[1, 2, 3], [4,5, 6]], dmRev));
 
 function dispatch() {
@@ -50,7 +100,10 @@ function dispatch() {
 }
 
 
-var str = dispatch()
+var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toString', String.prototype.toString));
+
+console.log(str('a'));
+console.log(_.range(10));
 
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
@@ -58,7 +111,7 @@ var exclaim = function(x) { return x + '!'; };
 
 function compose(a, b) {
     return function(c) {
-        return a(b(c));
+        return a(b(c)); //split('a b c d')
     }
 }
 
