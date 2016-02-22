@@ -5,6 +5,17 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var Container = function(x) {
+    this.__value = x;
+}
+
+Container.of = function(x) {
+    return new Container(x);
+};
+
+console.log(Container.of("darwin"));
+console.log(Container.of({name: "darwin", address: "Sydney"}));
+
 /*
 function autoCurry(fn, numArgs) {
     numArgs = numArgs || fn.length;
