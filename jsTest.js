@@ -5,6 +5,31 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function truthy(x) {
+    return (x !== false) && existy(x)
+};
+
+function doWhen(cond, action) {
+    if(truthy(cond))
+        return action();
+    else
+        return undefined;
+}
+
+function invoker (NAME, METHOD) {
+    return function(target) {
+        if (!existy(target)) fail("Must provide a target");
+        var targetMethod = target[NAME];
+        var args = _.rest(arguments);
+        return doWhen((existy(targetMethod) && METHOD === targetMethod), function() {
+            return targetMethod.apply(target, args);
+        });
+    };
+};
+
+var dmRev = invoker('reverse', Array.prototype.reverse);
+console.log(_.map([1, 2, 3], dmRev));
+
 function dispatch() {
     var funs = _.toArray(arguments);
     var size = funs.lenght;
@@ -24,6 +49,8 @@ function dispatch() {
     };
 }
 
+
+var str = dispatch()
 
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
