@@ -74,6 +74,11 @@ var addresses = _.prop('addresses', {
     }]
 });
 
+var safeHeadObj =  safeHead(addresses);
+console.log(safeHeadObj);
+console.log(_.prop('street', safeHeadObj));
+console.log(safeHeadObj.map(_.prop('street')));
+
 var streetName = compose(map(_.prop('street')), safeHead, addresses);
 
 console.log(
