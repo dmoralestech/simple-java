@@ -16,19 +16,19 @@ function doWhen(cond, action) {
         return undefined;
 }
 
-function invoker (NAME, METHOD) {
-    return function(target) {
-        if (!existy(target)) fail("Must provide a target");
+function invoker(NAME, METHOD) {
+    return function (target) {
+        if (!existy(target)) console.log("Must provide a target");
         var targetMethod = target[NAME];
         var args = _.rest(arguments);
-        return doWhen((existy(targetMethod) && METHOD === targetMethod), function() {
+        return doWhen((existy(targetMethod) && METHOD === targetMethod), function () {
             return targetMethod.apply(target, args);
         });
     };
 };
 
 var dmRev = invoker('reverse', Array.prototype.reverse);
-console.log(_.map([1, 2, 3], dmRev));
+console.log(_.map([[1, 2, 3], [4,5, 6]], dmRev));
 
 function dispatch() {
     var funs = _.toArray(arguments);
@@ -55,6 +55,13 @@ var str = dispatch()
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
 var exclaim = function(x) { return x + '!'; };
+
+function compose(a, b) {
+    return function(c) {
+        return a(b(c));
+    }
+}
+
 var shout = compose(exclaim, toUpperCase);
 
 console.log(shout("send in the clowns"));
