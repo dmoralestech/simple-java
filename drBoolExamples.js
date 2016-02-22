@@ -43,6 +43,16 @@ var borisMaybe = Maybe.of({
     name: 'Boris',
 }).map(_.prop('age')).map(add(10));
 
+var maybeDinah1 = Maybe.of({
+    name: 'Dinah',
+    age: 14,
+}).map(_.prop('age'));
+
+var maybeDinah = Maybe.of({
+    name: 'Dinah',
+    age: 14,
+}).map(_.prop('age')).map(add(10));
+
 
 var Container = function(x) {
     this.__value = x;
