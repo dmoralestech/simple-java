@@ -40,8 +40,13 @@ console.log(userPhone({name: 'darwin', phone:'9929299'}));
 
 */
 
-console.log(_.myMap(function(x) {return x + 1}, [3]));
+var plus1 = function(x) { return x + 1; };
 
+console.log(_.myMap(plus1, [3]));
+var arrayPlus1 = _.myMap(plus1, Array(3));
+
+console.log(_.myMap(function(x){ return "I am " + x}, ['yo'] ));
+console.log(_.myMap(function(x){ return "I am " + x.id}, [{id: 3}] ));
 
 function truthy(x) {
     return (x !== false) && existy(x)
