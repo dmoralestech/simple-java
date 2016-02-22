@@ -5,65 +5,6 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
-var match = curry(function(what, str) {
-    return str.match(what);
-});
-
-var Maybe = function(x) {
-    this.__value = x;
-}
-
-Maybe.of = function (x) {
-    return new Maybe(x);
-}
-
-
-Maybe.prototype.isNothing = function() {
-    return (this.__value === null || this.__value === undefined);
-}
-
-Maybe.prototype.map = function(f) {
-    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
-}
-
-var maybe1 = Maybe.of('DaM DaM').map(match(/a/ig));
-
-
-
-var Container = function(x) {
-    this.__value = x;
-}
-
-Container.of = function(x) {
-    return new Container(x);
-};
-
-console.log(Container.of("darwin"));
-console.log(Container.of({name: "darwin", address: "Sydney"}));
-
-
-Container.prototype.map = function(f) {
-    return Container.of(f(this.__value))
-};
-
-console.log(
-    Container.of(2).map(function (two) {
-        return two + 2;
-}));
-
-console.log(
-    Container.of("flame").map(function (s) {
-        return s.toUpperCase()
-    })
-);
-
-console.log(
-    Container.of({name: "darwin", address: "Sydney"}).map(function (obj) {
-        //obj.address = obj.address.toUpperCase();
-        //return obj;
-        return {newAddress: obj.address.toUpperCase()};
-    })
-);
 
 
 /*
