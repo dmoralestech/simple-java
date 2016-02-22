@@ -5,6 +5,25 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var Maybe = function(x) {
+    this.__value = x;
+}
+
+Maybe.of = function (x) {
+    return new Maybe(x);
+}
+
+
+Maybe.prototype.isNothing = function() {
+    return (this.__value === null || this.__value === undefined);
+}
+
+Maybe.prototype.map = function(f) {
+    return this.isNothing() ? Maybe.of(null) : Maybe.of(f.this.__value));
+}
+
+
+
 var Container = function(x) {
     this.__value = x;
 }
@@ -34,8 +53,9 @@ console.log(
 
 console.log(
     Container.of({name: "darwin", address: "Sydney"}).map(function (obj) {
-        obj.address = obj.address.toUpperCase();
-        return obj;
+        //obj.address = obj.address.toUpperCase();
+        //return obj;
+        return {newAddress: obj.address.toUpperCase()};
     })
 );
 
