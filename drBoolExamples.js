@@ -11,6 +11,10 @@ var idR = R.prop('id', {id: 'foo'});
 var idR = R.prop('name', {id: 'foo'});
 console.log(idR);
 
+layers = [{id: '3', name: 'darwin'}, {id: '5', name: 'nova'}, {id: 'id33', name: 'daniel'}];
+var layerMap = R.zipObj(R.pluck('id', layers), layers);
+console.log(layerMap);
+
 var add1ToItems = R.map(R.add(1));
 
 console.log(add1ToItems([1, 2, 3]));
