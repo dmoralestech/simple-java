@@ -7,6 +7,10 @@ var _ = require('ramda');
 var R = require('ramda');
 var curry = require('lodash.curry');
 
+var idR = R.prop('id', {id: 'foo'});
+var idR = R.prop('name', {id: 'foo'});
+console.log(idR);
+
 var add1ToItems = R.map(R.add(1));
 
 console.log(add1ToItems([1, 2, 3]));
