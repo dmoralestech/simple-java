@@ -11,6 +11,21 @@ var idR = R.prop('id', {id: 'foo'});
 var idR = R.prop('name', {id: 'foo'});
 console.log(idR);
 
+var isOne = function(n) {
+    return n === '1';
+};
+
+var getFirstChar = function(s) {
+    return s.charAt(0);
+};
+
+console.log(R.map(getFirstChar,['22','12','15','text']));
+
+var composed = R.compose(R.append('A'),
+                            R.filter(isOne),
+                            R.map(getFirstChar));
+console.log(composed(['22','12','15','text']));
+
 layers = [{id: '3', name: 'darwin'}, {id: '5', name: 'nova'}, {id: 'id33', name: 'daniel'}];
 var layerMap = R.zipObj(R.pluck('id', layers), layers);
 console.log(layerMap);
