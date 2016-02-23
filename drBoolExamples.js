@@ -4,7 +4,12 @@
 
 
 var _ = require('ramda');
+var R = require('ramda');
 var curry = require('lodash.curry');
+
+var add1ToItems = R.map(R.add(1));
+
+console.log(add1ToItems([1, 2, 3]));
 
 var match = curry(function(what, str) {
     return str.match(what);
