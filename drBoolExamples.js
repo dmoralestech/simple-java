@@ -30,8 +30,8 @@ layers = [{id: '3', name: 'darwin'}, {id: '5', name: 'nova'}, {id: 'id33', name:
 var layerMap = R.zipObj(R.pluck('id', layers), layers);
 console.log(layerMap);
 
-var layersMapFunc = R.compose(R.zipObj(), R.pluck('id'));
-console.log(layersMapFunc(layers)(layers));
+var layersMapFunc = R.pipe(R.zipObj(), R.pluck('id'));
+console.log(layersMapFunc(layers));
 
 var add1ToItems = R.map(R.add(1));
 
