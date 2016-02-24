@@ -31,15 +31,13 @@ usersArray2 = [{id: '1x', name: 'darwinx'}, {id: '5x', name: 'novax'}, {id: 'id3
 var layerMap = R.zipObj(R.pluck('id', usersArray), usersArray);
 console.log(layerMap);
 
-var layersMapFunc = R.compose(R.zipObj, R.pluck('id'));
-console.log(layersMapFunc(usersArray2)(usersArray));
-
+var createKeysWithId = R.compose(R.zipObj, R.pluck('id'));
+var zipObjWith = createKeysWithId(usersArray2)
+console.log(zipObjWith(usersArray));
 
 var idWithNum1 = R.compose(R.filter(isOne), R.pluck('id'));
 console.log(idWithNum1(usersArray));
 console.log( R.filter(isOne)(['a', '1', '2', '1']));
-
-
 
 var add1ToItems = R.map(R.add(1));
 
