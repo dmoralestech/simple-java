@@ -7,6 +7,15 @@ var _ = require('ramda');
 var R = require('ramda');
 var curry = require('lodash.curry');
 
+var trace = _.curry(function(tag, x) {
+    console.log(tag, x);
+    return x;
+});
+
+var darwinTrace = trace('darwin');
+darwinTrace('morales');
+
+
 var idR = R.prop('id', {id: 'foo'});
 var idR = R.prop('name', {id: 'foo'});
 console.log(idR);
