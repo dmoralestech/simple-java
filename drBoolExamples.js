@@ -26,15 +26,17 @@ var composed = R.compose(R.append('A'),
                             R.map(getFirstChar));
 console.log(composed(['22','12','15','text']));
 
-collTest = [{id: '1', name: 'darwin'}, {id: '5', name: 'nova'}, {id: 'id33', name: 'daniel'}];
-var layerMap = R.zipObj(R.pluck('id', collTest), collTest);
+usersArray = [{id: '1', name: 'darwin'}, {id: '5', name: 'nova'}, {id: 'id33', name: 'daniel'}];
+usersArray2 = [{id: '1x', name: 'darwinx'}, {id: '5x', name: 'novax'}, {id: 'id33x', name: 'danielx'}];
+var layerMap = R.zipObj(R.pluck('id', usersArray), usersArray);
 console.log(layerMap);
 
 var layersMapFunc = R.compose(R.zipObj, R.pluck('id'));
-console.log(layersMapFunc(collTest)(collTest));
+console.log(layersMapFunc(usersArray2)(usersArray));
+
 
 var idWithNum1 = R.compose(R.filter(isOne), R.pluck('id'));
-console.log(idWithNum1(collTest));
+console.log(idWithNum1(usersArray));
 console.log( R.filter(isOne)(['a', '1', '2', '1']));
 
 
