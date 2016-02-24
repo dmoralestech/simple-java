@@ -31,12 +31,13 @@ var layerMap = R.zipObj(R.pluck('id', collTest), collTest);
 console.log(layerMap);
 
 var layersMapFunc = R.compose(R.zipObj, R.pluck('id'));
-var idWithNum1 = R.compose(R.filter(isOne), R.pluck('id'));
+console.log(layersMapFunc(collTest)(collTest));
 
+var idWithNum1 = R.compose(R.filter(isOne), R.pluck('id'));
 console.log(idWithNum1(collTest));
 console.log( R.filter(isOne)(['a', '1', '2', '1']));
 
-console.log(layersMapFunc(collTest)(collTest));
+
 
 var add1ToItems = R.map(R.add(1));
 
