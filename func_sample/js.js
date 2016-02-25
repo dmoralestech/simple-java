@@ -50,6 +50,7 @@ require([
         var renderImages = _.compose(Impure.setHtml('body'), images);
 
         var app = _.compose(Impure.getJSON(renderImages), url);
+        //var app = _.compose(Impure.getJSON(trace(renderImages)), url);
 
-        app('portrait');
+        app('kobebryant');
     });
