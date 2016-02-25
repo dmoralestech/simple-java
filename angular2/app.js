@@ -5,7 +5,7 @@ Note.annotations = [
     selector: "note"
   }),
   new angular.ViewAnnotation({
-    template: "<div>Simple message</div>"
+    template: "<div> Simple message <button type='button'>Click Me!</button></div>"
   })
 ];
 
