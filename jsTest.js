@@ -6,6 +6,47 @@ var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
 
+function MONAD() {
+    return function unit(value) {
+        var monad = Object.create(null);
+        monad.bind = function (func) {
+            return func(value);
+        };
+        return monad;
+    };
+}
+
+function MONADv2() {
+    var prototype = Object.create(null);
+    function unit(value) {
+        var monad = Object.create(prototype);
+        monad.bind = function (func, args){
+            return func.apply(undefined, [value].concat(Array.prototype.slice.apply(args || [])));
+        };
+        return monad;
+    }
+    unit.method = function(name, func) {
+        prototype[name] = func;
+        return unit;
+    }
+    unit.lift = function(name, func) {
+        prototype[name] = function (... args) {
+            return unit(this.bind(func, args));
+        };
+        return unit;
+    }
+
+    return unit;
+}
+
+var plus1 = function(x) { return x + 1; };
+
+var identity = MONAD();
+var monad = identity("Hello");
+monad.bind(console.log);
+
+monad = identity(3);
+console.log(monad.bind(plus1));
 
 /*
 function autoCurry(fn, numArgs) {
@@ -42,7 +83,7 @@ console.log(userPhone({name: 'darwin', phone:'9929299'}));
 
 */
 
-var plus1 = function(x) { return x + 1; };
+
 
 console.log(_.myMap(plus1, [3]));
 var arrayPlus1 = _.myMap(plus1, Array(3));

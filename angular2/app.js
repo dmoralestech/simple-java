@@ -1,3 +1,16 @@
+function AnotherNote() {
+}
+AnotherNote.annotations = [
+  new angular.ComponentAnnotation({
+    selector: "anotherNote"
+  }),
+  new angular.ViewAnnotation({
+    template: "<div>Darwin's message</div>"
+  })
+];
+
+
+
 function Note() {
 }
 Note.annotations = [
@@ -16,8 +29,8 @@ Egghead.annotations = [
     selector: "egghead"
   }),
   new angular.ViewAnnotation({
-    directives: [Note],
-    template: "<div><h1>Hello everyone</h1><note></note></div>"
+    directives: [Note,AnotherNote],
+    template: "<div><h1>Hello everyone</h1><note></note> <anotherNote></anotherNote></div>"
   })
 ];
 
