@@ -6,6 +6,30 @@ var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
 
+var __slice = Array.prototype.slice;
+
+function callFirst(fn, larg) {
+    return function () {
+        var _args = __slice.call(arguments, 0);
+
+        return fn.apply(this, [larg].concat(_args));
+    }
+}
+
+function callLast(fn, rarg) {
+    return function () {
+        var _args = __slice.call(arguments, 0);
+
+        return fn.apply(this, [rarg].concat(_args));
+    }
+}
+
+function greet(me, you) {
+    return "Hello " + you + " my name is " + me;
+}
+
+var heliosSaysHello = callFirst(greet,'Helios');
+
 function MONAD() {
     return function unit(value) {
         var monad = Object.create(null);
@@ -16,28 +40,28 @@ function MONAD() {
     };
 }
 
-function MONADv2() {
-    var prototype = Object.create(null);
-    function unit(value) {
-        var monad = Object.create(prototype);
-        monad.bind = function (func, args){
-            return func.apply(undefined, [value].concat(Array.prototype.slice.apply(args || [])));
-        };
-        return monad;
-    }
-    unit.method = function(name, func) {
-        prototype[name] = func;
-        return unit;
-    }
-    unit.lift = function(name, func) {
-        prototype[name] = function (... args) {
-            return unit(this.bind(func, args));
-        };
-        return unit;
-    }
-
-    return unit;
-}
+//function MONADv2() {
+//    var prototype = Object.create(null);
+//    function unit(value) {
+//        var monad = Object.create(prototype);
+//        monad.bind = function (func, args){
+//            return func.apply(undefined, [value].concat(Array.prototype.slice.apply(args || [])));
+//        };
+//        return monad;
+//    }
+//    unit.method = function(name, func) {
+//        prototype[name] = func;
+//        return unit;
+//    }
+//    unit.lift = function(name, func) {
+//        prototype[name] = function (... args) {
+//            return unit(this.bind(func, args));
+//        };
+//        return unit;
+//    }
+//
+//    return unit;
+//}
 
 var plus1 = function(x) { return x + 1; };
 
