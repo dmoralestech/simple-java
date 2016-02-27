@@ -32,6 +32,10 @@ var heliosSaysHello = callFirst(greet,'Helios');
 
 console.log(heliosSaysHello('Eartha'));
 
+var sayHelloToCeline = callLast(greet, "Celine");
+
+console.log(sayHelloToCeline('Eartha'));
+
 function MONAD() {
     return function unit(value) {
         var monad = Object.create(null);
