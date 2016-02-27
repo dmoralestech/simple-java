@@ -30,6 +30,8 @@ function greet(me, you) {
 
 var heliosSaysHello = callFirst(greet,'Helios');
 
+console.log(heliosSaysHello('Eartha'));
+
 function MONAD() {
     return function unit(value) {
         var monad = Object.create(null);
