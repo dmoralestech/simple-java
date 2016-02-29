@@ -1,10 +1,25 @@
-/**
+ /**
  * Created by dmorales on 9/12/2015.
  */
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+ var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
+
+var get = curry(function(prop, obj) {
+    return obj[prop];
+});
+
+var map = curry(function(fn, value) {
+    return value.map(fn);
+})
+
+var getIds = map(get('id'));
+
+console.log(getIds(dataObjs));
+
+console.log(dataObjs.map(get('id')));
 
 var __slice = Array.prototype.slice;
 
