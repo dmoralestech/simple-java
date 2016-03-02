@@ -193,6 +193,11 @@ function dispatch() {
 }
 
 
+ function stringReverse(s) {
+     if(!_.isString(s)) return undefined;
+     return s.split('').reverse().join('');
+ }
+
 var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toString', String.prototype.toString));
 
 console.log(str('a'));
