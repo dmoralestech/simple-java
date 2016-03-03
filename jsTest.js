@@ -197,6 +197,23 @@ function dispatch() {
      if(!_.isString(s)) return undefined;
      return s.split('').reverse().join('');
  }
+ console.log(stringReverse('abc'));
+ console.log(stringReverse(1));
+
+
+ var rev = dispatch(invoker('reverse', Array.prototype.reverse), stringReverse);
+ console.log(rev([1, 2, 3]));
+ console.log(rev('abc'));
+
+ function always(VALUE) {
+     return function() {
+         return VALUE;
+     }
+ }
+
+ var sillyReverse = dispatch(rev, always(42));
+ console.log(sillyReverse([1, 2, 3]));
+ console.log(sillyReverse('abc'));
 
 var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toString', String.prototype.toString));
 
