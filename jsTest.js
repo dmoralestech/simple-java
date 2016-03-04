@@ -224,10 +224,11 @@ console.log(_.range(10));
      var args = _.toArray(arguments);
      var method = args.shift();
      var target = args.shift();
+     var blah = args.shift();
      return method.apply(target, args);
  }
 
- console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3]));
+ console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3], 'blah'));
 
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
