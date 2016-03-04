@@ -220,6 +220,15 @@ var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toStr
 console.log(str('a'));
 console.log(_.range(10));
 
+ function rightAwayInvoker() {
+     var args = _.toArray(arguments);
+     var method = args.shift();
+     var target = args.shift();
+     return method.apply(target, args);
+ }
+
+ console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3]));
+
 
 var toUpperCase = function(x) { return x.toUpperCase(); };
 var exclaim = function(x) { return x + '!'; };
