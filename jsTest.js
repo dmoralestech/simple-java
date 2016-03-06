@@ -229,7 +229,7 @@ console.log(_.range(10));
  }
 
  console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3], 'blah'));
- var shifty = ['1', '2', '3'].shift();
+ var shifty = Array.prototype.shift.apply () ['1', '2', '3'].shift();
  var shifty2 = ['1', '2', '3'].shift();
  console.log(shifty);
  console.log(shifty2);
