@@ -7,6 +7,17 @@ var curry = require('lodash.curry');
 
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
+ function cycle(times, ary) {
+     if (times <= 0 ) {
+         return [];
+     } else {
+         return cat(ary, cycle(times - 1, ary));
+     }
+ }
+
+ console.log(cycle(2, [1, 2, 3]));
+ console.log(_.first(cycle(20, [1, 2, 3]), 11));
+
  function myLength(ary) {
      if (_.isEmpty(ary)) {
          return 0;
@@ -16,7 +27,10 @@ var curry = require('lodash.curry');
 
  }
 
+
+
  console.log(myLength(_.range(10)));
+ console.log(myLength(_.range(10000)));
 
 
 var get = curry(function(prop, obj) {
