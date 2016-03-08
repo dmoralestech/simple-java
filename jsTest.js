@@ -7,6 +7,18 @@ var curry = require('lodash.curry');
 
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
+ function myLength(ary) {
+     if (_.isEmpty(ary)) {
+         return 0;
+     } else {
+         return 1 + myLength(_.rest(ary));
+     }
+
+ }
+
+ console.log(myLength(_.range(10)));
+
+
 var get = curry(function(prop, obj) {
     return obj[prop];
 });
