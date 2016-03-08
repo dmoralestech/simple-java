@@ -7,6 +7,9 @@ var curry = require('lodash.curry');
 
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
+ console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
+ console.log(_.zip(['a', 'b', 'c'], [1, 2, 3, 4 ]));
+
  function cycle(times, ary) {
      if (times <= 0 ) {
          return [];
