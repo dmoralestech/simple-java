@@ -10,6 +10,31 @@ var curry = require('lodash.curry');
  console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
  console.log(_.zip(['a', 'b', 'c'], [1, 2, 3, 4 ]));
 
+ function isIndexed(data) {
+     return _.isArray(data) || _.isString(data);
+ }
+
+ function fail(msg) {
+     throw new Error(msg);
+ }
+
+ function nth(a, index) {
+     if (!_.isNumber(index)) fail("Expected a number as the index");
+     if (!isIndexed(a)) fail("Not supported on non-indexed type");
+     if ((index < 0) || (index > a.length - 1))
+         fail("Index value is out of bounds");
+     return a[index];
+ }
+
+ function second(a) {
+     return nth(a, 1);
+ }
+
+ function constructPair(pair, rests) {
+     return [construct(_.first(pair), _.first(rests)),
+     construct(second(pair), second(rests))];
+ }
+
  function cycle(times, ary) {
      if (times <= 0 ) {
          return [];
