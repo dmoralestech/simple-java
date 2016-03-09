@@ -35,6 +35,16 @@ var curry = require('lodash.curry');
      construct(second(pair), second(rests))];
  }
 
+ function unzip(pairs) {
+     if(_.isEmpty(pairs)) {
+         return [[], []];
+     }
+
+     return constructPair(_.first(pairs), unzip(_.rest(pairs)))
+ }
+
+ console.log(_.unzip(_.zip([1, 2, 3], [4, 5, 6])));
+
  function cycle(times, ary) {
      if (times <= 0 ) {
          return [];
