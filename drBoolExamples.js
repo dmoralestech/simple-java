@@ -24,6 +24,7 @@ console.log(Container("flame").map(_.toUpper).map(_.toLower));
 
 console.log(Container(3));
 console.log(Container(3).map(function(x) { return x + 1;}));
+console.log(Container([1,2,5]).map(_.reverse).map(_.head));
 
 var trace = _.curry(function(tag, x) {
     console.log(tag, x);
