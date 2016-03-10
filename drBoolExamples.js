@@ -7,6 +7,16 @@ var _ = require('ramda');
 var R = require('ramda');
 var curry = require('lodash.curry');
 
+var _Container = function(val) {
+    this.val = val;
+}
+
+var Container = function(x) {
+    return new _Container(x);
+};
+
+console.log(Container(3));
+
 var trace = _.curry(function(tag, x) {
     console.log(tag, x);
     return x;
