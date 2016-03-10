@@ -11,9 +11,16 @@ var _Container = function(val) {
     this.val = val;
 }
 
+_Container.prototype.map = function(f) {
+    return Container(f(this.val));
+}
+
 var Container = function(x) {
     return new _Container(x);
 };
+
+console.log(Container("flame").map(_.toUpper).map(_.toLower));
+
 
 console.log(Container(3));
 
