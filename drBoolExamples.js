@@ -22,10 +22,14 @@ var Container = function(x) {
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
 
 
+var addOne = function(x) {
+    return x + 1;
+}
+
 console.log(Container(3));
-console.log(Container(3).map(function(x) { return x + 1;}));
+console.log(Container(3).map(addOne));
 console.log(Container([1,2,5]).map(_.reverse).map(_.head));
-console.log(Container("darwinmorales").map(_.length).map(function(x) { return x + 1;}));
+console.log(Container("darwinmorales").map(_.length).map(addOne));
 
 var trace = _.curry(function(tag, x) {
     console.log(tag, x);
