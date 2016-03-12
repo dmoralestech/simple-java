@@ -61,6 +61,39 @@ var map = _.curry(function(f, obj) {
 });
 
 
+var map = curry(function(f, functor) {
+    return functor.map(f);
+});
+
+
+var safeHead = function(xs) {
+    return Maybe.of(xs[0]);
+};
+
+function compose(a, b) {
+    return function(c) {
+        return a(b(c)); //split('a b c d')
+    }
+}
+
+var streetName = compose(map(_.prop('street')), safeHead, _.prop('addresses'));
+
+var objAddresses = {
+    addresses: [{
+        street: 'Shady Ln.',
+        number: 4201
+    }]
+};
+console.log(_.prop('addresses')(objAddresses));
+
+var res2 = streetName({
+    addresses: [{
+        street: 'Shady Ln.',
+        number: 4201
+    }]
+});
+
+console.log(res2);
 //console.log( map(add1(1), Container(3)));
 
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
@@ -148,11 +181,7 @@ var maybe1 = Maybe.of('DaM DaM').map(match(/a/ig));
 
 
 
-function compose(a, b) {
-    return function(c) {
-        return a(b(c)); //split('a b c d')
-    }
-}
+
 
 var borisMaybe = Maybe.of({
     name: 'Boris',
@@ -194,7 +223,7 @@ console.log(
     streetName({
         addresses: [{
             street: 'Shady Ln.',
-            number: 4201,
+            number: 4201
         }]
     })
 );
