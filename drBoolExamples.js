@@ -11,33 +11,54 @@ var Container = function(x) {
     return new _Container(x);
 };
 
-var _Maybe = function(val) {
-    this.val = val;
-}
-
-var Maybe = function(x) {
-    return new _Maybe(x);
-};
-
 var _Container = function(val) {
     this.val = val;
 };
 
+var Maybe = function(x) {
+    this.__value = x;
+};
 
+Maybe.of = function(x) {
+    return new Maybe(x);
+};
+
+Maybe.prototype.isNothing = function() {
+    return (this.__value === null || this.__value === undefined);
+};
+
+Maybe.prototype.map = function(f) {
+    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
+};
+
+var match = curry(function(what, str) {
+    return str.match(what);
+});
+
+console.log(Maybe.of('Malkovich Malkovich').map(match(/a/ig)));
+
+//var add =  function(x) {
+//    return function(y) {
+//        return x + y;
+//    };
+//};
+
+var add =  curry(function(x, y) {
+    return x + y;
+});
+
+function add1(x) { return x + 1;}
+//function add(x) { return x + 1;}
+
+console.log( Maybe.of({name: 'Darwin', age: 33}).map(_.prop('age')).map(add(10)));
 
 _Container.prototype.map = function(f) {
     return Container(f(this.val));
 };
 
-_Maybe.prototype.map = function(f) {
-    return this.val ? Maybe(f(this.val)) : Maybe(null);
-}
-
 var map = _.curry(function(f, obj) {
     return obj.map(f);
 });
-
-function add1(x) { return x + 1;}
 
 
 //console.log( map(add1(1), Container(3)));
@@ -100,9 +121,7 @@ var add1ToItems = R.map(R.add(1));
 
 console.log(add1ToItems([1, 2, 3]));
 
-var match = curry(function(what, str) {
-    return str.match(what);
-});
+
 
 var prop = _.curry(function(property, object) {
     return object[property];
@@ -127,11 +146,7 @@ Maybe.prototype.map = function(f) {
 
 var maybe1 = Maybe.of('DaM DaM').map(match(/a/ig));
 
-var add = function(x) {
-    return function(y) {
-        return x + y;
-    };
-};
+
 
 function compose(a, b) {
     return function(c) {
