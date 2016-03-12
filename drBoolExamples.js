@@ -7,17 +7,26 @@ var _ = require('ramda');
 var R = require('ramda');
 var curry = require('lodash.curry');
 
+var Container = function(x) {
+    return new _Container(x);
+};
+
 var _Container = function(val) {
     this.val = val;
 }
 
 _Container.prototype.map = function(f) {
     return Container(f(this.val));
-}
-
-var Container = function(x) {
-    return new _Container(x);
 };
+
+var map = _.curry(function(f, obj) {
+    return obj.map(f);
+});
+
+function add1(x) { return x + 1;}
+
+
+//console.log( map(add1(1), Container(3)));
 
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
 
@@ -28,6 +37,7 @@ var addOne = function(x) {
 
 console.log(Container(3));
 console.log(Container(3).map(addOne));
+console.log(Container(3).map(addOne).map(addOne));
 console.log(Container([1,2,5]).map(_.reverse).map(_.head));
 console.log(Container("darwinmorales").map(_.length).map(addOne));
 
