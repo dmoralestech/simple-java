@@ -96,7 +96,32 @@ var res2 = streetName({
 console.log(res2);
 //console.log( map(add1(1), Container(3)));
 
+
+var withdraw = curry(function(amount, account) {
+    return account.balance >= amount ?
+        Maybe.of({
+            balance: account.balance - amount
+        }) :
+        Maybe.of(null);
+});
+
+var finishTransaction = compose(remaingBalance, updateLedger);
+
+var getTwenty = compose(map(finishTransaction), withdraw(20));
+
+getTwenty({
+    balance: 200.00
+});
+// Maybe("Your balance is $180.00")
+
+getTwenty({
+    balance: 10.00
+});
+// Maybe(null)
+
+
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
+
 
 
 var addOne = function(x) {
