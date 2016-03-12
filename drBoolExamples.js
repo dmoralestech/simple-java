@@ -11,13 +11,27 @@ var Container = function(x) {
     return new _Container(x);
 };
 
-var _Container = function(val) {
+var _Maybe = function(val) {
     this.val = val;
 }
+
+var Maybe = function(x) {
+    return new _Maybe(x);
+};
+
+var _Container = function(val) {
+    this.val = val;
+};
+
+
 
 _Container.prototype.map = function(f) {
     return Container(f(this.val));
 };
+
+_Maybe.prototype.map = function(f) {
+    return this.val ? Maybe(f(this.val)) : Maybe(null);
+}
 
 var map = _.curry(function(f, obj) {
     return obj.map(f);
@@ -36,7 +50,7 @@ var addOne = function(x) {
 }
 
 console.log(Container(3));
-console.log(Container(3).map(addOne));
+console.log(Container(3).map(add1));
 console.log(Container(3).map(addOne).map(addOne));
 console.log(Container([1,2,5]).map(_.reverse).map(_.head));
 console.log(Container("darwinmorales").map(_.length).map(addOne));
