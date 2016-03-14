@@ -109,12 +109,12 @@ var finishTransaction = compose(remaingBalance, updateLedger);
 
 var getTwenty = compose(map(finishTransaction), withdraw(20));
 
-getTwenty({
+var getTwentyRes = getTwenty({
     balance: 200.00
 });
 // Maybe("Your balance is $180.00")
 
-getTwenty({
+getTwentyRes =getTwenty({
     balance: 10.00
 });
 // Maybe(null)
