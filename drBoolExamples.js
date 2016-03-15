@@ -105,19 +105,19 @@ var withdraw = curry(function(amount, account) {
         Maybe.of(null);
 });
 
-var finishTransaction = compose(remaingBalance, updateLedger);
-
-var getTwenty = compose(map(finishTransaction), withdraw(20));
-
-var getTwentyRes = getTwenty({
-    balance: 200.00
-});
-// Maybe("Your balance is $180.00")
-
-getTwentyRes =getTwenty({
-    balance: 10.00
-});
-// Maybe(null)
+//var finishTransaction = compose(remaingBalance, updateLedger);
+//
+//var getTwenty = compose(map(finishTransaction), withdraw(20));
+//
+//var getTwentyRes = getTwenty({
+//    balance: 200.00
+//});
+//// Maybe("Your balance is $180.00")
+//
+//getTwentyRes =getTwenty({
+//    balance: 10.00
+//});
+//// Maybe(null)
 
 
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
@@ -148,6 +148,20 @@ Right.prototype.map = function(f) {
     return Right.of(f(this.__value));
 };
 
+var rightRes =  Right.of('rain').map(function(str) {
+    return 'b' + str;
+})
+
+rightRes = Right.of({
+    host: 'localhost',
+    port: 80,
+}).map(_.prop('host'));
+
+var leftRes = Left.of('rain').map(function(str) {
+    return 'b' + str;
+});
+
+leftRes = leftResLeft.of('rolls eyes...').map(_.prop('host'));
 
 
 var addOne = function(x) {
