@@ -123,6 +123,32 @@ getTwentyRes =getTwenty({
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
 
 
+var Left = function(value) {
+    this.__value = value;
+};
+
+Left.of = function(x) {
+    return new Left(x);
+};
+
+Left.prototype.map = function(f) {
+    return this;
+};
+
+
+var Right = function(value) {
+    this.__value = value;
+};
+
+Right.of = function(x) {
+    return new Right(x);
+};
+
+Right.prototype.map = function(f) {
+    return Right.of(f(this.__value));
+};
+
+
 
 var addOne = function(x) {
     return x + 1;
