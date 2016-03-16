@@ -154,14 +154,28 @@ var rightRes =  Right.of('rain').map(function(str) {
 
 rightRes = Right.of({
     host: 'localhost',
-    port: 80,
+    port: 80
 }).map(_.prop('host'));
 
 var leftRes = Left.of('rain').map(function(str) {
     return 'b' + str;
 });
 
-leftRes = leftResLeft.of('rolls eyes...').map(_.prop('host'));
+leftRes = Left.of('rolls eyes...').map(_.prop('host'));
+
+var IO = function(f) {
+    this.__value = f;
+};
+
+IO.of = function(x) {
+    return new IO(function() {
+        return x;
+    });
+};
+
+IO.prototype.map = function(f) {
+    return new IO(_.compose(f, this.__value));
+};
 
 
 var addOne = function(x) {
