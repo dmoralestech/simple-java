@@ -105,23 +105,77 @@ var withdraw = curry(function(amount, account) {
         Maybe.of(null);
 });
 
-var finishTransaction = compose(remaingBalance, updateLedger);
-
-var getTwenty = compose(map(finishTransaction), withdraw(20));
-
-var getTwentyRes = getTwenty({
-    balance: 200.00
-});
-// Maybe("Your balance is $180.00")
-
-getTwentyRes =getTwenty({
-    balance: 10.00
-});
-// Maybe(null)
+//var finishTransaction = compose(remaingBalance, updateLedger);
+//
+//var getTwenty = compose(map(finishTransaction), withdraw(20));
+//
+//var getTwentyRes = getTwenty({
+//    balance: 200.00
+//});
+//// Maybe("Your balance is $180.00")
+//
+//getTwentyRes =getTwenty({
+//    balance: 10.00
+//});
+//// Maybe(null)
 
 
 console.log(Container("flame").map(_.toUpper).map(_.toLower));
 
+
+var Left = function(value) {
+    this.__value = value;
+};
+
+Left.of = function(x) {
+    return new Left(x);
+};
+
+Left.prototype.map = function(f) {
+    return this;
+};
+
+
+var Right = function(value) {
+    this.__value = value;
+};
+
+Right.of = function(x) {
+    return new Right(x);
+};
+
+Right.prototype.map = function(f) {
+    return Right.of(f(this.__value));
+};
+
+var rightRes =  Right.of('rain').map(function(str) {
+    return 'b' + str;
+})
+
+rightRes = Right.of({
+    host: 'localhost',
+    port: 80
+}).map(_.prop('host'));
+
+var leftRes = Left.of('rain').map(function(str) {
+    return 'b' + str;
+});
+
+leftRes = Left.of('rolls eyes...').map(_.prop('host'));
+
+var IO = function(f) {
+    this.__value = f;
+};
+
+IO.of = function(x) {
+    return new IO(function() {
+        return x;
+    });
+};
+
+IO.prototype.map = function(f) {
+    return new IO(_.compose(f, this.__value));
+};
 
 
 var addOne = function(x) {
