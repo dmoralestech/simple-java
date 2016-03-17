@@ -30,6 +30,7 @@ app.directive('isolatedScopeWithController', function () {
         scope: {
             datasource: '=',
             add: '&',
+            showMessage: '&',
         },
         controller: function ($scope) {
             $scope.addCustomer = function () {
@@ -43,7 +44,7 @@ app.directive('isolatedScopeWithController', function () {
                 });
             };
         },
-        template: '<button ng-click="addCustomer()">Change Data</button><ul> <li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
+        template: '<button ng-click="showMessage()">Show me my message</button><button ng-click="addCustomer()">Change Data</button><ul> <li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
     };
 });
 
@@ -63,6 +64,10 @@ app.controller('CustomersController', ['$scope', function ($scope) {
             street: counter + ' Cedar Point St.'
         });
     };
+
+    $scope.showMessage = function() {
+        alert('Show me my message');
+    }
 
     $scope.changeData = function () {
         counter++;
