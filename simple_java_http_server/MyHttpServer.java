@@ -22,7 +22,7 @@ public class MyHttpServer {
 
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            String response = "Welcome Darwin's HowTo test page";
+            String response = "<h2>Welcome Darwin's HowTo test page</h2>";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());

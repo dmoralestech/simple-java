@@ -24,9 +24,56 @@ app.filter('startFrom', function () {
     }
 });
 
+app.directive('isolatedScopeWithController', function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            datasource: '=',
+            add: '&',
+        },
+        controller: function ($scope) {
+            $scope.addCustomer = function () {
+                //Call external scope's function
+                var name = 'New Customer Added by Directive';
+                $scope.add();
+
+                //Add new customer to directive scope
+                $scope.customers.push({
+                    name: name
+                });
+            };
+        },
+        template: '<button ng-click="addCustomer()">Change Data</button><ul> <li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
+    };
+});
+
+app.controller('CustomersController', ['$scope', function ($scope) {
+    var counter = 0;
+    $scope.customer = {
+        name: 'David',
+        street: '1234 Anywhere St.'
+    };
+
+    $scope.customers = [];
+
+    $scope.addCustomer = function (name) {
+        counter++;
+        $scope.customers.push({
+            name: (name) ? name : 'New Customer' + counter,
+            street: counter + ' Cedar Point St.'
+        });
+    };
+
+    $scope.changeData = function () {
+        counter++;
+        $scope.customer = {
+            name: 'James',
+            street: counter + ' Cedar Point St.'
+        };
+    };
+}]);
+
 function pageCtrl($scope, filterFilter) {
-
-
     $scope.list = [{
         "name": "name 1"
     }, {
@@ -96,4 +143,17 @@ function pageCtrl($scope, filterFilter) {
         $scope.filtered = filterFilter($scope.list, term);
         $scope.noOfPages = Math.ceil($scope.filtered.length / $scope.entryLimit);
     });
+
+    var before = 4;
+    var after = 8;
+
+
+    $scope.foo = function (newValue, oldValue) {
+        console.log('Value changed: ' + oldValue + ' to ' + newValue);
+        $scope.callback({
+            newValue: after,
+            oldValue: before
+        });
+    }
+
 };

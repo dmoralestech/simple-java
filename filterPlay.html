@@ -10,6 +10,11 @@
     <script src="filterPlay.js"></script>
 </head>
 <body>
+<div  ng-controller="CustomersController" class="container">
+    <div isolated-scope-with-controller datasource="customers" add="addCustomer()"></div>
+</div>
+
+
 <div  ng-controller="pageCtrl" class="container">
 
     <input type="text" ng-model="search" placeholder="Search"/><br/>
@@ -32,8 +37,8 @@
     <pagination data-boundary-links="true"  data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>
 </div>
 
-<div ng-controller="PaginationDemoCtrl">
+<!--<div ng-controller="PaginationDemoCtrl">-->
 
-</div>
+<!--</div>-->
 </body>
 </html>
