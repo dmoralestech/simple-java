@@ -31,6 +31,7 @@ app.directive('isolatedScopeWithController', function () {
             datasource: '=',
             add: '&',
             showMessage: '&',
+            darwinMorales: '&'
         },
         controller: function ($scope) {
             $scope.addCustomer = function () {
@@ -44,7 +45,8 @@ app.directive('isolatedScopeWithController', function () {
                 });
             };
         },
-        template: '<button ng-click="showMessage()">Show me my message</button><button ng-click="addCustomer()">Change Data</button><ul> <li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
+        //template: '<button ng-click="showMessage()">Show me my message</button><button ng-click="addCustomer()">Change Data</button><ul> <li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
+        template: '<button ng-click="addCustomer()">Change Data</button><ul>'
     };
 });
 
@@ -63,10 +65,16 @@ app.controller('CustomersController', ['$scope', function ($scope) {
             name: (name) ? name : 'New Customer' + counter,
             street: counter + ' Cedar Point St.'
         });
+        $scope.showMessage('message from add customer');
+        $scope.dmFunction();
     };
 
-    $scope.showMessage = function() {
-        alert('Show me my message');
+    $scope.dmFunction = function() {
+        alert('darwin morales message');
+    }
+
+    $scope.showMessage = function(msg) {
+        alert(msg);
     }
 
     $scope.changeData = function () {
