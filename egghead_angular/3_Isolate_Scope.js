@@ -7,9 +7,11 @@ var app = angular.module("choreApp", []);
 
 app.controller("ChoreCtrl", function() {
     var choreCtrl = this;
+    choreCtrl.myTask = "Clean the car";
     choreCtrl.logChore = function(chore) {
         alert(chore + " is done!");
     };
+    return this;
 });
 
 app.directive("kid", function() {
@@ -22,4 +24,14 @@ app.directive("kid", function() {
         ' {{chore}}' +
         ' <div class="button" ng-click="done({chore:chore})">I\'m done!</div>'
     };
-})
+});
+
+app.directive("task", function() {
+    return {
+        restrict: "E",
+        scope: {
+            finished: "&"
+        },
+        template: '<h2> {{myTask}}} </h2>'
+    }
+});
