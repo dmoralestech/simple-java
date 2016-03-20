@@ -18,3 +18,14 @@ app.directive("enter", function() {
         });
     };
 });
+
+
+var app2 = angular.module("superhero", []);
+
+app2.directive("superhero", function() {
+   return {
+       restrict: "E",
+       template: "<div> Here I am to save the day </div>"
+   } ;
+});
+
