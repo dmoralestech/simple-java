@@ -27,7 +27,7 @@ app.controller("SuperHeroCtrl", function($element) {
   });
 });
 
-app.controlerr("SuperHeroCtrl2", function($element) {
+app.controller("SuperHeroCtrl2", function($element) {
     var superman = this;
     superman.abilities = [];
 
