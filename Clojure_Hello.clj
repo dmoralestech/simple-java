@@ -28,6 +28,7 @@ great-baby-name
 great-baby-name
 ; => "Rosanthony"
 
+ ;(sum [3 4 4])
 (defn sum
   ([vals] (sum vals 0))
   ([vals accumulating-total]
