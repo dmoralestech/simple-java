@@ -35,3 +35,5 @@ great-baby-name
        (if (empty? vals)
              accumulating-total
              (sum (rest vals) (+ (first vals) accumulating-total)))))
+
+(println (sum [23 3 4 4 7 45]))
