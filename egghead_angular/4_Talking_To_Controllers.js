@@ -24,3 +24,18 @@ app.directive("enter", function() {
     };
 });
 
+app.directive("enter", function() {
+    return function(scope, element, attrs) {
+        element.bind("mouseenter", function() {
+            scope.$apply(attrs.enter);
+        });
+    };
+});
+
+app.directive("enter", function() {
+    return function(scope, element, attrs) {
+        element.bind("mouseenter", function () {
+            scope.$apply(attrs.enter);
+        });
+    };
+})
