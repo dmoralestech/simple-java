@@ -72,6 +72,7 @@ app.directive("strength", function () {
     return {
         require: "superhero",
         link: function (scope, element, attrs, superheroCtrl) {
+            console.log('HELLO FROM Strength DIRECTIVE');
             superheroCtrl.addStrength();
         }
     };
@@ -81,6 +82,7 @@ app.directive("speed", function () {
     return {
         require: "superhero",
         link: function (scope, element, attrs, superheroCtrl) {
+            console.log('HELLO FROM Speed DIRECTIVE');
             superheroCtrl.addSpeed();
         }
     };
@@ -90,6 +92,7 @@ app.directive("flight", function () {
     return {
         require: "superhero",
         link: function (scope, element, attrs, superheroCtrl) {
+            console.log('HELLO FROM FLight DIRECTIVE');
             superheroCtrl.addFlight();
         }
     };
@@ -100,6 +103,7 @@ app.directive("power", function () {
     return {
         require: "superhero",
         link: function (scope, element, attrs, superheroCtrl) {
+            console.log('HELLO FROM Power DIRECTIVE');
             superheroCtrl.addPower();
         }
     };
