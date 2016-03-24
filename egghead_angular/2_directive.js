@@ -61,7 +61,10 @@ app.directive("superhero", function () {
         restrict: "E",
         scope: {},
 
-        controller: "SuperHeroCtrl as superhero"
+        controller: "SuperHeroCtrl as superhero",
+        link: function(){
+            console.log('HELLO FROM superhero DIRECTIVE');
+        }
     };
 });
 
