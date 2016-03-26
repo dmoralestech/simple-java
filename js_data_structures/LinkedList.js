@@ -9,6 +9,13 @@ function LLNode(item) {
     this.next = null;
 }
 
+function Aggregrate  {
+
+}
+
+Aggregrate.prototype.getIterator = function() {
+
+};
 
 LinkedList.prototype = new Aggregrate();
 LinkedList.prototype.constructor = LinkedList;
