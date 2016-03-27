@@ -19,3 +19,18 @@ Aggregrate.prototype.getIterator = function() {
 
 LinkedList.prototype = new Aggregrate();
 LinkedList.prototype.constructor = LinkedList;
+
+function LinkedList(args) {
+    this.first = null;
+    this.last = null;
+    this.length = null;
+    if (args && args.length) {
+        this.fromArray(args);
+    } else {
+        this.fromArray(arguments);
+    }
+}
+
+LinkedList.prototype.getIterator = function() {
+    return new LinkeListIterator(this);
+}
