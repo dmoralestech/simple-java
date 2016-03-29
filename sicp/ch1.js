@@ -14,4 +14,10 @@ function fact_iter(product, counter, maxCount) {
     }
 }
 
-console.log(factorial(100));
+console.log(factorial(180));
+
+function factorial2(n) {
+    return n === 1 ? 1 : n *  factorial2( n - 1);
+}
+
+console.log(factorial2(180));
