@@ -14,6 +14,12 @@ function fact_iter(product, counter, maxCount) {
     }
 }
 
+function fact_iter2(product, counter, maxCount) {
+    return (counter  > maxCount) ? product : fact_iter(counter * product,
+                                                       counter + 1,
+                                                       maxCount);
+}
+
 console.log(factorial(180));
 
 function factorial2(n) {
