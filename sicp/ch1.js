@@ -29,20 +29,23 @@ function factorial2(n) {
 console.log(factorial2(150));
 
 function Ackermann(x, y) {
-    console.log(x, y);
     if (y === 0) {
+        console.log("return 0");
         return 0;
     } else if (x === 0) {
+        console.log("return: ", 2 * y);
         return 2 * y;
     } else if (y === 1) {
+        console.log("return: 2");
         return 2;
     } else {
-        console.log("recursion call: ", x - 1, Ackermann(x, y - 1));
+        console.log("recursion call: ", x - 1, "Ackermann( ", x, ",", y - 1, ")");
         return Ackermann(x - 1, Ackermann(x, y - 1));
     }
 }
 
 console.log(Ackermann(1, 10));
+console.log(Ackermann(1, 3));
 console.log(Ackermann(2, 4));
 console.log(Ackermann(3, 3));
 
