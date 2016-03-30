@@ -20,15 +20,16 @@ function fact_iter2(product, counter, maxCount) {
         maxCount);
 }
 
-console.log(factorial(180));
+console.log(factorial(150));
 
 function factorial2(n) {
     return n === 1 ? 1 : n * factorial2(n - 1);
 }
 
-console.log(factorial2(180));
+console.log(factorial2(150));
 
-function Ackerman(x, y) {
+function Ackermann(x, y) {
+    console.log(x, y);
     if (y === 0) {
         return 0;
     } else if (x === 0) {
@@ -36,11 +37,12 @@ function Ackerman(x, y) {
     } else if (y === 1) {
         return 2;
     } else {
-        return Ackerman(x - 1, Ackerman(x, y - 1));
+        console.log("recursion call: ", x - 1, Ackermann(x, y - 1));
+        return Ackermann(x - 1, Ackermann(x, y - 1));
     }
 }
 
-console.log(Ackerman(1, 10));
-console.log(Ackerman(2, 4));
-console.log(Ackerman(3, 3));
+console.log(Ackermann(1, 10));
+console.log(Ackermann(2, 4));
+console.log(Ackermann(3, 3));
 
