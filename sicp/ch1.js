@@ -3,9 +3,9 @@
  */
 
 function fibonacci(n) {
-    if ( n === 0 ) {
+    if (n === 0) {
         return 0;
-    } else if ( n === 1) {
+    } else if (n === 1) {
         return 1;
     } else {
         return fibonacci(n - 1) + fibonacci(n - 2);
@@ -24,7 +24,7 @@ function fib(n) {
 }
 
 function fib_iter(a, b, count) {
-    if (count === 0){
+    if (count === 0) {
         return b;
     } else {
         return fib_iter(a + b, a, count - 1);
