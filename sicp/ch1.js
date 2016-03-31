@@ -25,13 +25,16 @@ function fib(n) {
 
 function fib_iter(a, b, count) {
     if (count === 0) {
+        console.log("b: ", b);
         return b;
     } else {
+        console.log("fib_iter: ", a + b, a, "counter: ", count - 1);
         return fib_iter(a + b, a, count - 1);
     }
 }
 
 console.log(fib(7));
+console.log(fib(8));
 
 function factorial(n) {
     return fact_iter(1, 1, n);
