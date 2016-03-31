@@ -2,6 +2,18 @@
  * Created by darwinmorales on 28/03/2016.
  */
 
+function fibonacci(n) {
+    if ( n === 0 ) {
+        return 0;
+    } else if ( n === 1) {
+        return 1;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+console.log(fibonacci(8));
+
 function factorial(n) {
     return fact_iter(1, 1, n);
 }
