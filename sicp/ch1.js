@@ -2,6 +2,25 @@
  * Created by darwinmorales on 28/03/2016.
  */
 
+function inc(n) {
+    return n + 1;
+}
+
+function dec(n) {
+    return n - 1;
+}
+
+function plus(a, b) {
+    return a === 0 ? b : inc(plus(dec(a), b));
+}
+
+function plusv2(a, b) {
+    return a === 0 ? b : plusv2(dec(a), inc(b));
+}
+
+console.log(plus(4, 5));
+console.log(plusv2(4, 5));
+
 function findLongestWord(str) {
     var strSplit = str.split(' ');
 
