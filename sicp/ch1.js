@@ -3,6 +3,7 @@
  */
 
 function inc(n) {
+    console.log("increment: ", n);
     return n + 1;
 }
 
@@ -11,7 +12,11 @@ function dec(n) {
 }
 
 function plus(a, b) {
-    return a === 0 ? b : inc(plus(dec(a), b));
+    console.log(a, b);
+    if (a === 0)
+        return b;
+    else
+        return inc(plus(dec(a), b));
 }
 
 function plusv2(a, b) {
