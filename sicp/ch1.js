@@ -3,6 +3,7 @@
  */
 
 function fibonacci(n) {
+    console.log("getting fibonacci:", n);
     if (n === 0) {
         return 0;
     } else if (n === 1) {
@@ -12,18 +13,19 @@ function fibonacci(n) {
     }
 }
 
-console.log(fibonacci(2));
-console.log(fibonacci(3));
-console.log(fibonacci(4));
-console.log(fibonacci(5));
-console.log(fibonacci(6));
-console.log(fibonacci(7));
+//console.log(fibonacci(2));
+//console.log(fibonacci(3));
+//console.log(fibonacci(4));
+//console.log(fibonacci(5));
+//console.log(fibonacci(6));
+//console.log(fibonacci(7));
 
 function fib(n) {
     return fib_iter(1, 0, n);
 }
 
 function fib_iter(a, b, count) {
+    console.log(a, b, count);
     if (count === 0) {
         console.log("b: ", b);
         return b;
@@ -33,6 +35,7 @@ function fib_iter(a, b, count) {
     }
 }
 
+console.log(fib(3));
 console.log(fib(7));
 console.log(fib(8));
 
