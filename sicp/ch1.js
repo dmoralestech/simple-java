@@ -2,6 +2,24 @@
  * Created by darwinmorales on 28/03/2016.
  */
 
+function findLongestWord(str) {
+    var strSplit = str.split(' ');
+
+    var longestWord = strSplit.reduce(function (longest, currentWord) {
+        console.log(longest, currentWord);
+        if (currentWord.length > longest.length) {
+            return currentWord;
+        } else {
+            return longest;
+        }
+    }, "");
+
+    console.log(longestWord);
+    return longestWord.length;
+}
+
+console.log(findLongestWord('The quick brown fox jumped over the lazy dog.'));
+
 function fibonacci(n) {
     console.log("getting fibonacci:", n);
     if (n === 0) {
