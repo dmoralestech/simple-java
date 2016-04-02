@@ -109,13 +109,13 @@ console.log(factorial2(150));
 
 function Ackermann(x, y) {
     if (y === 0) {
-        console.log("return 0");
+        console.log("Y return 0");
         return 0;
     } else if (x === 0) {
-        console.log("return: ", 2 * y);
+        console.log("X is 0, return: ", 2 * y);
         return 2 * y;
     } else if (y === 1) {
-        console.log("return: 2");
+        console.log("Y return: 2");
         return 2;
     } else {
         console.log("recursion call: ", x - 1, "Ackermann( ", x, ",", y - 1, ")");
@@ -123,8 +123,32 @@ function Ackermann(x, y) {
     }
 }
 
-console.log(Ackermann(1, 10));
 console.log(Ackermann(1, 3));
+console.log(Ackermann(1, 10));
 console.log(Ackermann(2, 4));
 console.log(Ackermann(3, 3));
+
+function count_change(amount) {
+    return cc(amount, 5);
+}
+
+function cc(amount, kind_of_coins) {
+    if (amount === 0 ) {
+        return 1;
+    } else if (amount < 0 || kind_of_coins === 0 ) {
+        return 0;
+    } else {
+        return cc(amount, kind_of_coins - 1) + cc(amount - first_denomination(kind_of_coins), kind_of_coins);
+    }
+}
+
+function first_denomination(kinds_of_coins) {
+    switch (kinds_of_coins) {
+        case 1: return 1;
+        case 2: return 5;
+        case 3: return 10;
+        case 4: return 25;
+        case 5: return 50;
+    }
+}
 
