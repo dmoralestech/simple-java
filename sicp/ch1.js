@@ -2,6 +2,33 @@
  * Created by darwinmorales on 28/03/2016.
  */
 
+function count_change(amount) {
+    return cc(amount, 5);
+}
+
+function cc(amount, kind_of_coins) {
+    if (amount === 0 ) {
+        return 1;
+    } else if (amount < 0 || kind_of_coins === 0 ) {
+        return 0;
+    } else {
+        return cc(amount, kind_of_coins - 1) + cc(amount - first_denomination(kind_of_coins), kind_of_coins);
+    }
+}
+
+function first_denomination(kinds_of_coins) {
+    switch (kinds_of_coins) {
+        case 1: return 1;
+        case 2: return 5;
+        case 3: return 10;
+        case 4: return 25;
+        case 5: return 50;
+    }
+}
+
+console.log(count_change(1));
+console.log(count_change(45));
+
 function inc(n) {
     console.log("increment: ", n);
     return n + 1;
@@ -128,27 +155,5 @@ console.log(Ackermann(1, 10));
 console.log(Ackermann(2, 4));
 console.log(Ackermann(3, 3));
 
-function count_change(amount) {
-    return cc(amount, 5);
-}
 
-function cc(amount, kind_of_coins) {
-    if (amount === 0 ) {
-        return 1;
-    } else if (amount < 0 || kind_of_coins === 0 ) {
-        return 0;
-    } else {
-        return cc(amount, kind_of_coins - 1) + cc(amount - first_denomination(kind_of_coins), kind_of_coins);
-    }
-}
-
-function first_denomination(kinds_of_coins) {
-    switch (kinds_of_coins) {
-        case 1: return 1;
-        case 2: return 5;
-        case 3: return 10;
-        case 4: return 25;
-        case 5: return 50;
-    }
-}
 
