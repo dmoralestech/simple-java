@@ -5,6 +5,10 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+ var dissociativeIdentity = _.compose(_.identity, _.identity);
+
+ console.log(dissociativeIdentity(22) === _.identity(22));
+
  function partial1(fun, arg1) {
      return function() {
          var args = construct(arg1, arguments);
