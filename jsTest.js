@@ -15,7 +15,12 @@ var curry = require('lodash.curry');
  var rand = partial1(_.random, 1);
 
  console.log(rand(10));
+ console.log(rand(10));
+ console.log(rand(10));
 
+ console.log(repeatedly(10, function() {
+     return "a";
+ }));
  console.log(repeatedly(10, partial1(rand, 10)));
  console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
 
