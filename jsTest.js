@@ -5,6 +5,20 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+ function partial1(fun, arg1) {
+     return function() {
+         var args = construct(arg1, arguments);
+         return fun.apply(fun, args);
+     }
+ }
+
+ var rand = partial1(_.random, 1);
+
+ console.log(rand(10));
+
+ console.log(repeatedly(10, partial1(rand, 10)));
+ console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
+
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
  console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
