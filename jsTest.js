@@ -46,6 +46,10 @@ var curry = require('lodash.curry');
 
  console.log(generateString(generateRandomCharacter, 30));
 
+ var composedRandomString = partial1(generateString, generateRandomCharacter);
+
+ console.log(composedRandomString(15));
+
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
  console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
