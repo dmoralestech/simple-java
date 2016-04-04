@@ -19,6 +19,18 @@ var curry = require('lodash.curry');
  console.log(repeatedly(10, partial1(rand, 10)));
  console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
 
+ function randString(len) {
+     var ascii = repeatedly(len, partial1(rand, 26));
+     console.log('RANDSTRING: ', ascii)
+     return _.map(ascii, function(n) {
+         return n.toString(36);
+     }).join('');
+ }
+
+ console.log(randString(0));
+ console.log(randString(1));
+ console.log(randString(20));
+
  var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 
  console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
