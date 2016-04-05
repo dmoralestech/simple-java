@@ -5,6 +5,19 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+ function sayHello(firstName, secondName, middleName) {
+     console.log(this.sayHello(), firstName, middleName, secondName);
+ }
+
+ var context = {
+     sayHello: function () {
+         return 'Hello';
+     }
+ }
+
+ const boundFunc = sayHello.bind(context, 'Darwin', 'Morales', 'Joseph');
+ boundFunc('Joseph 3');
+
  var dissociativeIdentity = _.compose(_.identity, _.identity);
 
  console.log(dissociativeIdentity(22) === _.identity(22));
