@@ -1,6 +1,7 @@
 
 /**
  // https://github.com/thejameskyle/the-super-tiny-compiler/blob/master/super-tiny-compiler.js
+ //converts Lisp-style to C-style
 /**
  * Today we're going to write a compiler together. But not just any compiler... A
  * super duper teeny tiny compiler! A compiler that is so small that if you
@@ -847,5 +848,6 @@ function compiler(input) {
     // and simply return the output!
     return output;
 }
+
 
 console.log(compiler('(add 2 (subtract 4 2))'));
