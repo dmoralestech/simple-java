@@ -23,4 +23,15 @@ var init = function (startButton, pauseButton, clearButton) {
     document.getElementById(clearButton).addEventListener("click", clearTimer, false);
 };
 init('startButton', 'pauseButton', 'clearButton');
+var demo;
+(function (demo) {
+    var person;
+    person = 'Darwin Morales';
+    console.log(person);
+    var person2 = {
+        name: 'Darwin',
+        age: 22
+    };
+    console.log(person2.name.substring(1, 4));
+})(demo || (demo = {}));
 //# sourceMappingURL=hello_world_ts.js.map

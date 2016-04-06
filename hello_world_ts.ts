@@ -31,3 +31,15 @@ var init: (s: string, p: string, c: string) => void = function (startButton, pau
 };
 
 init('startButton', 'pauseButton', 'clearButton');
+
+module demo {
+    var person: string;
+    person = 'Darwin Morales';
+    console.log(person);
+
+    var person2 = {
+        name: 'Darwin',
+        age: 22
+    }
+    console.log(person2.name.substring(1, 4);)
+}
