@@ -45,3 +45,21 @@ module demo {
 }
 
 var names: string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
+
+module demo1 {
+    var data: any;
+    var doSomething: (args: any) => void = function(args) {
+        return args;
+    };
+
+    var age: number = 32;
+    var price: number = 1.99;
+    var hasData: boolean = true;
+    var hasMoney: boolean = true;
+
+    var birthDate: Date = null;
+
+
+
+
+}

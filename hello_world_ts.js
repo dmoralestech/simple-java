@@ -35,4 +35,16 @@ var demo;
     console.log(person2.name.substring(1, 4));
 })(demo || (demo = {}));
 var names = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
+var demo1;
+(function (demo1) {
+    var data;
+    var doSomething = function (args) {
+        return args;
+    };
+    var age = 32;
+    var price = 1.99;
+    var hasData = true;
+    var hasMoney = true;
+    var birthDate = null;
+})(demo1 || (demo1 = {}));
 //# sourceMappingURL=hello_world_ts.js.map
