@@ -43,3 +43,5 @@ module demo {
     }
     console.log(person2.name.substring(1, 4));
 }
+
+var names: string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];

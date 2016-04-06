@@ -34,7 +34,5 @@ var demo;
     };
     console.log(person2.name.substring(1, 4));
 })(demo || (demo = {}));
+var names = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
 //# sourceMappingURL=hello_world_ts.js.map
-
-
-var names: string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
