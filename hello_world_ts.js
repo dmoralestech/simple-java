@@ -67,4 +67,8 @@ var demoObjects;
     var sq1 = squareIt({ h: 10 });
     console.log('area of sq1 ', sq1);
 })(demoObjects || (demoObjects = {}));
+var myFunc = function (h, w) { return h * w; };
+var helloWorld = function (name) {
+    console.log('Hello ' + (name || 'unknown person'));
+};
 //# sourceMappingURL=hello_world_ts.js.map

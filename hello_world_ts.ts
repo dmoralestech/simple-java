@@ -83,3 +83,9 @@ module demoObjects {
     console.log('area of sq1 ', sq1);
 
 }
+
+
+var myFunc = (h: number, w: number) => h * w;
+
+var helloWorld:(name?:string) => void = function(name?) {
+    console.log('Hello ' + (name || 'unknown person'));}
