@@ -35,8 +35,8 @@ var demo;
     console.log(person2.name.substring(1, 4));
 })(demo || (demo = {}));
 var names = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
-var demo1;
-(function (demo1) {
+var demoPrimitives;
+(function (demoPrimitives) {
     var data;
     var doSomething = function (args) {
         return args;
@@ -46,5 +46,25 @@ var demo1;
     var hasData = true;
     var hasMoney = true;
     var birthDate = null;
-})(demo1 || (demo1 = {}));
+})(demoPrimitives || (demoPrimitives = {}));
+var demoObjects;
+(function (demoObjects) {
+    var points1 = { x: 10, y: 15 };
+    var coordX = points1.x;
+    var rectangle = {
+        h: 10,
+        w: 20,
+        calcArea: function () {
+            return this.h * this.w;
+        }
+    };
+    var squareIt = function (rect) {
+        if (rect.w === undefined) {
+            return rect.h * rect.h;
+        }
+        return rect.h * rect.w;
+    };
+    var sq1 = squareIt({ h: 10 });
+    console.log('area of sq1 ', sq1);
+})(demoObjects || (demoObjects = {}));
 //# sourceMappingURL=hello_world_ts.js.map

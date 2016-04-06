@@ -46,7 +46,7 @@ module demo {
 
 var names: string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
 
-module demo1 {
+module demoPrimitives {
     var data: any;
     var doSomething: (args: any) => void = function(args) {
         return args;
@@ -59,7 +59,27 @@ module demo1 {
 
     var birthDate: Date = null;
 
+}
 
+module demoObjects {
+    var points1 = {x: 10, y: 15};
+    var coordX: number = points1.x;
 
+    var rectangle = {
+        h: 10,
+        w: 20,
+        calcArea: function() {
+            return this.h * this.w;
+        }
+    };
+
+    var squareIt = function(rect: {h: number; w?: number}) {
+        if (rect.w === undefined) {
+            return rect.h * rect.h;
+        }
+        return rect.h * rect.w;
+    }
+    var sq1: number = squareIt({h: 10});
+    console.log('area of sq1 ', sq1);
 
 }
