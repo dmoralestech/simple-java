@@ -41,5 +41,5 @@ module demo {
         name: 'Darwin',
         age: 22
     }
-    console.log(person2.name.substring(1, 4);)
+    console.log(person2.name.substring(1, 4));
 }
