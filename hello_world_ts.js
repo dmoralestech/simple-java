@@ -101,5 +101,38 @@ var demoInterface;
             return msg + ',' + this.name;
         }
     };
+    function getPerson() {
+        var _this = this;
+        return {
+            name: 'Darwin',
+            age: 2,
+            kids: 2,
+            calcPets: function () { return 1; },
+            makeYounger: function (years) {
+                _this.age -= years;
+            },
+            greet: function (msg) {
+                return msg + ',' + _this.name;
+            }
+        };
+    }
+    function sessionEvaluator() {
+        var ratings = [];
+        var addRating = function (rating) {
+            if (rating === void 0) { rating = 5; }
+            ratings.push(rating);
+        };
+        var calcRating = function () {
+            var sum = 0;
+            ratings.forEach(function (score) {
+                sum += score;
+            });
+            return sum / ratings.length;
+        };
+        return {
+            addRating: addRating,
+            calcRating: calcRating
+        };
+    }
 })(demoInterface || (demoInterface = {}));
 //# sourceMappingURL=hello_world_ts.js.map

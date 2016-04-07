@@ -146,5 +146,44 @@ module demoInterface {
         }
     };
 
+    function getPerson(): Person {
+        return {
+            name: 'Darwin',
+            age: 2,
+            kids: 2,
+            calcPets: () => {return 1},
+            makeYounger: (years: number) => {
+                this.age -= years;
+            },
+            greet: (msg: string) => {
+                return msg + ',' + this.name;
+            }
+        }
+    }
+
+    interface SessionEval {
+        addRating: (rating: number) => void;
+        calcRating: () => number
+    }
+
+    function sessionEvaluator(): SessionEval {
+        var ratings: number[] = [];
+        var addRating = (rating: number =5) => {
+            ratings.push(rating);
+        }
+        var calcRating = ()  => {
+            var sum: number = 0;
+            ratings.forEach(function(score) {
+                sum += score;
+            });
+            return sum/ratings.length;
+        };
+        return {
+            addRating: addRating,
+            calcRating: calcRating
+        }
+
+    }
+
 
 }
