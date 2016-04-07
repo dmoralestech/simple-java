@@ -242,3 +242,10 @@ module demoClasses {
     }
 
 }
+
+module demoCastingTypes {
+    //var table:HTMLTableElement = document.createElement('table');
+    var table:HTMLTableElement = <HTMLTableElement>document.createElement('table');
+
+}
+

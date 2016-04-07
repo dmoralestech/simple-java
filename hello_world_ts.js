@@ -181,4 +181,9 @@ var demoClasses;
         return Car3;
     })();
 })(demoClasses || (demoClasses = {}));
+var demoCastingTypes;
+(function (demoCastingTypes) {
+    //var table:HTMLTableElement = document.createElement('table');
+    var table = document.createElement('table');
+})(demoCastingTypes || (demoCastingTypes = {}));
 //# sourceMappingURL=hello_world_ts.js.map
