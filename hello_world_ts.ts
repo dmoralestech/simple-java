@@ -247,5 +247,31 @@ module demoCastingTypes {
     //var table:HTMLTableElement = document.createElement('table');
     var table:HTMLTableElement = <HTMLTableElement>document.createElement('table');
 
+    class Calculator {
+        private x: HTMLInputElement;
+        private y: HTMLInputElement;
+        private output: HTMLSpanElement;
+
+        constructor(xId: string, yId: string, outputId: string) {
+            this.x = <HTMLInputElement>document.getElementById(xId);
+            this.y = <HTMLInputElement>document.getElementById(yId);
+            this.output = <HTMLSpanElement>document.getElementById(outputId);
+            this.wireEvents();
+        }
+
+        wireEvents() {
+
+        }
+
+        add(x: number, y: number) {
+            return x + y;
+        }
+
+        subtract(x: number, y: number) {
+            return x - y;
+        }
+
+    }
+
 }
 

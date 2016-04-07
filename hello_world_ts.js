@@ -185,5 +185,22 @@ var demoCastingTypes;
 (function (demoCastingTypes) {
     //var table:HTMLTableElement = document.createElement('table');
     var table = document.createElement('table');
+    var Calculator = (function () {
+        function Calculator(xId, yId, outputId) {
+            this.x = document.getElementById(xId);
+            this.y = document.getElementById(yId);
+            this.output = document.getElementById(outputId);
+            this.wireEvents();
+        }
+        Calculator.prototype.wireEvents = function () {
+        };
+        Calculator.prototype.add = function (x, y) {
+            return x + y;
+        };
+        Calculator.prototype.subtract = function (x, y) {
+            return x - y;
+        };
+        return Calculator;
+    })();
 })(demoCastingTypes || (demoCastingTypes = {}));
 //# sourceMappingURL=hello_world_ts.js.map
