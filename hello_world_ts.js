@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var HelloWorld = (function () {
     function HelloWorld(message) {
         this.message = message;
@@ -203,4 +208,38 @@ var demoCastingTypes;
         return Calculator;
     })();
 })(demoCastingTypes || (demoCastingTypes = {}));
+var demoExtends;
+(function (demoExtends) {
+    var ParentClass = (function () {
+        function ParentClass() {
+        }
+        return ParentClass;
+    })();
+    var ChildClass = (function (_super) {
+        __extends(ChildClass, _super);
+        function ChildClass() {
+            _super.call(this);
+        }
+        return ChildClass;
+    })(ParentClass);
+    var Engine = (function () {
+        function Engine() {
+        }
+        return Engine;
+    })();
+    var Auto = (function () {
+        function Auto(engine) {
+            this.engine = engine;
+        }
+        return Auto;
+    })();
+    var Truck = (function (_super) {
+        __extends(Truck, _super);
+        function Truck(engine, fourByFour) {
+            _super.call(this, engine);
+            this.fourByFour = fourByFour;
+        }
+        return Truck;
+    })(Auto);
+})(demoExtends || (demoExtends = {}));
 //# sourceMappingURL=hello_world_ts.js.map

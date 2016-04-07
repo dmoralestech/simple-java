@@ -275,3 +275,35 @@ module demoCastingTypes {
 
 }
 
+module demoExtends {
+    class ParentClass {
+
+    }
+    class ChildClass extends ParentClass {
+        constructor() {
+            super();
+        }
+
+    }
+
+    class Engine {
+
+    }
+
+    class Auto {
+        engine: Engine;
+        constructor(engine: Engine) {
+            this.engine = engine;
+        }
+    }
+
+    class Truck extends Auto {
+        fourByFour: boolean;
+        constructor(engine: Engine, fourByFour: boolean) {
+            super(engine);
+            this.fourByFour = fourByFour;
+        }
+
+    }
+}
+
