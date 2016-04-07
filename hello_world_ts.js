@@ -112,7 +112,9 @@ var demoInterface;
             name: 'Darwin',
             age: 2,
             kids: 2,
-            calcPets: function () { return 1; },
+            calcPets: function () {
+                return 1;
+            },
             makeYounger: function (years) {
                 _this.age -= years;
             },

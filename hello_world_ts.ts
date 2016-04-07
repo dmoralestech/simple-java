@@ -1,5 +1,6 @@
 class HelloWorld {
-    constructor(public message: string) {}
+    constructor(public message:string) {
+    }
 }
 
 var hello = new HelloWorld('Hello Typescript');
@@ -12,19 +13,19 @@ const compose = (a, b) => (c) => a(b(c));
 const add10Times2 = compose(add1, times2);
 console.log(add10Times2(5));
 
-var startTimer = function() {
+var startTimer = function () {
 
 };
 
-var pauseTimer = function() {
+var pauseTimer = function () {
 
 };
 
-var clearTimer = function() {
+var clearTimer = function () {
 
 };
 
-var init: (s: string, p: string, c: string) => void = function (startButton, pauseButton, clearButton) {
+var init:(s:string, p:string, c:string) => void = function (startButton, pauseButton, clearButton) {
     document.getElementById(startButton).addEventListener("click", startTimer, false);
     document.getElementById(pauseButton).addEventListener("click", pauseTimer, false);
     document.getElementById(clearButton).addEventListener("click", clearTimer, false);
@@ -33,7 +34,7 @@ var init: (s: string, p: string, c: string) => void = function (startButton, pau
 init('startButton', 'pauseButton', 'clearButton');
 
 module demo {
-    var person: string;
+    var person:string;
     person = 'Darwin Morales';
     console.log(person);
 
@@ -44,57 +45,57 @@ module demo {
     console.log(person2.name.substring(1, 4));
 }
 
-var names: string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
+var names:string[] = ['Darwin', 'Nova', 'Daniel', 'Sitti'];
 
 module demoPrimitives {
-    var data: any;
-    var doSomething: (args: any) => void = function(args) {
+    var data:any;
+    var doSomething:(args:any) => void = function (args) {
         return args;
     };
 
-    var age: number = 32;
-    var price: number = 1.99;
-    var hasData: boolean = true;
-    var hasMoney: boolean = true;
+    var age:number = 32;
+    var price:number = 1.99;
+    var hasData:boolean = true;
+    var hasMoney:boolean = true;
 
-    var birthDate: Date = null;
+    var birthDate:Date = null;
 
 }
 
 module demoObjects {
     var points1 = {x: 10, y: 15};
-    var coordX: number = points1.x;
+    var coordX:number = points1.x;
 
     var rectangle = {
         h: 10,
         w: 20,
-        calcArea: function() {
+        calcArea: function () {
             return this.h * this.w;
         }
     };
 
-    var squareIt = function(rect: {h: number; w?: number}) {
+    var squareIt = function (rect:{h: number; w?: number}) {
         if (rect.w === undefined) {
             return rect.h * rect.h;
         }
         return rect.h * rect.w;
     }
-    var sq1: number = squareIt({h: 10});
+    var sq1:number = squareIt({h: 10});
     console.log('area of sq1 ', sq1);
 
 }
 
 
-var myFunc = (h: number, w: number) => h * w;
+var myFunc = (h:number, w:number) => h * w;
 
-var helloWorld:(name?:string) => void = function(name?) {
-    console.log('Hello ' + (name || 'unknown person'));}
+var helloWorld:(name?:string) => void = function (name?) {
+    console.log('Hello ' + (name || 'unknown person'));
+}
 
 
+var squareIt:(rect:{h: number, w?: number}) => number;
 
-var squareIt: (rect: {h: number, w?: number}) => number;
-
-squareIt = function(rect) {
+squareIt = function (rect) {
     if (rect.w === undefined) {
         return rect.h * rect.h;
     }
@@ -109,74 +110,76 @@ console.log(squareIt(rectB));
 
 module demoInterface {
     interface squareFunction {
-        (x: number): number;
+        (x:number): number;
     }
 
-    var squareItBasic: squareFunction = (num) => num * num;
+    var squareItBasic:squareFunction = (num) => num * num;
 
     interface Rectangle {
         h: number;
         w?: number;
     }
 
-    var squareIt: (rect: Rectangle) => number; //OLD WAY: var squareIt: (rect: {h: number, w?: number}) => number;
+    var squareIt:(rect:Rectangle) => number; //OLD WAY: var squareIt: (rect: {h: number, w?: number}) => number;
 
     interface Person {
         name: string;
         age?: number;
         kids: number;
         calcPets: () => number;
-        makeYounger: (years: number) => void;
-        greet: (msg: string) => string;
+        makeYounger: (years:number) => void;
+        greet: (msg:string) => string;
     }
 
-    var p: Person = {
+    var p:Person = {
         //favoriteMovie: 'NBA Jordan', // This should work
         name: 'Darwin',
         age: 33,
         kids: 2,
-        calcPets: function() {
+        calcPets: function () {
             return this.kids * 2;
         },
-        makeYounger: function(years: number) {
+        makeYounger: function (years:number) {
             this.age -= years;
         },
-        greet: function (msg: string) {
+        greet: function (msg:string) {
             return msg + ',' + this.name;
         }
     };
 
-    function getPerson(): Person {
+    function getPerson():Person {
         return {
             name: 'Darwin',
             age: 2,
             kids: 2,
-            calcPets: () => {return 1},
-            makeYounger: (years: number) => {
+            calcPets: () => {
+                return 1
+            },
+            makeYounger: (years:number) => {
                 this.age -= years;
             },
-            greet: (msg: string) => {
+            greet: (msg:string) => {
                 return msg + ',' + this.name;
             }
         }
     }
 
     interface SessionEval {
-        addRating: (rating: number) => void;
+        addRating: (rating:number) => void;
         calcRating: () => number
     }
 
-    function sessionEvaluator(): SessionEval {
-        var ratings: number[] = [];
-        var addRating = (rating: number =5) => {
+    function sessionEvaluator():SessionEval {
+        var ratings:number[] = [];
+        var addRating = (rating:number = 5) => {
             ratings.push(rating);
         }
         var calcRating = ()  => {
-            var sum: number = 0;
-            ratings.forEach(function(score) {
+            var sum:number = 0;
+            ratings.forEach(function (score) {
                 sum += score;
             });
-            return sum/ratings.length;
+            return sum / ratings.length;
         };
         return {
             addRating: addRating,
@@ -190,9 +193,9 @@ module demoInterface {
 
 module demoClasses {
     class Car {
-        engine: string;
+        engine:string;
 
-        constructor(engine: string) {
+        constructor(engine:string) {
             this.engine = engine;
         }
 
@@ -228,14 +231,15 @@ module demoClasses {
     //    }
     //}
 
-    class Engine  {
-        constructor(public horsePower: number, public engineType: string) {}
+    class Engine {
+        constructor(public horsePower:number, public engineType:string) {
+        }
     }
 
     class Car3 {
-        private _engine: Engine;
+        private _engine:Engine;
 
-        constructor(engine: Engine) {
+        constructor(engine:Engine) {
             this._engine = engine;
         }
 
@@ -248,11 +252,11 @@ module demoCastingTypes {
     var table:HTMLTableElement = <HTMLTableElement>document.createElement('table');
 
     class Calculator {
-        private x: HTMLInputElement;
-        private y: HTMLInputElement;
-        private output: HTMLSpanElement;
+        private x:HTMLInputElement;
+        private y:HTMLInputElement;
+        private output:HTMLSpanElement;
 
-        constructor(xId: string, yId: string, outputId: string) {
+        constructor(xId:string, yId:string, outputId:string) {
             this.x = <HTMLInputElement>document.getElementById(xId);
             this.y = <HTMLInputElement>document.getElementById(yId);
             this.output = <HTMLSpanElement>document.getElementById(outputId);
@@ -263,11 +267,11 @@ module demoCastingTypes {
 
         }
 
-        add(x: number, y: number) {
+        add(x:number, y:number) {
             return x + y;
         }
 
-        subtract(x: number, y: number) {
+        subtract(x:number, y:number) {
             return x - y;
         }
 
@@ -287,30 +291,35 @@ module demoExtends {
     }
 
     class Engine {
-        constructor(public horsePower: number, public engineType: string) {}
+        constructor(public horsePower:number, public engineType:string) {
+        }
 
-        start(callback: (startStatus: boolean, engineType: string) => void) {
-            window.setTimeout(() => {callback(true, this.engineType)
+        start(callback:(startStatus:boolean, engineType:string) => void) {
+            window.setTimeout(() => {
+                callback(true, this.engineType)
             }, 1000);
         }
 
-        stop(callback: (stopStatus: boolean, engineType: string) => void) {
-            window.setTimeout(() => {callback(true, this.engineType)
+        stop(callback:(stopStatus:boolean, engineType:string) => void) {
+            window.setTimeout(() => {
+                callback(true, this.engineType)
             }, 1000);
         }
 
     }
 
     class Auto {
-        engine: Engine;
-        constructor(engine: Engine) {
+        engine:Engine;
+
+        constructor(engine:Engine) {
             this.engine = engine;
         }
     }
 
     class Truck extends Auto {
-        fourByFour: boolean;
-        constructor(engine: Engine, fourByFour: boolean) {
+        fourByFour:boolean;
+
+        constructor(engine:Engine, fourByFour:boolean) {
             super(engine);
             this.fourByFour = fourByFour;
         }
