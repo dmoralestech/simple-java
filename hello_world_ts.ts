@@ -131,7 +131,7 @@ module demoInterface {
     }
 
     var p: Person = {
-        //favoriteMovie: 'NBA Jordan',
+        //favoriteMovie: 'NBA Jordan', // This should work
         name: 'Darwin',
         age: 33,
         kids: 2,
@@ -141,7 +141,7 @@ module demoInterface {
         makeYounger: function(years: number) {
             this.age -= years;
         },
-        greet: function (msg: number) {
+        greet: function (msg: string) {
             return msg + ',' + this.name;
         }
     };

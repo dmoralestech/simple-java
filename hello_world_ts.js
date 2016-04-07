@@ -87,7 +87,7 @@ var demoInterface;
     var squareItBasic = function (num) { return num * num; };
     var squareIt; //OLD WAY: var squareIt: (rect: {h: number, w?: number}) => number;
     var p = {
-        //favoriteMovie: 'NBA Jordan',
+        //favoriteMovie: 'NBA Jordan', // This should work
         name: 'Darwin',
         age: 33,
         kids: 2,
