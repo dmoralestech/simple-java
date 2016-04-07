@@ -187,3 +187,45 @@ module demoInterface {
 
 
 }
+
+module demoClasses {
+    class Car {
+        engine: string;
+
+        constructor(engine: string) {
+            this.engine = engine;
+        }
+
+        //constructor(public engine: string) {
+        //    this.engine = engine;
+        //}
+
+
+    }
+
+    class Car2 {
+        private _engine: string;
+
+        constructor(engine: string) {
+            this.engine = engine;
+        }
+
+        start() {
+            return "Started " + this._engine;
+        }
+
+        stop() {
+            return "Stopped " + this._engine;
+        }
+
+        get engine(): string {
+            return this._engine;
+        }
+
+        set engine(value: string) {
+            if (value === undefined) throw 'Supply an engine'
+            this._engine = value;
+        }
+    }
+
+}

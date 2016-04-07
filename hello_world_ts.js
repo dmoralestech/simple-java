@@ -135,4 +135,37 @@ var demoInterface;
         };
     }
 })(demoInterface || (demoInterface = {}));
+var demoClasses;
+(function (demoClasses) {
+    var Car = (function () {
+        function Car(engine) {
+            this.engine = engine;
+        }
+        return Car;
+    })();
+    var Car2 = (function () {
+        function Car2(engine) {
+            this.engine = engine;
+        }
+        Car2.prototype.start = function () {
+            return "Started " + this._engine;
+        };
+        Car2.prototype.stop = function () {
+            return "Stopped " + this._engine;
+        };
+        Object.defineProperty(Car2.prototype, "engine", {
+            get: function () {
+                return this._engine;
+            },
+            set: function (value) {
+                if (value === undefined)
+                    throw 'Supply an engine';
+                this._engine = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return Car2;
+    })();
+})(demoClasses || (demoClasses = {}));
 //# sourceMappingURL=hello_world_ts.js.map
