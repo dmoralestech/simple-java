@@ -85,5 +85,21 @@ console.log(squareIt(rectB));
 var demoInterface;
 (function (demoInterface) {
     var squareItBasic = function (num) { return num * num; };
+    var squareIt; //OLD WAY: var squareIt: (rect: {h: number, w?: number}) => number;
+    var p = {
+        //favoriteMovie: 'NBA Jordan',
+        name: 'Darwin',
+        age: 33,
+        kids: 2,
+        calcPets: function () {
+            return this.kids * 2;
+        },
+        makeYounger: function (years) {
+            this.age -= years;
+        },
+        greet: function (msg) {
+            return msg + ',' + this.name;
+        }
+    };
 })(demoInterface || (demoInterface = {}));
 //# sourceMappingURL=hello_world_ts.js.map

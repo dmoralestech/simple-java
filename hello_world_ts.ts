@@ -113,4 +113,38 @@ module demoInterface {
     }
 
     var squareItBasic: squareFunction = (num) => num * num;
+
+    interface Rectangle {
+        h: number;
+        w?: number;
+    }
+
+    var squareIt: (rect: Rectangle) => number; //OLD WAY: var squareIt: (rect: {h: number, w?: number}) => number;
+
+    interface Person {
+        name: string;
+        age?: number;
+        kids: number;
+        calcPets: () => number;
+        makeYounger: (years: number) => void;
+        greet: (msg: string) => string;
+    }
+
+    var p: Person = {
+        //favoriteMovie: 'NBA Jordan',
+        name: 'Darwin',
+        age: 33,
+        kids: 2,
+        calcPets: function() {
+            return this.kids * 2;
+        },
+        makeYounger: function(years: number) {
+            this.age -= years;
+        },
+        greet: function (msg: number) {
+            return msg + ',' + this.name;
+        }
+    };
+
+
 }
