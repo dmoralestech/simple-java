@@ -82,4 +82,8 @@ var rectA = { h: 7 };
 var rectB = { h: 7, w: 10 };
 console.log(squareIt(rectA));
 console.log(squareIt(rectB));
+var demoInterface;
+(function (demoInterface) {
+    var squareItBasic = function (num) { return num * num; };
+})(demoInterface || (demoInterface = {}));
 //# sourceMappingURL=hello_world_ts.js.map

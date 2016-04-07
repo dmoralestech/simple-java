@@ -106,3 +106,11 @@ var rectB = {h: 7, w: 10};
 
 console.log(squareIt(rectA));
 console.log(squareIt(rectB));
+
+module demoInterface {
+    interface squareFunction {
+        (x: number): number;
+    }
+
+    var squareItBasic: squareFunction = (num) => num * num;
+}
