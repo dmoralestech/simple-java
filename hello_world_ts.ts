@@ -89,3 +89,20 @@ var myFunc = (h: number, w: number) => h * w;
 
 var helloWorld:(name?:string) => void = function(name?) {
     console.log('Hello ' + (name || 'unknown person'));}
+
+
+
+var squareIt: (rect: {h: number, w?: number}) => number;
+
+squareIt = function(rect) {
+    if (rect.w === undefined) {
+        return rect.h * rect.h;
+    }
+    return rect.w * rect.h;
+}
+
+var rectA = {h: 7};
+var rectB = {h: 7, w: 10};
+
+console.log(squareIt(rectA));
+console.log(squareIt(rectB));
