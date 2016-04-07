@@ -143,29 +143,42 @@ var demoClasses;
         }
         return Car;
     })();
-    var Car2 = (function () {
-        function Car2(engine) {
-            this.engine = engine;
+    //class Car2 {
+    //    private _engine: string;
+    //
+    //    constructor(engine: string) {
+    //        this.engine = engine;
+    //    }
+    //
+    //    start() {
+    //        return "Started " + this._engine;
+    //    }
+    //
+    //    stop() {
+    //        return "Stopped " + this._engine;
+    //    }
+    //
+    //    get engine(): string {
+    //        return this._engine;
+    //    }
+    //
+    //    set engine(value: string) {
+    //        if (value === undefined) throw 'Supply an engine'
+    //        this._engine = value;
+    //    }
+    //}
+    var Engine = (function () {
+        function Engine(horsePower, engineType) {
+            this.horsePower = horsePower;
+            this.engineType = engineType;
         }
-        Car2.prototype.start = function () {
-            return "Started " + this._engine;
-        };
-        Car2.prototype.stop = function () {
-            return "Stopped " + this._engine;
-        };
-        Object.defineProperty(Car2.prototype, "engine", {
-            get: function () {
-                return this._engine;
-            },
-            set: function (value) {
-                if (value === undefined)
-                    throw 'Supply an engine';
-                this._engine = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        return Car2;
+        return Engine;
+    })();
+    var Car3 = (function () {
+        function Car3(engine) {
+            this._engine = engine;
+        }
+        return Car3;
     })();
 })(demoClasses || (demoClasses = {}));
 //# sourceMappingURL=hello_world_ts.js.map

@@ -203,29 +203,45 @@ module demoClasses {
 
     }
 
-    class Car2 {
-        private _engine: string;
+    //class Car2 {
+    //    private _engine: string;
+    //
+    //    constructor(engine: string) {
+    //        this.engine = engine;
+    //    }
+    //
+    //    start() {
+    //        return "Started " + this._engine;
+    //    }
+    //
+    //    stop() {
+    //        return "Stopped " + this._engine;
+    //    }
+    //
+    //    get engine(): string {
+    //        return this._engine;
+    //    }
+    //
+    //    set engine(value: string) {
+    //        if (value === undefined) throw 'Supply an engine'
+    //        this._engine = value;
+    //    }
+    //}
 
-        constructor(engine: string) {
-            this.engine = engine;
+    class Engine  {
+        constructor(public horsePower: number, public engineType: string) {}
+    }
+
+    class Car3 {
+        private _engine: Engine;
+
+        constructor(engine: Engine) {
+            this._engine = engine;
         }
 
-        start() {
-            return "Started " + this._engine;
-        }
 
-        stop() {
-            return "Stopped " + this._engine;
-        }
 
-        get engine(): string {
-            return this._engine;
-        }
 
-        set engine(value: string) {
-            if (value === undefined) throw 'Supply an engine'
-            this._engine = value;
-        }
     }
 
 }
