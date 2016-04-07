@@ -239,9 +239,6 @@ module demoClasses {
             this._engine = engine;
         }
 
-
-
-
     }
 
 }
