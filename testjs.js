@@ -27,12 +27,16 @@ function test() {
     }
 
     function Person(name, age) {
-        this.name = name;
-        this.age = age;
+        this.getName = function() {
+            return name;
+        }
+        this.getAge = function() {
+            return age;
+        }
     }
 
     var person = new Person("Darwin", 22);
-    console.log(person.name, person.age);
+    console.log(person.getName(), person.getAge());
 
     var foo1 = new Foo2("Darwin");
     console.log(foo1.get());
