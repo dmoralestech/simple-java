@@ -26,6 +26,14 @@ function test() {
         }
     }
 
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    var person = new Person("Darwin", 22);
+    console.log(person.name, person.age);
+
     var foo1 = new Foo2("Darwin");
     console.log(foo1.get());
     let one = new Foo(1);
