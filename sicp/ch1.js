@@ -26,7 +26,7 @@ function first_denomination(kinds_of_coins) {
     }
 }
 
-console.log(count_change(7));
+console.log(count_change(100));
 console.log(count_change(1));
 console.log(count_change(45));
 
