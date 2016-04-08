@@ -6,8 +6,15 @@ function test() {
     "use strict";
     //http://www.breck-mckye.com/blog/2016/04/monads-explained-quickly/
     function Foo(value) {
-        this.get = () => value;
-        this.map = fn => {
+//        this.get = () => value;
+        this.get = function() {
+            return value;
+        }
+//        this.map = fn => {
+//            let result = fn(value);
+//            return new Foo(result);
+//        };
+        this.map = function(fn) {
             let result = fn(value);
             return new Foo(result);
         };
