@@ -20,6 +20,14 @@ function test() {
         };
     }
 
+    function Foo2(value){
+        this.get = function() {
+            return value;
+        }
+    }
+
+    var foo1 = new Foo2("Darwin");
+    console.log(foo1.get());
     let one = new Foo(1);
     let two = one.map(x => x + 7)
         .map(x => x / 2)
