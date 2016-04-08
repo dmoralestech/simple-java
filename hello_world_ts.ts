@@ -326,3 +326,11 @@ module demoExtends {
     }
 }
 
+module demoInterface2{
+    interface IEngine {
+        start( callback: (startStatus: boolean, engineType: string) => void): void;
+        stop( callback: (stopStatus: boolean, engineType: string) => void): void;
+    }
+
+}
+
