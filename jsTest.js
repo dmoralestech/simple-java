@@ -5,6 +5,9 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+
+
+
  function sayHello(firstName, secondName, middleName) {
      console.log(this.sayHello(), firstName, middleName, secondName);
  }
