@@ -332,5 +332,11 @@ module demoInterface2{
         stop( callback: (stopStatus: boolean, engineType: string) => void): void;
     }
 
+    class Engine implements IEngine {
+        start( callback: (startStatus: boolean, engineType: string) => void){ };
+        stop( callback: (stopStatus: boolean, engineType: string) => void){ };
+
+    }
+
 }
 

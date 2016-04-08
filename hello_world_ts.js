@@ -258,4 +258,16 @@ var demoExtends;
         return Truck;
     })(Auto);
 })(demoExtends || (demoExtends = {}));
+var demoInterface2;
+(function (demoInterface2) {
+    var Engine = (function () {
+        function Engine() {
+        }
+        Engine.prototype.start = function (callback) { };
+        ;
+        Engine.prototype.stop = function (callback) { };
+        ;
+        return Engine;
+    })();
+})(demoInterface2 || (demoInterface2 = {}));
 //# sourceMappingURL=hello_world_ts.js.map
