@@ -4,7 +4,7 @@
 
 function test() {
     "use strict";
-
+    //http://www.breck-mckye.com/blog/2016/04/monads-explained-quickly/
     function Foo(value) {
         this.get = () => value;
         this.map = fn => {
