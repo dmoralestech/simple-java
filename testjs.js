@@ -16,8 +16,18 @@ function test() {
 //        };
         this.map = function(fn) {
             let result = fn(value);
+            console.log(result);
             return new Foo(result);
         };
+    }
+
+    function Bar(value) {
+        this.get = () => value;
+        this.map = fn => {
+            let result = fn(value);
+            console.log(result);
+            return new Bar(result);
+        }
     }
 
     function Foo2(value){
