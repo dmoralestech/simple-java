@@ -278,7 +278,9 @@ var demoInterface2;
     var Truck = (function (_super) {
         __extends(Truck, _super);
         function Truck(options) {
-            _super.call(this);
+            _super.call(this, options);
+            this.bedLength = options.bedLength;
+            this.fourByFour = options.fourByFour;
         }
         return Truck;
     })(Auto);

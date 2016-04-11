@@ -347,6 +347,11 @@ module demoInterface2{
         year: number;
     }
 
+    interface ITruckOptions extends IAutoOptions {
+        bedLength: string;
+        fourByFour: boolean;
+    }
+
     class Auto {
         options: IAutoOptions;
         constructor(options: IAutoOptions) {
@@ -355,8 +360,13 @@ module demoInterface2{
     }
 
     class Truck extends Auto {
-        constructor(options: IAutoOptions) {
-            super();
+        bedLength: string;
+        fourByFour: boolean;
+        constructor(options: ITruckOptions) {
+            super(options);
+            this.bedLength = options.bedLength;
+            this.fourByFour = options.fourByFour;
+
         }
     }
 
