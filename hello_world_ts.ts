@@ -372,6 +372,19 @@ module demoInterface2{
 
 }
 
+namespace Shapes {
+    interface IRectangle {
+        height: number;
+        width: number;
+    }
+
+    class Rectangle implements IRectangle {
+        constructor(public height: number, public width: number) {
+
+        }
+    }
+}
+
 
 
 

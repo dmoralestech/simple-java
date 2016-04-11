@@ -285,4 +285,14 @@ var demoInterface2;
         return Truck;
     })(Auto);
 })(demoInterface2 || (demoInterface2 = {}));
+var Shapes;
+(function (Shapes) {
+    var Rectangle = (function () {
+        function Rectangle(height, width) {
+            this.height = height;
+            this.width = width;
+        }
+        return Rectangle;
+    })();
+})(Shapes || (Shapes = {}));
 //# sourceMappingURL=hello_world_ts.js.map
