@@ -338,6 +338,28 @@ module demoInterface2{
 
     }
 
+    interface IAutoOptions {
+        basePrice: number;
+        engine: IEngine;
+        state: string;
+        make: string;
+        model: string;
+        year: number;
+    }
+
+    class Auto {
+        options: IAutoOptions;
+        constructor(options: IAutoOptions) {
+            this.options = options;
+        }
+    }
+
+    class Truck extends Auto {
+        constructor(options: IAutoOptions) {
+            super();
+        }
+    }
+
 }
 
 

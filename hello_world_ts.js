@@ -269,5 +269,18 @@ var demoInterface2;
         ;
         return Engine;
     })();
+    var Auto = (function () {
+        function Auto(options) {
+            this.options = options;
+        }
+        return Auto;
+    })();
+    var Truck = (function (_super) {
+        __extends(Truck, _super);
+        function Truck(options) {
+            _super.call(this);
+        }
+        return Truck;
+    })(Auto);
 })(demoInterface2 || (demoInterface2 = {}));
 //# sourceMappingURL=hello_world_ts.js.map
