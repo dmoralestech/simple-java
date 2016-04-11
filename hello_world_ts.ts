@@ -378,7 +378,7 @@ namespace Shapes {
         width: number;
     }
 
-    class Rectangle implements IRectangle {
+    export class Rectangle implements IRectangle {
         constructor(public height: number, public width: number) {
 
         }
@@ -388,7 +388,7 @@ namespace Shapes {
 
 }
 
-// var myRectangle = Shapes.
+var myRectangle = new Shapes.Rectangle(2, 4);
 
 
 

@@ -294,7 +294,8 @@ var Shapes;
         }
         return Rectangle;
     })();
+    Shapes.Rectangle = Rectangle;
     var rect = new Rectangle(10, 4);
 })(Shapes || (Shapes = {}));
-// var myRectangle = Shapes.
+var myRectangle = new Shapes.Rectangle(2, 4);
 //# sourceMappingURL=hello_world_ts.js.map
