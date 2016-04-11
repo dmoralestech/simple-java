@@ -383,7 +383,12 @@ namespace Shapes {
 
         }
     }
+
+    var rect: IRectangle = new Rectangle(10, 4);
+
 }
+
+// var myRectangle = Shapes.
 
 
 

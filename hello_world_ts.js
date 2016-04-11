@@ -294,5 +294,7 @@ var Shapes;
         }
         return Rectangle;
     })();
+    var rect = new Rectangle(10, 4);
 })(Shapes || (Shapes = {}));
+// var myRectangle = Shapes.
 //# sourceMappingURL=hello_world_ts.js.map
