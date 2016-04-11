@@ -301,4 +301,40 @@ var Shapes;
     var rect = new Rectangle(10, 4);
 })(Shapes || (Shapes = {}));
 var myRectangle = new Shapes.Rectangle(2, 4);
+var LoggerMode = {
+    Console: 1,
+    Alert: 2
+};
+var App;
+(function (App) {
+    var Tools;
+    (function (Tools) {
+        var Utils;
+        (function (Utils) {
+            var Logger = (function () {
+                function Logger() {
+                }
+                Logger.prototype.write = function (msg) {
+                };
+                return Logger;
+            })();
+            Utils.Logger = Logger;
+        })(Utils = Tools.Utils || (Tools.Utils = {}));
+    })(Tools = App.Tools || (App.Tools = {}));
+})(App || (App = {}));
+var App;
+(function (App) {
+    var Tools;
+    (function (Tools) {
+        var Shapes;
+        (function (Shapes) {
+            var Point = (function () {
+                function Point() {
+                }
+                return Point;
+            })();
+            Shapes.Point = Point;
+        })(Shapes = Tools.Shapes || (Tools.Shapes = {}));
+    })(Tools = App.Tools || (App.Tools = {}));
+})(App || (App = {}));
 //# sourceMappingURL=hello_world_ts.js.map

@@ -391,3 +391,30 @@ namespace Shapes {
 }
 
 var myRectangle: Shapes.IRectangle = new Shapes.Rectangle(2, 4);
+
+interface ILogger {
+    write: (msg: string) => void;
+}
+
+var LoggerMode = {
+    Console: 1,
+    Alert: 2
+}
+
+module App.Tools.Utils {
+    export class Logger implements ILogger {
+        write(msg: string) {
+
+        }
+    }
+}
+
+interface IPoint {
+
+}
+
+module App.Tools.Shapes {
+    export class Point implements IPoint {
+
+    }
+}
