@@ -337,4 +337,6 @@ var App;
         })(Shapes = Tools.Shapes || (Tools.Shapes = {}));
     })(Tools = App.Tools || (App.Tools = {}));
 })(App || (App = {}));
+var Tools = App.Tools;
+var log = new Tools.Utils.Logger();
 //# sourceMappingURL=hello_world_ts.js.map

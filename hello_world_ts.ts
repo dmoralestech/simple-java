@@ -418,3 +418,7 @@ module App.Tools.Shapes {
 
     }
 }
+
+import Tools = App.Tools;
+
+var log = new Tools.Utils.Logger();
