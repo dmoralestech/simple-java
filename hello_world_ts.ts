@@ -369,18 +369,20 @@ module demoInterface2{
 
         }
     }
-
 }
 
 namespace Shapes {
-    interface IRectangle {
+    export interface IRectangle {
         height: number;
         width: number;
+        getArea(): number;
     }
 
     export class Rectangle implements IRectangle {
         constructor(public height: number, public width: number) {
-
+        }
+        getArea() {
+            return this.height * this.width;
         }
     }
 
@@ -388,9 +390,4 @@ namespace Shapes {
 
 }
 
-var myRectangle = new Shapes.Rectangle(2, 4);
-
-
-
-
-
+var myRectangle: Shapes.IRectangle = new Shapes.Rectangle(2, 4);
