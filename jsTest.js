@@ -5,6 +5,13 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+ var arr1 = [1, 2];
+ var newArray = arr1.concat([3, 4], [5, 6, 7]);
+ console.log(newArray); //[ 1, 2, 3, 4, 5, 6, 7 ]
+
+ var newArray2 = arr1.concat([3, 4], [5, [6, 7]]);
+ console.log(newArray2); //[ 1, 2, 3, 4, 5, [6, 7] ]
+
 function squaresWithin(a, b) {
     "use strict";
     var result = [];
@@ -13,6 +20,8 @@ function squaresWithin(a, b) {
     }
     return result;
 }
+
+
 
  console.log(squaresWithin(1, 1000));
  console.log(squaresWithin(99000, 100000));
