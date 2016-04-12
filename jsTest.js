@@ -1,165 +1,170 @@
- /**
+/**
  * Created by dmorales on 9/12/2015.
  */
 //var _ = require('C:\\java\\simple-java\\underscore-min.js');
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
- var arr1 = [1, 2];
- var newArray = arr1.concat([3, 4], [5, 6, 7]);
- console.log(newArray); //[ 1, 2, 3, 4, 5, 6, 7 ]
+var people = [{name: 'Darwin'}, {name: 'Nova'}];
+var people2 = [{name: 'Daniel'}, {name: 'Sitti'}];
 
- var newArray2 = arr1.concat([3, 4], [5, [6, 7]]);
- console.log(newArray2); //[ 1, 2, 3, 4, 5, [6, 7] ]
+people.concat(people2).forEach(function(person) {
+    "use strict";
+    console.log(person.name);
+})
+
+var arr1 = [1, 2];
+var newArray = arr1.concat([3, 4], [5, 6, 7]);
+console.log(newArray); //[ 1, 2, 3, 4, 5, 6, 7 ]
+
+var newArray2 = arr1.concat([3, 4], [5, [6, 7]]);
+console.log(newArray2); //[ 1, 2, 3, 4, 5, [6, 7] ]
 
 function squaresWithin(a, b) {
     "use strict";
     var result = [];
-    for ( var i = Math.ceil(Math.sqrt(a));  i <= Math.floor(Math.sqrt(b)); i++ ) {
-        result.push( i * i );
+    for (var i = Math.ceil(Math.sqrt(a)); i <= Math.floor(Math.sqrt(b)); i++) {
+        result.push(i * i);
     }
     return result;
 }
 
+console.log(squaresWithin(1, 1000));
+console.log(squaresWithin(99000, 100000));
 
 
- console.log(squaresWithin(1, 1000));
- console.log(squaresWithin(99000, 100000));
+function sayHello(firstName, secondName, middleName) {
+    console.log(this.sayHello(), firstName, middleName, secondName);
+}
+
+var context = {
+    sayHello: function () {
+        return 'Hello';
+    }
+}
+
+const boundFunc = sayHello.bind(context, 'Darwin', 'Morales', 'Joseph');
+boundFunc('Joseph 3');
+
+var dissociativeIdentity = _.compose(_.identity, _.identity);
+
+console.log(dissociativeIdentity(22) === _.identity(22));
+
+function partial1(fun, arg1) {
+    return function () {
+        var args = construct(arg1, arguments);
+        return fun.apply(fun, args);
+    }
+}
+
+var rand = partial1(_.random, 1);
+
+console.log(rand(10));
+console.log(rand(10));
+console.log(rand(10));
+
+console.log(repeatedly(10, function () {
+    return "a";
+}));
+console.log(repeatedly(10, partial1(rand, 10)));
+console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
+
+function randString(len) {
+    var ascii = repeatedly(len, partial1(rand, 26));
+    console.log('RANDSTRING: ', ascii)
+    return _.map(ascii, function (n) {
+        return n.toString(36);
+    }).join('');
+}
+
+console.log(randString(0));
+console.log(randString(1));
+console.log(randString(20));
+
+function generateRandomCharacter() {
+    return rand(26).toString(36);
+}
+
+function generateString(charGen, len) {
+    return repeatedly(len, charGen).join('');
+}
+
+console.log(generateString(generateRandomCharacter, 30));
+
+var composedRandomString = partial1(generateString, generateRandomCharacter);
+
+console.log(composedRandomString(15));
+
+var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
+
+console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
+console.log(_.zip(['a', 'b', 'c'], [1, 2, 3, 4]));
+
+function isIndexed(data) {
+    return _.isArray(data) || _.isString(data);
+}
+
+function fail(msg) {
+    throw new Error(msg);
+}
+
+function nth(a, index) {
+    if (!_.isNumber(index)) fail("Expected a number as the index");
+    if (!isIndexed(a)) fail("Not supported on non-indexed type");
+    if ((index < 0) || (index > a.length - 1))
+        fail("Index value is out of bounds");
+    return a[index];
+}
+
+function second(a) {
+    return nth(a, 1);
+}
+
+function constructPair(pair, rests) {
+    return [construct(_.first(pair), _.first(rests)),
+        construct(second(pair), second(rests))];
+}
+
+function unzip(pairs) {
+    if (_.isEmpty(pairs)) {
+        return [[], []];
+    }
+
+    return constructPair(_.first(pairs), unzip(_.rest(pairs)))
+}
+
+console.log(_.unzip(_.zip([1, 2, 3], [4, 5, 6])));
+
+function cycle(times, ary) {
+    if (times <= 0) {
+        return [];
+    } else {
+        return cat(ary, cycle(times - 1, ary));
+    }
+}
+
+console.log(cycle(2, [1, 2, 3]));
+console.log(_.first(cycle(20, [1, 2, 3]), 11));
+
+function myLength(ary) {
+    if (_.isEmpty(ary)) {
+        return 0;
+    } else {
+        return 1 + myLength(_.rest(ary));
+    }
+
+}
 
 
- function sayHello(firstName, secondName, middleName) {
-     console.log(this.sayHello(), firstName, middleName, secondName);
- }
-
- var context = {
-     sayHello: function () {
-         return 'Hello';
-     }
- }
-
- const boundFunc = sayHello.bind(context, 'Darwin', 'Morales', 'Joseph');
- boundFunc('Joseph 3');
-
- var dissociativeIdentity = _.compose(_.identity, _.identity);
-
- console.log(dissociativeIdentity(22) === _.identity(22));
-
- function partial1(fun, arg1) {
-     return function() {
-         var args = construct(arg1, arguments);
-         return fun.apply(fun, args);
-     }
- }
-
- var rand = partial1(_.random, 1);
-
- console.log(rand(10));
- console.log(rand(10));
- console.log(rand(10));
-
- console.log(repeatedly(10, function() {
-     return "a";
- }));
- console.log(repeatedly(10, partial1(rand, 10)));
- console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
-
- function randString(len) {
-     var ascii = repeatedly(len, partial1(rand, 26));
-     console.log('RANDSTRING: ', ascii)
-     return _.map(ascii, function(n) {
-         return n.toString(36);
-     }).join('');
- }
-
- console.log(randString(0));
- console.log(randString(1));
- console.log(randString(20));
-
- function generateRandomCharacter() {
-     return rand(26).toString(36);
- }
-
- function generateString(charGen, len) {
-     return repeatedly(len, charGen).join('');
- }
-
- console.log(generateString(generateRandomCharacter, 30));
-
- var composedRandomString = partial1(generateString, generateRandomCharacter);
-
- console.log(composedRandomString(15));
-
- var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
-
- console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
- console.log(_.zip(['a', 'b', 'c'], [1, 2, 3, 4 ]));
-
- function isIndexed(data) {
-     return _.isArray(data) || _.isString(data);
- }
-
- function fail(msg) {
-     throw new Error(msg);
- }
-
- function nth(a, index) {
-     if (!_.isNumber(index)) fail("Expected a number as the index");
-     if (!isIndexed(a)) fail("Not supported on non-indexed type");
-     if ((index < 0) || (index > a.length - 1))
-         fail("Index value is out of bounds");
-     return a[index];
- }
-
- function second(a) {
-     return nth(a, 1);
- }
-
- function constructPair(pair, rests) {
-     return [construct(_.first(pair), _.first(rests)),
-     construct(second(pair), second(rests))];
- }
-
- function unzip(pairs) {
-     if(_.isEmpty(pairs)) {
-         return [[], []];
-     }
-
-     return constructPair(_.first(pairs), unzip(_.rest(pairs)))
- }
-
- console.log(_.unzip(_.zip([1, 2, 3], [4, 5, 6])));
-
- function cycle(times, ary) {
-     if (times <= 0 ) {
-         return [];
-     } else {
-         return cat(ary, cycle(times - 1, ary));
-     }
- }
-
- console.log(cycle(2, [1, 2, 3]));
- console.log(_.first(cycle(20, [1, 2, 3]), 11));
-
- function myLength(ary) {
-     if (_.isEmpty(ary)) {
-         return 0;
-     } else {
-         return 1 + myLength(_.rest(ary));
-     }
-
- }
+console.log(myLength(_.range(10)));
+console.log(myLength(_.range(10000)));
 
 
-
- console.log(myLength(_.range(10)));
- console.log(myLength(_.range(10000)));
-
-
-var get = curry(function(prop, obj) {
+var get = curry(function (prop, obj) {
     return obj[prop];
 });
 
-var map = curry(function(fn, value) {
+var map = curry(function (fn, value) {
     return value.map(fn);
 })
 
@@ -191,7 +196,7 @@ function greet(me, you) {
     return "Hello " + you + " my name is " + me;
 }
 
-var heliosSaysHello = callFirst(greet,'Helios');
+var heliosSaysHello = callFirst(greet, 'Helios');
 
 console.log(heliosSaysHello('Eartha'));
 
@@ -232,7 +237,9 @@ function MONAD() {
 //    return unit;
 //}
 
-var plus1 = function(x) { return x + 1; };
+var plus1 = function (x) {
+    return x + 1;
+};
 
 var identity = MONAD();
 var monad = identity("Hello");
@@ -242,47 +249,50 @@ monad = identity(3);
 console.log(monad.bind(plus1));
 
 /*
-function autoCurry(fn, numArgs) {
-    numArgs = numArgs || fn.length;
-    function f() {
-        if (arguments.length < numArgs)
-        {
-            return numArgs - arguments.length > 0 ?
-                autoCurry(curry.apply(this, [fn].concat(toArray(arguments))),
-                    numArgs - arguments.length) :
-                curry.apply(this, [fn].concat(toArray(arguments)));
-        }
-        else
-        {
-            return fn.apply(this, arguments);
-        }
-    }
-    f.toString = function() { return fn.toString(); };
-    f.curried = true;
-    return f;
-}
+ function autoCurry(fn, numArgs) {
+ numArgs = numArgs || fn.length;
+ function f() {
+ if (arguments.length < numArgs)
+ {
+ return numArgs - arguments.length > 0 ?
+ autoCurry(curry.apply(this, [fn].concat(toArray(arguments))),
+ numArgs - arguments.length) :
+ curry.apply(this, [fn].concat(toArray(arguments)));
+ }
+ else
+ {
+ return fn.apply(this, arguments);
+ }
+ }
+ f.toString = function() { return fn.toString(); };
+ f.curried = true;
+ return f;
+ }
 
-Function.prototype.autoCurry = function(n) { return autoCurry(this, n); }
+ Function.prototype.autoCurry = function(n) { return autoCurry(this, n); }
 
 
 
-var dot = function(prop, obj) {
-    return obj[prop];
-}.autoCurry();
+ var dot = function(prop, obj) {
+ return obj[prop];
+ }.autoCurry();
 
-var userPhone = dot('phone');
+ var userPhone = dot('phone');
 
-console.log(userPhone({name: 'darwin', phone:'9929299'}));
+ console.log(userPhone({name: 'darwin', phone:'9929299'}));
 
-*/
-
+ */
 
 
 console.log(_.myMap(plus1, [3]));
 var arrayPlus1 = _.myMap(plus1, Array(3));
 
-console.log(_.myMap(function(x){ return "I am " + x}, ['yo'] ));
-console.log(_.myMap(function(x){ return "I am " + x.id}, [{id: 3}] ));
+console.log(_.myMap(function (x) {
+    return "I am " + x
+}, ['yo']));
+console.log(_.myMap(function (x) {
+    return "I am " + x.id
+}, [{id: 3}]));
 
 function truthy(x) {
     return (x !== false) && existy(x)
@@ -301,7 +311,7 @@ console.log(wordCount('a b c  d e'));
 
 
 function doWhen(cond, action) {
-    if(truthy(cond))
+    if (truthy(cond))
         return action();
     else
         return undefined;
@@ -319,17 +329,17 @@ function invoker(NAME, METHOD) {
 };
 
 var dmRev = invoker('keys', Array.prototype.reverse);
-console.log(_.map([[1, 2, 3], [4,5, 6]], dmRev));
+console.log(_.map([[1, 2, 3], [4, 5, 6]], dmRev));
 
 function dispatch() {
     var funs = _.toArray(arguments);
     var size = funs.lenght;
 
-    return function(target) {
+    return function (target) {
         var ret = undefined;
         var args = _.rest(arguments);
 
-        for (var i = 0; i < size; i++ ) {
+        for (var i = 0; i < size; i++) {
             var fun = funs[i];
             ret = fun.apply(fun, construct(target, args));
 
@@ -341,53 +351,57 @@ function dispatch() {
 }
 
 
- function stringReverse(s) {
-     if(!_.isString(s)) return undefined;
-     return s.split('').reverse().join('');
- }
- console.log(stringReverse('abc'));
- console.log(stringReverse(1));
+function stringReverse(s) {
+    if (!_.isString(s)) return undefined;
+    return s.split('').reverse().join('');
+}
+console.log(stringReverse('abc'));
+console.log(stringReverse(1));
 
 
- var rev = dispatch(invoker('reverse', Array.prototype.reverse), stringReverse);
- console.log(rev([1, 2, 3]));
- console.log(rev('abc'));
+var rev = dispatch(invoker('reverse', Array.prototype.reverse), stringReverse);
+console.log(rev([1, 2, 3]));
+console.log(rev('abc'));
 
- function always(VALUE) {
-     return function() {
-         return VALUE;
-     }
- }
+function always(VALUE) {
+    return function () {
+        return VALUE;
+    }
+}
 
- var sillyReverse = dispatch(rev, always(42));
- console.log(sillyReverse([1, 2, 3]));
- console.log(sillyReverse('abc'));
+var sillyReverse = dispatch(rev, always(42));
+console.log(sillyReverse([1, 2, 3]));
+console.log(sillyReverse('abc'));
 
 var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toString', String.prototype.toString));
 
 console.log(str('a'));
 console.log(_.range(10));
 
- function rightAwayInvoker() {
-     var args = _.toArray(arguments);
-     var method = args.shift();
-     var target = args.shift();
-     var blah = args.shift();
-     return method.apply(target, args);
- }
+function rightAwayInvoker() {
+    var args = _.toArray(arguments);
+    var method = args.shift();
+    var target = args.shift();
+    var blah = args.shift();
+    return method.apply(target, args);
+}
 
- console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3], 'blah'));
- var shifty = Array.prototype.shift.apply () ['1', '2', '3'].shift();
- var shifty2 = ['1', '2', '3'].shift();
- console.log(shifty);
- console.log(shifty2);
+console.log(rightAwayInvoker(Array.prototype.reverse, [1, 2, 3], 'blah'));
+var shifty = Array.prototype.shift.apply() ['1', '2', '3'].shift();
+var shifty2 = ['1', '2', '3'].shift();
+console.log(shifty);
+console.log(shifty2);
 
 
-var toUpperCase = function(x) { return x.toUpperCase(); };
-var exclaim = function(x) { return x + '!'; };
+var toUpperCase = function (x) {
+    return x.toUpperCase();
+};
+var exclaim = function (x) {
+    return x + '!';
+};
 
 function compose(a, b) {
-    return function(c) {
+    return function (c) {
         return a(b(c)); //split('a b c d')
     }
 }
@@ -396,7 +410,7 @@ var shout = compose(exclaim, toUpperCase);
 
 console.log(shout("send in the clowns"));
 
-var findCurry = curry (function(coll, pred) {
+var findCurry = curry(function (coll, pred) {
     return _.find(coll, pred);
 })
 
@@ -406,14 +420,13 @@ var findSomethingA = findSomething(function (e) {
 });
 
 
-console.log( _.find(['a', 'b', 'c'], function (e) {
-    return e === 'a'}
+console.log(_.find(['a', 'b', 'c'], function (e) {
+        return e === 'a'
+    }
 ));
 
 
-
-
-var newVals = _.map(['a', 'b', 'c'], function(e, i) {
+var newVals = _.map(['a', 'b', 'c'], function (e, i) {
     return e + e + i;
 })
 
@@ -422,10 +435,9 @@ var filterMap = curry(function (coll, fun) {
 })
 
 
-
 var filterMapHolder = filterMap(['a', 'b']);
 
-var filterMapHolderFun = filterMapHolder(function(e) {
+var filterMapHolderFun = filterMapHolder(function (e) {
     return e + e;
 })
 
@@ -435,15 +447,15 @@ function match2(what, str) {
     return str.match(what);
 }
 
-var replace = curry(function(what, replacement, str) {
+var replace = curry(function (what, replacement, str) {
     return str.replace(what, replacement);
 });
 
-var filter = curry(function(f, ary) {
+var filter = curry(function (f, ary) {
     return ary.filter(f);
 });
 
-var map = curry(function(f, ary) {
+var map = curry(function (f, ary) {
     return ary.map(f);
 });
 
@@ -457,43 +469,45 @@ console.log(filter(hasSpaces, ['darwin_morales', 'darwin morales']));
 
 var findWithSpaces = filter(hasSpaces);
 
-console.log(findWithSpaces(['darwin_morales', 'darwin morales']) );
+console.log(findWithSpaces(['darwin_morales', 'darwin morales']));
 
 console.log(resMatch);
 console.log(match(/\s+/g, "hello world"));
 console.log(match(/\s+/g)("hello world"));
 console.log(replace("hello")("wazzup")("hello world"));
 
-var abc = function(a, b, c) {
+var abc = function (a, b, c) {
     return [a, b, c];
 };
 
 var curried = curry(abc);
 
 console.log(curried(1)(2)(3));
-console.log(curried(1,2)(3));
-console.log(curried(1,2,3));
+console.log(curried(1, 2)(3));
+console.log(curried(1, 2, 3));
 
 
-var memoize = function(f) {
+var memoize = function (f) {
     var cache = {};
 
-    return function() {
+    return function () {
         var arg_str = JSON.stringify(arguments);
         cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
         return cache[arg_str];
     };
 };
 
-var squareNumber = memoize(function(x) {return x * x;});
+var squareNumber = memoize(function (x) {
+    return x * x;
+});
 
 console.log(squareNumber(4));
 console.log(squareNumber(5));
 console.log(squareNumber(4));
 
 var myClosureExample = function (A, B, C, D) {
-    return function(x, y) {
-        console.log(A + "," +  B + "," + C + "," + D);
+    return function (x, y) {
+        console.log(A + "," + B + "," + C + "," + D);
         return (A + B + C + D) * x * y;
     };
 };
@@ -505,25 +519,25 @@ console.log(func(2, 3));
 console.log(func2(5, 10));
 
 
-var addClass = function(className, element) {
+var addClass = function (className, element) {
     element.className += ' ' + className;
     return element;
 };
 
-var addTweedleClass = function(el) {
+var addTweedleClass = function (el) {
     return addClass('tweedle', el);
 };
 
-var addBoyClass = function(el) {
+var addBoyClass = function (el) {
     return addClass('boy', el);
 };
 
 var ids = ['DEE', 'DUM'];
-var elements = _.map(ids, document.getElementById );
-elements = _.map(elements, addTweedleClass );
+var elements = _.map(ids, document.getElementById);
+elements = _.map(elements, addTweedleClass);
 
 var partialFirstOfTwo = function (fn, param1) {
-    return function(param2) {
+    return function (param2) {
         return fn(param1, param2);
     }
 }
@@ -537,7 +551,7 @@ function createArray(length) {
 
     if (arguments.length > 1) {
         var args = Array.prototype.slice.call(arguments, 1);
-        while(i--) arr[length-1 - i] = createArray.apply(this, args);
+        while (i--) arr[length - 1 - i] = createArray.apply(this, args);
     }
 
     return arr;
@@ -580,8 +594,8 @@ function setUpTabUI(stepNum) { //stepNum is based-1.
     console.log('setting page :' + stepNum);
     var row = array5x5[stepNum - 1];
 
-    _.map(row, function(value, index) {
-        console.log('setting page: ' + index + ' to ' + value );
+    _.map(row, function (value, index) {
+        console.log('setting page: ' + index + ' to ' + value);
     });
 }
 
@@ -590,9 +604,9 @@ setUpTabUI(1);
 function hasKeys() {
     var KEYS = _.toArray(arguments);
 
-    var fun = function(obj) {
-        return _.every(KEYS, function(k){
-                return _.has(obj, k);
+    var fun = function (obj) {
+        return _.every(KEYS, function (k) {
+            return _.has(obj, k);
         });
     };
 
@@ -606,19 +620,19 @@ function getAttribute(attr) {
 
 var accessors = {
     sortable: {
-        get: function() {
+        get: function () {
             return getAttribute('sortable');
         }
     },
     droppable: {
-        get: function() {
+        get: function () {
             return getAttribute('droppable');
         }
     }
 };
 
 function generateGetMethod(attr) {
-    return function() {
+    return function () {
         return typeof this.getAttribute(attr) != 'undefined';
     };
 }
@@ -684,7 +698,7 @@ function repeatedly(times, fun) {
 
 console.log(repeatedly(3, function (x) {
     console.log(x);
-    return  x + 1;
+    return x + 1;
 }));
 console.log(repeat(3, "Hello World"));
 console.log(repeatedly(3, function () {
@@ -1126,7 +1140,7 @@ digitSumReport2 = function (x) {
             return sum;
         };
     return typeError !== null ? typeError + ", sum undefined" :
-        "sum " + sum(x);
+    "sum " + sum(x);
 };
 
 console.log(digitSumReport2(434343));
@@ -1298,8 +1312,8 @@ var fortytwos2 = {
 };
 
 console.log(42 + (function () {
-    return 42
-})());
+        return 42
+    })());
 
 function weirdAdd(n, f) {
     return n + f()
