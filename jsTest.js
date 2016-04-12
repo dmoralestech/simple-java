@@ -5,7 +5,17 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function squaresWithin(a, b) {
+    "use strict";
+    var result = [];
+    for ( var i = Math.ceil(Math.sqrt(a));  i <= Math.floor(Math.sqrt(b)); i++ ) {
+        result.push( i * i );
+    }
+    return result;
+}
 
+ console.log(squaresWithin(1, 1000));
+ console.log(squaresWithin(99000, 100000));
 
 
  function sayHello(firstName, secondName, middleName) {
