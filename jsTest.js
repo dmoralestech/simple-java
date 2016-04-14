@@ -17,6 +17,27 @@ copy = items.slice(0, 2);
 
 console.log(copy); // [1, 2]
 
+copy = items.slice(-2 );
+console.log(copy); // [1, 2]
+
+var person = {
+    name: 'darwin-morales'
+};
+
+var filters = {
+    'deslugify': x => x.replace('-', ' '),
+    'uppercase': x => x.toUpperCase()
+};
+
+var input = 'name | deslugify | uppercase';
+
+var sections = input.split("|").map(x => x.trim());
+
+var ref = person[sections(0)];
+
+//var output = sections
+//                .slice(1)
+//    .reduce((prev, next))
 
 var darwin = {name: "Darwin"};
 var nova = {name: "Nova"};
