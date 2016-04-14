@@ -5,6 +5,8 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+
+
 var items = [1, 2, 3, 4];
 var copy = items.slice();
 copy.push(5);
