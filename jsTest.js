@@ -7,11 +7,16 @@ var curry = require('lodash.curry');
 
 var items = [1, 2, 3, 4];
 var copy = items.slice();
-
 copy.push(5);
 
 console.log(items);
 console.log(copy);
+
+items = [1, 2, 3, 4];
+copy = items.slice(0, 2);
+
+console.log(copy); // [1, 2]
+
 
 var darwin = {name: "Darwin"};
 var nova = {name: "Nova"};
