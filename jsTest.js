@@ -11,7 +11,10 @@ var people2 = [{name: 'Daniel'}, {name: 'Sitti'}];
 people.concat(people2).forEach(function(person) {
     "use strict";
     console.log(person.name);
-})
+});
+
+var names = ['Darwin', 'Joseph', 'Morales'];
+console.log(names.join(' '));
 
 var arr1 = [1, 2];
 var newArray = arr1.concat([3, 4], [5, 6, 7]);
