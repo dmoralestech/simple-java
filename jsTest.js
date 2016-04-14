@@ -5,6 +5,14 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var items = [1, 2, 3, 4];
+var copy = items.slice();
+
+copy.push(5);
+
+console.log(items);
+console.log(copy);
+
 var darwin = {name: "Darwin"};
 var nova = {name: "Nova"};
 var daniel = {name: "Daniel"};
