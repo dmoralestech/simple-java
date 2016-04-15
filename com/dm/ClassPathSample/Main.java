@@ -5,7 +5,11 @@ package com.dm.ClassPathSample;
  */
 public class Main {
     public static void main(String[] args) {
-        com.dm.ClassPathSample.Helper helper = new Helper();
+        Helper helper = new Helper();
         System.out.println(helper.getMessage());
+
+        Util util = new Util();
+        System.out.println(util.getMessage());
+
     }
 }
