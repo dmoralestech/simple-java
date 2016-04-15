@@ -3,6 +3,15 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var Thing = (function () {
+    function Thing(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    Thing.prototype.f = function () { };
+    Thing.prototype.g = function () { };
+    return Thing;
+})();
 var lessons = [
     {
         title: 'Javascript Arrays in Depth - join',

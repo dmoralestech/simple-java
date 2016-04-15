@@ -1,3 +1,11 @@
+class Thing {
+    constructor(public x: number, public y: number) {
+    }
+
+    f() {}
+    g() {}
+}
+
 const lessons = [
     {
         title: 'Javascript Arrays in Depth - join',
