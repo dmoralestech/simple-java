@@ -6,7 +6,6 @@ var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
 
-
 var items = [1, 2, 3, 4];
 var copy = items.slice();
 copy.push(5);
@@ -48,7 +47,7 @@ var sitti = {name: "Sitti"};
 
 var family = [darwin, nova, daniel, sitti];
 
-console.log(family.indexOf(sitti))
+console.log(family.indexOf(sitti));
 
 var people = [{name: 'Darwin'}, {name: 'Nova'}];
 var people2 = [{name: 'Daniel'}, {name: 'Sitti'}];
