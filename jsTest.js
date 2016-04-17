@@ -5,6 +5,14 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function User2(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+var darwin = new User2("darwin", 33);
+
+console.log(darwin.name, darwin.age);
 
 var items = [1, 2, 3, 4];
 var copy = items.slice();
@@ -25,16 +33,16 @@ var person = {
     name: 'darwin-morales'
 };
 
-var filters = {
-    'deslugify': x => x.replace('-', ' '),
-    'uppercase': x => x.toUpperCase()
-};
+//var filters = {
+//    'deslugify': x => x.replace('-', ' '),
+//    'uppercase': x => x.toUpperCase()
+//};
 
-var input = 'name | deslugify | uppercase';
+//var input = 'name | deslugify | uppercase';
 
-var sections = input.split("|").map(x => x.trim());
+//var sections = input.split("|").map(x => x.trim());
 
-var ref = person[sections(0)];
+//var ref = person[sections(0)];
 
 //var output = sections
 //                .slice(1)
