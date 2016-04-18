@@ -35,5 +35,9 @@ var bind = function (f) {
     };
 };
 
-var f = compose(bind(sine), bind(cube));
+var sineBind = bind(sine);
+var cubeBind = bind(cube);
+
+var f = compose(sineBind, cubeBind);
+
 console.log(f(unit(3)));
