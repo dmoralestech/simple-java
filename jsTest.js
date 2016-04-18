@@ -10,6 +10,15 @@ function convertToUpperCase(value){
     return value.toUpperCase();
 }
 
+
+function concatNames(first, last) {
+    "use strict";
+    return first.toUpperCase() + " " + last;
+}
+
+var concatBindFn = concatNames.bind(null, "darwin", "morales");
+
+console.log(concatBindFn());
 console.log(convertToUpperCase.bind(null, "darwin")());
 
 var ancestry = [{name: "Darwin Morales"}, {name: "Nova Morales"}];
