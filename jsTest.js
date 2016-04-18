@@ -5,6 +5,13 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function convertToUpperCase(value){
+    "use strict";
+    return value.toUpperCase();
+}
+
+console.log(convertToUpperCase.bind(null, "darwin")());
+
 var ancestry = [{name: "Darwin Morales"}, {name: "Nova Morales"}];
 var theSet = ["Darwin Morales", "Nova Morales", "Daniel Morales", "Felicity Morales"];
 
