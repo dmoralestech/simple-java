@@ -8,6 +8,10 @@ var sine = function (x) {
     return [Math.sin(x), 'sine  was called'];
 };
 
+var square = function (x) {
+    return [x * x, 'sine  was called'];
+};
+
 var cube = function (x) {
     return [x * x * x, 'cube was called'];
 };
