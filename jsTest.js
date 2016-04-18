@@ -5,6 +5,20 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+var ancestry = [{name: "Darwin Morales"}, {name: "Nova Morales"}];
+var theSet = ["Darwin Morales", "Nova Morales", "Daniel Morales", "Felicity Morales"];
+
+function isInSet(set, person) {
+    "use strict";
+    return set.indexOf(person.name) > -1;
+}
+
+console.log(ancestry.filter(function(person) {
+    "use strict";
+    return isInSet(theSet, person);
+}));
+
+console.log(ancestry.filter(isInSet.bind(null, theSet)));
 
 
 var items = [1, 2, 3, 4];
