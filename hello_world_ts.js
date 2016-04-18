@@ -40,9 +40,9 @@ var filtered = lessons
     .filter(function (x) { return x.tags.indexOf(searchTerm) > -1; })
     .filter(function (x) { return x.views > minViews; })
     .sort(function (a, b) { return b.views - a.views; })
-    .map(function (x) { return ("  <li>" + x.title + "</li>"); })
+    .map(function (x) { return '  <li>' + x.title + '</li>'; })
     .join('\n');
-console.log("<ul>" + filtered + "</ul>");
+console.log('<ul>' + filtered + '</ul>');
 var HelloWorld = (function () {
     function HelloWorld(message) {
         this.message = message;
