@@ -19,7 +19,7 @@ console.log(ancestry.filter(function(person) {
 }));
 
 console.log(ancestry.filter(isInSet.bind(null, theSet)));
-
+console.log(isInSet.bind(null, theSet, {name: "Darwin Morales"})());
 
 var items = [1, 2, 3, 4];
 var copy = items.slice();
