@@ -36,10 +36,10 @@ const filtered = lessons
     .filter(x => x.tags.indexOf(searchTerm) > -1)
     .filter(x => x.views > minViews)
     .sort((a, b) => b.views - a.views)
-    .map(x => `  <li>${x.title}</li>`)
+    .map(x => '  <li>' + x.title + '</li>')
     .join('\n');
 
-console.log(`<ul>${filtered}</ul>`);
+console.log('<ul>' + filtered + '</ul>');
 
 class HelloWorld {
     constructor(public message:string) {

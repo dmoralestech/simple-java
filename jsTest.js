@@ -40,16 +40,16 @@ var person = {
     name: 'darwin-morales'
 };
 
-var filters = {
-    'deslugify': x => x.replace('-', ' '),
-    'uppercase': x => x.toUpperCase()
-};
+//var filters = {
+//    'deslugify': x => x.replace('-', ' '),
+//    'uppercase': x => x.toUpperCase()
+//};
 
-var input = 'name | deslugify | uppercase';
+//var input = 'name | deslugify | uppercase';
 
-var sections = input.split("|").map(x => x.trim());
+//var sections = input.split("|").map(x => x.trim());
 
-var ref = person[sections(0)];
+//var ref = person[sections(0)];
 
 //var output = sections
 //                .slice(1)
@@ -62,7 +62,7 @@ var sitti = {name: "Sitti"};
 
 var family = [darwin, nova, daniel, sitti];
 
-console.log(family.indexOf(sitti))
+console.log(family.indexOf(sitti));
 
 var people = [{name: 'Darwin'}, {name: 'Nova'}];
 var people2 = [{name: 'Daniel'}, {name: 'Sitti'}];
