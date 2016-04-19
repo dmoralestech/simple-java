@@ -65,11 +65,11 @@ console.log(f(unit(3)));
 
 /*
 Axioms
-bind(unit(value), f) ==== f(value)
+ unit(value).bind(f) ==== bind(unit(value), f) ==== f(value)
 
-bind(monad, unit) ==== monad
+monad.bind(unit) ===== bind(monad, unit) ==== monad
 
-bind(bind(monad, f), g) ===== bind(monad, function(value) {
+monad.bind(f).bind(g) ==== bind(bind(monad, f), g) ===== bind(monad, function(value) {
                                             return bind(f(value), g); })si
 
 
