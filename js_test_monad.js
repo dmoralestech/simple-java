@@ -45,3 +45,14 @@ var cubeBind = bind(cube);
 var f = compose(sineBind, cubeBind);
 
 console.log(f(unit(3)));
+
+/*
+Axioms
+bind(unit(value), f) ==== f(value)
+
+bind(monad, unit) ==== monad
+
+bind(bind(monad, f), g) ===== bind(monad, function(value) {
+                                            return bind(f(value), g); })
+
+ */
