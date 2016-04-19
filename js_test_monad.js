@@ -4,6 +4,23 @@
 /**
  * Created by dmorales on 18/04/2016.
  */
+
+function MONAD() {
+    "use strict";
+
+    return function unit(value) {
+        var monad = Object.create(null);
+        monad.bind = function(func) {
+            return func(value);
+        };
+        return monad;
+    }
+}
+
+var identity = MONAD();
+var monad = identity("Hello World");
+monad.bind(console.log);
+
 var sine = function (x) {
     return [Math.sin(x), 'sine  was called'];
 };
@@ -58,14 +75,3 @@ bind(bind(monad, f), g) ===== bind(monad, function(value) {
 
  */
 
-function MONAD() {
-    "use strict";
-
-    return function unit(value) {
-        var monad = Object.create(null);
-        monad.bind = function(func) {
-            return func(value);
-        };
-        return monad;
-    }
-}
