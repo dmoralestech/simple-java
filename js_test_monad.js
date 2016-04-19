@@ -53,6 +53,19 @@ bind(unit(value), f) ==== f(value)
 bind(monad, unit) ==== monad
 
 bind(bind(monad, f), g) ===== bind(monad, function(value) {
-                                            return bind(f(value), g); })
+                                            return bind(f(value), g); })si
+
 
  */
+
+function MONAD() {
+    "use strict";
+
+    return function unit(value) {
+        var monad = Object.create(null);
+        monad.bind = function(func) {
+            return func(value);
+        };
+        return monad;
+    }
+}
