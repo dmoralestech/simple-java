@@ -23,4 +23,10 @@ public class Monad<T> {
         return value;
     }
 
+    public static void main(String[] args) {
+        Monad<Integer> intMonad = Monad.unit(2);
+        double result = intMonad.flatMap( (i) -> Monad.unit(Math.sqrt(i))).get();
+        System.out.println("result = " + result);
+    }
+
 }
