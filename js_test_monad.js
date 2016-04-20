@@ -5,6 +5,34 @@
  * Created by dmorales on 18/04/2016.
  */
 
+function MONAD3(modifier) {
+    var prototype = Object.create(null);
+    function unit(value) {
+        var monad = Object.create(prototype);
+        monad.bind = function (func, args) {
+            return func(value, args);
+        };
+        if(typeof modifier === 'function') {
+            modifier(monad, value);
+        }
+        return monad;
+    }
+    return unit;
+}
+
+var maybe = MONAD3(function (monad, value) {
+    if(value === null || value === undefined) {
+        monad.is_null = true;
+        monad.bind = function() {
+            return monad;
+        }
+    }
+});
+
+var monad = maybe(null);
+monad.bind(console.log);
+
+
 function MONAD() {
     "use strict";
 
@@ -20,7 +48,6 @@ function MONAD() {
 var identity = MONAD();
 var monad = identity("Hello World");
 monad.bind(console.log);
-
 
 function MONAD2() {
     "use strict";
@@ -47,6 +74,8 @@ var ajax = MONAD2().lift('log', console.log);
 var monad = ajax("Hello world");
 
 monad.log();
+
+
 
 
 
