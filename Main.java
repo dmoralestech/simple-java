@@ -89,17 +89,17 @@ class Main {
         poly.add("go");
 
         Developer polyOldSchool = new Developer("a1");
-        poly.add("pascal");
-        poly.add("c");
-        poly.add("assembly");
-        poly.add("fortran");
+        polyOldSchool.add("pascal");
+        polyOldSchool.add("c");
+        polyOldSchool.add("assembly");
+        polyOldSchool.add("fortran");
 
         team.add(poly);
         team.add(polyOldSchool);
 
         List<String> teamLanguages = team.stream()
                 .map(developer -> developer.getLanguages())
-                .flatMap(list -> list.stream())
+                .flatMap( list -> list.stream())
                 .collect(Collectors.toList());
 
         teamLanguages.stream().forEach(System.out::println);

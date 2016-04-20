@@ -35,6 +35,7 @@ public class Monad<T> {
 
         System.out.println("result = " + result);
         System.out.println("result2 = " + result2);
+        System.out.println(intMonad.get().equals(intMonad.flatMap(i -> Monad.unit(i)).get()));
     }
 
 }
