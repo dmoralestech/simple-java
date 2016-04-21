@@ -6,6 +6,10 @@
  */
 
 var _ = require("./underscore.js");
+var concat = require("lodash/concat.js");
+var floor = require("lodash/floor.js");
+
+console.log(floor(4.34));
 
 var reduce = function (f, acc, xs) {
     "use strict";
@@ -61,12 +65,23 @@ console.log(unfold(function (x) {
 }, 0));
 
 
-var range = function(i, count) {
+var range = function (i, count) {
     "use strict";
-    return unfold( function(x) {if(x <= count) return [x, x+1]}, i);
+    return unfold(function (x) {
+        if (x <= count) return [x, x + 1]
+    }, i);
 }
 
 console.log(range(5, 10));
+
+var mapper = function (f, cnct) {
+    "use strict";
+    return function (acc, x) {
+        return cnct(acc, f(x))
+    };
+};
+
+console.log(reduce(mapper( function(x) { return x + 1}, concat), [1, 2, 3]));
 
 var person1 = {
     "name": "Homer Simpson",
