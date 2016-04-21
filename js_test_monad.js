@@ -9,6 +9,19 @@ var _ = require("./underscore.js");
 var concat = require("lodash/concat.js");
 var floor = require("lodash/floor.js");
 
+var xs = [1, 2, 3];
+var ys = [7, 8];
+var zs = [9];
+
+//left identity
+concat([], xs) === xs;
+
+//right identity
+concat(xs, []) === xs;
+
+//associativity
+concat(concat(xs, ys), zs) === concat(xs, concat(ys, zs));
+
 console.log(floor(4.34));
 
 var reduce = function (f, acc, xs) {
