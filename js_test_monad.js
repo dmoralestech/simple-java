@@ -48,7 +48,7 @@ console.log(reverse([1, 2, 3, 4]));
 var unfold = function (f, seed) {
     "use strict";
     function go(f, seed, acc) {
-        var res = f(send);
+        var res = f(seed);
         return res ? go(f, res[1], acc.concat([res[0]])) : acc;
     }
 
@@ -60,6 +60,13 @@ console.log(unfold(function (x) {
     if (x < 26) return [String.fromCharCode(x + 65), x + 1]
 }, 0));
 
+
+var range = function(i, count) {
+    "use strict";
+    return unfold( function(x) {if(x <= count) return [x, x+1]}, i);
+}
+
+console.log(range(5, 10));
 
 var person1 = {
     "name": "Homer Simpson",
