@@ -29,6 +29,18 @@ var reverse = function (xs) {
     }, [], xs);
 };
 
+var map = function(f, xs) {
+    "use strict";
+    return reduce( function(acc, x) {
+        return acc.concat(f(x))}, [], xs);
+};
+
+var filter = function(f, xs) {
+    "use strict";
+    return reduce( function(acc, x) {
+        return f(x) ? acc.concat(x) : acc}, [], xs);
+};
+
 console.log(reverse([1, 2, 3, 4]));
 
 var person1 = {
