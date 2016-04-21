@@ -7,22 +7,26 @@
 
 var _ = require("./underscore.js");
 
-var reduce = function(f, acc, xs) {
+var reduce = function (f, acc, xs) {
     "use strict";
-    if(xs.length === 0) return acc;
+    if (xs.length === 0) return acc;
     return reduce(f, f(acc, _.first(xs)), _.rest(xs));
 }
 
 var sum = function (xs) {
     "use strict";
-    return reduce(function (acc, x) { return x + acc; }, 0, xs);
+    return reduce(function (acc, x) {
+        return x + acc;
+    }, 0, xs);
 };
 
 console.log(sum([1, 2, 3, 4]));
 
-var reverse = function(xs) {
+var reverse = function (xs) {
     "use strict";
-    return reduce( function(acc, x) { return  [x].concat(acc) }, [], xs);
+    return reduce(function (acc, x) {
+        return [x].concat(acc)
+    }, [], xs);
 };
 
 console.log(reverse([1, 2, 3, 4]));
@@ -76,13 +80,14 @@ var Maybe = function (value) {
 
 var people = [person1];
 
-console.log( Maybe(people)
-                .bind(function (people) {
-                        return people[0]})
-                .maybe("No person", function (person) {
-                        return person;
-                })
-        );
+console.log(Maybe(people)
+    .bind(function (people) {
+        return people[0]
+    })
+    .maybe("No person", function (person) {
+        return person;
+    })
+);
 
 function MONAD3(modifier) {
     var prototype = Object.create(null);
