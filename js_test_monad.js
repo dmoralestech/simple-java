@@ -18,14 +18,14 @@ var sum = function (xs) {
     return reduce(function (acc, x) { return x + acc; }, 0, xs);
 };
 
-console.log(sum[1, 2, 3, 4]);
+console.log(sum([1, 2, 3, 4]));
 
 var reverse = function(xs) {
     "use strict";
     return reduce( function(acc, x) { return  [x].concat(acc) }, [], xs);
 };
 
-console.log(reverse[1, 2, 3, 4]);
+console.log(reverse([1, 2, 3, 4]));
 
 var person1 = {
     "name": "Homer Simpson",
