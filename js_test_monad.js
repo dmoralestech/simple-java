@@ -29,19 +29,37 @@ var reverse = function (xs) {
     }, [], xs);
 };
 
-var map = function(f, xs) {
+var map = function (f, xs) {
     "use strict";
-    return reduce( function(acc, x) {
-        return acc.concat(f(x))}, [], xs);
+    return reduce(function (acc, x) {
+        return acc.concat(f(x))
+    }, [], xs);
 };
 
-var filter = function(f, xs) {
+var filter = function (f, xs) {
     "use strict";
-    return reduce( function(acc, x) {
-        return f(x) ? acc.concat(x) : acc}, [], xs);
+    return reduce(function (acc, x) {
+        return f(x) ? acc.concat(x) : acc
+    }, [], xs);
 };
 
 console.log(reverse([1, 2, 3, 4]));
+
+var unfold = function (f, seed) {
+    "use strict";
+    function go(f, seed, acc) {
+        var res = f(send);
+        return res ? go(f, res[1], acc.concat([res[0]])) : acc;
+    }
+
+    return go(f, seed, []);
+}
+
+console.log(unfold(function (x) {
+    "use strict";
+    if (x < 26) return [String.fromCharCode(x + 65), x + 1]
+}, 0));
+
 
 var person1 = {
     "name": "Homer Simpson",
