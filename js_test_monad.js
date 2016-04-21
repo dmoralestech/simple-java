@@ -81,7 +81,32 @@ var mapper = function (f, cnct) {
     };
 };
 
-console.log(reduce(mapper( function(x) { return x + 1}, concat), [1, 2, 3]));
+var filterer = function (f, cnct) {
+    "use strict";
+    return function (acc, x) {
+        return f(x) ? cnct(acc, x) : acc
+    };
+};
+
+console.log(reduce(filterer(function (x) {
+    return x > 1
+}, concat), [], [1, 2, 3]));
+
+
+console.log(reduce(mapper(function (x) {
+    return x + 1
+}, concat), [], [1, 2, 3])); // [2, 3, 4]
+
+
+console.log(
+    reduce(filterer(function (x) {
+            return x > 1
+        },
+        mapper(function (x) {
+            return x + 1
+        }, concat)),
+        [], [1, 2, 3])); //[3, 4]
+
 
 var person1 = {
     "name": "Homer Simpson",
