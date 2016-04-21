@@ -102,6 +102,11 @@ class Main {
                 .flatMap( list -> list.stream())
                 .collect(Collectors.toList());
 
+
+        List<Set<String>> setOfLangs = team.stream()
+            .map(developer -> developer.getLanguages())
+            .collect(Collectors.toList());
+
         teamLanguages.stream().forEach(System.out::println);
 
         boolean isThereAVBProgrammerInTheTeam =  teamLanguages.stream().noneMatch(language -> language.equalsIgnoreCase("VB"));
