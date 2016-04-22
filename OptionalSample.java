@@ -32,11 +32,15 @@ public class OptionalSample {
     public static void main(String[] args) {
         Person person2 = null;
         Optional<Person> person = Optional.ofNullable(person2);
-        person.map( p -> p.toString());
-
-        Optional<Car> car = Optional.ofNullable( person.get().getCar());
-        System.out.println("car = " + car);
-        
+        person.ifPresent( p -> {
+            Optional<Car> car =  Optional.ofNullable(p.getCar());
+            car.ifPresent( c -> {
+                Optional<Insurance> insurance = Optional.ofNullable(c.getInsurance());
+                insurance.ifPresent(i -> {
+                    i.getName();
+                });
+            });
+        });
 
 //        person.orElse()
 //
