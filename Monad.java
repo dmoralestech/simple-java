@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -5,7 +7,6 @@ import java.util.function.Function;
  */
 public class Monad<T> {
     private T value;
-
 
     private Monad(T value) {
         this.value = value;
@@ -25,6 +26,10 @@ public class Monad<T> {
 
     public static void main(String[] args) {
         Monad<Integer> intMonad = Monad.unit(2);
+        Monad<Double> dblMonad = intMonad.flatMap( (i) -> Monad.unit(Math.sqrt(i)));
+
+        System.out.println("dblMonad = " + dblMonad);
+
         double result = intMonad.flatMap( (i) -> Monad.unit(Math.sqrt(i)))
                                 .flatMap( (d) -> Monad.unit(d * d))
                                 .get();

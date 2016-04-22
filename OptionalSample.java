@@ -6,39 +6,52 @@ import java.util.Optional;
 public class OptionalSample {
 
     private static class Person {
-        private Optional<Car> car;
+        private Car car;
 
-        public Optional<Car> getCar() {
+        public Car getCar() {
             return car;
         }
     }
 
     private static class Car {
-        private Optional<Insurance> insurance;
+        private Insurance insurance;
 
-        public Optional<Insurance> getInsurance() {
+        public Insurance getInsurance() {
             return insurance;
         }
     }
 
     private static class Insurance {
-        private Optional<String> name;
+        private String name;
 
-        public Optional<String> getName() {
+        public String getName() {
             return name;
         }
     }
 
     public static void main(String[] args) {
-        String name = Optional.ofNullable(new Person())
-                .orElse(new Person())
+        Person person2 = null;
+        Optional<Person> person = Optional.ofNullable(person2);
+        person.map( p -> p.toString());
 
-                .map( p -> Optional.of(p))
-                .flatMap( p -> p.getCar())
-                .flatMap(c -> c.getInsurance())
-                .flatMap (i -> i.getName())
-                .orElse("none");
+        Optional<Car> car = Optional.ofNullable( person.get().getCar());
+        System.out.println("car = " + car);
+        
 
-        System.out.println("name = " + name);
+//        person.orElse()
+//
+//        Optional<Car> car = Optional.ofNullable(person.get().getCar());
+//
+//                .orElse(new Person())
+//
+//                .map( p -> Optional.of(p))
+//                .flatMap( p -> p.getCar())
+//                .flatMap(c -> c.getInsurance())
+//                .flatMap (i -> i.getName())
+//                .orElse("none");
+//
+//        System.out.println("name = " + name);
     }
+
 }
+
