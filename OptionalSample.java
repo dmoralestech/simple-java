@@ -30,15 +30,15 @@ public class OptionalSample {
     }
 
     public static void main(String[] args) {
-        String name = Optional.ofNullable(new Person())
-                .orElse(new Person())
+//        String name = Optional.ofNullable(new Person())
+//                .orElse(new Person())
 
-                .map( p -> Optional.of(p))
-                .flatMap( p -> p.getCar())
-                .flatMap(c -> c.getInsurance())
-                .flatMap (i -> i.getName())
-                .orElse("none");
+//                .map( p -> Optional.of(p))
+//                .flatMap( p -> p.getCar())
+//                .flatMap(c -> c.getInsurance())
+//                .flatMap (i -> i.getName())
+//                .orElse("none");
 
-        System.out.println("name = " + name);
+//        System.out.println("name = " + name);
     }
 }
