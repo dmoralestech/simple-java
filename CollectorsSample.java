@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.groupingBy;
@@ -113,5 +114,19 @@ public class CollectorsSample {
                 groupingBy(Person::getGroup,
                         collectingAndThen(summarizingDouble(Person::getAge),
                                 dss -> new Data((long)dss.getAverage(), (long)dss.getSum()))));
+
+        List<Person> filteredPersons =
+                persons
+                        .stream()
+                        .filter(p -> p.name.startsWith("P"))
+                        .collect(Collectors.toList());
+
+        Map<Integer, List<Person>> filteredPersonsByAge =
+                persons
+                        .stream()
+                        .filter(p -> p.name.startsWith("P"))
+                        .collect(Collectors.groupingBy(p -> p.age));
+
+
     }
 }
