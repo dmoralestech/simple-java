@@ -1,4 +1,2 @@
-module Main where
-
-main :: IO()
-main = putStrLn "Hello World!"
+sayHello :: String -> IO ()
+sayHello x = putStrLn ("Hello, world " ++ x ++ "!")
