@@ -22,3 +22,10 @@ mult1 = x * y
             y = 6
 
 mult0 x y  = x * y
+
+-- let x = 3; y = 1000 in x * 3 + y
+--(\x y -> x * 3 + y) 3 1000
+
+
+-- let y = 10; x = 10 * 5 + y in x * 5
+--  (\y x -> x * 5) 10 (10 * 5 + y)
