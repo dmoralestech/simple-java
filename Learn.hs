@@ -16,3 +16,9 @@ printInc n = print plusTwo
 
 printInc2 n = let plusTwo = n + 2
               in print plusTwo
+
+mult1 = x * y
+      where x = 5
+            y = 6
+
+mult0 x y  = x * y
