@@ -1,5 +1,18 @@
 module GlobalLocal where
 
+printSecond :: IO ()
+printSecond = do
+  putStrLn "Mate"
+
+main :: IO ()
+main = do
+putStrLn greeting
+where greeting = "Yarrrrr"
+-- printSecond
+
+
+
+
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
     where woot :: Integer
