@@ -7,3 +7,7 @@ topLevelFunction x = x + woot + topLevelValue
 
 topLevelValue :: Integer
 topLevelValue = 5
+
+
+area d = pi * (r * r)
+    where r = d / 2
