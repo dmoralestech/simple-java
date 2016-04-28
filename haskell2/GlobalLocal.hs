@@ -10,7 +10,17 @@ putStrLn greeting
 where greeting = "Yarrrrr"
 -- printSecond
 
+tailDarwin = tail "Darwin"
 
+headDarwin = head "Darwin"
+
+take1Darwin = take 1 "Darwin"
+
+take6Darwin = take 6 "Darwin"
+
+drop4Darwin = drop 4 "Darwin"
+
+index4Darwin = "Darwin" !! 4
 
 
 topLevelFunction:: Integer -> Integer
