@@ -11,3 +11,5 @@ topLevelValue = 5
 
 area d = pi * (r * r)
     where r = d / 2
+
+concatList = (++) [2, 3] [4, 5]
