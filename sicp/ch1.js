@@ -51,7 +51,7 @@ function plusv2(a, b) {
     return a === 0 ? b : plusv2(dec(a), inc(b));
 }
 
-console.log(plus(4, 5));
+console.log(plus(6, 5));
 console.log(plusv2(4, 5));
 
 function findLongestWord(str) {
