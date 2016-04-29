@@ -5,6 +5,24 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function lens(get, set) {
+    "use strict";
+    var f = function(a) {return get(a);};
+
+    f.set = set;
+    f.mod = function(f, a) { return set(a, f(get(a)));};
+
+    return f;
+}
+
+var first = lens(
+    function (a) { return a[0];},
+    function(a, b) { return [b].concat(a.slice(1)) ;}
+);
+
+console.log(first([1, 2, 3]));
+console.log(first.set([1, 2, 3], 5));
+
 function convertToUpperCase(value){
     "use strict";
     return value.toUpperCase();
