@@ -20,8 +20,12 @@ var first = lens(
     function(a, b) { return [b].concat(a.slice(1)) ;}
 );
 
-console.log(first([1, 2, 3]));
-console.log(first.set([1, 2, 3], 5));
+console.log(first([1, 2, 3])); // 1
+console.log(first.set([1, 2, 3], 5)); // [5, 2, 3]
+
+function tenTimes(x) { return x * 10; }
+
+console.log(first.mod(tenTimes, [1, 2, 3])); // [10, 2, 3]
 
 function convertToUpperCase(value){
     "use strict";
