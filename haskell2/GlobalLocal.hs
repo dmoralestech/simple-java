@@ -25,6 +25,10 @@ index4Darwin = "Darwin" !! 4
 getNthChar:: String -> Int -> Char
 getNthChar s i = s !! i
 
+-- head "Darwin" --"D"
+-- init "Darwin -- "Darwi"
+-- tail "Darwin" --"arwin"
+-- last "Darwin" -- "n"
 
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
