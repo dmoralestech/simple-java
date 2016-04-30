@@ -22,6 +22,9 @@ drop4Darwin = drop 4 "Darwin"
 
 index4Darwin = "Darwin" !! 4
 
+getNthChar:: String -> Int -> Char
+getNthChar s i = s !! i
+
 
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
