@@ -34,8 +34,15 @@ getNthChar s i = s !! i
 -- minimum "Darwin" -- 'D'
 -- minimum "DARWIN" -- 'A'
 
+-- filter  (> 5)  [2, 4, 5, 6, 7, 8]
+-- takeWhile (<=20) [2, 4..]
+-- foldl (*) 2 [1, 2,3 ] -- 12
+-- [ 3^n | n <- [1..10]]
+-- [[ x * y | y <- [1..10]] | x <- [1..10]]
+
 listTimes3 = [ x * 3 | x <- [1..10], x * 3 <= 10]
 divisibleBy13And9 = [x | x <- [1..500], x `mod` 13 ==0, x `mod` 9 == 0]
+sumOfList = zipWith (+) [1,2, 3] [4, 5, 6]
 
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
