@@ -29,6 +29,10 @@ getNthChar s i = s !! i
 -- init "Darwin -- "Darwi"
 -- tail "Darwin" --"arwin"
 -- last "Darwin" -- "n"
+-- 'r' `elem` "Darwin" -- True
+-- maximum "Darwin" -- 'w'
+-- minimum "Darwin" -- 'D'
+-- minimum "DARWIN" -- 'A'
 
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
