@@ -34,6 +34,9 @@ getNthChar s i = s !! i
 -- minimum "Darwin" -- 'D'
 -- minimum "DARWIN" -- 'A'
 
+listTimes3 = [ x * 3 | x <- [1..10], x * 3 <= 10]
+divisibleBy13And9 = [x | x <- [1..500], x `mod` 13 ==0, x `mod` 9 == 0]
+
 topLevelFunction:: Integer -> Integer
 topLevelFunction x = x + woot + topLevelValue
     where woot :: Integer
