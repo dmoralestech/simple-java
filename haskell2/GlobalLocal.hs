@@ -70,3 +70,12 @@ names = ["B1", "B2"]
 address = ["Manly", "Balgowlah"]
 
 namesAndAddress = zip names address
+
+awesome = ["Papuchon", "curry", ":)"]
+alsoAwesome = ["Quake", "The Simons"]
+allAwesome = [awesome, alsoAwesome]
+
+-- length [1, 2, 3, 4, 5] -- 5
+-- length [(1, 2), (2, 3), (3, 4)] --3
+-- length allAwesome -- 2
+-- length (concat allAwesome) --5
