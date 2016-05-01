@@ -59,3 +59,14 @@ area d = pi * (r * r)
 concatList = (++) [2, 3] [4, 5]
 
 customGreeting = (++) "hello" ((++) " " "world")
+
+bobSmith = ("Bob Smith", 22)
+
+bobsName = fst bobSmith
+
+bobsAge = snd bobSmith
+
+names = ["B1", "B2"]
+address = ["Manly", "Balgowlah"]
+
+namesAndAddress = zip names address
