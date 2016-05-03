@@ -79,3 +79,6 @@ allAwesome = [awesome, alsoAwesome]
 -- length [(1, 2), (2, 3), (3, 4)] --3
 -- length allAwesome -- 2
 -- length (concat allAwesome) --5
+
+-- pab = ["Pizza", "Banana", "Apple"]
+-- foldl ( \ b a -> take 3 a ++ b) "" pab
