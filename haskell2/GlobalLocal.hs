@@ -82,3 +82,6 @@ allAwesome = [awesome, alsoAwesome]
 
 -- pab = ["Pizza", "Banana", "Apple"]
 -- foldl ( \ b a -> take 3 a ++ b) "" pab
+
+f:: (a,b) -> (c,d) -> ((b,d), (a,c))
+f x y = ((snd x, snd y), (fst x, fst y))
