@@ -84,4 +84,7 @@ allAwesome = [awesome, alsoAwesome]
 -- foldl ( \ b a -> take 3 a ++ b) "" pab
 
 f:: (a,b) -> (c,d) -> ((b,d), (a,c))
-f x y = ((snd x, snd y), (fst x, fst y))
+f x y = ((snd x, snd y), (fst x, fst y))-- length (concat allAwesome) --5
+
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = xs == (reverse xs)
