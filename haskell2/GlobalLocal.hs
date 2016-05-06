@@ -107,3 +107,9 @@ typicalCurriedFunction i b =  i + (nonSense b)
 unCurriedFunction :: (Integer, Bool) -> Integer
 unCurriedFunction (i, b)  = i + (nonSense b)
 
+anonymous :: Integer -> Bool -> Integer
+anonymous = \i b  -> i + (nonSense b)
+
+anonymousAndManuallyNested :: Integer -> Bool -> Integer
+anonymousAndManuallyNested = \i -> \b -> i + (nonSense b)
+
