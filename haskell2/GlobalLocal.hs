@@ -96,3 +96,14 @@ addTen = addStuff 5
 
 fifteen = addTen 5
 
+
+nonSense :: Bool -> Integer
+nonSense True = 434
+nonSense False = 22
+
+typicalCurriedFunction :: Integer -> Bool -> Integer
+typicalCurriedFunction i b =  i + (nonSense b)
+
+unCurriedFunction :: (Integer, Bool) -> Integer
+unCurriedFunction (i, b)  = i + (nonSense b)
+
