@@ -88,3 +88,6 @@ f x y = ((snd x, snd y), (fst x, fst y))-- length (concat allAwesome) --5
 
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome xs = xs == (reverse xs)
+
+addStuff:: Integer -> Integer -> Integer
+addStuff a b =  a + b + 5
