@@ -120,3 +120,5 @@ curryDm f a b = f (a, b)
 unCurry f (a,b) = f a b
 -- unCurry (+)  (1,2)
 
+increment = ( + 1 ) -- returns a function
+
