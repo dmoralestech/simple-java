@@ -113,3 +113,6 @@ anonymous = \i b  -> i + (nonSense b)
 anonymousAndManuallyNested :: Integer -> Bool -> Integer
 anonymousAndManuallyNested = \i -> \b -> i + (nonSense b)
 
+
+curryDm f a b = f (a, b)
+
