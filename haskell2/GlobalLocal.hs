@@ -115,4 +115,8 @@ anonymousAndManuallyNested = \i -> \b -> i + (nonSense b)
 
 
 curryDm f a b = f (a, b)
+-- curry fst 1 2
+
+unCurry f (a,b) = f a b
+-- unCurry (+)  (1,2)
 
