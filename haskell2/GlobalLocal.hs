@@ -123,3 +123,6 @@ unCurry f (a,b) = f a b
 increment = ( + 1 ) -- returns a function
 
 -- 6 / fromIntegral ( length [1, 2, 3])
+
+f1 ::  Num  a =>  a -> a -> a
+f1 x y = x + y + 3
