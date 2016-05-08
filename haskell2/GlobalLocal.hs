@@ -126,3 +126,6 @@ increment = ( + 1 ) -- returns a function
 
 f1 ::  Num  a =>  a -> a -> a
 f1 x y = x + y + 3
+
+
+f2 a b = a ++ b ++ " nice"
