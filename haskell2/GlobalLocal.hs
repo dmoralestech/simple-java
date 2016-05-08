@@ -122,3 +122,4 @@ unCurry f (a,b) = f a b
 
 increment = ( + 1 ) -- returns a function
 
+-- 6 / fromIntegral ( length [1, 2, 3])
