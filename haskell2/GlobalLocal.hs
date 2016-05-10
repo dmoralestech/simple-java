@@ -133,3 +133,6 @@ f2 a b = a ++ b ++ " nice"
 
 f3 :: Integer -> Integer -> Integer
 f3 x y = x + y + 5
+
+divideThenAdd :: Fractional a => a -> a -> a
+divideThenAdd x y = (x / y) + 1
