@@ -254,4 +254,13 @@ public class Person {
         }
     }
 
+    static Predicate<String> containsChar(String source, String s1) {
+        return  s -> source.indexOf(s1) > 0 ;
+    }
+
+    static Predicate<String> isStringLengthEqualTo(String source, int lengthToTest) {
+        return s -> source.length() == lengthToTest;
+    }
+
+
 }
