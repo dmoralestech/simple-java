@@ -262,5 +262,9 @@ public class Person {
         return s -> source.length() == lengthToTest;
     }
 
+    private String getSolrStatement(String searchString) {
+
+    }
+
 
 }
