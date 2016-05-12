@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -29,6 +30,11 @@ public class Monad<T> {
         Monad<Double> dblMonad = intMonad.flatMap( (i) -> Monad.unit(Math.sqrt(i)));
 
         System.out.println("dblMonad = " + dblMonad);
+
+        Double dblOptional = Optional.of(2)
+                                            .flatMap( i -> Optional.of(Math.sqrt(i)))
+                                            .flatMap( d -> Optional.of(d * d))
+                                            .get();
 
         double result = intMonad.flatMap( (i) -> Monad.unit(Math.sqrt(i)))
                                 .flatMap( (d) -> Monad.unit(d * d))

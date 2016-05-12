@@ -262,7 +262,14 @@ public class Person {
         return s -> source.length() == lengthToTest;
     }
 
-    private String getSolrStatement(String searchString) {
+    private String getSomething(String searchString) {
+
+        return Optional.of(searchString)
+                .filter(s -> s.length() == 7)
+                .flatMap( s -> Optional.of(s))
+                .filter( s -> s.indexOf(" ") > 0)
+                .get();
+
 
     }
 
