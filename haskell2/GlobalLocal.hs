@@ -154,7 +154,7 @@ triple x = x * 3
 triple2 :: Integer -> Integer
 triple2 x = x * 3 :: Integer -- If we only limit this function to an Integer
 
-triple3 = tripleItYo x
+triple3 x = tripleItYo x
         where tripleItYo:: Integer -> Integer
               tripleItYo y = y * 3
 
