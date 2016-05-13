@@ -144,3 +144,7 @@ myConcat x  = x ++ " yo"
 
 
 myMult x = ( x  / 3 ) * 5
+
+myCom  x = x  > (length [1..10])
+
+myAlpha x =  x < 'z'
