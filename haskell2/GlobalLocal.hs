@@ -150,3 +150,5 @@ myCom  x = x  > (length [1..10])
 myAlpha x =  x < 'z'
 
 triple x = x * 3
+
+triple2 x = x * 3 :: Integer
