@@ -141,3 +141,6 @@ subtractThenAdd :: Num a => a -> a -> a
 subtractThenAdd x y = (x - y) + 1
 
 myConcat x  = x ++ " yo"
+
+
+myMult x = ( x  / 3 ) * 5
