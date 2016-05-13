@@ -151,4 +151,4 @@ myAlpha x =  x < 'z'
 
 triple x = x * 3
 
-triple2 x = x * 3 :: Integer
+triple2 x = x * 3 :: Integer -- If we only limit this function to an Integer
