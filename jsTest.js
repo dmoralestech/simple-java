@@ -5,6 +5,26 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function maybe(fn) {
+    "use strict";
+    return function() {
+        var i;
+
+        if (arguments.length === 0)  {
+            return;
+        } else {
+           for ( i = 0; i < arguments.length; ++i ) {
+               if (arguments[i] == null ) {
+                   return;
+               }
+               return fn.apply(this, arguments);
+           }
+        }
+    }
+}
+
+
+
 function lens(get, set) {
     "use strict";
     var f = function(a) {return get(a);};
