@@ -23,7 +23,15 @@ function maybe1(fn) {
     }
 }
 
-console.log(maybe1( function (a, b, c) { a + b + c ; })(1, 2, 3));
+var x23 = function(a, b, c) {
+    "use strict";
+    return a + b + c;
+}
+
+console.log( x23(1, 2, 3)  );
+console.log(maybe1( x23 (1, 2, 3) ) );
+console.log(maybe1( x23 (1, null, 3)));
+
 
 
 function lens(get, set) {
