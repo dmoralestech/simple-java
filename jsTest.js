@@ -28,10 +28,12 @@ var x23 = function(a, b, c) {
     return a + b + c;
 }
 
-console.log( x23(1, 2, 3)  );
-console.log(maybe1( x23 (1, 2, 3) ) );
-console.log(maybe1( x23 (1, null, 3)));
+var x24 = maybe1(x23);
+var x25 = x24(1, 2, 3);
 
+console.log( x23 (1, 2, 3) );
+console.log(maybe1( x23) (1, 2, 3) ); //6
+console.log(maybe1( x23) (1, null, 3)); //4
 
 
 function lens(get, set) {
