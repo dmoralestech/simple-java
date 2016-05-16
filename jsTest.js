@@ -5,7 +5,7 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
-function maybe(fn) {
+function maybe1(fn) {
     "use strict";
     return function() {
         var i;
@@ -23,7 +23,7 @@ function maybe(fn) {
     }
 }
 
-console.log(maybe((a, b, c) => a + b + c)(1, 2, 3));
+console.log(maybe1( function (a, b, c) { a + b + c ; })(1, 2, 3));
 
 
 function lens(get, set) {
