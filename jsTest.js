@@ -23,6 +23,7 @@ function maybe(fn) {
     }
 }
 
+console.log(maybe((a, b, c) => a + b + c)(1, 2, 3));
 
 
 function lens(get, set) {
