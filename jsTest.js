@@ -5,25 +5,31 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+function not(fn) {
+    return function (argument) {
+        return !fn(argument)
+    }
+}
+
 function maybe1(fn) {
     "use strict";
-    return function() {
+    return function () {
         var i;
 
-        if (arguments.length === 0)  {
+        if (arguments.length === 0) {
             return;
         } else {
-           for ( i = 0; i < arguments.length; ++i ) {
-               if (arguments[i] == null ) {
-                   return;
-               }
-               return fn.apply(this, arguments);
-           }
+            for (i = 0; i < arguments.length; ++i) {
+                if (arguments[i] == null) {
+                    return;
+                }
+                return fn.apply(this, arguments);
+            }
         }
     }
 }
 
-var x23 = function(a, b, c) {
+var x23 = function (a, b, c) {
     "use strict";
     return a + b + c;
 }
@@ -31,34 +37,44 @@ var x23 = function(a, b, c) {
 var x24 = maybe1(x23);
 var x25 = x24(1, 2, 3);
 
-console.log( x23 (1, 2, 3) );
-console.log(maybe1( x23) (1, 2, 3) ); //6
-console.log(maybe1( x23) (1, null, 3)); //4
+console.log(x23(1, 2, 3));
+console.log(maybe1(x23)(1, 2, 3)); //6
+console.log(maybe1(x23)(1, null, 3)); //4
 
 
 function lens(get, set) {
     "use strict";
-    var f = function(a) {return get(a);};
+    var f = function (a) {
+        return get(a);
+    };
 
     f.set = set;
-    f.mod = function(f, a) { return set(a, f(get(a)));};
+    f.mod = function (f, a) {
+        return set(a, f(get(a)));
+    };
 
     return f;
 }
 
 var first = lens(
-    function (a) { return a[0];},
-    function(a, b) { return [b].concat(a.slice(1)) ;}
+    function (a) {
+        return a[0];
+    },
+    function (a, b) {
+        return [b].concat(a.slice(1));
+    }
 );
 
 console.log(first([1, 2, 3])); // 1
 console.log(first.set([1, 2, 3], 5)); // [5, 2, 3]
 
-function tenTimes(x) { return x * 10; }
+function tenTimes(x) {
+    return x * 10;
+}
 
 console.log(first.mod(tenTimes, [1, 2, 3])); // [10, 2, 3]
 
-function convertToUpperCase(value){
+function convertToUpperCase(value) {
     "use strict";
     return value.toUpperCase();
 }
@@ -74,7 +90,10 @@ var concatBindFn = concatNames.bind(null, "darwin", "morales");
 console.log(concatBindFn());
 console.log(convertToUpperCase.bind(null, "darwin")());
 
-var ancestry = [{name: "Darwin Morales"}, {name: "Nova Morales"}];
+var ancestry = [
+    {name: "Darwin Morales"},
+    {name: "Nova Morales"}
+];
 var theSet = ["Darwin Morales", "Nova Morales", "Daniel Morales", "Felicity Morales"];
 
 function isInSet(set, person) {
@@ -82,7 +101,7 @@ function isInSet(set, person) {
     return set.indexOf(person.name) > -1;
 }
 
-console.log(ancestry.filter(function(person) {
+console.log(ancestry.filter(function (person) {
     "use strict";
     return isInSet(theSet, person);
 }));
@@ -102,7 +121,7 @@ copy = items.slice(0, 2);
 
 console.log(copy); // [1, 2]
 
-copy = items.slice(-2 );
+copy = items.slice(-2);
 console.log(copy); // [1, 2]
 
 var person = {
@@ -133,10 +152,16 @@ var family = [darwin, nova, daniel, sitti];
 
 console.log(family.indexOf(sitti));
 
-var people = [{name: 'Darwin'}, {name: 'Nova'}];
-var people2 = [{name: 'Daniel'}, {name: 'Sitti'}];
+var people = [
+    {name: 'Darwin'},
+    {name: 'Nova'}
+];
+var people2 = [
+    {name: 'Daniel'},
+    {name: 'Sitti'}
+];
 
-people.concat(people2).forEach(function(person) {
+people.concat(people2).forEach(function (person) {
     "use strict";
     console.log(person.name);
 });
@@ -203,7 +228,7 @@ console.log(_.take(repeatedly(100, partial1(rand, 10)), 5));
 function randString(len) {
     var ascii = repeatedly(len, partial1(rand, 26));
     console.log('RANDSTRING: ', ascii)
-    return _.map(ascii, function (n) {
+    return _.map(ascii,function (n) {
         return n.toString(36);
     }).join('');
 }
@@ -226,7 +251,13 @@ var composedRandomString = partial1(generateString, generateRandomCharacter);
 
 console.log(composedRandomString(15));
 
-var dataObjs = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
+var dataObjs = [
+    {id: 1},
+    {id: 2},
+    {id: 3},
+    {id: 4},
+    {id: 5}
+];
 
 console.log(_.zip(['a', 'b', 'c'], [1, 2, 3]));
 console.log(_.zip(['a', 'b', 'c'], [1, 2, 3, 4]));
@@ -258,7 +289,10 @@ function constructPair(pair, rests) {
 
 function unzip(pairs) {
     if (_.isEmpty(pairs)) {
-        return [[], []];
+        return [
+            [],
+            []
+        ];
     }
 
     return constructPair(_.first(pairs), unzip(_.rest(pairs)))
@@ -423,7 +457,9 @@ console.log(_.myMap(function (x) {
 }, ['yo']));
 console.log(_.myMap(function (x) {
     return "I am " + x.id
-}, [{id: 3}]));
+}, [
+    {id: 3}
+]));
 
 function truthy(x) {
     return (x !== false) && existy(x)
@@ -460,7 +496,10 @@ function invoker(NAME, METHOD) {
 };
 
 var dmRev = invoker('keys', Array.prototype.reverse);
-console.log(_.map([[1, 2, 3], [4, 5, 6]], dmRev));
+console.log(_.map([
+    [1, 2, 3],
+    [4, 5, 6]
+], dmRev));
 
 function dispatch() {
     var funs = _.toArray(arguments);
@@ -1271,7 +1310,7 @@ digitSumReport2 = function (x) {
             return sum;
         };
     return typeError !== null ? typeError + ", sum undefined" :
-    "sum " + sum(x);
+        "sum " + sum(x);
 };
 
 console.log(digitSumReport2(434343));
@@ -1443,8 +1482,8 @@ var fortytwos2 = {
 };
 
 console.log(42 + (function () {
-        return 42
-    })());
+    return 42
+})());
 
 function weirdAdd(n, f) {
     return n + f()
