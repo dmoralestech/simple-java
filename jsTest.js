@@ -11,6 +11,11 @@ function not(fn) {
     }
 }
 
+console.log(not(function(){
+    "use strict";
+    return true;
+})());
+
 function maybe1(fn) {
     "use strict";
     return function () {
