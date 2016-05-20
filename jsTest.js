@@ -10,7 +10,7 @@ function not(fn) {
         return !fn(argument)
     }
 }
-
+// just putting a comment to see if github works...
 console.log(not(function(){
     "use strict";
     return true;
