@@ -44,3 +44,5 @@ function statement(customer, movies) {
 
     return result;
 }
+
+function movieFor(rental) {return movies[rental.movieID];}
