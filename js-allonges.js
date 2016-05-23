@@ -17,3 +17,21 @@ var askedOnBlindDate = once( function() {
 
 console.log(askedOnBlindDate());
 console.log(askedOnBlindDate());
+
+function maybe(fn) {
+    "use strict";
+    return function(argument) {
+        if (argument != null) {
+            return fn.call(this, argument)
+        }
+    }
+}
+
+var someObject = {
+    setSize: maybe(function() {
+        "use strict";
+        this.size = size;
+        return this;
+    })
+}
+
