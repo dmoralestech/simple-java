@@ -40,7 +40,9 @@ public class Person {
                 new Person("B", 21),
                 new Person("C", 72),
                 new Person("D", 23),
-                new Person("E", 24)
+                new Person("E", 24),
+                new Person("F", 21),
+                new Person("A", 21)
         );
 
 
@@ -105,8 +107,11 @@ public class Person {
         Map<Integer, List<Person>> peopleByAge = people.stream()
                 .collect(Collectors.groupingBy( Person::getAge));
 
-        Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
-                .collect(groupingBy( Person::getAge, mapping(Person::getName, toList())));
+        Map<Integer, List<Person>> ageByName = people.stream()
+                .collect(Collectors.groupingBy( Person::getAge));
+
+        Map<String, List<Person>> nameOfPeopleByAge = people.stream()
+                .collect(Collectors.groupingBy(Person::getName));
 
         List<Person> olderThan20 = people.stream()
                                             .filter(person -> person.getAge() > 20)
@@ -123,12 +128,12 @@ public class Person {
 
         BinaryOperator<Person> binaryOperator1 = (person1, person2) -> person1;
 
-        Map<String, Optional<Person>> oldestPersonOfEachLetter =
-                people.stream()
-                        .collect( groupingBy( person -> person.getName().substring(0, 1),
-                                            reducing( BinaryOperator.maxBy( byAge2))
-                                 )
-                        );
+//        Map<String, Optional<Person>> oldestPersonOfEachLetter =
+//                people.stream()
+//                        .collect( groupingBy( person -> person.getName().substring(0, 1),
+//                                            reducing( BinaryOperator.maxBy( byAge2))
+//                                 )
+//                        );
                                 //reducing( BinaryOperator.maxBy( byAge2))));
 
 
