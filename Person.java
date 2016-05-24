@@ -113,6 +113,9 @@ public class Person {
         Map<String, List<Person>> peopleByName = people.stream()
                 .collect( Collectors.groupingBy( classifierName));
 
+        long numOfRecs = people.stream()
+                .collect(Collectors.counting());
+
         Function<Person, Integer> classifierAge = Person::getAge;
 
         Map<Integer, List<Person>> ageByName3 = people.stream()
