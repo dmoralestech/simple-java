@@ -108,11 +108,15 @@ public class Person {
         Map<Integer, List<Person>> peopleByAge = people.stream()
                 .collect( Collectors.groupingBy( Person::getAge));
 
+        Function<Person, String> classifierName = Person::getName;
+
         Map<String, List<Person>> peopleByName = people.stream()
-                .collect(Collectors.groupingBy( Person::getName));
+                .collect( Collectors.groupingBy( classifierName));
+
+        Function<Person, Integer> classifierAge = Person::getAge;
 
         Map<Integer, List<Person>> ageByName3 = people.stream()
-                .collect(Collectors.groupingBy( Person::getAge));
+                .collect( Collectors.groupingBy( classifierAge));
 
 
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
