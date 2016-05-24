@@ -43,6 +43,7 @@ public class Person {
                 new Person("E", 24),
                 new Person("F", 21),
                 new Person("A", 21)
+
         );
 
 
@@ -105,13 +106,18 @@ public class Person {
         printPeople("", people.stream().sorted(comparing(byName).thenComparing(byAge)).collect(Collectors.toList()));
 
         Map<Integer, List<Person>> peopleByAge = people.stream()
+                .collect( Collectors.groupingBy( Person::getAge));
+
+        Map<String, List<Person>> peopleByName = people.stream()
+                .collect(Collectors.groupingBy( Person::getName));
+
+        Map<Integer, List<Person>> ageByName3 = people.stream()
                 .collect(Collectors.groupingBy( Person::getAge));
 
-        Map<Integer, List<Person>> ageByName = people.stream()
-                .collect(Collectors.groupingBy( Person::getAge));
 
-        Map<String, List<Person>> nameOfPeopleByAge = people.stream()
-                .collect(Collectors.groupingBy(Person::getName));
+        Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
+                .collect(groupingBy( Person::getAge, mapping(Person::getName, toList())));
+
 
         List<Person> olderThan20 = people.stream()
                                             .filter(person -> person.getAge() > 20)
