@@ -159,3 +159,15 @@ triple3 x = tripleItYo x
               tripleItYo y = y * 3
 
 
+
+class Numberish a where
+    fromNumber :: Integer -> a
+    toNumber ::  a -> Integer
+
+newtype Age  =
+        Age  Integer
+        deriving (Eq, Show)
+
+instance Numberish Age where
+    fromNumber n = Age n
+    toNumber (Age n)  = n
