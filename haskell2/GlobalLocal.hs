@@ -171,3 +171,12 @@ newtype Age  =
 instance Numberish Age where
     fromNumber n = Age n
     toNumber (Age n)  = n
+
+newType Year =
+        Year Integer
+        deriving (Eq, Show)
+
+instance Numberish Year where
+        fromNumber n = Year n
+        toNumber (Year n) = n
+
