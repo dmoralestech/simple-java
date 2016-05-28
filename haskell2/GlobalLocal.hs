@@ -264,3 +264,9 @@ darwin  = MakeCustomer {
     name = "Darwin",
     luckyNumber = 33
 }
+
+-- to get fields, haskell create functions for each property
+-- name darwin
+-- luckyNumber darwin
+
+nova = darwin {name = "Nova", luckyNumber = 88}
