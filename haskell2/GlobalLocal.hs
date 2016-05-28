@@ -256,3 +256,11 @@ data Customer = MakeCustomer{
     customerId :: CustomerId,
     name :: String,
     luckyNumber :: Int}
+    deriving Show
+
+darwin :: Customer
+darwin  = MakeCustomer {
+    customerId = CustomerId 22,
+    name = "Darwin",
+    luckyNumber = 33
+}
