@@ -223,3 +223,13 @@ type DmInt = Int
 
 dmAdd :: DmInt -> DmInt -> DmInt
 dmAdd x y = x + y
+
+type Point = (Double, Double)
+
+midPoint' :: (Double, Double) -> (Double, Double) -> (Double, Double)
+midPoint' (x, y) (x2, y2) =
+        ((x + x2) / 2,(y + y2) / 2)
+
+midPoint :: Point -> Point -> Point
+midPoint (x, y) (x2, y2) =
+        ((x + x2) / 2,(y + y2) / 2)
