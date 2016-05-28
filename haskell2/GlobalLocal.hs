@@ -306,3 +306,5 @@ defaultInt _ (JustInt x) = x
 
 -- defaultInt 3 (JustInt 4) --> 4
 -- defaultInt 3 NoInt --> 3
+
+data StringList = EmptyStringList | ConsStringList String StringList
