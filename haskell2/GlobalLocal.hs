@@ -234,7 +234,7 @@ midPoint :: Point -> Point -> Point
 midPoint (x, y) (x2, y2) =
         ((x + x2) / 2,(y + y2) / 2)
 
-newtype CustomerId = MakeCustomerId Int
+newtype CustomerId = CustomerId Int
     deriving Show
 
 
@@ -244,4 +244,10 @@ newtype CustomerId = MakeCustomerId Int
 
 
 goodCustomer :: CustomerId
-goodCustomer = MakeCustomerId 13
+goodCustomer = CustomerId 13
+
+
+customerToInt :: CustomerId -> Int
+customerToInt (CustomerId i) = i
+
+--customerToInt (goodCustomer)  --13
