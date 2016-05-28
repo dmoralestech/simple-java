@@ -251,3 +251,8 @@ customerToInt :: CustomerId -> Int
 customerToInt (CustomerId i) = i
 
 --customerToInt (goodCustomer)  --13
+
+data Customer = MakeCustomer{
+    customerId :: CustomerId,
+    name :: String,
+    luckyNumber :: Int}
