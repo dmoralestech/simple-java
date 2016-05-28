@@ -159,7 +159,7 @@ triple3 x = tripleItYo x
               tripleItYo y = y * 3
 
 
-
+-- class is for creating typeclass and this is where you define operators
 class Numberish a where
     fromNumber :: Integer -> a
     toNumber ::  a -> Integer
@@ -169,6 +169,7 @@ newtype Age  =
         Age  Integer
         deriving (Eq, Show)
 
+-- instance is where you implement the functionality of the operator for type Age
 instance Numberish Age where
     fromNumber n = Age n
     toNumber (Age n)  = n
@@ -199,6 +200,7 @@ elem2 x (y : ys)
 
 data RGB  = RGB Int Int Int
 
+
 instance Eq RGB where
     (RGB r1 g1 b1) == (RGB r2 g2 b2) =
         (r1 == r2) && (g1 == g2) && (b1 == b2)
@@ -213,7 +215,7 @@ isGreenInColors = elem2 green colors
 data Maybe' a = Nothing' | Just' a
 
 instance (Eq a) => Eq (Maybe' a) where
-    Nothing' == Nothing' = True
+    Nothing' == Nothing'   = True
     Nothing' == ( Just' _) = False
     (Just' _)  == Nothing' = False
     (Just' x)  == (Just' y) = x == y
