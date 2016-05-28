@@ -169,7 +169,7 @@ newtype Age  =
         Age  Integer
         deriving (Eq, Show)
 
--- instance is where you implement the functionality of the operator for type Age
+-- instance is where you implement the functionality for the operators of type Age
 instance Numberish Age where
     fromNumber n = Age n
     toNumber (Age n)  = n
@@ -189,7 +189,6 @@ sumNumberish  a a' = fromNumber  summed
     where  integerOfA = toNumber a
            integerOfAPrime  = toNumber a'
            summed = integerOfA + integerOfAPrime
-
 
 
 elem2 :: Eq a => a -> [a] -> Bool
@@ -219,3 +218,8 @@ instance (Eq a) => Eq (Maybe' a) where
     Nothing' == ( Just' _) = False
     (Just' _)  == Nothing' = False
     (Just' x)  == (Just' y) = x == y
+
+type DmInt = Int
+
+dmAdd :: DmInt -> DmInt -> DmInt
+dmAdd x y = x + y
