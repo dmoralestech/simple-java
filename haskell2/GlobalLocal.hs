@@ -209,3 +209,11 @@ instance Show RGB where
 colors = [RGB 255 0 0, RGB 0 255 0, RGB 0 0 255]
 green = RGB  0 255 0
 isGreenInColors = elem2 green colors
+
+data Maybe' a = Nothing' | Just' a
+
+instance (Eq a) => Eq (Maybe' a) where
+    Nothing' == Nothing' = True
+    Nothing' == ( Just' _) = False
+    (Just' _)  == Nothing' = False
+    (Just' x)  == (Just' y) = x == y
