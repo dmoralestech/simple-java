@@ -258,6 +258,13 @@ data Customer = MakeCustomer{
     luckyNumber :: Int}
     deriving Show
 
+-- can't do this as the field names are the same as Customer
+-- data Student = MakeStudent{
+--    customerId :: CustomerId,
+--    name :: String,
+--    luckyNumber :: Int}
+--     deriving Show
+
 darwin :: Customer
 darwin  = MakeCustomer {
     customerId = CustomerId 22,
@@ -270,3 +277,32 @@ darwin  = MakeCustomer {
 -- luckyNumber darwin
 
 nova = darwin {name = "Nova", luckyNumber = 88}
+
+
+-- records are not extensible
+
+data Customer2 = Customer2 CustomerId String Int
+
+daniel :: Customer2
+daniel = Customer2 (CustomerId 33) "daniel"  55
+
+getCustomer2Id :: Customer2 -> CustomerId
+getCustomer2Id (Customer2 cust_id _ _) = cust_id
+
+data StringTree = StringTree String [StringTree]
+
+-- Algebraic Data Types
+data Bool' = True' | False'
+
+data Days = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+
+data DialogResponse = Yes | No | Help | Quit
+
+data MaybeInt = NoInt | JustInt Int
+
+defaultInt :: Int -> MaybeInt -> Int
+defaultInt defaultValue NoInt = defaultValue
+defaultInt _ (JustInt x) = x
+
+-- defaultInt 3 (JustInt 4) --> 4
+-- defaultInt 3 NoInt --> 3
