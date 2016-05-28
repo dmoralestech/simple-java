@@ -97,7 +97,7 @@ public class CollectorsSample {
 //        Map<String, Customer> res2 = customers.stream()
 //                .flatMap(
 //                        c -> Stream.of(c.first, c.last)
-//                                .map(k -> new AbstractMap.SimpleImmutableEntry<>(k, c))
+//                                .map.(k -> new AbstractMap.SimpleImmutableEntry<>(k, c))
 //                ).collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 
@@ -108,7 +108,6 @@ public class CollectorsSample {
         persons.add(new Person("Person Four", 2, 30));
         persons.add(new Person("Person Five", 2, 29));
         persons.add(new Person("Person Six", 3, 18));
-
 
         Map<Integer, Data> result = persons.stream().collect(
                 groupingBy(Person::getGroup,
