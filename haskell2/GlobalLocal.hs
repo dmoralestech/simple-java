@@ -308,3 +308,11 @@ defaultInt _ (JustInt x) = x
 -- defaultInt 3 NoInt --> 3
 
 data StringList = EmptyStringList | ConsStringList String StringList
+
+a b c d = "Function a called with arguments " ++ b ++ " " ++ c ++ " " ++ d
+z b = "blah blah " ++ b
+
+b = "b"
+c = "c"
+d = "d"
+
