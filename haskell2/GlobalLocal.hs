@@ -6,8 +6,8 @@ printSecond = do
 
 main :: IO ()
 main = do
-putStrLn greeting
-where greeting = "Yarrrrr"
+    putStrLn greeting
+    where greeting = "Yarrrrr"
 -- printSecond
 
 tailDarwin = tail "Darwin"
@@ -316,3 +316,5 @@ b = "b"
 c = "c"
 d = "d"
 
+sq b = b * b
+-- sq 3+1 -- returns 10 because function application has the highest precedence
