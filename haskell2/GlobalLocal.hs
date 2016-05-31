@@ -1,4 +1,8 @@
+
+
 module GlobalLocal where
+
+import Data.Char
 
 printSecond :: IO ()
 printSecond = do
@@ -16,12 +20,38 @@ opToChar Minus = '-'
 opToChar Times = '*'
 opToChar Div = '/'
 
+data Token = TokOp Operator
+            | TokIndent String
+            | TokNum Int
+      deriving (Show, Eq)
+
+showContent :: Token -> String
+showContent (TokOp op) = opToStr op
+showContent (TokIdent str) = str
+showContent (TokNum i) = show i
+
+token :: Token
+token = TokIdent "x"
+
+opToStr :: Operator -> String
+opToStr Plus  = "+"
+opToStr Minus = "-"
+opToStr Times = "*"
+opToStr Div   = "/"
+
 main :: IO ()
-main = print $ opToChar Minus
+main = do
+    putStrLn $ showContent token
+    print token
+
+--main = print $ opToChar Minus
+
 --main = print $ boolToInt True
+
 -- main = do
 --    putStrLn greeting
 --    where greeting = "Yarrrrr"
+
 -- printSecond
 
 tailDarwin = tail "Darwin"
