@@ -12,18 +12,15 @@ boolToInt :: Bool -> Int
 boolToInt True = 1
 boolToInt False = 0
 
-data Operator = Plus | Minus | Times | Div
-
 opToChar :: Operator -> Char
 opToChar Plus = '+'
 opToChar Minus = '-'
 opToChar Times = '*'
 opToChar Div = '/'
-
 data Token = TokOp Operator
-            | TokIndent String
-            | TokNum Int
-      deriving (Show, Eq)
+           | TokIdent String
+           | TokNum Int
+    deriving (Show, Eq)
 
 showContent :: Token -> String
 showContent (TokOp op) = opToStr op
@@ -33,16 +30,18 @@ showContent (TokNum i) = show i
 token :: Token
 token = TokIdent "x"
 
+main = do
+    putStrLn $ showContent token
+    print token
+-- /show
+data Operator = Plus | Minus | Times | Div
+    deriving (Show, Eq)
+
 opToStr :: Operator -> String
 opToStr Plus  = "+"
 opToStr Minus = "-"
 opToStr Times = "*"
 opToStr Div   = "/"
-
-main :: IO ()
-main = do
-    putStrLn $ showContent token
-    print token
 
 --main = print $ opToChar Minus
 
