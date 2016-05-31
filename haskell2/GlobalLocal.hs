@@ -4,10 +4,16 @@ printSecond :: IO ()
 printSecond = do
   putStrLn "Mate"
 
+boolToInt :: Bool -> Int
+boolToInt True = 1
+boolToInt False = 0
+
+
 main :: IO ()
-main = do
-    putStrLn greeting
-    where greeting = "Yarrrrr"
+main = print $ boolToInt True
+-- main = do
+--    putStrLn greeting
+--    where greeting = "Yarrrrr"
 -- printSecond
 
 tailDarwin = tail "Darwin"
