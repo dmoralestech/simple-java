@@ -8,9 +8,17 @@ boolToInt :: Bool -> Int
 boolToInt True = 1
 boolToInt False = 0
 
+data Operator = Plus | Minus | Times | Div
+
+opToChar :: Operator -> Char
+opToChar Plus = '+'
+opToChar Minus = '-'
+opToChar Times = '*'
+opToChar Div = '/'
 
 main :: IO ()
-main = print $ boolToInt True
+main = print $ opToChar Minus
+--main = print $ boolToInt True
 -- main = do
 --    putStrLn greeting
 --    where greeting = "Yarrrrr"
