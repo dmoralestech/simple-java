@@ -27,3 +27,12 @@ lst = [2, 4, 6]
 main = do
    print (sumLst lst)
    print (sumLst [])
+   print ( 2 : 8 : 64: [])
+
+
+norm :: [Double] -> Double
+norm lst = sqrt ( squares lst)
+
+squares :: [Double] -> Double
+squares [] = 0.0
+squares (x : xs) = x * x + squares xs
