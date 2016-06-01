@@ -342,6 +342,15 @@ data Bool' = True' | False'
 
 data Days = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
 
+daysToInt :: Days -> Int
+daysToInt Monday = 1
+daysToInt Tuesday = 2
+daysToInt Wednesday = 3
+daysToInt Thursday = 4
+daysToInt Friday = 5
+daysToInt Saturday = 6
+daysToInt Sunday = 7
+
 data DialogResponse = Yes | No | Help | Quit
 
 data MaybeInt = NoInt | JustInt Int
