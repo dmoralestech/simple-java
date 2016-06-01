@@ -36,3 +36,15 @@ norm lst = sqrt ( squares lst)
 squares :: [Double] -> Double
 squares [] = 0.0
 squares (x : xs) = x * x + squares xs
+
+
+decimate :: [a] -> [a]
+decimate (a : _ : _ : rest) = a : decimate rest
+decimate (a : _) = [a]
+decimate _ = []
+
+zipLst :: ([a], [b]) -> [(a,b)]
+zipLst ((x : xs), (y : ys)) = (x,y) : zipLst (xs, ys)
+zipLst (_,_) = []
+
+
