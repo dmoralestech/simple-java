@@ -1,3 +1,4 @@
+import Data.Char
 -- data List = Cons Int List | Empty
 --
 -- singleton :: List -> Bool
@@ -24,10 +25,10 @@ sumLst [] = 0
 
 lst = [2, 4, 6]
 
-main = do
-   print (sumLst lst)
-   print (sumLst [])
-   print ( 2 : 8 : 64: [])
+-- main = do
+--    print (sumLst lst)
+--    print (sumLst [])
+--    print ( 2 : 8 : 64: [])
 
 
 norm :: [Double] -> Double
@@ -48,3 +49,9 @@ zipLst ((x : xs), (y : ys)) = (x,y) : zipLst (xs, ys)
 zipLst (_,_) = []
 
 
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (a : as) = f a : map' f as
+
+main = print $ map toUpper "hello world!"
