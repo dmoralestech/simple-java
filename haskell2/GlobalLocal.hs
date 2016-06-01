@@ -373,3 +373,16 @@ d = "d"
 
 sq b = b * b
 -- sq 3+1 -- returns 10 because function application has the highest precedence
+
+data List = Cons Int List | Empty
+        deriving (Show)
+
+lst0, lst1, lst2 :: List
+lst0 = Empty
+lst1 = Cons 1 lst0
+lst2 = Cons 2 lst1
+
+singleton :: List -> Bool
+singleton (Cons _ Empty) = True
+singleton _ = False
+
