@@ -12,7 +12,11 @@ tokenize [] = []
 
 main = print $ tokenize "passwd123"
 
+isElem _ [] = False
 isElem c (d : rest) = if c == d
                         then True
                         else isElem c rest
-isElem _ [] = False
+
+is3elem :: [Char] -> Bool
+is3elem str = isElem '3' str
+-- is3elem = isElem '3'
