@@ -39,3 +39,11 @@ tokenizeChar c | elem c "+-*/" = TokOp(operator c)
                | isAlpha c     = TokIdent [c]
                | isSpace c     = TokSpace
                | otherwise     = error $ "Cannot tokenize " ++ [c]
+
+filter' :: ( a -> Bool) -> [a] -> [a]
+filter' _ [] = []
+filter' p (a : as) = if p a
+                    then a : filter' p as
+                    else filter' p as
+
+main = putStrLn $ filter' isDigit "1x+3y4"
