@@ -61,7 +61,8 @@ tokenize = map tokenizeChar
 toInts :: String -> [Int]
 toInts = map digitToInt
 
-main = print $ toInts "30750"
+main = print $ toInts "30750" --[3,0,7,5,0]
+
 
 squares :: [Int] -> [Int]
 squares = map(\x -> x * x)
@@ -70,4 +71,17 @@ type Point = (Double, Double)
 inCircle2 :: [Point] -> [Point]
 inCircle2 = filter' (\(x,y) -> sqrt ( x * x + y * y) <= 2.0)
 
+alnums :: String -> (String, String)
+alnums str = als "" str
+  where
+    als acc [] = (acc, [])
+    als acc (c : cs) | isAlphaNum c =
+                           let (acc', cs') = als acc cs
+                           in (c:acc', cs')
+                     | otherwise = (acc, c:cs)
 
+-- main = print $ alnums "R2D2+C3Po" -- ("R2D2","+C3Po")
+
+
+identifier c cs = let (str, cs') = alnums cs in
+                  TokIdent (c : cs) : tokenize cs'
