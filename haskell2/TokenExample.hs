@@ -66,3 +66,8 @@ main = print $ toInts "30750"
 squares :: [Int] -> [Int]
 squares = map(\x -> x * x)
 
+type Point = (Double, Double)
+inCircle2 :: [Point] -> [Point]
+inCircle2 = filter' (\(x,y) -> sqrt ( x * x + y * y) <= 2.0)
+
+
