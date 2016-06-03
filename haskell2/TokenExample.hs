@@ -46,4 +46,19 @@ filter' p (a : as) = if p a
                     then a : filter' p as
                     else filter' p as
 
-main = putStrLn $ filter' isDigit "1x+3y4"
+deSpace :: [Token] -> [Token]
+deSpace = filter notSpace
+
+notSpace :: Token -> Bool
+notSpace t = t /= TokSpace
+
+tokenize :: String -> [Token]
+tokenize = map tokenizeChar
+
+-- main = putStrLn $ filter' isDigit "1x+3y4"
+-- main = print $ deSpace $ tokenize " 1 + 4 / x "
+
+toInts :: String -> [Int]
+toInts = map digitToInt
+
+main = print $ toInts "30750"
