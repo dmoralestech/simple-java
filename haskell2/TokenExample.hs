@@ -62,3 +62,7 @@ toInts :: String -> [Int]
 toInts = map digitToInt
 
 main = print $ toInts "30750"
+
+squares :: [Int] -> [Int]
+squares = map(\x -> x * x)
+
