@@ -1,5 +1,15 @@
 import Data.Char
 
+data Franchise = Toyota | Hyundai | Ford
+    deriving (Show, Eq)
+
+data Part = Part String String String -- PartNumber PNC Desc
+
+instance Show Part where
+   show (Part partNo pnc desc) = "Part partnumber:" ++ (show partNo)  ++ " pnc:" ++ (show pnc) ++ " desc:" ++ (show desc)
+
+partA = Part "9434-34000" "9434" "Bolt"
+
 data Operator = Plus | Minus | Times | Div
     deriving (Show, Eq)
 
@@ -53,15 +63,16 @@ notSpace :: Token -> Bool
 notSpace t = t /= TokSpace
 
 tokenize :: String -> [Token]
-tokenize = map tokenizeChar
+tokenize str = map tokenizeChar str
+-- tokenize = map tokenizeChar -- can be shortened to this..
 
 -- main = putStrLn $ filter' isDigit "1x+3y4"
--- main = print $ deSpace $ tokenize " 1 + 4 / x "
+main = print $ deSpace $ tokenize " 1 + 4 / x + 5 - y * 3 "
 
 toInts :: String -> [Int]
 toInts = map digitToInt
 
-main = print $ toInts "30750" --[3,0,7,5,0]
+-- main = print $ toInts "30750" --[3,0,7,5,0]
 
 
 squares :: [Int] -> [Int]
