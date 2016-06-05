@@ -99,3 +99,6 @@ identifier c cs = let (str, cs') = alnums cs in
 
 squares' ::  [Int] -> Int
 squares' = foldl (\acc x ->  acc +  x * x) 0
+
+rev :: [a] -> [a]
+rev = foldl (\acc a -> a : acc) []
