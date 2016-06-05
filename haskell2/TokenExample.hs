@@ -97,5 +97,5 @@ alnums str = als "" str
 identifier c cs = let (str, cs') = alnums cs in
                   TokIdent (c : cs) : tokenize cs'
 
-squares ::  [Int] -> Int
-squares :: foldl (\acc x ->  acc +  x * x) 0
+squares' ::  [Int] -> Int
+squares' = foldl (\acc x ->  acc +  x * x) 0
