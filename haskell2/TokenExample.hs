@@ -67,7 +67,7 @@ tokenize str = map tokenizeChar str
 -- tokenize = map tokenizeChar -- can be shortened to this..
 
 -- main = putStrLn $ filter' isDigit "1x+3y4"
-main = print $ deSpace $ tokenize " 1 + 4 / x + 5 - y * 3 "
+--main = print $ deSpace $ tokenize " 1 + 4 / x + 5 - y * 3 "
 
 toInts :: String -> [Int]
 toInts = map digitToInt
@@ -101,4 +101,7 @@ squares' ::  [Int] -> Int
 squares' = foldl (\acc x ->  acc +  x * x) 0
 
 rev :: [a] -> [a]
-rev = foldl (\acc a -> a : acc) []
+rev [a] = foldl (\acc a -> a : acc) [] [a]
+-- rev  = foldl (\acc a -> a : acc) []
+
+main = print  $ rev "darwin morales"
