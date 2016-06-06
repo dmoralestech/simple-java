@@ -33,8 +33,10 @@ public class Person {
         return age - other.age;
     }
 
-
     public static void main(String[] args) {
+
+    }
+    public  void main1() {
         final List<Person> people = Arrays.asList(
                 new Person("A", 30),
                 new Person("B", 21),
@@ -287,7 +289,6 @@ public class Person {
                 .flatMap( s -> Optional.of(s))
                 .filter( s -> s.indexOf(" ") > 0)
                 .get();
-
 
     }
 
