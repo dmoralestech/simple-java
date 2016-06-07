@@ -9,14 +9,21 @@ public class ArrayQueue<E> implements Queue<E>{
     private int indexFront = 0;
     private int size = 0;
 
+    public ArrayQueue() {
+    }
+
+    public ArrayQueue(int size) {
+        data = (E[]) new Object[size];
+    }
+
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -26,7 +33,10 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public E first() {
-        return null;
+        if (isEmpty())
+            return null;
+
+        return data[indexFront];
     }
 
     @Override
