@@ -124,7 +124,7 @@ public class CollectorsSample {
                 persons
                         .stream()
                         .filter(p -> p.name.startsWith("P"))
-                        .collect(Collectors.groupingBy(p -> p.age));
+                        .collect(Collectors.groupingBy( p -> p.age));
 
 
     }
