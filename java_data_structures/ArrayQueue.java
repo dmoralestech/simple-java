@@ -3,7 +3,7 @@ package java_data_structures;
 /**
  * Created by darwinmorales on 7/06/2016.
  */
-public class ArrayQueue<E> implements Queue<E>{
+public class ArrayQueue<E> implements Queue<E> {
 
     private E[] data;
     private int indexFront = 0;
@@ -28,7 +28,12 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public void enqueue(E e) {
-
+        if (size == data.length) {
+            throw new Error("Queue is full.");
+        }
+        int avail = (indexFront + size) % data.length;
+        data[avail] = e;
+        size++;
     }
 
     @Override
@@ -41,7 +46,15 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public E dequeue() {
-        return null;
+        if (isEmpty()) {
+            return null;
+        }
+        E result = data[indexFront];
+        data[indexFront] = null;
+        indexFront = (indexFront + 1) % data.length;
+        size--;
+        return result;
+
     }
 }
 
