@@ -10,7 +10,6 @@ AnotherNote.annotations = [
 ];
 
 
-
 function Note() {
 }
 Note.annotations = [
