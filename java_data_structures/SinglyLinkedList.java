@@ -78,4 +78,13 @@ public class SinglyLinkedList<E> {
         return answer;
     }
 
+    public static void main(String[] args) {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.addFirst(2);
+        list.addFirst(3);
+        list.addFirst(4);
+        list.addLast(1);
+        System.out.println("list.tail = " + list.last());
+        System.out.println("list.first = " + list.first());
+    }
 }
