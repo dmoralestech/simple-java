@@ -76,6 +76,10 @@ public class ArrayQueue<E> implements Queue<E> {
         queue.enqueue(82);
         queue.enqueue(92);
         queue.enqueue(02);
+        queue.enqueue(02);
+        queue.enqueue(06);
+        queue.enqueue(07);
+        queue.enqueue(011);
         queue.dequeue();
         queue.dequeue();
         queue.dequeue();
