@@ -47,4 +47,25 @@ public class ArrayStack<E> implements Stack<E> {
         topIndex--;
         return answer;
     }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new ArrayStack<>();
+        try {
+            stack.push(3);
+            stack.push(4);
+            stack.push(6);
+            stack.push(9);
+            System.out.println(stack.size());
+            System.out.println(stack.top());
+            System.out.println(stack.size());
+            System.out.println(stack.isEmpty());
+            stack.pop();
+            stack.pop();
+            stack.pop();
+            stack.pop();
+            System.out.println(stack.isEmpty());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
