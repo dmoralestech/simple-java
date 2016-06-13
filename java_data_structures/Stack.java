@@ -8,7 +8,7 @@ public interface Stack<E> {
 
     boolean isEmpty();
 
-    void push(E e);
+    void push(E e) throws Exception;
 
     E top();
 
