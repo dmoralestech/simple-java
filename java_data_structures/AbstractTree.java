@@ -60,4 +60,22 @@ public class AbstractTree<E> implements Tree<E> {
     public Iterable<Position<E>> positions() {
         return null;
     }
+
+    public int depth(Position<E> p) {
+        if (isRoot(p)) {
+            return 0;
+        } else {
+            return 1 + depth(parent(p));
+        }
+    }
+
+    private int heightBad() {
+        int h = 0;
+        for(Position<E> p: positions()) {
+            if (isExternal(p)) {
+                h = Math.max(h, depth(p));
+            }
+        }
+        return h;
+    }
 }
