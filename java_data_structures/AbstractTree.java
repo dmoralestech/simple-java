@@ -1,5 +1,6 @@
 package java_data_structures;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 /**
@@ -58,7 +59,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override
     public Iterable<Position<E>> positions() {
-        return null;
+        return preorder();
     }
 
     public int depth(Position<E> p) {
@@ -95,6 +96,14 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
     }
 
+
+    public Iterable<Position<E>> preorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if (!isEmpty()) {
+            preorderSubtree(root(), snapshot);
+        }
+        return snapshot;
+    }
 
     private class ElementIterator implements Iterator<E> {
         Iterator<Position<E>> posIterator = positions().iterator();
