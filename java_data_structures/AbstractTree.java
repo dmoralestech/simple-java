@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by darwinmorales on 15/06/2016.
  */
-public class AbstractTree<E> implements Tree<E> {
+public abstract class AbstractTree<E> implements Tree<E> {
     @Override
     public boolean isInternal(Position<E> p) {
         return numChildren(p) > 0;
@@ -26,15 +26,7 @@ public class AbstractTree<E> implements Tree<E> {
         return size() == 0;
     }
 
-    @Override
-    public Position<E> root() {
-        return null;
-    }
 
-    @Override
-    public Position<E> parent(Position<E> p) {
-        return null;
-    }
 
     @Override
     public Iterable<Position<E>> children(Position<E> p) {
@@ -43,12 +35,20 @@ public class AbstractTree<E> implements Tree<E> {
 
     @Override
     public int numChildren(Position<E> p) {
-        return 0;
+        int count = 0;
+        for(Position child: children(p)) {
+            count++;
+        }
+        return count;
     }
 
     @Override
     public int size() {
-        return 0;
+        int count = 0;
+        for(Position child: positions()) {
+            count++;
+        }
+        return count;
     }
 
     @Override
