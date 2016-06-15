@@ -1,5 +1,6 @@
 package java_data_structures;
 
+import javax.swing.text.ElementIterator;
 import java.util.Iterator;
 
 /**
@@ -53,7 +54,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ElementIterator();
     }
 
     @Override
@@ -88,4 +89,21 @@ public abstract class AbstractTree<E> implements Tree<E> {
     }
 
 
+    private class ElementIterator implements Iterator<E> {
+        Iterator<Position<E>> posIterator = positions().iterator();
+        public boolean hasNext() {
+            return posIterator.hasNext();
+        }
+        public E next()  {
+            try {
+                return posIterator.next().getElement();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        public void remove() {
+            posIterator.remove();
+        }
+    }
 }
