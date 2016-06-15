@@ -1,8 +1,7 @@
 package java_data_structures;
 
-import javax.swing.text.ElementIterator;
 import java.util.Iterator;
-
+import java.util.List;
 /**
  * Created by darwinmorales on 15/06/2016.
  */
@@ -86,6 +85,14 @@ public abstract class AbstractTree<E> implements Tree<E> {
             h = Math.max(h, 1 + height(c));
         }
         return h;
+    }
+
+
+    private void preorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+        snapshot.add(p);
+        for(Position<E> c : children(p)) {
+            preorderSubtree(c, snapshot);
+        }
     }
 
 
