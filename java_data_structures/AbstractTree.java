@@ -105,6 +105,13 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return snapshot;
     }
 
+
+    private void postOrderSubTree(Position<E> p, List<Position<E>> snapshot) {
+        for (Position<E> c: children(p)) {
+            postOrderSubTree(c, snapshot);
+        }
+        snapshot.add(p);
+    }
     private class ElementIterator implements Iterator<E> {
         Iterator<Position<E>> posIterator = positions().iterator();
         public boolean hasNext() {
