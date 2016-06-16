@@ -112,6 +112,15 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
         snapshot.add(p);
     }
+
+    public Iterable<Position<E>> postOrder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if (!isEmpty()) {
+            postOrderSubTree(root(), snapshot);
+        }
+        return snapshot;
+    }
+
     private class ElementIterator implements Iterator<E> {
         Iterator<Position<E>> posIterator = positions().iterator();
         public boolean hasNext() {
