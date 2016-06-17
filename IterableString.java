@@ -36,10 +36,10 @@ public class IterableString implements Iterable<Character>, Iterator<Character> 
         return str.charAt(count - 1);
     }
 
-    @Override
-    public void forEach(Consumer<? super Character> action) {
-        throw new UnsupportedOperationException();
-    }
+//    @Override
+//    public void forEach(Consumer<? super Character> action) {
+//        //throw new UnsupportedOperationException();
+//    }
 
     @Override
     public void remove() {
@@ -53,6 +53,7 @@ public class IterableString implements Iterable<Character>, Iterator<Character> 
 
     public static void main(String[] args) {
         IterableString is = new IterableString("abcd");
+        is.forEach(c -> System.out.println(c));
 
         Iterator<Character> c = is.iterator();
         while (c.hasNext()) {
