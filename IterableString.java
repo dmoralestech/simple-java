@@ -52,7 +52,12 @@ public class IterableString implements Iterable<Character>, Iterator<Character> 
     }
 
     public static void main(String[] args) {
-        IterableString is = new IterableString("The quick brown fox");
+        IterableString is = new IterableString("abcd");
+
+        Iterator<Character> c = is.iterator();
+        while (c.hasNext()) {
+            System.out.println(c.next());
+        }
 
         for (char ch : is) {
             System.out.println(ch);
