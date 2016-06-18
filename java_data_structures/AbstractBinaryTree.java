@@ -1,5 +1,8 @@
 package java_data_structures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by dmorales on 18/06/2016.
  */
@@ -41,5 +44,22 @@ public abstract class AbstractBinaryTree<E>  implements BinaryTree<E>  {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Override
+    public Iterable<Position<E>> children(Position<E> p) {
+        List<Position<E>> snapshot = new ArrayList<>(2);
+        try {
+            if (left(p) != null) {
+                snapshot.add(left(p));
+            }
+            if (right(p) != null) {
+                snapshot.add(right(p));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return snapshot;
+
     }
 }
