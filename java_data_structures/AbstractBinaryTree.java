@@ -27,4 +27,19 @@ public abstract class AbstractBinaryTree<E>  implements BinaryTree<E>  {
             return left(parent);
         }
     }
+
+    public int numChildren(Position<E> p) {
+        int count = 0;
+        try {
+            if (left(p) != null) {
+                count++;
+            }
+            if (right(p) != null) {
+                count++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 }
