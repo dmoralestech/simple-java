@@ -84,4 +84,8 @@ public abstract class AbstractBinaryTree<E>  implements BinaryTree<E>  {
         }
         return  snapshot;
     }
+
+    public Iterable<Position<E>> positions() {
+        return inorder();
+    }
 }
