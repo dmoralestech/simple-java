@@ -62,4 +62,27 @@ public abstract class AbstractBinaryTree<E>  implements BinaryTree<E>  {
         return snapshot;
 
     }
+    /*
+      private void inorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+    if (left(p) != null)
+      inorderSubtree(left(p), snapshot);
+    snapshot.add(p);
+    if (right(p) != null)
+      inorderSubtree(right(p), snapshot);
+  }
+     */
+
+    private void inOrderSubtree(Position<E> p, List<Position<E>> snapshot){
+        try {
+            if (left(p) != null) {
+                inOrderSubtree(left(p), snapshot);
+            }
+            snapshot.add(p);
+            if (right(p) != null) {
+                inOrderSubtree(right(p), snapshot);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
