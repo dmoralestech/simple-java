@@ -105,6 +105,29 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return root;
     }
 
+    public Position<E> addLeft(Position<E> p, E e){
+        Node<E> parent = validate(p);
+        if (parent.getLeft() != null) {
+            throw new IllegalArgumentException("p has already a left child");
+        }
+        Node<E> child = createNode(e, parent, null, null);
+        parent.setLeft(child);
+        size++;
+        return child;
+    }
+
+    public Position<E> addRight(Position<E> p, E e){
+        Node<E> parent = validate(p);
+        if (parent.getRight() != null) {
+            throw new IllegalArgumentException("p has already a right child");
+        }
+        Node<E> child = createNode(e, parent, null, null);
+        parent.setRight(child);
+        size++;
+        return child;
+    }
+
+
     @Override
     public boolean isInternal(Position<E> p) {
         return false;
