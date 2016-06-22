@@ -81,9 +81,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return root;
     }
 
+
     @Override
     public Position<E> parent(Position<E> p) {
-        return null;
+        Node<E> node = validate(p);
+        return node.getParent();
     }
 
     @Override
