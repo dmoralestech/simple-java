@@ -128,6 +128,13 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
 
+    public E set(Position<E> p, E e) {
+        Node<E> node = validate(p);
+        E temp = node.getElement();
+        node.setElement(e);
+        return temp;
+    }
+
     @Override
     public boolean isInternal(Position<E> p) {
         return false;
