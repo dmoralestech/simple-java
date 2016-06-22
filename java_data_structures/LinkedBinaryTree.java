@@ -7,6 +7,9 @@ import java.util.Iterator;
  */
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
+    protected Node<E> root = null;
+    private int size = 0;
+
     protected static class Node<E> implements Position<E> {
         private E element;
         private Node<E> parent;
@@ -19,6 +22,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             this.left = leftChild;
             this.right = rightChild;
         }
+
 
         public E getElement() {
             return element;
@@ -53,9 +57,13 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
     }
 
+    protected Node<E> createNode(E e, Node<E> parent, Node<E> left, Node<E> right) {
+        return new Node<E>(e, parent, left, right);
+    }
+
     @Override
     public Position<E> root() {
-        return null;
+        return root;
     }
 
     @Override
@@ -80,7 +88,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
