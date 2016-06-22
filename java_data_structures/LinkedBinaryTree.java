@@ -87,13 +87,22 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return node.getParent();
     }
 
-    public Position<E> getLeft(Position<E> p) {
+    public Position<E> left(Position<E> p) {
         Node<E> node = validate(p);
         return node.getLeft();
     }
-    public Position<E> getRight(Position<E> p) {
+    public Position<E> right(Position<E> p) {
         Node<E> node = validate(p);
         return node.getRight();
+    }
+
+    public Position<E> addRoot(E e) {
+        if (!isEmpty()) {
+            throw new IllegalStateException("Tree is not empty");
+        }
+        root = createNode(e, null, null, null);
+        size = 1;
+        return root;
     }
 
     @Override
