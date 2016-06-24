@@ -38,7 +38,7 @@ public class Test {
         tokenizer.add("\\'(.*?)\\'", 8);
                     //   [(.*?)\]
         try {
-            tokenizer.tokenize("(PARTDESC LIKE '%AIR%BOLT%')");
+            tokenizer.tokenize("(PARTDESC LIKE '%AIR%BOLT%') OR (SUNDRYCODE = 'BF%'");
 
             for (Tokenizer.Token tok : tokenizer.getTokens()) {
                 System.out.println("" + tok.token + " " + tok.sequence);
