@@ -28,7 +28,7 @@ public class Test {
 //    }
     public static void main(String[] args) {
         Tokenizer tokenizer = new Tokenizer();
-        tokenizer.add("PARTDESC|PARTNO|PNC|INVOICEDESC", 1);
+        tokenizer.add("PARTDESC|PARTNO|PNC|INVOICEDESC|SUNDRYCODE", 1);
         tokenizer.add("\\(", 2);
         tokenizer.add("\\)", 3);
         tokenizer.add("\\=|LIKE", 4);
