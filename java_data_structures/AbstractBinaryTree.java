@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by dmorales on 18/06/2016.
  */
-public abstract class AbstractBinaryTree<E>  implements BinaryTree<E>  {
+public abstract class AbstractBinaryTree<E>  extends AbstractTree<E> implements BinaryTree<E>  {
 
     @Override
     public Position<E> left(Position<E> e) throws Exception {

@@ -155,33 +155,4 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
     }
 
-    @Override
-    public boolean isInternal(Position<E> p) {
-        return false;
-    }
-
-    @Override
-    public boolean isExternal(Position<E> p) {
-        return false;
-    }
-
-    @Override
-    public boolean isRoot(Position<E> p) {
-        return false;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
 }
