@@ -91,6 +91,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         Node<E> node = validate(p);
         return node.getLeft();
     }
+
     public Position<E> right(Position<E> p) {
         Node<E> node = validate(p);
         return node.getRight();
@@ -105,7 +106,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return root;
     }
 
-    public Position<E> addLeft(Position<E> p, E e){
+    public Position<E> addLeft(Position<E> p, E e) {
         Node<E> parent = validate(p);
         if (parent.getLeft() != null) {
             throw new IllegalArgumentException("p has already a left child");
@@ -116,7 +117,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return child;
     }
 
-    public Position<E> addRight(Position<E> p, E e){
+    public Position<E> addRight(Position<E> p, E e) {
         Node<E> parent = validate(p);
         if (parent.getRight() != null) {
             throw new IllegalArgumentException("p has already a right child");
@@ -127,12 +128,31 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return child;
     }
 
-
     public E set(Position<E> p, E e) {
         Node<E> node = validate(p);
         E temp = node.getElement();
         node.setElement(e);
         return temp;
+    }
+
+    public void attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2) throws Exception {
+        Node<E> node = validate(p);
+        if (isInternal(p))
+            throw new Exception("");
+
+        size += t1.size() + t2.size();
+        if (!t1.isEmpty()) {
+            t1.root.setParent(node);
+            node.setLeft(t1.root);
+            t1.root = null;
+            t1.size = 0;
+        }
+        if (!t1.isEmpty()) {
+            t2.root.setParent(node);
+            node.setLeft(t2.root);
+            t2.root = null;
+            t2.size = 0;
+        }
     }
 
     @Override
