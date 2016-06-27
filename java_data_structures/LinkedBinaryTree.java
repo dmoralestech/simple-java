@@ -155,4 +155,29 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
     }
 
+    public E remove(Position<E> p) throws Exception {
+        Node<E> node = validate(p);
+        if (numChildren(p) == 2) {
+            throw new Exception("p has 2 children");
+        }
+        Node<E> child = (node.getLeft() != null ? node.getLeft() : node.getRight());
+        if (node == root) {
+            root = child;
+        } else {
+            Node<E> parent = node.getParent();
+            if (node == parent.getLeft()) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
+            }
+        }
+        size--;
+        E temp = node.getElement();
+        node.setElement(null);
+        node.setLeft(null);
+        node.setRight(null);
+        node.setParent(node);
+        return temp;
+    }
+
 }
