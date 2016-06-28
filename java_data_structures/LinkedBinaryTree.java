@@ -180,4 +180,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return temp;
     }
 
+    public static void main(String[] args) {
+        LinkedBinaryTree<String>  binaryTree = new LinkedBinaryTree<>();
+        Position<String> root =  binaryTree.addRoot("A");
+        binaryTree.addLeft(binaryTree.addLeft(root, "B"), "D");
+        binaryTree.addRight(root, "C");
+    }
+
 }
