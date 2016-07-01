@@ -5,11 +5,20 @@
 var _ = require("./underscore.js");
 var curry = require('lodash.curry');
 
+const p1 = new Person('Haskell', 'Curry', '111-11-1111');
+p1.address = new Address('US');
+p1.birthYear = 1900;
+
+const name = p -> p.fullname;
+console.log(name(p1));
+
 function not(fn) {
     return function (argument) {
         return !fn(argument)
     }
 }
+
+
 
 //var arrayNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 //arrayNums = arrayNums.map(
