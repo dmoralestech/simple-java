@@ -10,8 +10,23 @@ function not(fn) {
         return !fn(argument)
     }
 }
+
+//var arrayNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+//arrayNums = arrayNums.map(
+//    function (num) {
+//        return Math.pow(num, 2);
+//    });
+//
+//console.log(arrayNums);
+
+console.log([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(
+    function (num) {
+        return Math.pow(num, 2);
+    }));
+
+
 // just putting a comment to see if github works...
-console.log(not(function(){
+console.log(not(function () {
     "use strict";
     return true;
 })());
