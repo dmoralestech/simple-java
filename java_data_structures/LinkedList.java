@@ -1,9 +1,11 @@
 package java_data_structures;
 
+import java.util.Iterator;
+
 /**
  * Created by darwinmorales on 3/07/2016.
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements Iterable<E> {
 
     public class Node<E>  {
         private E data;
@@ -30,5 +32,52 @@ public class LinkedList<E> {
         }
     }
 
+
+    private Node root;
+    private int size = 0;
+
+    public void add(E e) {
+        if (size == 0) {
+            Node n = new Node(e);
+            n.setNext(null);
+            root = n;
+        }
+
+
+
+        size++;
+
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> iter = new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return null;
+            }
+        };
+        return  iter;
+    }
+
+    public static void main(String[] args) {
+        LinkedList<String> list = new LinkedList<>();
+
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+
+        for (String value: list) {
+            System.out.println("value = " + value);
+        }
+
+
+    }
 
 }
