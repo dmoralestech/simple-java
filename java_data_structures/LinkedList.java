@@ -37,13 +37,19 @@ public class LinkedList<E> implements Iterable<E> {
     private int size = 0;
 
     public void add(E e) {
+        Node n = new Node(e);
+        n.setNext(null);
         if (size == 0) {
-            Node n = new Node(e);
             n.setNext(null);
             root = n;
+        } else {
+            Node temp = root.getNext();
+            while (temp.getNext() != null) {
+
+                root.setNext(n);
+            }
+            temp.setNext(n);
         }
-
-
 
         size++;
 
