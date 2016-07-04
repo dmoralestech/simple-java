@@ -43,10 +43,9 @@ public class LinkedList<E> implements Iterable<E> {
             n.setNext(null);
             root = n;
         } else {
-            Node temp = root.getNext();
+            Node temp = root;
             while (temp.getNext() != null) {
-
-                root.setNext(n);
+                temp = temp.getNext();
             }
             temp.setNext(n);
         }
