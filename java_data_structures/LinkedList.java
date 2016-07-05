@@ -35,6 +35,7 @@ public class LinkedList<E> implements Iterable<E> {
 
     private Node root;
     private int size = 0;
+    private Node n;
 
     public void add(E e) {
         Node n = new Node(e);
@@ -55,15 +56,18 @@ public class LinkedList<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
+        n = root;
         Iterator<E> iter = new Iterator<E>() {
             @Override
             public boolean hasNext() {
-                return false;
+                return n.getNext() != null;
             }
 
             @Override
             public E next() {
-                return null;
+                E res = (E) n.getData();
+                n = n.getNext();
+                return res;
             }
         };
         return  iter;
