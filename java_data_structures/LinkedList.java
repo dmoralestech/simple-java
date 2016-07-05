@@ -40,7 +40,6 @@ public class LinkedList<E> implements Iterable<E> {
         Node n = new Node(e);
         n.setNext(null);
         if (size == 0) {
-            n.setNext(null);
             root = n;
         } else {
             Node temp = root;
