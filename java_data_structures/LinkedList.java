@@ -60,7 +60,7 @@ public class LinkedList<E> implements Iterable<E> {
         Iterator<E> iter = new Iterator<E>() {
             @Override
             public boolean hasNext() {
-                return n.getNext() != null;
+                return n != null;
             }
 
             @Override
