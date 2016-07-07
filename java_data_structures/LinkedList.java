@@ -54,6 +54,10 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    public Node get(int i) {
+
+    }
+
     @Override
     public Iterator<E> iterator() {
         n = root;
