@@ -54,7 +54,12 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
-    public Node get(int i) {
+    public E get(int i) {
+        Node temp = root;
+        for(int j = 0; j <= i - 2; j ++ ) {
+            temp = temp.getNext();
+        }
+        return (E) temp.getData();
 
     }
 
@@ -88,6 +93,11 @@ public class LinkedList<E> implements Iterable<E> {
         for (String value: list) {
             System.out.println("value = " + value);
         }
+
+        String x = list.get(1);
+        x = list.get(2);
+        x = list.get(3);
+        x = list.get(4);
 
 
     }
