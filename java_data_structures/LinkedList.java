@@ -63,6 +63,17 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    public Node getRoot() {
+        return root;
+    }
+
+    public void print(Node node) {
+        while (node != null) {
+            System.out.println(node.getData());
+            node = node.getNext();
+        }
+    }
+
     @Override
     public Iterator<E> iterator() {
         n = root;
@@ -94,6 +105,11 @@ public class LinkedList<E> implements Iterable<E> {
             System.out.println("value = " + value);
         }
 
+        Node root = list.getRoot();
+        list.print(root.getNext());
+
+
+
         String x = list.get(1);
         x = list.get(2);
         x = list.get(3);
@@ -101,6 +117,8 @@ public class LinkedList<E> implements Iterable<E> {
 
         LinkedList.Node<String> node = new Node<>("blah");
         System.out.println(node.getData());
+
+
 
     }
 
