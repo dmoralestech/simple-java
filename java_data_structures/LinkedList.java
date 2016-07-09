@@ -7,7 +7,7 @@ import java.util.Iterator;
  */
 public class LinkedList<E> implements Iterable<E> {
 
-    static class Node<E>  {
+    public static class Node<E>  {
         private E data;
         private Node next;
 
@@ -63,6 +63,15 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    public void deleteNode(Node node, E data) {
+        Node temp = null;
+
+        if (node.getNext().getData().equals(data)) {
+            node.setNext(node.getNext().getNext());
+        }
+
+    }
+
     public Node getRoot() {
         return root;
     }
@@ -107,7 +116,6 @@ public class LinkedList<E> implements Iterable<E> {
 
         Node root = list.getRoot();
         list.print(root.getNext());
-
 
 
         String x = list.get(1);
