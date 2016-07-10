@@ -63,6 +63,10 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    private Node removeFirst() {
+        root = root.getNext();
+        return root;
+    }
     public void deleteNode(Node node, E data) {
         Node temp = null;
 
