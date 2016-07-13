@@ -127,12 +127,14 @@ public class LinkedList<E> implements Iterable<E> {
             System.out.println("value = " + value);
         }
 
-        list.deleteNode("b");
+        // deleting last element
+        list.deleteNode("d");
 
         for (String value: list) {
             System.out.println("value = " + value);
         }
 
+        //deleting first element
         list.deleteNode("a");
 
         for (String value: list) {
