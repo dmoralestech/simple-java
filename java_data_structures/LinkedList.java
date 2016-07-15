@@ -85,7 +85,9 @@ public class LinkedList<E> implements Iterable<E> {
             current = current.getNext();
         }
 
-        if (current != null) {
+        if (current == root ) {
+            root = root.getNext();
+        } else if (current != null) {
             prev.setNext(current.getNext());
         }
 
