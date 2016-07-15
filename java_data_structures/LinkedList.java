@@ -64,8 +64,12 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     private Node removeFirst() {
-        root = root.getNext();
-        return root;
+        if (root == null) {
+            return null;
+        } else {
+            root = root.getNext();
+            return root;
+        }
     }
 
     public void deleteNode(E data) {
