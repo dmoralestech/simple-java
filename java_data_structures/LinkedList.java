@@ -73,6 +73,17 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     public void deleteNode(E data) {
+        Node prev = null;
+        Node current = root;
+
+        while(current != null) {
+            if (current.getData().equals(data)) {
+                break;
+            }
+            prev = current;
+            current = current.getNext();
+        }
+
 
         //first find the node we need to delete
         if (root.getData().equals(data)) {
