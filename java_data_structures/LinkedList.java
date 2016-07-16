@@ -91,21 +91,6 @@ public class LinkedList<E> implements Iterable<E> {
             prev.setNext(current.getNext());
         }
 
-//        if (root.getData().equals(data)) {
-//            root = root.getNext();
-//        } else {
-//            Node temp = root;
-//            while( temp != null && temp.getNext() != null && !temp.getNext().getData().equals(data) ) {
-//                temp = temp.getNext();
-//            }
-//
-//            if (temp != null && temp.getNext() != null) {
-//                temp.setNext(temp.getNext().getNext());
-//            }
-//        }
-
-
-
     }
 
     public Node getRoot() {
