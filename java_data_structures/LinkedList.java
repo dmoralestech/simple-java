@@ -95,6 +95,10 @@ public class LinkedList<E> implements Iterable<E> {
 
     public boolean compare(Node list1, Node list2) {
 
+        if (list1 == null && list2 == null) {
+            return true;
+        }
+
         Node temp1 = list1;
         Node temp2 = list2;
 
