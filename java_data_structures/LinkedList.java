@@ -95,6 +95,20 @@ public class LinkedList<E> implements Iterable<E> {
 
     public boolean compare(Node list1, Node list2) {
 
+        Node temp1 = list1;
+        Node temp2 = list2;
+
+        while (temp1.getData().equals(temp2.getData()) && temp1 != null && temp2 != null) {
+            temp1 = temp1.getNext();
+            temp2 = temp2.getNext();
+        }
+
+        if (temp1 == null && temp2 == null ) {
+            return true;
+        }
+
+        return false;
+
     }
 
     public Node getRoot() {
