@@ -93,6 +93,10 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    public boolean compare(Node list1, Node list2) {
+
+    }
+
     public Node getRoot() {
         return root;
     }
@@ -162,8 +166,6 @@ public class LinkedList<E> implements Iterable<E> {
 
         LinkedList.Node<String> node = new Node<>("blah");
         System.out.println(node.getData());
-
-
 
     }
 
