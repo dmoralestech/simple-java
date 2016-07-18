@@ -112,8 +112,12 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
-    public Node addTwoNumbers(Node list1, Node list2) {
+    public Node<Integer> addTwoNumbers(Node<Integer> list1, Node<Integer> list2) {
+        int carry = 0;
 
+        Node<Integer> newHead = new Node(0);
+
+        return newHead;
     }
 
     public Node getRoot() {
