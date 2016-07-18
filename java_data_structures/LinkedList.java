@@ -122,9 +122,27 @@ public class LinkedList<E> implements Iterable<E> {
 
         while (p1 != null || p2 != null) {
 
+            if (p1 != null) {
+                carry += (Integer) p1.getData();
+                p1 = p1.getNext();
+            }
+
+            if (p2 != null) {
+                carry += (Integer) p2.getData();
+                p2 = p2.getNext();
+            }
+
+            p3.setNext(new Node(carry % 10));
+            p3 = p3.getNext();
+            carry /= 10;
+
         }
 
-        return newHead;
+        if (carry == 1){
+            p3.setNext(new Node(1));
+        }
+
+        return newHead.getNext();
     }
 
     public Node getRoot() {
