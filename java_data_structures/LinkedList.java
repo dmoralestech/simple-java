@@ -116,6 +116,13 @@ public class LinkedList<E> implements Iterable<E> {
         int carry = 0;
 
         Node<Integer> newHead = new Node(0);
+        Node p1 = list1;
+        Node p2 = list2;
+        Node p3 = newHead;
+
+        while (p1 != null || p2 != null) {
+
+        }
 
         return newHead;
     }
