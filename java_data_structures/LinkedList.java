@@ -33,7 +33,7 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    private Node root;
+    private Node<E> root;
     private int size = 0;
     private Node n;
 
@@ -116,9 +116,9 @@ public class LinkedList<E> implements Iterable<E> {
         int carry = 0;
 
         Node<Integer> newHead = new Node(0);
-        Node p1 = list1;
-        Node p2 = list2;
-        Node p3 = newHead;
+        Node<Integer> p1 = list1;
+        Node<Integer> p2 = list2;
+        Node<Integer> p3 = newHead;
 
         while (p1 != null || p2 != null) {
 
@@ -145,7 +145,7 @@ public class LinkedList<E> implements Iterable<E> {
         return newHead.getNext();
     }
 
-    public Node getRoot() {
+    public Node<E> getRoot() {
         return root;
     }
 
@@ -176,6 +176,19 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     public static void main(String[] args) {
+
+        LinkedList<Integer> list1 = new LinkedList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+
+        LinkedList<Integer> list2 = new LinkedList<>();
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+
+        Node<Integer> list3 = list2.addTwoNumbers(list1.getRoot(), list2.getRoot());
+
         LinkedList<String> list = new LinkedList<>();
 
         list.add("a");
@@ -183,7 +196,7 @@ public class LinkedList<E> implements Iterable<E> {
         list.add("c");
         list.add("d");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
@@ -192,14 +205,14 @@ public class LinkedList<E> implements Iterable<E> {
         // deleting last and middle element
         list.deleteNode("d");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
         //deleting first element
         list.deleteNode("a");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
