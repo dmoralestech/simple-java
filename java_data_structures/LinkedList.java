@@ -33,7 +33,7 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    private Node root;
+    private Node<E> root;
     private int size = 0;
     private Node n;
 
@@ -112,7 +112,40 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
-    public Node getRoot() {
+    public Node<Integer> addTwoNumbers(Node<Integer> list1, Node<Integer> list2) {
+        int carry = 0;
+
+        Node<Integer> newHead = new Node(0);
+        Node<Integer> p1 = list1;
+        Node<Integer> p2 = list2;
+        Node<Integer> p3 = newHead;
+
+        while (p1 != null || p2 != null) {
+
+            if (p1 != null) {
+                carry += (Integer) p1.getData();
+                p1 = p1.getNext();
+            }
+
+            if (p2 != null) {
+                carry += (Integer) p2.getData();
+                p2 = p2.getNext();
+            }
+
+            p3.setNext(new Node(carry % 10));
+            p3 = p3.getNext();
+            carry /= 10;
+
+        }
+
+        if (carry == 1){
+            p3.setNext(new Node(1));
+        }
+
+        return newHead.getNext();
+    }
+
+    public Node<E> getRoot() {
         return root;
     }
 
@@ -143,6 +176,19 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     public static void main(String[] args) {
+
+        LinkedList<Integer> list1 = new LinkedList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+
+        LinkedList<Integer> list2 = new LinkedList<>();
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+
+        Node<Integer> list3 = list2.addTwoNumbers(list1.getRoot(), list2.getRoot());
+
         LinkedList<String> list = new LinkedList<>();
 
         list.add("a");
@@ -150,7 +196,7 @@ public class LinkedList<E> implements Iterable<E> {
         list.add("c");
         list.add("d");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
@@ -159,14 +205,14 @@ public class LinkedList<E> implements Iterable<E> {
         // deleting last and middle element
         list.deleteNode("d");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
         //deleting first element
         list.deleteNode("a");
 
-        for (String value: list) {
+        for (String value : list) {
             System.out.println("value = " + value);
         }
 
