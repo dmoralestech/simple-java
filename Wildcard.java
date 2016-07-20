@@ -6,6 +6,32 @@ import java.util.List;
 
 public class Wildcard {
 
+    private static class MyNode<E> {
+        private E data;
+        private MyNode next;
+
+        private MyNode(E data) {
+            this.data = data;
+            this.next = null;
+        }
+
+        public E getData() {
+            return data;
+        }
+
+        public void setData(E data) {
+            this.data = data;
+        }
+
+        public MyNode getNext() {
+            return next;
+        }
+
+        public void setNext(MyNode next) {
+            this.next = next;
+        }
+    }
+
 
     public static boolean wildCardMatch(String text, String pattern) {
         // Create the cards by splitting using a RegEx. If more speed
@@ -92,6 +118,12 @@ public class Wildcard {
         System.out.println(isMatch2("BLAH WASHER BLAH", "%WASHER")); //false
         System.out.println(isMatch2("RING BLAH WASHER BLAH", "RING%WASHER")); //false
         System.out.println(isMatch2("RINGNASDSADWASHER", "RING%WASHER")); //true
+
+        MyNode<String> node = new MyNode<>("a");
+
+        node.setNext(new MyNode("b"));
+        node.getNext().setNext(new MyNode("c"));
+        node.getNext().getNext().setNext(new MyNode("d"));
 
 
     }
