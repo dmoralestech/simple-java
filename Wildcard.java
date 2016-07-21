@@ -125,6 +125,13 @@ public class Wildcard {
         node.getNext().setNext(new MyNode("c"));
         node.getNext().getNext().setNext(new MyNode("d"));
 
+        MyNode<String> temp =  node;
+
+        while (temp != null) {
+            System.out.println(temp.getData());
+            temp = temp.getNext();
+        }
+
 
     }
 
