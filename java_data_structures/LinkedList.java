@@ -93,6 +93,10 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+    public Node reverse(Node head) {
+        return null;
+    }
+
     public boolean compare(Node list1, Node list2) {
 
         if (list1 == null && list2 == null) {
