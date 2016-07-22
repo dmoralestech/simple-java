@@ -94,7 +94,14 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     public Node reverse(Node head) {
-        return null;
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+
+        Node toDo = head.getNext();
+        Node reverse = head;
+
+        return reverse;
     }
 
     public boolean compare(Node list1, Node list2) {
