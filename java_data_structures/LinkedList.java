@@ -101,6 +101,16 @@ public class LinkedList<E> implements Iterable<E> {
         Node toDo = head.getNext();
         Node reverse = head;
 
+        reverse.setNext(null);
+
+        while (toDo != null) {
+            Node temp = toDo;
+            toDo = toDo.getNext();
+
+            temp.setNext(reverse);
+            reverse = temp;
+        }
+
         return reverse;
     }
 
