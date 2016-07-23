@@ -241,13 +241,23 @@ public class LinkedList<E> implements Iterable<E> {
         list.print(root.getNext());
 
 
-        String x = list.get(1);
-        x = list.get(2);
-        x = list.get(3);
-        x = list.get(4);
+//        String x = list.get(1);
+//        x = list.get(2);
+//        x = list.get(3);
+//        x = list.get(4);
 
         LinkedList.Node<String> node = new Node<>("blah");
         System.out.println(node.getData());
+
+
+        Node<String> nodeHead = new Node<>("a");
+
+        nodeHead.setNext(new Node("b"));
+        nodeHead.getNext().setNext(new Node("c"));
+        nodeHead.getNext().getNext().setNext(new Node("d"));
+
+        Node<String> reverse = list.reverse(nodeHead);
+        System.out.println(reverse);
 
     }
 
