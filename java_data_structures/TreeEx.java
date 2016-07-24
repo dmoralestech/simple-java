@@ -5,7 +5,7 @@ package java_data_structures;
  */
 public class TreeEx {
 
-    public class Node<E> {
+    public static class Node<E> {
 
         E data;
         Node left;
@@ -20,5 +20,35 @@ public class TreeEx {
             this.left = left;
             this.right = right;
         }
+
+        public E getData() {
+            return data;
+        }
+
+        public void setData(E data) {
+            this.data = data;
+        }
+
+        public Node getLeft() {
+            return left;
+        }
+
+        public void setLeft(Node left) {
+            this.left = left;
+        }
+
+        public Node getRight() {
+            return right;
+        }
+
+        public void setRight(Node right) {
+            this.right = right;
+        }
+    }
+
+    public static void main(String[] args) {
+        Node<String> node = new Node<>("a");
+        node.setLeft(new Node("b"));
+        node.setRight(new Node("c"));
     }
 }
