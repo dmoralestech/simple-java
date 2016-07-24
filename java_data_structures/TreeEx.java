@@ -3,7 +3,7 @@ package java_data_structures;
 /**
  * Created by darwinmorales on 23/07/2016.
  */
-public class TreeEx {
+public class TreeEx<E> {
 
     public static class Node<E> {
 
@@ -46,9 +46,29 @@ public class TreeEx {
         }
     }
 
+    public static void traverse(Node root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root.getData());
+        traverse(root.getLeft());
+        traverse(root.getRight());
+    }
+
     public static void main(String[] args) {
         Node<String> node = new Node<>("a");
         node.setLeft(new Node("b"));
         node.setRight(new Node("c"));
+
+        Node<String> left = node.getLeft();
+        Node<String> right = node.getRight();
+
+        left.setLeft(new Node("d"));
+        left.setRight(new Node("e"));
+
+        right.setLeft(new Node("f"));
+        right.setRight(new Node("g"));
+
+        traverse(node);
     }
 }
