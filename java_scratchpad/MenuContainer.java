@@ -11,8 +11,8 @@ public class MenuContainer {
     private boolean exitThisGroup = false;
 
     private static class Range {
-         int start;
-         int end;
+        int start;
+        int end;
 
         private Range(int start, int end) {
             this.start = start;
@@ -94,20 +94,21 @@ public class MenuContainer {
         containerList.add(new MenuContainer("101", "aeab"));
         containerList.add(new MenuContainer("102", "aeab"));
 
-        Map<String, Range> mapRange =new HashMap<>();
+        Map<String, Range> mapRange = new HashMap<>();
 
         int startIndex = 0;
         String previousKey = "";
-        for (int i= 0 ; i < containerList.size(); i++) {
+        for (int i = 0; i < containerList.size(); i++) {
             String currentKey = containerList.get(i).getId();
             if (!currentKey.equalsIgnoreCase(previousKey)) {
-                if (!previousKey.equals("")) {
+                if (previousKey.length() > 0) {
                     mapRange.put(previousKey, new Range(startIndex, i - 1));
-                    previousKey = currentKey;
-                    startIndex = i;
                 }
+                previousKey = currentKey;
+                startIndex = i;
             }
         }
+        mapRange.put(previousKey, new Range(startIndex, containerList.size() - 1));
 
         String previousId = "";
         Iterator<MenuContainer> iter = containerList.iterator();
