@@ -110,6 +110,15 @@ public class MenuContainer {
         }
         mapRange.put(previousKey, new Range(startIndex, containerList.size() - 1));
 
+        for (Map.Entry<String, Range> entry : mapRange.entrySet()) {
+            String id = entry.getKey();
+            Range range = entry.getValue();
+            System.out.println("processing group: " + id);
+            for (int i = range.start; i <= range.end; i++) {
+                System.out.println("menu: " + containerList.get(i).getName());
+            }
+        }
+
         String previousId = "";
         Iterator<MenuContainer> iter = containerList.iterator();
         boolean skipToNewGroup = false;
