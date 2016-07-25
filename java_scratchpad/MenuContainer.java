@@ -1,8 +1,6 @@
 package java_scratchpad;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by darwinmorales on 25/07/2016.
@@ -11,6 +9,32 @@ public class MenuContainer {
     private String id;
     private String name;
     private boolean exitThisGroup = false;
+
+    private static class Range {
+         int start;
+         int end;
+
+        private Range(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        public int getStart() {
+            return start;
+        }
+
+        public void setStart(int start) {
+            this.start = start;
+        }
+
+        public int getEnd() {
+            return end;
+        }
+
+        public void setEnd(int end) {
+            this.end = end;
+        }
+    }
 
     public MenuContainer(String id, String name) {
         this.id = id;
@@ -50,6 +74,7 @@ public class MenuContainer {
     public static void main(String[] args) {
         List<MenuContainer> containerList = new ArrayList<>();
 
+        containerList.add(new MenuContainer("0", "a"));
         containerList.add(new MenuContainer("1", "a"));
         containerList.add(new MenuContainer("1", "b"));
         containerList.add(new MenuContainer("1", "c"));
@@ -69,26 +94,38 @@ public class MenuContainer {
         containerList.add(new MenuContainer("101", "aeab"));
         containerList.add(new MenuContainer("102", "aeab"));
 
+        Map<String, Range> mapRange =new HashMap<>();
+
+        int startIndex = 0;
+        String previousKey = "";
+        for (int i= 0 ; i < containerList.size(); i++) {
+            String currentKey = containerList.get(i).getId();
+            if (!currentKey.equalsIgnoreCase(previousKey)) {
+                if (!previousKey.equals("")) {
+                    mapRange.put(previousKey, new Range(startIndex, i - 1));
+                    previousKey = currentKey;
+                    startIndex = i;
+                }
+            }
+        }
+
         String previousId = "";
-        boolean isNewId = false;
         Iterator<MenuContainer> iter = containerList.iterator();
+        boolean skipToNewGroup = false;
 
         while (iter.hasNext()) {
             MenuContainer menu = iter.next();
-            System.out.println(menu.getId() + " " + menu.getName());
             String currentId = menu.getId();
             if (!currentId.equalsIgnoreCase(previousId)) {
-                isNewId = true;
+                skipToNewGroup = false;
                 System.out.println("new id: " + currentId);
                 previousId = currentId;
-            } else {
-                isNewId = false;
             }
-            if (menu.isExitThisGroup()) {
-                System.out.println("need to exit.: " + menu.getName());
-                //skip to the next group id
-                while (menu.getId() == currentId) {
-                    menu = iter.next();
+            if (!skipToNewGroup) {
+                System.out.println(menu.getId() + " " + menu.getName());
+                if (menu.isExitThisGroup()) {
+                    System.out.println("   need to exit.: " + menu.getName());
+                    skipToNewGroup = true;
                 }
             }
         }
