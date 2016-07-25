@@ -65,16 +65,17 @@ public class MenuContainer {
         containerList.add(new MenuContainer("10", "aca"));
         containerList.add(new MenuContainer("10", "ada"));
         containerList.add(new MenuContainer("10", "aea"));
-        containerList.add(new MenuContainer("100", "aeab", true ));
+        containerList.add(new MenuContainer("100", "aeab", true));
         containerList.add(new MenuContainer("101", "aeab"));
         containerList.add(new MenuContainer("102", "aeab"));
 
         String previousId = "";
         boolean isNewId = false;
-        Iterator<MenuContainer> iter =  containerList.iterator();
+        Iterator<MenuContainer> iter = containerList.iterator();
 
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             MenuContainer menu = iter.next();
+            System.out.println(menu.getId() + " " + menu.getName());
             String currentId = menu.getId();
             if (!currentId.equalsIgnoreCase(previousId)) {
                 isNewId = true;
@@ -84,7 +85,11 @@ public class MenuContainer {
                 isNewId = false;
             }
             if (menu.isExitThisGroup()) {
-                System.out.printf("need to exit.: " + menu.getName());
+                System.out.println("need to exit.: " + menu.getName());
+                //skip to the next group id
+                while (menu.getId() == currentId) {
+                    menu = iter.next();
+                }
             }
         }
 
