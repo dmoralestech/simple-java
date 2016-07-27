@@ -177,6 +177,17 @@ public class LinkedList<E> implements Iterable<E> {
         }
     }
 
+    public boolean deleteMiddle(Node<E> n) {
+        if (n == null || n.getNext() == null) {
+            return false;
+        }
+
+        Node<E> next = n.getNext();
+        n.setData(next.getData());
+        n.setNext(next.getNext());
+        return true;
+    }
+
     @Override
     public Iterator<E> iterator() {
         n = root;
@@ -255,6 +266,11 @@ public class LinkedList<E> implements Iterable<E> {
         nodeHead.setNext(new Node("b"));
         nodeHead.getNext().setNext(new Node("c"));
         nodeHead.getNext().getNext().setNext(new Node("d"));
+        nodeHead.getNext().getNext().getNext().setNext(new Node("e"));
+
+        list.deleteMiddle(nodeHead);
+
+
 
         Node<String> reverse = list.reverse(nodeHead);
         System.out.println(reverse);
