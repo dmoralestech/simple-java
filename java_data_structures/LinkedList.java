@@ -177,7 +177,7 @@ public class LinkedList<E> implements Iterable<E> {
         }
     }
 
-    public boolean deleteMiddle(Node<E> n) {
+    public boolean deleteMiddleNode(Node<E> n) {
         if (n == null || n.getNext() == null) {
             return false;
         }
@@ -208,6 +208,13 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     public static void main(String[] args) {
+
+        int bitmask = 0x000F;
+        int val = 0x2222;
+        // prints "2"
+        System.out.println(val & bitmask);
+        System.out.println(Integer.toBinaryString(val & bitmask));
+
 
         LinkedList<Integer> list1 = new LinkedList<>();
         list1.add(1);
@@ -268,7 +275,7 @@ public class LinkedList<E> implements Iterable<E> {
         nodeHead.getNext().getNext().setNext(new Node("d"));
         nodeHead.getNext().getNext().getNext().setNext(new Node("e"));
 
-        list.deleteMiddle(nodeHead);
+        list.deleteMiddleNode(nodeHead);
 
 
 
