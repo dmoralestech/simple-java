@@ -209,7 +209,19 @@ public class LinkedList<E> implements Iterable<E> {
 
     public static void main(String[] args) {
 
-        int bitmask = 0x000F;
+//        int x = 35000000;
+//        int[] groupVar = new int[x];
+//
+//        for (int i = 0; i < x; i++ ){
+//            groupVar[i] = 1;
+//        }
+
+        int bitmask = 0x0000;
+        int bitmaskComp = ~bitmask;
+        System.out.println(bitmask);
+        System.out.println(Integer.toBinaryString(bitmask));
+        System.out.println(bitmaskComp);
+        System.out.println(Integer.toBinaryString(bitmaskComp));
         int val = 0x2222;
         // prints "2"
         System.out.println(val & bitmask);
