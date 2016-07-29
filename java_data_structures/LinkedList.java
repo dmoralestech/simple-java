@@ -216,16 +216,20 @@ public class LinkedList<E> implements Iterable<E> {
 //            groupVar[i] = 1;
 //        }
 
-        int bitmask = 0xFFFF;
+        int bitmask = 0x0001;
         int bitmaskComp = ~bitmask;
-        System.out.println(bitmask);
+        //System.out.println(bitmask);
+        System.out.println(String.format("%16s", Integer.toBinaryString(1)).replace(' ', '0'));
         for (int i = 1; i <= 32; i++) {
             System.out.println(bitmask << i);
-            System.out.println(Integer.toBinaryString(bitmask << i));
+            System.out.println(String.format("%16s", Integer.toBinaryString(bitmask << i)).replace(' ', '0'));
         }
 
+        bitmask = 0x8000;
+        System.out.println(String.format("%16s", Integer.toBinaryString(bitmask)).replace(' ', '0'));
         for (int i = 1; i <= 32; i++) {
             System.out.println(bitmask >> i);
+            System.out.println(String.format("%16s", Integer.toBinaryString(bitmask >> i)).replace(' ', '0'));
             System.out.println(Integer.toBinaryString(bitmask >> i));
         }
 
