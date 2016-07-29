@@ -219,41 +219,15 @@ public class LinkedList<E> implements Iterable<E> {
         int bitmask = 0xFFFF;
         int bitmaskComp = ~bitmask;
         System.out.println(bitmask);
-        System.out.println(Integer.toBinaryString(bitmask << 1));
-        System.out.println(Integer.toBinaryString(bitmask << 2));
-        System.out.println(Integer.toBinaryString(bitmask << 3));
-        System.out.println(Integer.toBinaryString(bitmask << 4));
-        System.out.println(Integer.toBinaryString(bitmask << 5));
-        System.out.println(Integer.toBinaryString(bitmask << 6));
-        System.out.println(Integer.toBinaryString(bitmask << 7));
-        System.out.println(Integer.toBinaryString(bitmask << 8));
-        System.out.println(Integer.toBinaryString(bitmask << 9));
-        System.out.println(Integer.toBinaryString(bitmask << 10));
-        System.out.println(bitmask << 10);
-        System.out.println(Integer.toBinaryString(bitmask << 11));
-        System.out.println(Integer.toBinaryString(bitmask << 12));
-        System.out.println(Integer.toBinaryString(bitmask << 13));
-        System.out.println(Integer.toBinaryString(bitmask << 14));
-        System.out.println(Integer.toBinaryString(bitmask << 15));
-        System.out.println(Integer.toBinaryString(bitmask << 16));
-        System.out.println(Integer.toBinaryString(bitmask << 17));
-        System.out.println(Integer.toBinaryString(bitmask << 18));
-        System.out.println(Integer.toBinaryString(bitmask << 19));
-        System.out.println(Integer.toBinaryString(bitmask << 20));
-        System.out.println(bitmask << 20);
-        System.out.println(Integer.toBinaryString(bitmask << 21));
-        System.out.println(Integer.toBinaryString(bitmask << 22));
-        System.out.println(Integer.toBinaryString(bitmask << 23));
-        System.out.println(Integer.toBinaryString(bitmask << 24));
-        System.out.println(Integer.toBinaryString(bitmask << 25));
-        System.out.println(Integer.toBinaryString(bitmask << 26));
-        System.out.println(Integer.toBinaryString(bitmask << 27));
-        System.out.println(Integer.toBinaryString(bitmask << 28));
-        System.out.println(Integer.toBinaryString(bitmask << 29));
-        System.out.println(Integer.toBinaryString(bitmask << 30));
-        System.out.println(Integer.toBinaryString(bitmask << 31));
-        System.out.println(Integer.toBinaryString(bitmask << 32));
-        System.out.println(bitmask << 32);
+        for (int i = 1; i <= 32; i++) {
+            System.out.println(bitmask << i);
+            System.out.println(Integer.toBinaryString(bitmask << i));
+        }
+
+        for (int i = 1; i <= 32; i++) {
+            System.out.println(bitmask >> i);
+            System.out.println(Integer.toBinaryString(bitmask >> i));
+        }
 
         System.out.println(Integer.toBinaryString(bitmask >> 1));
         System.out.println(Integer.toBinaryString(bitmask >> 2));
@@ -273,7 +247,6 @@ public class LinkedList<E> implements Iterable<E> {
         // prints "2"
         System.out.println(val & bitmask);
         System.out.println(Integer.toBinaryString(val & bitmask));
-
 
         LinkedList<Integer> list1 = new LinkedList<>();
         list1.add(1);
