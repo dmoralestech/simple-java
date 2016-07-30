@@ -55,6 +55,18 @@ public class TreeEx<E> {
         traverse(root.getRight());
     }
 
+    public static void traverse2(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        Node temp = root.getLeft();
+        while (temp != null) {
+            System.out.println(temp.getData());
+            temp = temp.getLeft();
+        }
+    }
+
     public static void main(String[] args) {
         Node<String> node = new Node<>("a");
         node.setLeft(new Node("b"));
@@ -69,6 +81,6 @@ public class TreeEx<E> {
         right.setLeft(new Node("f"));
         right.setRight(new Node("g"));
 
-        traverse(node);
+        traverse2(node);
     }
 }
