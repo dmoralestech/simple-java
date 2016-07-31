@@ -91,7 +91,12 @@ public class TreeEx<E> {
             Stack<TreeNode> stack = new ArrayStack<>(10);
             TreeNode temp = root;
 
-            while (temp.getLeft() != null) {
+            while ( !stack.isEmpty() || temp != null) {
+
+                if (temp != null) {
+                    stack.push(temp);
+
+                }
                 stack.push(temp);
                 temp = temp.getLeft();
             }
