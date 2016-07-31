@@ -88,6 +88,7 @@ public class TreeEx<E> {
         }
 
         try {
+
             Stack<TreeNode> stack = new ArrayStack<>(10);
             TreeNode temp = root;
 
@@ -95,24 +96,12 @@ public class TreeEx<E> {
 
                 if (temp != null) {
                     stack.push(temp);
-
+                    temp = temp.getLeft();
+                    continue;
                 }
-                stack.push(temp);
-                temp = temp.getLeft();
-            }
 
-            if (!stack.isEmpty()) {
-                temp = stack.pop();
-                if (temp.getLeft() != null) {
-                    System.out.println(temp.getLeft().getData());
-                }
-                System.out.println(temp.getData());
-                if (temp.getRight() != null) {
-                    System.out.println(temp.getRight().getData());
-                }
-                System.out.println(temp.getLeft().getData() + " " + temp.getRight().getData());
-
-
+                System.out.printf( stack.top().getData() +  " ");
+                temp = stack.pop().getRight();
             }
 
         } catch (Exception e) {
@@ -140,7 +129,7 @@ public class TreeEx<E> {
         right.setLeft(new TreeNode("f"));
         right.setRight(new TreeNode("g"));
 
-        //traverse3(node);
+        traverse3(node);
 
     }
 }
