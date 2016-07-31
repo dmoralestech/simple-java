@@ -24,7 +24,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public boolean isEmpty() {
-        return data.length < 0;
+        return topIndex == -1 ;
     }
 
     @Override
@@ -36,7 +36,10 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E top() {
-        return data[topIndex];
+        if (topIndex > -1) {
+            return data[topIndex];
+        }
+        return  null;
     }
 
     @Override
