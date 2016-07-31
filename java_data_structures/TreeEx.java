@@ -82,7 +82,7 @@ public class TreeEx<E> {
 
     }
 
-    public static void traverse3(TreeNode root) {
+    public static void inOrderTraverse(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -129,7 +129,7 @@ public class TreeEx<E> {
         right.setLeft(new TreeNode("f"));
         right.setRight(new TreeNode("g"));
 
-        traverse3(node);
+        inOrderTraverse(node);
 
     }
 }
