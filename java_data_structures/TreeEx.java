@@ -126,11 +126,11 @@ public class TreeEx<E> {
                     continue;
                 } else {
                     temp = stack.pop();
-                    if (temp != null) {
-                        System.out.println(temp.getData());
+                    if (temp != null && (temp.getLeft() != null || temp.getRight() != null) ) {
+                        System.out.print(temp.getData() + " ");
                     }
                     if (temp.getLeft() != null) {
-                        System.out.println(temp.getLeft().getData());
+                        System.out.print(temp.getLeft().getData() + " ");
                     }
                     if (temp.getRight() != null) {
                         System.out.println(temp.getRight().getData());
