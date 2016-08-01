@@ -110,6 +110,37 @@ public class TreeEx<E> {
 
     }
 
+    public static void traverse3(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        try {
+            TreeNode temp = root;
+            Stack<TreeNode> stack = new ArrayStack<>(10);
+
+            while (!stack.isEmpty() || temp != null) {
+                if (temp != null) {
+                    stack.push(temp);
+                    temp = temp.getLeft();
+                    continue;
+                } else {
+                    temp = stack.pop();
+                    if (temp.getLeft() != null) {
+                        System.out.println(temp.getLeft().getData());
+                    }
+                    if (temp.getRight() != null) {
+                        System.out.println(temp.getRight().getData());
+                    }
+                    temp = temp.getRight();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         TreeNode<String> node = new TreeNode<>("a");
         node.setLeft(new TreeNode("b"));
