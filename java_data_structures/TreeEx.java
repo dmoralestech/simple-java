@@ -126,6 +126,9 @@ public class TreeEx<E> {
                     continue;
                 } else {
                     temp = stack.pop();
+                    if (temp != null) {
+                        System.out.println(temp.getData());
+                    }
                     if (temp.getLeft() != null) {
                         System.out.println(temp.getLeft().getData());
                     }
@@ -160,7 +163,7 @@ public class TreeEx<E> {
         right.setLeft(new TreeNode("f"));
         right.setRight(new TreeNode("g"));
 
-        inOrderTraverse(node);
+        traverse3(node);
 
     }
 }
