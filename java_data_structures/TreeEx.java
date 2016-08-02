@@ -71,7 +71,7 @@ public class TreeEx<E> {
             }
 
             temp = stack.pop();
-            while((temp) != null) {
+            while ((temp) != null) {
                 System.out.println(temp.getLeft().getData() + " " + temp.getRight().getData());
                 temp = stack.pop();
             }
@@ -92,7 +92,7 @@ public class TreeEx<E> {
             Stack<TreeNode> stack = new ArrayStack<>(10);
             TreeNode temp = root;
 
-            while ( !stack.isEmpty() || temp != null) {
+            while (!stack.isEmpty() || temp != null) {
 
                 if (temp != null) {
                     stack.push(temp);
@@ -100,7 +100,7 @@ public class TreeEx<E> {
                     continue;
                 }
 
-                System.out.printf( stack.top().getData() +  " ");
+                System.out.printf(stack.top().getData() + " ");
                 temp = stack.pop().getRight();
             }
 
@@ -115,7 +115,7 @@ public class TreeEx<E> {
             return null;
         }
 
-        while ( root.getLeft() != null) {
+        while (root.getLeft() != null) {
             root = root.getLeft();
         }
 
@@ -131,9 +131,9 @@ public class TreeEx<E> {
         TreeNode<E> successor = null;
 
         while (root != null) {
-            if ( (Integer) root.getData() < d ) {
+            if ((Integer) root.getData() < d) {
                 root = root.getRight();
-            } else if ( (Integer) root.getData() > d ) {
+            } else if ((Integer) root.getData() > d) {
                 successor = root;
                 root = root.getLeft();
             } else {
@@ -145,6 +145,7 @@ public class TreeEx<E> {
         }
         return successor;
     }
+
     public static void printNodesWithChildren(TreeNode root) {
         if (root == null) {
             return;
@@ -161,7 +162,7 @@ public class TreeEx<E> {
                     continue;
                 } else {
                     temp = stack.pop();
-                    if (temp != null && (temp.getLeft() != null || temp.getRight() != null) ) {
+                    if (temp != null && (temp.getLeft() != null || temp.getRight() != null)) {
                         System.out.print(temp.getData() + " ");
                     }
                     if (temp.getLeft() != null) {
