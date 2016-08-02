@@ -110,6 +110,41 @@ public class TreeEx<E> {
 
     }
 
+    public static TreeNode findMin(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        while ( root.getLeft() != null) {
+            root = root.getLeft();
+        }
+
+        return root;
+    }
+
+    public TreeNode<E> inOrderSuccessor(TreeNode root, int d) {
+
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode<E> successor = null;
+
+        while (root != null) {
+            if ( (Integer) root.getData() < d ) {
+                root = root.getRight();
+            } else if ( (Integer) root.getData() > d ) {
+                successor = root;
+                root = root.getLeft();
+            } else {
+                if (root.getRight() != null) {
+                    successor = findMin(root.getRight());
+                }
+                break;
+            }
+        }
+        return successor;
+    }
     public static void printNodesWithChildren(TreeNode root) {
         if (root == null) {
             return;
