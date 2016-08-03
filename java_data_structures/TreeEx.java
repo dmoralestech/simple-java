@@ -122,13 +122,13 @@ public class TreeEx<E> {
         return root;
     }
 
-    public TreeNode<E> inOrderSuccessor(TreeNode root, int d) {
+    public static TreeNode inOrderSuccessor(TreeNode root, int d) {
 
         if (root == null) {
             return null;
         }
 
-        TreeNode<E> successor = null;
+        TreeNode successor = null;
 
         while (root != null) {
             if ((Integer) root.getData() < d) {
@@ -199,7 +199,7 @@ public class TreeEx<E> {
         right.setLeft(new TreeNode(9));
         right.setRight(new TreeNode(10));
 
-        printNodesWithChildren(node);
+        inOrderSuccessor(node, 5);
 
     }
 }
