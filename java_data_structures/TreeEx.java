@@ -181,23 +181,23 @@ public class TreeEx<E> {
     }
 
     public static void main(String[] args) {
-        TreeNode<String> node = new TreeNode<>("a");
-        node.setLeft(new TreeNode("b"));
-        node.setRight(new TreeNode("c"));
+        TreeNode<Integer> node = new TreeNode<>(5);
+        node.setLeft(new TreeNode(2));
+        node.setRight(new TreeNode(8));
         /*
                      a
                  b          c
               d    e     f    g
          */
 
-        TreeNode<String> left = node.getLeft();
-        TreeNode<String> right = node.getRight();
+        TreeNode<Integer> left = node.getLeft();
+        TreeNode<Integer> right = node.getRight();
 
-        left.setLeft(new TreeNode("d"));
-        left.setRight(new TreeNode("e"));
+        left.setLeft(new TreeNode(1));
+        left.setRight(new TreeNode(3));
 
-        right.setLeft(new TreeNode("f"));
-        right.setRight(new TreeNode("g"));
+        right.setLeft(new TreeNode(9));
+        right.setRight(new TreeNode(10));
 
         printNodesWithChildren(node);
 
