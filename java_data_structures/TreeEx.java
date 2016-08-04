@@ -121,6 +121,24 @@ public class TreeEx<E> {
 
         return root;
     }
+    public static boolean search(TreeNode root, int d) {
+
+        if (root == null) {
+            return false;
+        }
+
+        if ((Integer) root.getData() == d) {
+            return true;
+        } else {
+            if ((Integer) root.getData() < d) {
+                search(root.getLeft(), d);
+            } else {
+                search(root.getRight(), d);
+            }
+        }
+
+        return false;
+    }
 
     public static TreeNode inOrderSuccessor(TreeNode root, int d) {
 
@@ -182,7 +200,7 @@ public class TreeEx<E> {
 
     public static void main(String[] args) {
         TreeNode<Integer> node = new TreeNode<>(5);
-        node.setLeft(new TreeNode(2));
+        node.setLeft(new TreeNode(3));
         node.setRight(new TreeNode(8));
         /*
                      a
@@ -194,12 +212,16 @@ public class TreeEx<E> {
         TreeNode<Integer> right = node.getRight();
 
         left.setLeft(new TreeNode(1));
-        left.setRight(new TreeNode(3));
+        left.setRight(new TreeNode(4));
 
-        right.setLeft(new TreeNode(9));
+        right.setLeft(new TreeNode(7));
         right.setRight(new TreeNode(10));
 
         inOrderSuccessor(node, 5);
+
+        System.out.println( search(node, 8));
+        System.out.println( search(node, 10));
+        search(node, 10);
 
     }
 }
