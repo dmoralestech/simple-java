@@ -131,13 +131,11 @@ public class TreeEx<E> {
             return true;
         } else {
             if ((Integer) root.getData() < d) {
-                search(root.getLeft(), d);
+                return search(root.getRight(), d);
             } else {
-                search(root.getRight(), d);
+                return search(root.getLeft(), d);
             }
         }
-
-        return false;
     }
 
     public static TreeNode inOrderSuccessor(TreeNode root, int d) {
@@ -219,9 +217,7 @@ public class TreeEx<E> {
 
         inOrderSuccessor(node, 5);
 
-        System.out.println( search(node, 8));
+        System.out.println( search(node, 9));
         System.out.println( search(node, 10));
-        search(node, 10);
-
     }
 }
