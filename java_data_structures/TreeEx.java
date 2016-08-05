@@ -51,8 +51,9 @@ public class TreeEx<E> {
             return;
         }
         System.out.println(root.getData());
-        traverse(root.getLeft());
         traverse(root.getRight());
+        traverse(root.getLeft());
+
     }
 
     public static void traverse2(TreeNode root) {
@@ -214,6 +215,8 @@ public class TreeEx<E> {
 
         right.setLeft(new TreeNode(7));
         right.setRight(new TreeNode(10));
+
+        traverse(node);
 
         inOrderSuccessor(node, 5);
 
