@@ -136,6 +136,23 @@ public class TreeEx<E> {
         return successor;
     }
 
+    private static boolean is_bst_rec (TreeNode root, int minValue, int maxValue) {
+        if (root == null) {
+            return true;
+        }
+
+        if (((Integer) root.getData() < minValue) || ((Integer) root.getData() > maxValue)) {
+            return false;
+        }
+
+        return is_bst_rec(root.getLeft(), minValue, (Integer) root.getData()) &&
+         is_bst_rec(root.getRight(), (Integer) root.getData(), maxValue) ;
+    }
+
+    public static boolean is_Valid_BST(TreeNode root) {
+        return is_bst_rec(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
     public static void printNodesWithChildren(TreeNode root) {
         if (root == null) {
             return;
