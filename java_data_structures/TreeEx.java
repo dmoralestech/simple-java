@@ -56,33 +56,6 @@ public class TreeEx<E> {
 
     }
 
-    public static void traverse2(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-
-        try {
-            Stack<TreeNode> stack = new ArrayStack<>(10);
-            stack.push(root);
-            TreeNode temp = root.getLeft();
-            while (temp.getLeft() != null) {
-                stack.push(temp);
-                System.out.println(temp.getData());
-                temp = temp.getLeft();
-            }
-
-            temp = stack.pop();
-            while ((temp) != null) {
-                System.out.println(temp.getLeft().getData() + " " + temp.getRight().getData());
-                temp = stack.pop();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public static void inOrderTraverse(TreeNode root) {
         if (root == null) {
             return;
