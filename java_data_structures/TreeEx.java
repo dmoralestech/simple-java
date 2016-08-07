@@ -1,5 +1,7 @@
 package java_data_structures;
 
+import java.util.ArrayList;
+
 /**
  * Created by darwinmorales on 23/07/2016.
  */
@@ -184,6 +186,17 @@ public class TreeEx<E> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static void level_order_traversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        java.util.List<Queue<TreeNode>> queues = new ArrayList<>();
+
+
 
     }
 
