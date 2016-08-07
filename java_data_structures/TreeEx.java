@@ -1,6 +1,6 @@
 package java_data_structures;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by darwinmorales on 23/07/2016.
@@ -194,9 +194,37 @@ public class TreeEx<E> {
             return;
         }
 
-        java.util.List<Queue<TreeNode>> queues = new ArrayList<>();
+        java.util.List<java.util.Queue<TreeNode>> queues = new ArrayList<>();
 
+        queues.add(new ArrayDeque<TreeNode>());
+        queues.add(new ArrayDeque<TreeNode>());
 
+        java.util.Queue<TreeNode> current_queue = queues.get(0);
+        java.util.Queue<TreeNode> next_queue = queues.get(1);
+
+        current_queue.add(root);
+        int level_number = 0;
+
+        while(!current_queue.isEmpty()) {
+            TreeNode temp = current_queue.poll();
+            System.out.print(temp.getData() + ", ");
+
+            if (temp.getLeft() != null) {
+                next_queue.add(temp.getLeft());
+            }
+
+            if (temp.getRight() != null) {
+                next_queue.add(temp.getRight());
+            }
+
+            if (current_queue.isEmpty()) {
+                System.out.println();
+                ++level_number;
+                current_queue = queues.get(level_number % 2);
+                next_queue = queues.get((level_number + 1) % 2);
+            }
+        }
+        System.out.println();
 
     }
 
