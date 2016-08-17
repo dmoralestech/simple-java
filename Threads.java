@@ -10,6 +10,8 @@ public class Threads {
             System.out.println("From the thread: " + Thread.currentThread().getName());
             Thread.sleep(1000);
         }
+        final Thread separateThread2 = new Thread(new ThreadPrinter());
+        separateThread2.start();
     }
 
     private static class ThreadPrinter implements Runnable {
@@ -18,7 +20,7 @@ public class Threads {
             for (int i=0; i<5; i++ ){
                 System.out.println("From the thread: " + Thread.currentThread().getName());
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
