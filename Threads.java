@@ -4,6 +4,8 @@
 public class Threads {
 
     public static void main(String[] args) throws InterruptedException {
+//        int a1 = 2, a2 = 3;
+//        swap(a1, a2);
         final Thread separateThread = new Thread(new ThreadPrinter());
         separateThread.start();
         final Thread separateThread2 = new Thread(new ThreadPrinter());
@@ -13,6 +15,13 @@ public class Threads {
             Thread.sleep(500);
         }
 
+    }
+
+    private static void swap(int a, int b) {
+        int temp;
+        temp = a;
+        a = b;
+        b = temp;
     }
 
     private static class ThreadPrinter implements Runnable {
