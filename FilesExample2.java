@@ -19,6 +19,8 @@ public class FilesExample2 {
     final static String PJL_SET = "@PJL SET ";
     final static String AT_SIGN = "@";
     final static String EQUALS_OP = " = ";
+    final static int CARRIAGE_RETURN = 13;
+    final static int LINE_FEED = 10;
 
     public static void main(String[] args) throws Exception {
 
@@ -66,8 +68,8 @@ public class FilesExample2 {
         for (byte b : input.getBytes()) {
             out.write(b);
         }
-        out.write(13);
-        out.write(10);
+        out.write(CARRIAGE_RETURN);
+        out.write(LINE_FEED);
     }
 
     //TODO: need to optimise this
