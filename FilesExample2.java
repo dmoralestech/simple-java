@@ -28,47 +28,46 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-        newOptionsMap.put("USERID", "jordan");
-        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
-        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
-        newOptionsMap.put("NEW_OPTION", "COLOR");
-        newOptionsMap.put("NEW_OPTION2", "GREY");
+        newOptionsMap.put("USERID", "A");
+//        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
+//        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
+//        newOptionsMap.put("NEW_OPTION", "COLOR");
+//        newOptionsMap.put("NEW_OPTION2", "GREY");
 
         processPJLFile("res/sample3.pjl", "res/sample3_out.pjl", newOptionsMap);
 
     }
 
     public static boolean processPJLFile(String sourceFile, String destFile, Map<String, String> newOptionsMap) throws Exception {
-        RandomAccessFile in = null;
-        RandomAccessFile out = null;
-        try {
-            Path path = Paths.get(sourceFile);
-            Path pathOut = Paths.get(destFile);
 
-            if (pathOut.toFile().exists()) {
-                pathOut.toFile().delete();
-            }
+        Path path = Paths.get(sourceFile);
+        Path pathOut = Paths.get(destFile);
+
+        if (pathOut.toFile().exists()) {
+            pathOut.toFile().delete();
+        }
+
+        try (RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
+             RandomAccessFile out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "rw")) {
 
             // I could check for duplicates
             // I could save all the options to a separate map
-            in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
-            out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "rw");
-
             processHeader(in, out);
             processMetadata(in, out, newOptionsMap);
             processPostScriptBlock(in, out, in.getFilePointer());
 
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-            if (out != null) {
-                out.close();
-            }
         }
 
         return true;
 
+    }
+
+    private static void writeLineToFile(String input, RandomAccessFile out) throws IOException{
+        for (byte b : input.getBytes()) {
+            out.write(b);
+        }
+        out.write(13);
+        out.write(10);
     }
 
     //TODO: need to optimise this
@@ -93,6 +92,7 @@ public class FilesExample2 {
                         optionsFromFileMap.put(entry.getKey(), entry.getValue());
                     }
                 }
+                writeLineToFile(line, out);
                 break;
 
             }
@@ -124,17 +124,14 @@ public class FilesExample2 {
         newSetStatement.append(EQUALS_OP);
         newSetStatement.append(newValue);
         System.out.println(newSetStatement.toString());
-        out.writeBytes(newSetStatement.toString());
+        writeLineToFile(newSetStatement.toString(), out);
         optionsFromFileMap.put(key, value);
     }
 
     //TODO: need to figure-out why it's not writing correctly
     private static void processHeader(RandomAccessFile in, RandomAccessFile out) throws IOException {
         String header = in.readLine();
-        out.writeChars(header);
-        for (byte b : header.getBytes()) {
-            out.write(b);
-        }
+        writeLineToFile(header, out);
     }
 
     private void oldCode() {
