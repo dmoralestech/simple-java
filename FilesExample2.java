@@ -11,6 +11,11 @@ import java.util.Map;
  */
 public class FilesExample2 {
 
+    //TODO: logging
+    //TODO: test
+    //TODO: comments
+
+
     final static String PJL_SET = "@PJL SET ";
     final static String AT_SIGN = "@";
     final static String EQUALS_OP = " = ";
@@ -83,37 +88,39 @@ public class FilesExample2 {
                         optionsFromFileMap.put(entry.getKey(), entry.getValue());
                     }
                 }
-
                 break;
+
             }
         }
     }
 
     private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, Map<String, String> optionsFromFileMap, String line) throws IOException {
         int equalsSignPos = line.indexOf('=');
-        if (equalsSignPos > 0) {
-            String key = line.substring(PJL_SET.length(), equalsSignPos).trim();
-            String value = line.substring(equalsSignPos + 1).trim();
-            System.out.println("key: " + key);
-
-            String newValue;
-
-            if (newOptionsMap.get(key) != null) {
-                newValue = newOptionsMap.get(key);
-                System.out.println("value: " + newOptionsMap.get(key));
-            } else {
-                newValue = value;
-                System.out.println("value: " + value);
-            }
-            StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
-            newSetStatement.append(PJL_SET);
-            newSetStatement.append(key);
-            newSetStatement.append(EQUALS_OP);
-            newSetStatement.append(newValue);
-            System.out.println(newSetStatement.toString());
-            out.writeBytes(newSetStatement.toString());
-            optionsFromFileMap.put(key, value);
+        if (equalsSignPos <= 0) {
+            return;
         }
+
+        String key = line.substring(PJL_SET.length(), equalsSignPos).trim();
+        String value = line.substring(equalsSignPos + 1).trim();
+        System.out.println("key: " + key);
+
+        String newValue;
+
+        if (newOptionsMap.get(key) != null) {
+            newValue = newOptionsMap.get(key);
+            System.out.println("value: " + newOptionsMap.get(key));
+        } else {
+            newValue = value;
+            System.out.println("value: " + value);
+        }
+        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
+        newSetStatement.append(PJL_SET);
+        newSetStatement.append(key);
+        newSetStatement.append(EQUALS_OP);
+        newSetStatement.append(newValue);
+        System.out.println(newSetStatement.toString());
+        out.writeBytes(newSetStatement.toString());
+        optionsFromFileMap.put(key, value);
     }
 
     private static void processHeader(RandomAccessFile in, RandomAccessFile out) throws IOException {
