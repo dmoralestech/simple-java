@@ -17,6 +17,7 @@ import java.util.Map;
 public class FilesExample2 {
 
     public static void main(String[] args) {
+        // -source="" -destination="" -addNew=true -key1="" -key2=""
         readFileV2();
         try {
             long pos = 0;
@@ -77,17 +78,25 @@ public class FilesExample2 {
             Path pathOut = Paths.get("res/sample3_out.pjl");
 
             final String PJL_SET = "@PJL SET ";
+            final String EQUALS_OP = " = ";
+
 
             if (pathOut.toFile().exists()) {
                 pathOut.toFile().delete();
             }
 
             // I could check for duplicates
+            // I could save all the options to a separate map
+
 
             Map<String, String> newOptionsMap = new HashMap<>();
             newOptionsMap.put("USERID", "jordan");
             newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
             newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
+            newOptionsMap.put("NEW_OPTION", "COLOR");
+            newOptionsMap.put("NEW_OPTION2", "GREY");
+
+            Map<String, String> optionsFromFileMap = new HashMap<>();
 
             //open the file in random access mode
             RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
@@ -116,15 +125,23 @@ public class FilesExample2 {
                             newValue = value;
                             System.out.println("value: " + value);
                         }
-                        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + 3);
+                        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
                         newSetStatement.append(PJL_SET);
                         newSetStatement.append(key);
-                        newSetStatement.append(" = ");
+                        newSetStatement.append(EQUALS_OP);
                         newSetStatement.append(newValue);
                         System.out.println(newSetStatement.toString());
+                        optionsFromFileMap.put(key, value);
                     }
 
                 } else if (!line.startsWith("@")) {
+
+                    for(Map.Entry<String, String> entry: newOptionsMap.entrySet()) {
+                        if (optionsFromFileMap.get(entry.getKey()) == null) {
+                            optionsFromFileMap.put(entry.getKey(), entry.getValue());
+                        }
+                    }
+
                     break;
                 }
             }
