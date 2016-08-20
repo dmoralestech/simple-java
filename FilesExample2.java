@@ -71,6 +71,7 @@ public class FilesExample2 {
 
     }
 
+    //TODO: need to optimise this
     private static void processPostScriptBlock(RandomAccessFile in, RandomAccessFile out, long startOfPostScriptBlock) throws IOException {
         in.seek(startOfPostScriptBlock);
         int b;
@@ -127,6 +128,7 @@ public class FilesExample2 {
         optionsFromFileMap.put(key, value);
     }
 
+    //TODO: need to figure-out why it's not writing correctly
     private static void processHeader(RandomAccessFile in, RandomAccessFile out) throws IOException {
         String header = in.readLine();
         out.writeChars(header);
