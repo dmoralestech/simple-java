@@ -97,7 +97,10 @@ public class FilesExample2 {
                         optionsFromFileMap.put(entry.getKey(), entry.getValue());
                     }
                 }
-                writeLineToFile(line, out);
+                for (byte b : line.getBytes()) {
+                    out.write(b);
+                }
+                out.write(LINE_FEED);
                 break;
 
             }
