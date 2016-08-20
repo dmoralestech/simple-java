@@ -30,7 +30,7 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-        newOptionsMap.put("USERID", "A");
+//        newOptionsMap.put("USERID", "A");
 //        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
 //        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
 //        newOptionsMap.put("NEW_OPTION", "COLOR");
@@ -87,6 +87,9 @@ public class FilesExample2 {
         while ((line = in.readLine()) != null) {
             if (line.startsWith(PJL_SET)) {
                 handlePjlSetStatement(out, newOptionsMap, optionsFromFileMap, line);
+
+            } else if (line.startsWith(AT_SIGN)) {
+                writeLineToFile(line, out);
 
             } else if (!line.startsWith(AT_SIGN)) {
                 for (Map.Entry<String, String> entry : newOptionsMap.entrySet()) {
