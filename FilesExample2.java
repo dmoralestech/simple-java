@@ -56,7 +56,7 @@ public class FilesExample2 {
 
             processHeader(in, out);
             processMetadata(in, out, newOptionsMap);
-            processPostScriptBlock(in, out);
+            processPostScriptBlock(in, out, in.getFilePointer());
 
         } finally {
             if (in != null) {
@@ -71,8 +71,12 @@ public class FilesExample2 {
 
     }
 
-    private static void processPostScriptBlock(RandomAccessFile in, RandomAccessFile out) {
-
+    private static void processPostScriptBlock(RandomAccessFile in, RandomAccessFile out, long startOfPostScriptBlock) throws IOException {
+        in.seek(startOfPostScriptBlock);
+        int b;
+        while ((b = in.read()) >= 0) {
+            out.write(b);
+        }
     }
 
     private static void processMetadata(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws IOException {
