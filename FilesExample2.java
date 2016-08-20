@@ -14,7 +14,10 @@ public class FilesExample2 {
         try {
             Path path = Paths.get("js/template.js");
             try (BufferedReader reader = Files.newBufferedReader(path)) {
-                System.out.println(reader.readLine());
+            String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
