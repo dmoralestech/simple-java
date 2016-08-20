@@ -1,3 +1,5 @@
+import org.apache.commons.cli.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -17,7 +19,47 @@ import java.util.Map;
 public class FilesExample2 {
 
     public static void main(String[] args) {
-        // -source="" -destination="" -addNew=true -key1="" -key2=""
+
+        String sourceFullPath;
+        String destFullPath;
+        String addNewOptions;
+        Map<String, String> optionsArgs = new HashMap<>();
+
+        for (String arg: args) {
+            String[] keys = arg.split("=");
+            String key = keys[0];
+            String value = keys[1];
+            if (key.startsWith("-")) {
+                key = key.substring(1);
+            }
+            optionsArgs.put(key.toUpperCase(), value);
+        }
+
+        sourceFullPath = optionsArgs.get("SOURCE");
+        destFullPath = optionsArgs.get("DESTINATION");
+        addNewOptions = optionsArgs.get("ADDNEW");
+
+        if (sourceFullPath == null || destFullPath == null) {
+            // error
+        }
+
+//
+//        CommandLineParser parser = new DefaultParser();
+//
+//        Options options = new Options();
+//        options.addOption("s", true, "source");
+//        options.addOption("d", true, "source");
+//        options.addOption("a", true, "addNew");
+//
+//        try {
+//            CommandLine commandLine = parser.parse(options , args);
+//            System.out.println(commandLine.toString());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
+
+        // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
         readFileV2();
         try {
             long pos = 0;
@@ -78,6 +120,7 @@ public class FilesExample2 {
             Path pathOut = Paths.get("res/sample3_out.pjl");
 
             final String PJL_SET = "@PJL SET ";
+            final String AT_SIGN = "@";
             final String EQUALS_OP = " = ";
 
 
@@ -134,7 +177,7 @@ public class FilesExample2 {
                         optionsFromFileMap.put(key, value);
                     }
 
-                } else if (!line.startsWith("@")) {
+                } else if (!line.startsWith(AT_SIGN)) {
 
                     for(Map.Entry<String, String> entry: newOptionsMap.entrySet()) {
                         if (optionsFromFileMap.get(entry.getKey()) == null) {
