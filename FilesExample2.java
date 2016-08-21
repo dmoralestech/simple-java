@@ -30,14 +30,20 @@ public class FilesExample2 {
 
 
     public static void main(String[] args) throws Exception {
-//        SetCommandParser parser = new SetCommandParser("@PJL SET LPARAM:ABC BANNERPAGEPRINT = OFF");
-//        parser.parse();
-//
-//        parser = new SetCommandParser("@PJL SET LPARAM : ABC  BANNERPAGEPRINT=OFF");
-//        parser.parse();
-//
-//        parser = new SetCommandParser("@PJL SET LPARAM : ABC  BANNERPAGEPRINT");
-//        parser.parse();
+        SetCommandParser parser = new SetCommandParser("@PJL SET LPARAM:ABC BANNERPAGEPRINT = OFF");
+        parser.parse();
+
+        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT=OFF");
+        parser.parse();
+
+        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT");
+        parser.parse();
+
+        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT=\"RICOH Aficio MP C3002 PCL 6\"");
+        parser.parse();
+
+        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT= \"RICOH Aficio MP C3002 PCL 6\"");
+        parser.parse();
 //        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
@@ -45,14 +51,14 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-//        newOptionsMap.put("USERID", "\"12345\"");
+        newOptionsMap.put("USERID", "\"1\"");
 //        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
 //        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
 //        newOptionsMap.put("BANNERPAGEPRINT", "COLOR");
 //        newOptionsMap.put("NEW_OPTION2", "GREY");
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
-        processPJLFile("res/sample3.pjl", "res/sample3_out.pjl", newOptionsMap);
+        processPJLFile("res/sample2.pjl", "res/sample2_out.pjl", newOptionsMap);
 
     }
 

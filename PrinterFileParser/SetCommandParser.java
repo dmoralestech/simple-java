@@ -27,10 +27,10 @@ public class SetCommandParser {
     public void parse() {
         if (setStatement != null && setStatement.startsWith(PJL_SET)) {
             int posEqualSign = setStatement.indexOf('=');
-
-            if (posEqualSign > 0 ) {
+            int startOfOptionNamePos;
+            if (posEqualSign > 0) {
                 optionNameValue = setStatement.substring(posEqualSign + 1).trim();
-                int startOfOptionNamePos;
+
                 if (setStatement.substring(posEqualSign - 1, posEqualSign).equals(" ")) {
                     startOfOptionNamePos = setStatement.lastIndexOf(" ", posEqualSign - 2);
                     optionName = setStatement.substring(startOfOptionNamePos + 1, posEqualSign - 1);
@@ -39,8 +39,11 @@ public class SetCommandParser {
                     optionName = setStatement.substring(startOfOptionNamePos + 1, posEqualSign);
                 }
             } else {
-                int startOfOptionNamePos = setStatement.lastIndexOf(" ");
+                startOfOptionNamePos = setStatement.lastIndexOf(" ");
                 optionName = setStatement.substring(startOfOptionNamePos + 1);
+            }
+            if (startOfOptionNamePos >= PJL_SET.length()) {
+                commandModifierClause = setStatement.substring(PJL_SET.length(), startOfOptionNamePos );
             }
         }
     }
