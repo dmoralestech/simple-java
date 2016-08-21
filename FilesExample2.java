@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class FilesExample2 {
 
+    //Assumption: Source file is valid format..
+
     //TODO: logging
     //TODO: test
     // if I don't change anything in the options,  source file = dest file
@@ -18,6 +20,7 @@ public class FilesExample2 {
     //TODO: comments
     //TODO: add StringUtils
     //TODO: refactoring
+    //TODO: look at sed
 
     final static String PJL_SET = "@PJL SET ";
     final static String PJL = "PJL";
