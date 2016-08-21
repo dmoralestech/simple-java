@@ -21,6 +21,7 @@ public class FilesExample2 {
     final static String PJL = "PJL";
     final static String AT_SIGN_CHAR = "@";
     final static char LINE_FEED_CHAR = '\n';
+    final static char CARRIAGE_RETURN_CHAR = '\r';
     final static char ESC_CHAR = '\u001B';
     final static String EQUALS_OP = " = ";
     final static int CARRIAGE_RETURN = 13;
@@ -47,7 +48,7 @@ public class FilesExample2 {
 
     }
 
-    private static String cleanUpLine(String input) throws Exception {
+    private static String cleanUpLine(String input) {
         //String str = "@PJL    SET     DATE     = \"2013/09/     05\"";
         input = input.replaceAll("\\s+", " ");
         return input;
@@ -101,9 +102,8 @@ public class FilesExample2 {
                 line.append(LINE_FEED_CHAR);
             }
 
-            String pjlLine = cleanUpLine(line.toString());
-            if (pjlLine.startsWith(PJL_SET)) {
-                handlePjlSetStatement(out, newOptionsMap, pjlLine);
+            if (cleanUpLine(line.toString()).startsWith(PJL_SET)) {
+                handlePjlSetStatement(out, newOptionsMap, line.toString());
             } else {
                 writeLineToFile(line.toString(), out);
             }
@@ -121,18 +121,36 @@ public class FilesExample2 {
         }
     }
 
-    private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, String line) throws IOException {
+    private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, final String line) throws IOException {
         int equalsSignPos = line.indexOf('=');
         if (equalsSignPos <= 0) {
             return;
         }
 
-        String key = line.substring(PJL_SET.length(), equalsSignPos).trim().toUpperCase();
-        String value = line.substring(equalsSignPos + 1).trim();
+        String newStatement = cleanUpLine(line);
+        String key = newStatement.substring(PJL_SET.length(), equalsSignPos).trim().toUpperCase();
+        String value = newStatement.substring(equalsSignPos + 1).trim();
         System.out.println("key: " + key);
 
-        String newValue;
+        String newValue = getNewValue(newOptionsMap, key, value);
+        String newSetStatement = createNewSetStatement(key, newValue);
+        System.out.println(newSetStatement);
+        writeLineToFile(newSetStatement, out);
+        out.write(CARRIAGE_RETURN);
+        out.write(LINE_FEED_CHAR);
+    }
 
+    private static String createNewSetStatement(String key, String newValue) {
+        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
+        newSetStatement.append(PJL_SET);
+        newSetStatement.append(key);
+        newSetStatement.append(EQUALS_OP);
+        newSetStatement.append(newValue);
+        return newSetStatement.toString();
+    }
+
+    private static String getNewValue(Map<String, String> newOptionsMap, String key, String value) {
+        String newValue;
         if (newOptionsMap.get(key) != null) {
             newValue = newOptionsMap.get(key);
             System.out.println("value: " + newOptionsMap.get(key));
@@ -140,15 +158,7 @@ public class FilesExample2 {
             newValue = value;
             System.out.println("value: " + value);
         }
-        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
-        newSetStatement.append(PJL_SET);
-        newSetStatement.append(key);
-        newSetStatement.append(EQUALS_OP);
-        newSetStatement.append(newValue);
-        System.out.println(newSetStatement.toString());
-        writeLineToFile(newSetStatement.toString(), out);
-        out.write(CARRIAGE_RETURN);
-        out.write(LINE_FEED_CHAR);
+        return newValue;
     }
 
     public static boolean testPJLFile(String sourceFile, String destFile) throws Exception {
@@ -181,90 +191,6 @@ public class FilesExample2 {
         System.out.println("i2 = " + i2);
         System.out.println("i1 file pos= " + in1.getFilePointer());
         System.out.println("i2 file pos = " + in2.getFilePointer());
-    }
-
-
-    private static void processMetadata(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws IOException {
-        Map<String, String> optionsFromFileMap = new HashMap<>();
-        String line;
-        while ((line = in.readLine()) != null) {
-            if (line.startsWith(PJL_SET)) {
-                handlePjlSetStatement(out, newOptionsMap, line);
-
-            } else if (line.startsWith(AT_SIGN_CHAR)) {
-                writeLineToFile(line, out);
-
-            } else if (line.indexOf(Character.valueOf('\u001B')) == 0) {
-                writeLineToFile(line, out);
-
-            } else if (!line.startsWith(AT_SIGN_CHAR)) {
-                for (Map.Entry<String, String> entry : newOptionsMap.entrySet()) {
-                    if (optionsFromFileMap.get(entry.getKey()) == null) {
-                        optionsFromFileMap.put(entry.getKey(), entry.getValue());
-                    }
-                }
-                for (byte b : line.getBytes()) {
-                    out.write(b);
-                }
-                out.write(LINE_FEED);
-                break;
-
-            }
-        }
-    }
-
-
-    private void oldCode() {
-        try {
-            long pos = 0;
-            Path path = Paths.get("res/sample3.pjl");
-            Path pathOut = Paths.get("res/sample3_out.pjl");
-
-            if (pathOut.toFile().exists()) {
-                pathOut.toFile().delete();
-            }
-//            try (BufferedReader reader=Files.newBufferedReader(path, Charset.forName("UTF-8")) ){
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    if (line.startsWith("@")) {
-//                        pos += line.length() + 2;
-//                        System.out.println(line);
-//
-//                    } else {
-//                        System.out.println("pos: " + pos);
-//                        break;
-//                    }
-//                }
-//                reader.close();
-//            }
-            //open the file in binary mode
-            RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
-            RandomAccessFile out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "w");
-
-            String header = in.readLine();
-            System.out.println("length: " + header.length());
-            String line;
-            while ((line = in.readLine()) != null) {
-                if (line.startsWith("@PJL")) {
-                    //System.out.println();
-                } else {
-                    System.out.println("footer: " + line);
-                    pos = in.getFilePointer();
-                    //break;
-                }
-            }
-            int remainingBytesToRead = (int) in.length() - (int) pos;
-            byte[] b = new byte[remainingBytesToRead];
-            in.read(b, 0, b.length);
-            String x = Arrays.toString(b);
-            System.out.println(x);
-            in.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-        }
     }
 
 }
