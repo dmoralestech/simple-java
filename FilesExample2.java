@@ -22,15 +22,22 @@ public class FilesExample2 {
     final static String AT_SIGN_CHAR = "@";
     final static char LINE_FEED_CHAR = '\n';
     final static char CARRIAGE_RETURN_CHAR = '\r';
-    final static String EQUALS_OP = " = ";
+    final static String SPACE = " ";
+    final static String EQUALS_OP = "=";
     final static int CARRIAGE_RETURN = 13;
     final static int LINE_FEED = 10;
     final static int AT_SIGN = 64;
 
 
     public static void main(String[] args) throws Exception {
-
-
+//        SetCommandParser parser = new SetCommandParser("@PJL SET LPARAM:ABC BANNERPAGEPRINT = OFF");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET LPARAM : ABC  BANNERPAGEPRINT=OFF");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET LPARAM : ABC  BANNERPAGEPRINT");
+//        parser.parse();
 //        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
@@ -38,14 +45,14 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-        newOptionsMap.put("USERID", "\"12345\"");
-        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
-        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
-        newOptionsMap.put("BANNERPAGEPRINT", "COLOR");
-        newOptionsMap.put("NEW_OPTION2", "GREY");
+//        newOptionsMap.put("USERID", "\"12345\"");
+//        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
+//        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
+//        newOptionsMap.put("BANNERPAGEPRINT", "COLOR");
+//        newOptionsMap.put("NEW_OPTION2", "GREY");
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
-        processPJLFile("res/sample2.pjl", "res/sample2_out.pjl", newOptionsMap);
+        processPJLFile("res/sample3.pjl", "res/sample3_out.pjl", newOptionsMap);
 
     }
 
@@ -129,17 +136,15 @@ public class FilesExample2 {
             return;
         }
 
-//        String optionName = getSetKey(newStatement, equalsSignPos);
-//        String optionNameValue = newStatement.substring(equalsSignPos + 1).trim();
         SetCommandParser parser = new SetCommandParser(newStatement);
-        String commandModifier = parser.getCommandModifier();
-        String commandModifierValue = parser.getCommandModifierValue();
+        parser.parse();
+        String commandModifierClause = parser.getCommandModifierClause();
         String optionName = parser.getOptionName();
         String optionNameValue = parser.getOptionNameValue();
-        System.out.println("option name: " + optionName);
 
-        String newValue = getNewValue(newOptionsMap, optionName, optionNameValue);
-        String newSetStatement = createNewSetStatement(optionName, newValue);
+        String optionNameNewValue = getNewValue(newOptionsMap, optionName, optionNameValue);
+        String newSetStatement = createNewSetStatement(optionName, optionNameNewValue, commandModifierClause);
+        System.out.println(line);
         System.out.println(newSetStatement);
         writeLineToFile(newSetStatement, out);
         if (line.endsWith("\r\n")) {
@@ -150,45 +155,37 @@ public class FilesExample2 {
         }
     }
 
-    private static void parseSetStatement(String input) {
-        String[] tokens = input.split(" ");
-        String commandModifier = null;
-        String commandModifierValue = null;
-        String optionName = null;
-        String optionNameValue = null;
 
-
-
-
-
-    }
-
-    private static String getSetKey(String newStatement, int equalsSignPos) {
-        // @PJL SET   LPARAM:ABC BANNERPAGEPRINT=OFF
-        // @PJL SET   LPARAM : ABC BANNERPAGEPRINT = OFF
-        String key = newStatement.substring(PJL_SET.length(), equalsSignPos).trim();
-        return key;
-    }
-
-    private static String createNewSetStatement(String key, String newValue) {
-        StringBuilder newSetStatement = new StringBuilder(PJL_SET.length() + key.length() + newValue.length() + EQUALS_OP.length());
+    private static String createNewSetStatement(String optionName, String optionNameValue, String commandModifierClause) {
+        StringBuilder newSetStatement = new StringBuilder();
         newSetStatement.append(PJL_SET);
-        newSetStatement.append(key);
-        newSetStatement.append(EQUALS_OP);
-        newSetStatement.append(newValue);
+        if (commandModifierClause != null) {
+            newSetStatement.append(commandModifierClause);
+            newSetStatement.append(SPACE);
+        }
+        if (optionName != null) {
+            newSetStatement.append(optionName);
+            newSetStatement.append(SPACE);
+        }
+        if (optionNameValue != null) {
+            newSetStatement.append(EQUALS_OP);
+            newSetStatement.append(SPACE);
+            newSetStatement.append(optionNameValue);
+        }
         return newSetStatement.toString();
     }
 
-    private static String getNewValue(Map<String, String> newOptionsMap, String key, String value) {
-        String newValue;
-        if (newOptionsMap.get(key.toUpperCase()) != null) {
-            newValue = newOptionsMap.get(key);
-            System.out.println("value: " + newOptionsMap.get(key));
-        } else {
-            newValue = value;
-            System.out.println("value: " + value);
+    private static String getNewValue(Map<String, String> newOptionsMap, String optionName, String optionNameValue) {
+        String newOptionNameValue = null;
+        if (optionName != null) {
+
+            if (newOptionsMap.get(optionName.toUpperCase()) != null) {
+                newOptionNameValue = newOptionsMap.get(optionName);
+            } else {
+                newOptionNameValue = optionNameValue;
+            }
         }
-        return newValue;
+        return newOptionNameValue;
     }
 
     public static boolean testPJLFile(String sourceFile, String destFile) throws Exception {

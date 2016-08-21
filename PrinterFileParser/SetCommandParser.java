@@ -4,11 +4,11 @@ package PrinterFileParser;
  * Created by darwinmorales on 21/08/2016.
  */
 public class SetCommandParser {
-    private String commandModifier = "";
-    private String commandModifierValue = "";
-    private String optionName = "";
-    private String optionNameValue = "";
-    private String setStatement = "";
+    final static String PJL_SET = "@PJL SET ";
+    private String commandModifierClause = null;
+    private String optionName = null;
+    private String optionNameValue = null;
+    private String setStatement = null;
 
     public SetCommandParser(String setStatement) {
         this.setStatement = setStatement;
@@ -25,43 +25,28 @@ public class SetCommandParser {
      */
 
     public void parse() {
-        String[] tokens = setStatement.split(" ");
-        for (int i = 0; i < tokens.length; i++) {
-            if (tokens[i].indexOf(':') == 0) {
-                commandModifier = tokens[i - 1];
-                commandModifierValue = tokens[i + 1];
-            } else if (tokens[i].indexOf(':') > 0) {
-                if (commandModifier == null) {
-                    int pos = tokens[i].indexOf(':');
-                    commandModifier = tokens[i].substring(0, pos);
-                    commandModifierValue = tokens[i].substring(pos + 1);
+        if (setStatement != null && setStatement.startsWith(PJL_SET)) {
+            int posEqualSign = setStatement.indexOf('=');
+
+            if (posEqualSign > 0 ) {
+                optionNameValue = setStatement.substring(posEqualSign + 1).trim();
+                int startOfOptionNamePos;
+                if (setStatement.substring(posEqualSign - 1, posEqualSign).equals(" ")) {
+                    startOfOptionNamePos = setStatement.lastIndexOf(" ", posEqualSign - 2);
+                    optionName = setStatement.substring(startOfOptionNamePos + 1, posEqualSign - 1);
+                } else {
+                    startOfOptionNamePos = setStatement.lastIndexOf(" ", posEqualSign - 1);
+                    optionName = setStatement.substring(startOfOptionNamePos + 1, posEqualSign);
                 }
-            } else if (tokens[i].indexOf('=') == 0) {
-                optionName = tokens[i - 1];
-                optionNameValue = tokens[i + 1];
-            } else if (tokens[i].indexOf('=') > 0) {
-                if (optionName == null) {
-                    int pos = tokens[i].indexOf('=');
-                    optionName = tokens[i].substring(0, pos);
-                    optionNameValue = tokens[i].substring(pos + 1);
-                }
-            }
-        }
-        if (optionName == null) {
-            if (!(tokens[tokens.length - 1].equalsIgnoreCase("@PJL") ||
-                    tokens[tokens.length - 1].equalsIgnoreCase("SET"))
-                    ) {
-                optionName = tokens[tokens.length - 1];
+            } else {
+                int startOfOptionNamePos = setStatement.lastIndexOf(" ");
+                optionName = setStatement.substring(startOfOptionNamePos + 1);
             }
         }
     }
 
-    public String getCommandModifier() {
-        return commandModifier;
-    }
-
-    public String getCommandModifierValue() {
-        return commandModifierValue;
+    public String getCommandModifierClause() {
+        return commandModifierClause;
     }
 
     public String getOptionName() {
