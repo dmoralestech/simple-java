@@ -1,7 +1,8 @@
+import PrinterFileParser.SetCommandParser;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,13 +17,11 @@ public class FilesExample2 {
     // keys and values are not case-sensitive
     //TODO: comments
 
-
     final static String PJL_SET = "@PJL SET ";
     final static String PJL = "PJL";
     final static String AT_SIGN_CHAR = "@";
     final static char LINE_FEED_CHAR = '\n';
     final static char CARRIAGE_RETURN_CHAR = '\r';
-    final static char ESC_CHAR = '\u001B';
     final static String EQUALS_OP = " = ";
     final static int CARRIAGE_RETURN = 13;
     final static int LINE_FEED = 10;
@@ -30,6 +29,8 @@ public class FilesExample2 {
 
 
     public static void main(String[] args) throws Exception {
+
+
 //        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
@@ -40,7 +41,7 @@ public class FilesExample2 {
         newOptionsMap.put("USERID", "\"12345\"");
         newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
         newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
-        newOptionsMap.put("NEW_OPTION", "COLOR");
+        newOptionsMap.put("BANNERPAGEPRINT", "COLOR");
         newOptionsMap.put("NEW_OPTION2", "GREY");
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
@@ -108,7 +109,6 @@ public class FilesExample2 {
                 writeLineToFile(line.toString(), out);
             }
 
-
         } else {
             writeLineToFile(line.toString(), out);
             out.write(b);
@@ -122,22 +122,52 @@ public class FilesExample2 {
     }
 
     private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, final String line) throws IOException {
-        int equalsSignPos = line.indexOf('=');
+
+        String newStatement = cleanUpLine(line);
+        int equalsSignPos = newStatement.indexOf('=');
         if (equalsSignPos <= 0) {
             return;
         }
 
-        String newStatement = cleanUpLine(line);
-        String key = newStatement.substring(PJL_SET.length(), equalsSignPos).trim().toUpperCase();
-        String value = newStatement.substring(equalsSignPos + 1).trim();
-        System.out.println("key: " + key);
+//        String optionName = getSetKey(newStatement, equalsSignPos);
+//        String optionNameValue = newStatement.substring(equalsSignPos + 1).trim();
+        SetCommandParser parser = new SetCommandParser(newStatement);
+        String commandModifier = parser.getCommandModifier();
+        String commandModifierValue = parser.getCommandModifierValue();
+        String optionName = parser.getOptionName();
+        String optionNameValue = parser.getOptionNameValue();
+        System.out.println("option name: " + optionName);
 
-        String newValue = getNewValue(newOptionsMap, key, value);
-        String newSetStatement = createNewSetStatement(key, newValue);
+        String newValue = getNewValue(newOptionsMap, optionName, optionNameValue);
+        String newSetStatement = createNewSetStatement(optionName, newValue);
         System.out.println(newSetStatement);
         writeLineToFile(newSetStatement, out);
-        out.write(CARRIAGE_RETURN);
-        out.write(LINE_FEED_CHAR);
+        if (line.endsWith("\r\n")) {
+            out.write(CARRIAGE_RETURN);
+            out.write(LINE_FEED_CHAR);
+        } else if (line.endsWith("\n")) {
+            out.write(LINE_FEED_CHAR);
+        }
+    }
+
+    private static void parseSetStatement(String input) {
+        String[] tokens = input.split(" ");
+        String commandModifier = null;
+        String commandModifierValue = null;
+        String optionName = null;
+        String optionNameValue = null;
+
+
+
+
+
+    }
+
+    private static String getSetKey(String newStatement, int equalsSignPos) {
+        // @PJL SET   LPARAM:ABC BANNERPAGEPRINT=OFF
+        // @PJL SET   LPARAM : ABC BANNERPAGEPRINT = OFF
+        String key = newStatement.substring(PJL_SET.length(), equalsSignPos).trim();
+        return key;
     }
 
     private static String createNewSetStatement(String key, String newValue) {
@@ -151,7 +181,7 @@ public class FilesExample2 {
 
     private static String getNewValue(Map<String, String> newOptionsMap, String key, String value) {
         String newValue;
-        if (newOptionsMap.get(key) != null) {
+        if (newOptionsMap.get(key.toUpperCase()) != null) {
             newValue = newOptionsMap.get(key);
             System.out.println("value: " + newOptionsMap.get(key));
         } else {
