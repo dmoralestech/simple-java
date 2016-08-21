@@ -16,6 +16,8 @@ public class FilesExample2 {
     // if I don't change anything in the options,  source file = dest file
     // keys and values are not case-sensitive
     //TODO: comments
+    //TODO: add StringUtils
+    //TODO: refactoring
 
     final static String PJL_SET = "@PJL SET ";
     final static String PJL = "PJL";
@@ -28,22 +30,8 @@ public class FilesExample2 {
     final static int LINE_FEED = 10;
     final static int AT_SIGN = 64;
 
-
     public static void main(String[] args) throws Exception {
-        SetCommandParser parser = new SetCommandParser("@PJL SET LPARAM:ABC BANNERPAGEPRINT = OFF");
-        parser.parse();
 
-        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT=OFF");
-        parser.parse();
-
-        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT");
-        parser.parse();
-
-        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT=\"RICOH Aficio MP C3002 PCL 6\"");
-        parser.parse();
-
-        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT= \"RICOH Aficio MP C3002 PCL 6\"");
-        parser.parse();
 //        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
@@ -51,10 +39,11 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-        newOptionsMap.put("USERID", "\"1\"");
-//        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
-//        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
-//        newOptionsMap.put("BANNERPAGEPRINT", "COLOR");
+        newOptionsMap.put("userid", "\"1\"");
+        newOptionsMap.put("rendermode", "BLACKWHITE GREYSCALE");
+        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
+        newOptionsMap.put("bannerpageprint", "COLOR");
+        newOptionsMap.put("authenticationusernamecharset", "369");
 //        newOptionsMap.put("NEW_OPTION2", "GREY");
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
@@ -63,7 +52,6 @@ public class FilesExample2 {
     }
 
     private static String cleanUpLine(String input) {
-        //String str = "@PJL    SET     DATE     = \"2013/09/     05\"";
         input = input.replaceAll("\\s+", " ");
         return input;
 
@@ -103,9 +91,9 @@ public class FilesExample2 {
         StringBuilder line = new StringBuilder();
         line.append(AT_SIGN_CHAR);
 
-        byte[] b = new byte[3];
-        i = in.read(b);
-        String temp = new String(b, "UTF-8");
+        byte[] buffer = new byte[3];
+        i = in.read(buffer);
+        String temp = new String(buffer, "UTF-8");
         if (temp.equalsIgnoreCase(PJL)) {
             line.append(temp);
             while ((i = in.read()) != 10) {
@@ -117,14 +105,14 @@ public class FilesExample2 {
             }
 
             if (cleanUpLine(line.toString()).startsWith(PJL_SET)) {
-                handlePjlSetStatement(out, newOptionsMap, line.toString());
+                processPjlSETStatement(out, newOptionsMap, line.toString());
             } else {
                 writeLineToFile(line.toString(), out);
             }
 
         } else {
             writeLineToFile(line.toString(), out);
-            out.write(b);
+            out.write(buffer);
         }
     }
 
@@ -134,7 +122,7 @@ public class FilesExample2 {
         }
     }
 
-    private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, final String line) throws IOException {
+    private static void processPjlSETStatement(RandomAccessFile out, Map<String, String> newOptionsMap, final String line) throws IOException {
 
         String newStatement = cleanUpLine(line);
         int equalsSignPos = newStatement.indexOf('=');
@@ -159,6 +147,7 @@ public class FilesExample2 {
         } else if (line.endsWith("\n")) {
             out.write(LINE_FEED_CHAR);
         }
+
     }
 
 
@@ -184,7 +173,6 @@ public class FilesExample2 {
     private static String getNewValue(Map<String, String> newOptionsMap, String optionName, String optionNameValue) {
         String newOptionNameValue = null;
         if (optionName != null) {
-
             if (newOptionsMap.get(optionName.toUpperCase()) != null) {
                 newOptionNameValue = newOptionsMap.get(optionName);
             } else {

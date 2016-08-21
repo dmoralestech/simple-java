@@ -4,6 +4,8 @@ package PrinterFileParser;
  * Created by darwinmorales on 21/08/2016.
  */
 public class SetCommandParser {
+
+    //TODO: more testing
     final static String PJL_SET = "@PJL SET ";
     private String commandModifierClause = null;
     private String optionName = null;
@@ -22,6 +24,20 @@ public class SetCommandParser {
         parseSetStatement("@PJL SET PRINTINFO=\"DUPLEX_NUP=00000001/SCALING=3/OTHER=00000000\"");
         parseSetStatement("@PJL SET PRINTINFO = \"DUPLEX_NUP=00000001/SCALING=3/OTHER=00000000\"");
         parseSetStatement("@PJL SET BANNERPAGEPRINT");
+//        SetCommandParser parser = new SetCommandParser("@PJL SET LPARAM:ABC BANNERPAGEPRINT = OFF");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT=OFF");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET LPARAM : ABC BANNERPAGEPRINT");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT=\"RICOH Aficio MP C3002 PCL 6\"");
+//        parser.parse();
+//
+//        parser = new SetCommandParser("@PJL SET BANNERPAGEPRINT= \"RICOH Aficio MP C3002 PCL 6\"");
+//        parser.parse();
      */
 
     public void parse() {
