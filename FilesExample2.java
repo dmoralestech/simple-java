@@ -4,7 +4,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Created by darwinmorales on 20/08/2016.
@@ -19,13 +18,14 @@ public class FilesExample2 {
 
 
     final static String PJL_SET = "@PJL SET ";
+    final static String PJL = "PJL";
     final static String AT_SIGN_CHAR = "@";
+    final static char LINE_FEED_CHAR = '\n';
     final static char ESC_CHAR = '\u001B';
     final static String EQUALS_OP = " = ";
     final static int CARRIAGE_RETURN = 13;
     final static int LINE_FEED = 10;
     final static int AT_SIGN = 64;
-    final static int P_CHAR = 80;
 
 
     public static void main(String[] args) throws Exception {
@@ -36,11 +36,11 @@ public class FilesExample2 {
 //        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
-//        newOptionsMap.put("USERID", "A");
-//        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
-//        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
-//        newOptionsMap.put("NEW_OPTION", "COLOR");
-//        newOptionsMap.put("NEW_OPTION2", "GREY");
+        newOptionsMap.put("USERID", "\"12345\"");
+        newOptionsMap.put("RENDERMODE", "BLACKWHITE GREYSCALE");
+        newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
+        newOptionsMap.put("NEW_OPTION", "COLOR");
+        newOptionsMap.put("NEW_OPTION2", "GREY");
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
         processPJLFile("res/sample2.pjl", "res/sample2_out.pjl", newOptionsMap);
@@ -50,8 +50,6 @@ public class FilesExample2 {
     private static String cleanUpLine(String input) throws Exception {
         //String str = "@PJL    SET     DATE     = \"2013/09/     05\"";
         input = input.replaceAll("\\s+", " ");
-//        input = input.substring(0, input.indexOf("=")).replaceAll("\\s+", " ");
-//        System.out.println("str = " + input);
         return input;
 
     }
@@ -67,32 +65,54 @@ public class FilesExample2 {
 
         try (RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
              RandomAccessFile out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "rw")) {
-            processSample(in, out);
-
-            // I could check for duplicates
-            // I could save all the options to a separate map
-///            processHeader(in, out);
-///            processMetadata(in, out, newOptionsMap);
-///            processPostScriptBlock(in, out, in.getFilePointer());
-
+            processPJLContents(in, out, newOptionsMap);
         }
 
         return true;
 
     }
 
-    public static boolean testPJLFile(String sourceFile, String destFile) throws Exception {
-
-        Path path = Paths.get(sourceFile);
-        Path pathOut = Paths.get(destFile);
-
-        try (RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
-             RandomAccessFile out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "rw")) {
-            testFileIfMatch(in, out);
+    private static void processPJLContents(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws Exception {
+        int i;
+        while ((i = in.read()) >= 0) {
+            if (i == AT_SIGN) {
+                processPJLStatement(in, out, newOptionsMap);
+            } else {
+                out.write(Character.valueOf((char) i));
+            }
         }
+    }
 
-        return true;
+    private static void processPJLStatement(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws Exception {
+        int i;
+        StringBuilder line = new StringBuilder();
+        line.append(AT_SIGN_CHAR);
 
+        byte[] b = new byte[3];
+        i = in.read(b);
+        String temp = new String(b, "UTF-8");
+        if (temp.equalsIgnoreCase(PJL)) {
+            line.append(temp);
+            while ((i = in.read()) != 10) {
+                char c = (char) i;
+                line.append(Character.valueOf(c));
+            }
+            if (i == LINE_FEED) {
+                line.append(LINE_FEED_CHAR);
+            }
+
+            String pjlLine = cleanUpLine(line.toString());
+            if (pjlLine.startsWith(PJL_SET)) {
+                handlePjlSetStatement(out, newOptionsMap, pjlLine);
+            } else {
+                writeLineToFile(line.toString(), out);
+            }
+
+
+        } else {
+            writeLineToFile(line.toString(), out);
+            out.write(b);
+        }
     }
 
     private static void writeLineToFile(String input, RandomAccessFile out) throws IOException {
@@ -101,57 +121,7 @@ public class FilesExample2 {
         }
     }
 
-    private static void writeLineToFile(String input, FileOutputStream out) throws IOException {
-        for (byte b : input.getBytes()) {
-            out.write(b);
-        }
-
-        if (input.startsWith("@") || input.indexOf(Character.valueOf(ESC_CHAR)) == 0) {
-            out.write(CARRIAGE_RETURN);
-            out.write(LINE_FEED);
-        }
-
-    }
-
-    //TODO: need to optimise this
-    private static void processPostScriptBlock(RandomAccessFile in, RandomAccessFile out, long startOfPostScriptBlock) throws IOException {
-        in.seek(startOfPostScriptBlock);
-        int b;
-        while ((b = in.read()) >= 0) {
-            out.write(b);
-        }
-    }
-
-    private static void processMetadata(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws IOException {
-        Map<String, String> optionsFromFileMap = new HashMap<>();
-        String line;
-        while ((line = in.readLine()) != null) {
-            if (line.startsWith(PJL_SET)) {
-                handlePjlSetStatement(out, newOptionsMap, optionsFromFileMap, line);
-
-            } else if (line.startsWith(AT_SIGN_CHAR)) {
-                writeLineToFile(line, out);
-
-            } else if (line.indexOf(Character.valueOf('\u001B')) == 0) {
-                writeLineToFile(line, out);
-
-            } else if (!line.startsWith(AT_SIGN_CHAR)) {
-                for (Map.Entry<String, String> entry : newOptionsMap.entrySet()) {
-                    if (optionsFromFileMap.get(entry.getKey()) == null) {
-                        optionsFromFileMap.put(entry.getKey(), entry.getValue());
-                    }
-                }
-                for (byte b : line.getBytes()) {
-                    out.write(b);
-                }
-                out.write(LINE_FEED);
-                break;
-
-            }
-        }
-    }
-
-    private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, Map<String, String> optionsFromFileMap, String line) throws IOException {
+    private static void handlePjlSetStatement(RandomAccessFile out, Map<String, String> newOptionsMap, String line) throws IOException {
         int equalsSignPos = line.indexOf('=');
         if (equalsSignPos <= 0) {
             return;
@@ -177,33 +147,31 @@ public class FilesExample2 {
         newSetStatement.append(newValue);
         System.out.println(newSetStatement.toString());
         writeLineToFile(newSetStatement.toString(), out);
-        optionsFromFileMap.put(key, value);
+        out.write(CARRIAGE_RETURN);
+        out.write(LINE_FEED_CHAR);
     }
 
-    //TODO: need to figure-out why it's not writing correctly
-    private static void processHeader(RandomAccessFile in, RandomAccessFile out) throws IOException {
+    public static boolean testPJLFile(String sourceFile, String destFile) throws Exception {
 
-        StringBuilder line = new StringBuilder();
-        int i;
-        while ((i = in.read()) != 10) {
-            char c = (char) i;
-            line.append(Character.valueOf(c));
-        }
-        if (i == 10) {
-            line.append("\n");
+        Path path = Paths.get(sourceFile);
+        Path pathOut = Paths.get(destFile);
+
+        try (RandomAccessFile in = new RandomAccessFile(path.toFile().getAbsolutePath(), "r");
+             RandomAccessFile out = new RandomAccessFile(pathOut.toFile().getAbsolutePath(), "rw")) {
+            testFileIfMatch(in, out);
         }
 
-        //String header = in.readLine();
-        writeLineToFile(line.toString(), out);
+        return true;
+
     }
 
     private static void testFileIfMatch(RandomAccessFile in1, RandomAccessFile in2) throws IOException {
         int i1 = 0, i2 = 0;
-        while (true && (i1 >= 0) ) {
+        while (true && (i1 >= 0)) {
             i1 = in1.read();
             i2 = in2.read();
 
-            if (i1 != i2 ) {
+            if (i1 != i2) {
                 break;
             }
 
@@ -215,33 +183,36 @@ public class FilesExample2 {
         System.out.println("i2 file pos = " + in2.getFilePointer());
     }
 
-    private static void processSample(RandomAccessFile in, RandomAccessFile out) throws IOException {
 
-        int i;
-        while ((i = in.read()) >= 0) {
-            if (i == AT_SIGN) {
-                StringBuilder line = new StringBuilder();
-                line.append("@");
-                i = in.read();
-                if (i == P_CHAR) {
-                    line.append("P");
-                    while ((i = in.read()) != 10) {
-                        char c = (char) i;
-                        line.append(Character.valueOf(c));
+    private static void processMetadata(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws IOException {
+        Map<String, String> optionsFromFileMap = new HashMap<>();
+        String line;
+        while ((line = in.readLine()) != null) {
+            if (line.startsWith(PJL_SET)) {
+                handlePjlSetStatement(out, newOptionsMap, line);
+
+            } else if (line.startsWith(AT_SIGN_CHAR)) {
+                writeLineToFile(line, out);
+
+            } else if (line.indexOf(Character.valueOf('\u001B')) == 0) {
+                writeLineToFile(line, out);
+
+            } else if (!line.startsWith(AT_SIGN_CHAR)) {
+                for (Map.Entry<String, String> entry : newOptionsMap.entrySet()) {
+                    if (optionsFromFileMap.get(entry.getKey()) == null) {
+                        optionsFromFileMap.put(entry.getKey(), entry.getValue());
                     }
-                    if (i == LINE_FEED) {
-                        line.append("\n");
-                    }
-                    writeLineToFile(line.toString(), out);
-                } else {
-                    writeLineToFile(line.toString(), out);
-                    out.write(Character.valueOf((char) i));
                 }
-            } else {
-                out.write(Character.valueOf((char) i));
+                for (byte b : line.getBytes()) {
+                    out.write(b);
+                }
+                out.write(LINE_FEED);
+                break;
+
             }
         }
     }
+
 
     private void oldCode() {
         try {
