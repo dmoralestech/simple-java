@@ -1,10 +1,10 @@
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by darwinmorales on 20/08/2016.
@@ -13,6 +13,8 @@ public class FilesExample2 {
 
     //TODO: logging
     //TODO: test
+            // if I don't change anything in the options,  source file = dest file
+            // keys and values are not case-sensitive
     //TODO: comments
 
 
@@ -24,6 +26,7 @@ public class FilesExample2 {
 
     public static void main(String[] args) throws Exception {
 
+//        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
 //        ValidateCommandLine commandLine = new ValidateCommandLine(args);
@@ -39,6 +42,51 @@ public class FilesExample2 {
         processPJLFile("res/sample3.pjl", "res/sample3_out.pjl", newOptionsMap);
 
     }
+
+    private static String  cleanUpLine(String input) throws  Exception {
+        //String str = "@PJL    SET     DATE     = \"2013/09/     05\"";
+        input = input.replaceAll("\\s+", " ");
+//        input = input.substring(0, input.indexOf("=")).replaceAll("\\s+", " ");
+//        System.out.println("str = " + input);
+        return input;
+
+    }
+
+    private static void test1(String fileInput, String destFile) throws  Exception{
+        Path path = Paths.get(fileInput);
+        FileInputStream inputStream = null;
+        Path pathOut = Paths.get(destFile);
+
+        if (pathOut.toFile().exists()) {
+            pathOut.toFile().delete();
+        }
+        FileOutputStream out = new FileOutputStream(pathOut.toFile());
+
+        Scanner sc = null;
+        try {
+            inputStream = new FileInputStream(path.toFile());
+            sc = new Scanner(inputStream);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                writeLineToFile(line, out);
+            }
+            // note that Scanner suppresses exceptions
+            if (sc.ioException() != null) {
+                throw sc.ioException();
+            }
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (sc != null) {
+                sc.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+
 
     public static boolean processPJLFile(String sourceFile, String destFile, Map<String, String> newOptionsMap) throws Exception {
 
@@ -72,6 +120,18 @@ public class FilesExample2 {
         out.write(LINE_FEED);
     }
 
+    private static void writeLineToFile(String input, FileOutputStream out) throws IOException{
+        for (byte b : input.getBytes()) {
+            out.write(b);
+        }
+
+        if (input.startsWith("@") || input.indexOf(Character.valueOf('\u001B')) == 0) {
+            out.write(CARRIAGE_RETURN);
+            out.write(LINE_FEED);
+        }
+
+    }
+
     //TODO: need to optimise this
     private static void processPostScriptBlock(RandomAccessFile in, RandomAccessFile out, long startOfPostScriptBlock) throws IOException {
         in.seek(startOfPostScriptBlock);
@@ -89,6 +149,9 @@ public class FilesExample2 {
                 handlePjlSetStatement(out, newOptionsMap, optionsFromFileMap, line);
 
             } else if (line.startsWith(AT_SIGN)) {
+                writeLineToFile(line, out);
+
+            } else if (line.indexOf(Character.valueOf('\u001B')) ==0 ) {
                 writeLineToFile(line, out);
 
             } else if (!line.startsWith(AT_SIGN)) {
@@ -113,7 +176,7 @@ public class FilesExample2 {
             return;
         }
 
-        String key = line.substring(PJL_SET.length(), equalsSignPos).trim();
+        String key = line.substring(PJL_SET.length(), equalsSignPos).trim().toUpperCase();
         String value = line.substring(equalsSignPos + 1).trim();
         System.out.println("key: " + key);
 
@@ -138,8 +201,19 @@ public class FilesExample2 {
 
     //TODO: need to figure-out why it's not writing correctly
     private static void processHeader(RandomAccessFile in, RandomAccessFile out) throws IOException {
-        String header = in.readLine();
-        writeLineToFile(header, out);
+
+        StringBuilder line = new StringBuilder();
+        int i;
+        while ((i = in.read()) != 10) {
+            char c = (char) i;
+            line.append(Character.valueOf(c));
+        }
+        if (i == 10 ) {
+            line.append("\n");
+        }
+
+        //String header = in.readLine();
+        writeLineToFile(line.toString(), out);
     }
 
     private void oldCode() {
