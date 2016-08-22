@@ -13,11 +13,12 @@ public class FilesExample2 {
 
     //Assumption: Source file is valid format..
 
+    //TODO: comments
     //TODO: logging
     //TODO: test
     // if I don't change anything in the options,  source file = dest file
     // keys and values are not case-sensitive
-    //TODO: comments
+
     //TODO: add StringUtils
     //TODO: refactoring
     //TODO: look at sed
@@ -54,12 +55,26 @@ public class FilesExample2 {
 
     }
 
+    /**
+     * Replace multiple white-spaces with a single white-space in a string
+     *
+     * @param input - the string with multiple white-spaces
+     * @return String
+     */
     private static String cleanUpLine(String input) {
         input = input.replaceAll("\\s+", " ");
         return input;
 
     }
 
+    /**
+     * Opens up a PJL file, updates the options, and saves it in a new file. If the destination file exists, it will be deleted and creates a new one.
+     *
+     * @param sourceFile - source PJL file
+     * @param destFile - destination/target file
+     * @param newOptionsMap - a map of options that the user wants to update
+     * @return boolean - true if successful
+     */
     public static boolean processPJLFile(String sourceFile, String destFile, Map<String, String> newOptionsMap) throws Exception {
 
         Path path = Paths.get(sourceFile);
@@ -78,6 +93,14 @@ public class FilesExample2 {
 
     }
 
+    /**
+     * Reads the file byte by byte and if it finds an @-sign it will try to process the PJL metadata line
+     *
+     * @param in - source file object
+     * @param out - destination file object
+     * @param newOptionsMap - a map of options that the user wants to update
+     * @return
+     */
     private static void processPJLContents(RandomAccessFile in, RandomAccessFile out, Map<String, String> newOptionsMap) throws Exception {
         int i;
         while ((i = in.read()) >= 0) {
