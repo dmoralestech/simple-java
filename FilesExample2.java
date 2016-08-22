@@ -1,4 +1,5 @@
 import PrinterFileParser.SetCommandParser;
+import PrinterFileParser.ValidateCommandLine;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -53,8 +54,8 @@ public class FilesExample2 {
 //        test1("res/sample2.pjl", "res/sample2_out.pjl");
         // -source="sss" -destination="ddd" -addNew=true -key1="v1" -key2="v2"
 
-//        ValidateCommandLine commandLine = new ValidateCommandLine(args);
-//        commandLine.parse();
+        ValidateCommandLine commandLine = new ValidateCommandLine(args);
+        commandLine.parse();
 
         Map<String, String> newOptionsMap = new HashMap<>();
         newOptionsMap.put("userid", "\"1\"");
@@ -62,9 +63,13 @@ public class FilesExample2 {
         newOptionsMap.put("HOSTPORTNAME", "\"0.19.20.0\"");
         newOptionsMap.put("bannerpageprint", "COLOR");
         newOptionsMap.put("authenticationusernamecharset", "369");
-//        newOptionsMap.put("NEW_OPTION2", "GREY");
+
+        newOptionsMap = commandLine.getOptionArgs();
+        String sourceFile = commandLine.getSourceFullPath();
+        String destinationFile = commandLine.getDestFullPath();
 
 //        testPJLFile("res/sample3.pjl", "res/sample3_out.pjl");
+        //processPJLFile(sourceFile, destinationFile, newOptionsMap);
         processPJLFile("res/sample2.pjl", "res/sample2_out.pjl", newOptionsMap);
 
     }
