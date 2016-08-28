@@ -97,6 +97,7 @@ public class TreeEx<E> {
 
         return root;
     }
+
     public static boolean search(TreeNode root, int d) {
 
         if (root == null) {
@@ -138,7 +139,7 @@ public class TreeEx<E> {
         return successor;
     }
 
-    private static boolean is_bst_rec (TreeNode root, int minValue, int maxValue) {
+    private static boolean is_bst_rec(TreeNode root, int minValue, int maxValue) {
         if (root == null) {
             return true;
         }
@@ -148,7 +149,7 @@ public class TreeEx<E> {
         }
 
         return is_bst_rec(root.getLeft(), minValue, (Integer) root.getData()) &&
-         is_bst_rec(root.getRight(), (Integer) root.getData(), maxValue) ;
+                is_bst_rec(root.getRight(), (Integer) root.getData(), maxValue);
     }
 
     public static boolean is_Valid_BST(TreeNode root) {
@@ -205,7 +206,7 @@ public class TreeEx<E> {
         current_queue.add(root);
         int level_number = 0;
 
-        while(!current_queue.isEmpty()) {
+        while (!current_queue.isEmpty()) {
             TreeNode temp = current_queue.poll();
             System.out.print(temp.getData() + ", ");
 
@@ -226,6 +227,18 @@ public class TreeEx<E> {
         }
         System.out.println();
 
+    }
+
+    boolean matchTree(TreeNode r1, TreeNode r2) {
+        if (r1 == null && r2 == null) {
+            return true; // nothing left in the subtree
+        } else if (r1 == null || r2 == null) {
+            return false; // exactly tree is empty, therefore trees don 't match
+        } else if (r1.data != r2.data) {
+            return false; // data doesn ' t match
+        } else {
+            return matchTree(r1.left, r2.left) && matchTree(r1.right, r2.right);
+        }
     }
 
     public static void main(String[] args) {
@@ -251,7 +264,7 @@ public class TreeEx<E> {
 
         inOrderSuccessor(node, 5);
 
-        System.out.println( search(node, 9));
-        System.out.println( search(node, 10));
+        System.out.println(search(node, 9));
+        System.out.println(search(node, 10));
     }
 }
