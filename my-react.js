@@ -15,6 +15,13 @@ ReactDOM.render(
     document.getElementById('example2')
 );
 
+
+ReactDOM.render(
+    <h4>Testing again</h4>
+    ,
+    document.getElementById('example3')
+);
+
 var Comment = React.createClass({
     rawMarkup: function() {
         var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
