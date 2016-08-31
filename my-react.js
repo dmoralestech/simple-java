@@ -22,6 +22,19 @@ ReactDOM.render(
     document.getElementById('example3')
 );
 
+var Home = React.createClass({
+    render: function() {
+        "use strict";
+        return (
+            <div className ="jumbotron">
+                <h1>DM Admin</h1>
+                <p> React, React Router and Flux </p>
+            </div>
+            );
+    }
+
+});
+
 var Comment = React.createClass({
     rawMarkup: function() {
         var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
@@ -156,3 +169,5 @@ ReactDOM.render(
     <CommentBox url="/api/comments" pollInterval={2000} />,
     document.getElementById('content')
 );
+
+module.exports = Home;
