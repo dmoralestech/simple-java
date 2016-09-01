@@ -8,14 +8,16 @@ public class CheckResults {
 
     public static void main(String[] args) {
         new Thread(() -> {
-            for (int i=0; i < 500; i++) {
+            for (int i=0; i < 50; i++) {
                 CheckResults.counter++;
+                System.out.println("counter" + CheckResults.counter);
             }
         }).start();
 
-        while (CheckResults.counter < 100) {
-            System.out.printf("Not reached yet.");
+        while (CheckResults.counter < 10) {
+            System.out.println("Not reached yet.");
         }
+
         System.out.println("Reached!");
     }
 }
