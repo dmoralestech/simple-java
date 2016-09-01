@@ -10,7 +10,7 @@ public class CheckResults {
         new Thread(() -> {
             for (int i=0; i < 50; i++) {
                 CheckResults.counter++;
-                System.out.println("counter" + CheckResults.counter);
+                System.out.println("counter: " + CheckResults.counter);
             }
         }).start();
 
