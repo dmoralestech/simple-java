@@ -1,6 +1,6 @@
-package tk.unnikked.booleanevaluator.ast.terminal;
+package BooleanExpressionParser.ast.terminal;
 
-import tk.unnikked.booleanevaluator.ast.Terminal;
+import BooleanExpressionParser.ast.Terminal;
 
 import java.util.function.Predicate;
 

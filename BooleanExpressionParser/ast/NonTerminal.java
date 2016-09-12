@@ -1,4 +1,4 @@
-package tk.unnikked.booleanevaluator.ast;
+package BooleanExpressionParser.ast;
 
 public abstract class NonTerminal implements BooleanExpression {
 	protected BooleanExpression left, right;

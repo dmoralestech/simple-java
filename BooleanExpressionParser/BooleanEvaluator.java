@@ -1,10 +1,10 @@
-package tk.unnikked.booleanevaluator;
+package BooleanExpressionParser;
 
-import tk.unnikked.booleanevaluator.ast.BooleanExpression;
-import tk.unnikked.booleanevaluator.lexer.Lexer2;
-import tk.unnikked.booleanevaluator.parser.RecursiveDescentParser;
 
-import java.io.ByteArrayInputStream;
+import BooleanExpressionParser.ast.BooleanExpression;
+import BooleanExpressionParser.lexer.Lexer2;
+import BooleanExpressionParser.parser.RecursiveDescentParser;
+
 import java.util.Scanner;
 
 public class BooleanEvaluator {
@@ -17,7 +17,7 @@ public class BooleanEvaluator {
 
 		Lexer2 lexer = new Lexer2(expression);
 		RecursiveDescentParser parser = new RecursiveDescentParser(lexer);
-	    BooleanExpression ast = parser.build();
+		BooleanExpression ast = parser.build();
 		System.out.println(String.format("AST: %s", ast));
 		System.out.println(String.format("RES: %s", ast.interpret().test("OOP")));
 	}

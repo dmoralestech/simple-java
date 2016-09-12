@@ -1,13 +1,13 @@
-package tk.unnikked.booleanevaluator.parser;
+package BooleanExpressionParser.parser;
 
-import tk.unnikked.booleanevaluator.ast.*;
-import tk.unnikked.booleanevaluator.ast.nonterminal.And;
-import tk.unnikked.booleanevaluator.ast.nonterminal.Not;
-import tk.unnikked.booleanevaluator.ast.nonterminal.Or;
-import tk.unnikked.booleanevaluator.ast.terminal.False;
-import tk.unnikked.booleanevaluator.ast.terminal.Pred;
-import tk.unnikked.booleanevaluator.ast.terminal.True;
-import tk.unnikked.booleanevaluator.lexer.Lexer2;
+import BooleanExpressionParser.ast.BooleanExpression;
+import BooleanExpressionParser.ast.nonterminal.And;
+import BooleanExpressionParser.ast.terminal.False;
+import BooleanExpressionParser.ast.terminal.Pred;
+import BooleanExpressionParser.lexer.Lexer2;
+import BooleanExpressionParser.ast.nonterminal.Not;
+import BooleanExpressionParser.ast.nonterminal.Or;
+import BooleanExpressionParser.ast.terminal.True;
 
 import java.util.function.Predicate;
 

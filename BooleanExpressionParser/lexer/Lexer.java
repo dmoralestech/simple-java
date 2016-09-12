@@ -1,4 +1,4 @@
-package tk.unnikked.booleanevaluator.lexer;
+package BooleanExpressionParser.lexer;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package tk.unnikked.booleanevaluator.ast;
+package BooleanExpressionParser.ast;
 
 import java.util.function.Predicate;
 

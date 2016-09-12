@@ -7,7 +7,7 @@
 
 @Component({
   selector: 'app',
-  template: '<div>Hello world!</div>'
+  template: '<div>Hello Mate!</div>'
 })
 class App{}
 

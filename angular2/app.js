@@ -29,7 +29,7 @@ Egghead.annotations = [
   }),
   new angular.ViewAnnotation({
     directives: [Note,AnotherNote],
-    template: "<div><h1>Hello everyone</h1><note></note> <anotherNote></anotherNote></div>"
+    template: "<div><h1>Hello Visitor</h1><note></note> <anotherNote></anotherNote></div>"
   })
 ];
 

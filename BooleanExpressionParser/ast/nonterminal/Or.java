@@ -1,6 +1,6 @@
-package tk.unnikked.booleanevaluator.ast.nonterminal;
+package BooleanExpressionParser.ast.nonterminal;
 
-import tk.unnikked.booleanevaluator.ast.NonTerminal;
+import BooleanExpressionParser.ast.NonTerminal;
 
 import java.util.function.Predicate;
 
