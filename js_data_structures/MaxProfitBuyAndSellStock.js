@@ -6,11 +6,11 @@ function computeMaxProfit(stockPricesArr) {
     var minStockPrice = Number.MAX_VALUE; // this will store the minimum price in the array
     var maxProfit = 0.0; // this stores the current max profit per iteration
 
-    stockPricesArr.forEach(function (price) {
+    stockPricesArr.forEach(function (stockPrice) {
         // get the max between the current maxProfit and the difference between the current price and the current min price
-        var diffBetweenCurrentPriceAndMinPrice = price - minStockPrice;
+        var diffBetweenCurrentPriceAndMinPrice = stockPrice - minStockPrice;
         maxProfit = Math.max(maxProfit, diffBetweenCurrentPriceAndMinPrice);
-        minStockPrice = Math.min(minStockPrice, price);
+        minStockPrice = Math.min(minStockPrice, stockPrice);
     });
 
     return maxProfit;
