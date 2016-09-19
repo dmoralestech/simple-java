@@ -2,15 +2,15 @@
  * Created by dmorales on 20/09/2016.
  */
 
-function computeMaxProfit(prices) {
-    var minPrice = Number.MAX_VALUE; // this stores the minimum price in the array
+function computeMaxProfit(stockPricesArr) {
+    var minStockPrice = Number.MAX_VALUE; // this will store the minimum price in the array
     var maxProfit = 0.0; // this stores the current max profit per iteration
 
-    prices.forEach(function (price) {
+    stockPricesArr.forEach(function (price) {
         // get the max between the current maxProfit and the difference between the current price and the current min price
-        var differnceBetweenCurrentPriceAndMinPrice = price - minPrice;
+        var differnceBetweenCurrentPriceAndMinPrice = price - minStockPrice;
         maxProfit = Math.max(maxProfit, differnceBetweenCurrentPriceAndMinPrice);
-        minPrice = Math.min(minPrice, price);
+        minStockPrice = Math.min(minStockPrice, price);
     });
 
     return maxProfit;
