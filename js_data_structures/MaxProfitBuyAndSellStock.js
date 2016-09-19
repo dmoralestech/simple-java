@@ -8,8 +8,8 @@ function computeMaxProfit(stockPricesArr) {
 
     stockPricesArr.forEach(function (price) {
         // get the max between the current maxProfit and the difference between the current price and the current min price
-        var differnceBetweenCurrentPriceAndMinPrice = price - minStockPrice;
-        maxProfit = Math.max(maxProfit, differnceBetweenCurrentPriceAndMinPrice);
+        var diffBetweenCurrentPriceAndMinPrice = price - minStockPrice;
+        maxProfit = Math.max(maxProfit, diffBetweenCurrentPriceAndMinPrice);
         minStockPrice = Math.min(minStockPrice, price);
     });
 
