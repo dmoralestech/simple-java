@@ -5,9 +5,9 @@
 function computeMaxProfit(stockPricesArr) {
     var minStockPrice = Number.MAX_VALUE; // this will store the minimum price in the array
     var maxProfit = 0.0; // this stores the current max profit per iteration
-    var maxStockPriceIndex = 0;
+    var maxStockPriceIndex = 0; 
     var minStockPriceIndex = 0;
-    var mapPriceIndex = new Map(); // map of prices and it's index
+    var mapPriceIndex = new Map(); // map of prices and its index
 
     stockPricesArr.forEach(function(stockPrice, index) {
         mapPriceIndex.set(stockPrice, index);
