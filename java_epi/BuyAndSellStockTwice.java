@@ -29,4 +29,19 @@ public class BuyAndSellStockTwice {
         return maxTotalProfit;
     }
 
+    public static void main(String[] args) {
+        List<Double> prices = new ArrayList<>();
+
+        prices.add(100.0);
+        prices.add(20.0);
+        prices.add(1.0);
+        prices.add(80.00);
+        prices.add(30.0);
+        prices.add(15.0);
+        prices.add(101.00);
+
+        System.out.println("max profit: " + buyAndSellStockTwice(prices));
+
+    }
+
 }
