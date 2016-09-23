@@ -16,15 +16,13 @@ public class BuyAndSellStockTwice {
         for (int i = 0; i < prices.size(); ++i) {
             minPriceSoFar = Math.min(minPriceSoFar, prices.get(i));
             maxTotalProfit = Math.max(maxTotalProfit, prices.get(i) - minPriceSoFar);
-            firstBuySellProfits.add(maxTotalProfit);
+            firstBuySellProfits.add(maxTotalProfit); // save the
         }
 
         double maxPriceSoFar = Double.MIN_VALUE;
         for (int i = prices.size() - 1; i > 0; --i) {
             maxPriceSoFar = Math.max(maxPriceSoFar, prices.get(i));
-            maxTotalProfit
-                    = Math.max(maxTotalProfit, maxPriceSoFar - prices.get(i)
-                    + firstBuySellProfits.get(i - 1));
+            maxTotalProfit = Math.max(maxTotalProfit, maxPriceSoFar - prices.get(i) + firstBuySellProfits.get(i - 1));
         }
         return maxTotalProfit;
     }
@@ -36,9 +34,10 @@ public class BuyAndSellStockTwice {
         prices.add(20.0);
         prices.add(1.0);
         prices.add(80.00);
-        prices.add(30.0);
-        prices.add(15.0);
         prices.add(101.00);
+        prices.add(30.0);
+        prices.add(300.0);
+        prices.add(15.0);
 
         System.out.println("max profit: " + buyAndSellStockTwice(prices));
 
