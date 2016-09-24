@@ -16,7 +16,7 @@ public class BuyAndSellStockTwice {
         for (int i = 0; i < prices.size(); ++i) {
             minPriceSoFar = Math.min(minPriceSoFar, prices.get(i));
             maxTotalProfit = Math.max(maxTotalProfit, prices.get(i) - minPriceSoFar);
-            firstBuySellProfits.add(maxTotalProfit); // save the
+            firstBuySellProfits.add(maxTotalProfit); // save the profit difference in an array
         }
 
         double maxPriceSoFar = Double.MIN_VALUE;
@@ -30,14 +30,18 @@ public class BuyAndSellStockTwice {
     public static void main(String[] args) {
         List<Double> prices = new ArrayList<>();
 
-        prices.add(100.0);
-        prices.add(20.0);
+//        prices.add(100.0);
+//        prices.add(20.0);
         prices.add(1.0);
-        prices.add(80.00);
-        prices.add(101.00);
-        prices.add(30.0);
-        prices.add(300.0);
-        prices.add(15.0);
+        prices.add(2.0);
+        prices.add(3.0);
+        prices.add(4.0);
+        prices.add(5.0);
+//        prices.add(80.00);
+//        prices.add(101.00);
+//        prices.add(30.0);
+//        prices.add(300.0);
+//        prices.add(15.0);
 
         System.out.println("max profit: " + buyAndSellStockTwice(prices));
 
