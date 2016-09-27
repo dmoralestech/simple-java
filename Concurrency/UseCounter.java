@@ -5,7 +5,9 @@ package Concurrency;
  */
 class UseCounter implements Runnable {
     public void increment() {
-// increments the counter and prints the value // of the counter shared between threads Counter.count++; System.out.print(Counter.count + " ");
+            // increments the counter and prints the value // of the counter shared between threads
+        Counter.count++;
+        System.out.print(Counter.count + " ");
     }
 
     public void run() {
