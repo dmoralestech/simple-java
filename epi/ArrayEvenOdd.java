@@ -20,11 +20,8 @@ public class ArrayEvenOdd {
     }
 
     public static void main(String[] args) {
-
-        int[] A = {10,20,30,40,50,60,70,80,90,100};
-
+        int[] A = {3, 5, 9, 10,20,30,40,50,60,70,80,90,100};
         evenOdd(A);
-
-
+        //{100, 90, 80, 10,20,30,40,50,60,70,9,5,3};
     }
 }
