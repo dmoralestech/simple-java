@@ -21,5 +21,10 @@ public class ArrayEvenOdd {
 
     public static void main(String[] args) {
 
+        int[] A = {10,20,30,40,50,60,70,80,90,100};
+
+        evenOdd(A);
+
+
     }
 }
