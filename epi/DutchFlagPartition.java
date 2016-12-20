@@ -21,14 +21,12 @@ public class DutchFlagPartition {
         for (int i = 0; i < A.size(); i++) {
             if (A.get(i).ordinal() < pivot.ordinal()) {
                 Collections.swap(A, smaller++, i);
-                break;
             }
         }
 
         for (int i = A.size() - 1; i >= 0 && A.get(i).ordinal() >= pivot.ordinal(); --i) {
             if (A.get(i).ordinal() > pivot.ordinal()) {
                 Collections.swap(A, larger--, i);
-                break;
             }
         }
 
@@ -51,6 +49,7 @@ public class DutchFlagPartition {
         listColor.add(Color.WHITE);
         listColor.add(Color.RED);
         listColor.add(Color.BLUE);
+        listColor.add(Color.RED);
 
         dutchFlagPartition(1, listColor);
 
