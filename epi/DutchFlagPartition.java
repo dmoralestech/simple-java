@@ -48,7 +48,8 @@ public class DutchFlagPartition {
         listColor.add(Color.BLUE);
         listColor.add(Color.WHITE);
         listColor.add(Color.RED);
-        listColor.add(Color.BLUE);
+        listColor.add(Color.RED);
+        listColor.add(Color.RED);
         listColor.add(Color.RED);
 
         dutchFlagPartition(1, listColor);
