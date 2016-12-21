@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class DutchFlagPartition {
 
-    public enum Color {RED, WHITE, BLUE}
+    public enum Color {ZERO, ONE, TWO}
 
     public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
 
@@ -31,7 +31,6 @@ public class DutchFlagPartition {
     public static void dutchFlagPartition2(List<Color> A) {
 
         int smaller = 0;
-
         for ( Color color : Color.values()) {
             for (int i = 0; i < A.size(); i++) {
                 if (A.get(i).ordinal() == color.ordinal()) {
@@ -39,20 +38,32 @@ public class DutchFlagPartition {
                 }
             }
         }
+    }
 
-//
-//        for (int i = smaller; i < A.size(); i++) {
-//            if (A.get(i).ordinal() == Color.WHITE.ordinal()) {
-//                Collections.swap(A, smaller++, i);
-//            }
-//        }
-//
-//        for (int i = smaller; i < A.size(); i++) {
-//            if (A.get(i).ordinal() == Color.BLUE.ordinal()) {
-//                Collections.swap(A, smaller++, i);
-//            }
-//        }
+    public static void dutchFlagPartition3(int pivotIndex, List<Color> A) {
+        // @judge-exclude-display
+        Color pivot = A.get(pivotIndex);
 
+        /**
+         * Keep the following invariants during partitioning:
+         * bottom group: A.subList(0, smaller).
+         * middle group: A.subList(smaller, equal).
+         * unclassified group: A.subList(equal, larger).
+         * top group: A.subList(larger, A.size()).
+         */
+        int smaller = 0, equal = 0, larger = A.size();
+        // Keep iterating as long as there is an unclassified element.
+        while (equal < larger) {
+            // A.get(equal) is the incoming unclassified element.
+            if (A.get(equal).ordinal() < pivot.ordinal()) {
+                Collections.swap(A, smaller++, equal++);
+            } else if (A.get(equal).ordinal() == pivot.ordinal()) {
+                ++equal;
+            } else { // A.get(equal) > pivot.
+                Collections.swap(A, equal, --larger);
+            }
+        }
+        // @judge-include-display
     }
 
 
@@ -68,20 +79,21 @@ public class DutchFlagPartition {
     public static void main(String[] args) {
         List<Color> listColor = new ArrayList<>();
 
-        listColor.add(Color.RED);
-        listColor.add(Color.BLUE);
-        listColor.add(Color.WHITE);
-        listColor.add(Color.RED);
-        listColor.add(Color.BLUE);
-        listColor.add(Color.RED);
-        listColor.add(Color.WHITE);
-        listColor.add(Color.RED);
-        listColor.add(Color.BLUE);
-        listColor.add(Color.RED);
-        listColor.add(Color.WHITE);
+        listColor.add(Color.ONE);
+        listColor.add(Color.ZERO);
+        listColor.add(Color.TWO);
+        listColor.add(Color.ZERO);
+        listColor.add(Color.TWO);
+        listColor.add(Color.ZERO);
+        listColor.add(Color.ONE);
+        listColor.add(Color.ZERO);
+        listColor.add(Color.TWO);
+        listColor.add(Color.ZERO);
+        listColor.add(Color.ONE);
 
-        dutchFlagPartition2(listColor);
+        //dutchFlagPartition2(listColor);
         //dutchFlagPartition(2, listColor);
+        dutchFlagPartition3(0, listColor);
 
 
 
