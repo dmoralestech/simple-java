@@ -24,24 +24,37 @@ public class PlusOne {
         return A;
     }
 
+    public static List<Integer> plusX(List<Integer> A, int x) {
+        int n = A.size() - 1;
+        A.set(n, A.get(n) + x);
+        for (int i = n; i > 0 && A.get(i) > 10; --i) {
+            A.set(i, A.get(i) - 10);
+            A.set(i - 1, A.get(i - 1) + 10);
+        }
+        if (A.get(0) == 10) {
+            // Need additional digit as the most significant digit (i.e., A.get(0))
+            // has a carry-out.
+            A.set(0, 0);
+            A.add(0, 1);
+        }
+        return A;
+    }
+
     public static void main(String[] args) {
         List<Integer> result = plusOne(new ArrayList<Integer>() {
             {
+                add(2);
                 add(9);
                 add(9);
             }
         });
-        assert (result.size() == 3 && result.get(0) == 1 && result.get(1) == 0
-                && result.get(2) == 0);
-        result = plusOne(new ArrayList<Integer>() {
+        result = plusX(new ArrayList<Integer>() {
             {
                 add(3);
                 add(1);
                 add(4);
             }
-        });
-        assert (result.size() == 3 && result.get(0) == 3 && result.get(1) == 1
-                && result.get(2) == 5);
+        }, 8);
     }
 
 }
