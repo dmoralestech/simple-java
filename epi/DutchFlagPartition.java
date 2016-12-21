@@ -1,9 +1,6 @@
 package epi;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by dmorales on 20/12/2016.
@@ -29,9 +26,35 @@ public class DutchFlagPartition {
                 Collections.swap(A, larger--, i);
             }
         }
+    }
 
+    public static void dutchFlagPartition2(List<Color> A) {
+
+        int smaller = 0;
+
+        for ( Color color : Color.values()) {
+            for (int i = 0; i < A.size(); i++) {
+                if (A.get(i).ordinal() == color.ordinal()) {
+                    Collections.swap(A, smaller++, i);
+                }
+            }
+        }
+
+//
+//        for (int i = smaller; i < A.size(); i++) {
+//            if (A.get(i).ordinal() == Color.WHITE.ordinal()) {
+//                Collections.swap(A, smaller++, i);
+//            }
+//        }
+//
+//        for (int i = smaller; i < A.size(); i++) {
+//            if (A.get(i).ordinal() == Color.BLUE.ordinal()) {
+//                Collections.swap(A, smaller++, i);
+//            }
+//        }
 
     }
+
 
     private static List<Color> randArray(int len) {
         Random r = new Random();
@@ -45,14 +68,22 @@ public class DutchFlagPartition {
     public static void main(String[] args) {
         List<Color> listColor = new ArrayList<>();
 
+        listColor.add(Color.RED);
         listColor.add(Color.BLUE);
         listColor.add(Color.WHITE);
         listColor.add(Color.RED);
+        listColor.add(Color.BLUE);
         listColor.add(Color.RED);
+        listColor.add(Color.WHITE);
         listColor.add(Color.RED);
+        listColor.add(Color.BLUE);
         listColor.add(Color.RED);
+        listColor.add(Color.WHITE);
 
-        dutchFlagPartition(1, listColor);
+        dutchFlagPartition2(listColor);
+        //dutchFlagPartition(2, listColor);
+
+
 
         Random gen = new Random();
 
@@ -70,6 +101,8 @@ public class DutchFlagPartition {
             Color pivot = A.get(pivotIndex);
 
             dutchFlagPartition(pivotIndex, A);
+
+            //Collections.sort(A, (o1, o2) ->  o2.ordinal() - o1.ordinal());
 
             int i = 0;
             while (i < n && A.get(i).ordinal() < pivot.ordinal()) {
