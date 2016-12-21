@@ -73,27 +73,22 @@ public class DutchFlagPartition {
         for (int i = 0; i < len; ++i) {
             ret.add(Color.values()[r.nextInt(3)]);
         }
+
         return ret;
+
     }
 
     public static void main(String[] args) {
         List<Color> listColor = new ArrayList<>();
 
-        listColor.add(Color.ONE);
-        listColor.add(Color.ZERO);
-        listColor.add(Color.TWO);
-        listColor.add(Color.ZERO);
         listColor.add(Color.TWO);
         listColor.add(Color.ZERO);
         listColor.add(Color.ONE);
         listColor.add(Color.ZERO);
-        listColor.add(Color.TWO);
-        listColor.add(Color.ZERO);
-        listColor.add(Color.ONE);
 
         //dutchFlagPartition2(listColor);
         //dutchFlagPartition(2, listColor);
-        dutchFlagPartition3(0, listColor);
+        dutchFlagPartition3(2, listColor);
 
 
 
