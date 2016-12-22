@@ -46,6 +46,7 @@ public class ArrayMultiplication {
 
         List<Integer> longerList;
         List<Integer> shorterList;
+        List<Integer> tempList;
 
         if (isNum1Longer) {
             longerList = num1;
@@ -55,17 +56,20 @@ public class ArrayMultiplication {
             shorterList = num1;
         }
 
+        tempList= new ArrayList<>(Collections.nCopies(longerList.size(), 0));
+        for (int i = tempList.size() - 1; i >= 0; i--) {
+            tempList.set(i, shorterList.get(i));
+        }
+
+        shorterList = tempList;
         List<Integer> result = new ArrayList<>(Collections.nCopies(longerList.size() + 1, 0));
         for (int i = longerList.size() - 1; i >= 0; --i) {
-            for (int j = shorterList.size() - 1; j >= 0; --j) {
-                int temp = result.get(i) + num1.get(i) + num2.get(j);
-
-                if (temp > 9){
-                    result.set(i, temp - 10);
-                    result.set(i - 1, 1);
-                } else {
-                    result.set(i, temp);
-                }
+            int temp = result.get(i + 1) + longerList.get(i) + (shorterList.get(i) == null ? 0 : shorterList.get(i)) ;
+            if (temp > 9) {
+                result.set(i + 1, temp - 10);
+                result.set(i, 1);
+            } else {
+                result.set(i + 1, temp);
             }
         }
 
