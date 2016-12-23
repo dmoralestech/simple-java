@@ -65,7 +65,7 @@ public class ArrayMultiplication {
             int carryOver;
             if (temp > 9) {
                 carryOver = 1;
-                result.set(i + carryOver, temp - 10);
+                result.set(i + 1, temp - 10);
                 result.set(i, 1);
             } else {
                 result.set(i + 1, temp);
@@ -97,7 +97,7 @@ public class ArrayMultiplication {
     public static void main(String[] args) {
         //fillShorterList(Arrays.asList(3, 4, 5, 7, 8), 10);
         multiply(Arrays.asList(7, 3), Arrays.asList(-3));
-        addition(Arrays.asList(9, 9), Arrays.asList(7, 9));
+        addition(Arrays.asList(9, 3, 9), Arrays.asList(7, 4, 9));
     }
 
 }
