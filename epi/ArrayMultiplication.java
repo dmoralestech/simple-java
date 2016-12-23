@@ -46,7 +46,7 @@ public class ArrayMultiplication {
 
         List<Integer> longerList;
         List<Integer> shorterList;
-        List<Integer> tempList;
+
 
         if (isNum1Longer) {
             longerList = num1;
@@ -56,15 +56,11 @@ public class ArrayMultiplication {
             shorterList = num1;
         }
 
-        tempList= new ArrayList<>(Collections.nCopies(longerList.size(), 0));
-        for (int i = tempList.size() - 1; i >= 0; i--) {
-            tempList.set(i, shorterList.get(i));
-        }
+        shorterList = fillShorterList(shorterList, longerList.size());
 
-        shorterList = tempList;
         List<Integer> result = new ArrayList<>(Collections.nCopies(longerList.size() + 1, 0));
         for (int i = longerList.size() - 1; i >= 0; --i) {
-            int temp = result.get(i + 1) + longerList.get(i) + (shorterList.get(i) == null ? 0 : shorterList.get(i)) ;
+            int temp = result.get(i + 1) + longerList.get(i) + (shorterList.get(i) == null ? 0 : shorterList.get(i));
             if (temp > 9) {
                 result.set(i + 1, temp - 10);
                 result.set(i, 1);
@@ -83,6 +79,17 @@ public class ArrayMultiplication {
             return Arrays.asList(0);
         }
         return result;
+    }
+
+    private static List<Integer> fillShorterList(List<Integer> shorterList, int size) {
+        List<Integer> tempList;
+        tempList = new ArrayList<>(Collections.nCopies(size, 0));
+        int startIndex = size - shorterList.size();
+        for (int i = 0; i <= shorterList.size() - 1; i++) {
+            tempList.set(i + startIndex, shorterList.get(i));
+        }
+        shorterList = tempList;
+        return shorterList;
     }
 
 
