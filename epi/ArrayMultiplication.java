@@ -57,12 +57,15 @@ public class ArrayMultiplication {
         }
 
         shorterList = fillShorterList(shorterList, longerList.size());
+        assert (shorterList.size() == longerList.size());
 
         List<Integer> result = new ArrayList<>(Collections.nCopies(longerList.size() + 1, 0));
         for (int i = longerList.size() - 1; i >= 0; --i) {
             int temp = result.get(i + 1) + longerList.get(i) + (shorterList.get(i) == null ? 0 : shorterList.get(i));
+            int carryOver;
             if (temp > 9) {
-                result.set(i + 1, temp - 10);
+                carryOver = 1;
+                result.set(i + carryOver, temp - 10);
                 result.set(i, 1);
             } else {
                 result.set(i + 1, temp);
@@ -94,7 +97,7 @@ public class ArrayMultiplication {
     public static void main(String[] args) {
         //fillShorterList(Arrays.asList(3, 4, 5, 7, 8), 10);
         multiply(Arrays.asList(7, 3), Arrays.asList(-3));
-        addition(Arrays.asList(3), Arrays.asList(7, 3));
+        addition(Arrays.asList(9, 9), Arrays.asList(7, 9));
     }
 
 }
