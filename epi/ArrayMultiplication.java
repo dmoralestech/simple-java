@@ -82,8 +82,7 @@ public class ArrayMultiplication {
     }
 
     private static List<Integer> fillShorterList(List<Integer> shorterList, int size) {
-        List<Integer> tempList;
-        tempList = new ArrayList<>(Collections.nCopies(size, 0));
+        List<Integer> tempList = new ArrayList<>(Collections.nCopies(size, 0));
         int startIndex = size - shorterList.size();
         for (int i = 0; i <= shorterList.size() - 1; i++) {
             tempList.set(i + startIndex, shorterList.get(i));
@@ -92,8 +91,8 @@ public class ArrayMultiplication {
         return shorterList;
     }
 
-
     public static void main(String[] args) {
+        //fillShorterList(Arrays.asList(3, 4, 5, 7, 8), 10);
         multiply(Arrays.asList(7, 3), Arrays.asList(-3));
         addition(Arrays.asList(3), Arrays.asList(7, 3));
     }
