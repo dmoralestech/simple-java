@@ -13,6 +13,14 @@ public class ArrayJumpGame {
 
         assert(a.get(0)== 0);
 
+        //can I jump?
+        if (a.get(currentIndex + numOfSteps) == 0) {
+            currentIndex += numOfSteps;
+        } else {
+            //can I move forward or backward?
+
+        }
+
         while(currentIndex < a.size()) {
             currentIndex += numOfSteps;
             if (a.get(currentIndex) == 0) {
