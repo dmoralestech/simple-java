@@ -18,6 +18,6 @@ public class JumpGame {
 
     public static void main(String[] args) {
         canReachEnd(Arrays.asList(3, 3, 1, 0, 2, 0, 1));
-        canReachEnd(Arrays.asList(3, 32, 0, 0, 2, 0, 1));
+        canReachEnd(Arrays.asList(3, 2, 0, 0, 2, 0, 1));
     }
 }
