@@ -41,6 +41,12 @@ public class ArrayMultiplication {
         return result;
     }
 
+    public static List<Integer> simpleMultiplication(List<Integer> num1, List<Integer> num2) {
+        List<Integer> result = new ArrayList<>();
+
+        return result;
+    }
+
     public static List<Integer> addition(List<Integer> num1, List<Integer> num2) {
         final boolean isNum1Longer = num1.size() >= num2.size() ? true : false;
 
