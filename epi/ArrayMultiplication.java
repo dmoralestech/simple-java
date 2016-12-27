@@ -45,7 +45,7 @@ public class ArrayMultiplication {
         List<Integer> result = new ArrayList<>(Collections.nCopies(num1.size() + 1, 0));
 
         for(int i = num1.size() - 1; i >= 0 ; i--) {
-            int temp = num1.get(i) +  num2.get(0) * num1.get(i);
+            int temp = result.get(i + 1) +  num2.get(0) * num1.get(i);
 
             int div = temp / 10;
             int mod = temp % 10;
@@ -111,7 +111,8 @@ public class ArrayMultiplication {
 
     public static void main(String[] args) {
         //fillShorterList(Arrays.asList(3, 4, 5, 7, 8), 10);
-        simpleMultiplication(Arrays.asList(2, 3), Arrays.asList(2));
+        simpleMultiplication(Arrays.asList(2, 2), Arrays.asList(3));
+        simpleMultiplication(Arrays.asList(2, 5), Arrays.asList(5));
         multiply(Arrays.asList(7, 3), Arrays.asList(-3));
         addition(Arrays.asList(9), Arrays.asList(7, 4, 9));
     }
