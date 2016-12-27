@@ -42,7 +42,13 @@ public class ArrayMultiplication {
     }
 
     public static List<Integer> simpleMultiplication(List<Integer> num1, List<Integer> num2) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>(Collections.nCopies(num1.size() + 1, 0));
+
+        for(int i = num1.size() - 1; i >= 0 ; i--) {
+
+
+        }
+
 
         return result;
     }
