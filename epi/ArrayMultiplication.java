@@ -111,6 +111,7 @@ public class ArrayMultiplication {
 
     public static void main(String[] args) {
         //fillShorterList(Arrays.asList(3, 4, 5, 7, 8), 10);
+        simpleMultiplication(Arrays.asList(9, 9, 9), Arrays.asList(9));
         simpleMultiplication(Arrays.asList(6, 6), Arrays.asList(9));
         simpleMultiplication(Arrays.asList(2, 2), Arrays.asList(3));
         simpleMultiplication(Arrays.asList(2, 5), Arrays.asList(5));
