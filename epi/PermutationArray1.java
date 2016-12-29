@@ -30,10 +30,25 @@ public class PermutationArray1 {
         }
     }
 
+    public static void printCyclicPermutation(List<Integer> A) {
+        for (int i = 0; i < A.size(); i++) {
+            printArrayStartingAt(A, i);
+        }
+    }
+
+    public static void printArrayStartingAt(List<Integer> A, int index) {
+        for (int i = 0; i < A.size(); i++) {
+            int temp = index + i;
+
+            System.out.print(A.get(i));
+        }
+    }
+
     public static void main(String[] args) {
-        applyPermutation(Arrays.asList(1, 0, 2, 3), Arrays.asList(10, 11, 12, 13));
+        applyPermutation(Arrays.asList(2, 0, 1, 3), Arrays.asList(0, 1, 2, 3));
         applyPermutation(Arrays.asList(0, 1, 2, 3), Arrays.asList(10, 11, 12, 13));
     }
+
 }
 
 
