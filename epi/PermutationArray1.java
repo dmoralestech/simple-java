@@ -43,6 +43,10 @@ public class PermutationArray1 {
             int newIndex = getNewIndex(i, start, A.size());
             result.set(newIndex, i);
         }
+        for (int i = 0; i < result.size(); i++) {
+            System.out.print(result.get(i));
+        }
+        System.out.println("");
     }
 
     public static int getNewIndex(int currentIndex, int startIndex, int sizeArray){
@@ -54,6 +58,7 @@ public class PermutationArray1 {
     }
 
     public static void main(String[] args) {
+        printCyclicPermutation(Arrays.asList(0, 1, 2, 3));
         applyPermutation(Arrays.asList(2, 0, 1, 3), Arrays.asList(0, 1, 2, 3));
         applyPermutation(Arrays.asList(0, 1, 2, 3), Arrays.asList(10, 11, 12, 13));
     }
