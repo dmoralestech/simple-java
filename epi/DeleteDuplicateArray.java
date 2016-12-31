@@ -1,5 +1,7 @@
 package epi;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  */
 public class DeleteDuplicateArray {
 
-    public int deleteDuplicate(List<Integer> listNums) {
+    public static int deleteDuplicate(List<Integer> listNums) {
         if (listNums.isEmpty()) {
             return 0;
         }
@@ -20,7 +22,19 @@ public class DeleteDuplicateArray {
         }
         return writeIndex;
     }
-    public static void main(String[] args) {
 
+    public static int removeDuplicate(List<Integer> listNums) {
+        int index = 1;
+        for (int i = 1; i < listNums.size() ; i++) {
+            if (!listNums.get(index - 1).equals(listNums.get(i))) {
+                Collections.swap(listNums, index++, i);
+            }
+        }
+        return index;
+    }
+
+    public static void main(String[] args) {
+        removeDuplicate(Arrays.asList(2, 2, 3, 3, 3, 4, 5, 5, 7));
+        deleteDuplicate(Arrays.asList(2, 2, 3, 3, 3, 4, 5, 5, 7));
     }
 }
