@@ -1,5 +1,6 @@
 package epi;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -36,12 +37,20 @@ public class PermutationArray1 {
         }
     }
 
-    public static void printArrayStartingAt(List<Integer> A, int index) {
+    public static void printArrayStartingAt(List<Integer> A, int start) {
+        List<Integer> result = new ArrayList<>(Collections.nCopies(A.size(), 0));
         for (int i = 0; i < A.size(); i++) {
-            int temp = index + i;
-
-            System.out.print(A.get(i));
+            int newIndex = getNewIndex(i, start, A.size());
+            result.set(newIndex, i);
         }
+    }
+
+    public static int getNewIndex(int currentIndex, int startIndex, int sizeArray){
+        int newIndex = currentIndex + startIndex;
+        if (newIndex == sizeArray) {
+            newIndex = (currentIndex + 1) - startIndex;
+        }
+        return newIndex;
     }
 
     public static void main(String[] args) {
