@@ -52,6 +52,7 @@ public class PermutationArray1 {
 
     public static int getNewIndex(int currentIndex, int startIndex, int sizeArray) {
         int newIndex = currentIndex + startIndex;
+            // if the newIndex is over the size of the array, then go back to the beginning.
         if (newIndex >= sizeArray) {
             newIndex = newIndex - sizeArray;
         }
@@ -62,7 +63,7 @@ public class PermutationArray1 {
     }
 
     public static void main(String[] args) {
-        printArrayStartingAt(Arrays.asList(0, 1, 2, 3), 2);
+        //printArrayStartingAt(Arrays.asList(0, 1, 2, 3), 2);
         printCyclicPermutation(Arrays.asList(0, 1, 2, 3));
         applyPermutation(Arrays.asList(2, 0, 1, 3), Arrays.asList(0, 1, 2, 3));
         applyPermutation(Arrays.asList(0, 1, 2, 3), Arrays.asList(10, 11, 12, 13));
