@@ -36,6 +36,8 @@ public class NextPermutation {
     }
 
     public static void main(String[] args) {
-        nextPermutation(Arrays.asList(5, 1, 0, 4, 2, 3));
+        nextPermutation(Arrays.asList(5, 1, 0, 4, 3, 2));
+        List<Integer> temp = Arrays.asList(5, 1, 0, 4, 3, 2);
+        Collections.reverse(temp.subList(0, 4));
     }
 }
