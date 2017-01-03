@@ -14,13 +14,15 @@ public class OfflineSampling {
         Random gen = new Random();
         for (int i = 0; i < k; ++i) {
             // Generate a random int in [i, A.size() - 1].
-            Collections.swap(A, i, i + gen.nextInt(A.size() - i));
+            int bound = A.size() - i;
+            int nextRandomNumber = gen.nextInt(bound);
+            Collections.swap(A, i, i + nextRandomNumber);
         }
     }
     // @exclude
 
     public static void main(String[] args) {
-        int n = 10, k = 4;
+        int n = 10, k = 10;
         List<Integer> A = new ArrayList<>();
         for (int i = 0; i < n; ++i) {
             A.add(i);
