@@ -18,7 +18,8 @@ public class OnlineSampling {
         Random randIdxGen = new Random();
         for (int i = 0; i < k; ++i) {
             // Generate random int in [i, n - 1].
-            int randIdx = i + randIdxGen.nextInt(n - i);
+            int bound = n - i;
+            int randIdx = i + randIdxGen.nextInt(bound);
             Integer valueFromRandomNumber = changedElements.get(randIdx);
             Integer valueFromIndex = changedElements.get(i);
             if (valueFromRandomNumber == null && valueFromIndex == null) {
@@ -46,8 +47,8 @@ public class OnlineSampling {
 
     public static void main(String[] args) {
         int n, k;
-        n = 100;
-        k = 70;
+        n = 5;
+        k = 5;
 
         List<Integer> res = randomSubset(n, k);
     }
