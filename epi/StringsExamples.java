@@ -25,10 +25,16 @@ public class StringsExamples {
     }
 
     public static int convertToInt(String s) {
-        return 0;
+        int result = 0;
+        for (int i = s.charAt(0) == '-' ? 1 : 0; i < s.length(); ++i) {
+            final int digit = s.charAt(i) - '0';
+            result = result * 10 + digit;
+        }
+        return s.charAt(0) == '-' ? -result : result;
     }
 
     public static void main(String[] args) {
         convertToString(314);
+        convertToInt("314");
     }
 }
